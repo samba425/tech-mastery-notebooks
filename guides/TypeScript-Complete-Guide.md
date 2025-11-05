@@ -391,6 +391,457 @@ dog.makeSound(); // "Woof!"
 dog.move(); // "Moving..."
 ```
 
+### SOLID Principles in TypeScript
+
+TypeScript's type system makes implementing SOLID principles even more robust and type-safe.
+
+#### 1. Single Responsibility Principle (SRP)
+
+```typescript
+// ❌ Bad - Multiple responsibilities
+class User {
+    constructor(public name: string, public email: string) {}
+    
+    saveToDatabase(): void {
+        // Database logic
+        console.log('Saving to database...');
+    }
+    
+    sendEmail(message: string): void {
+        // Email logic
+        console.log(`Sending email to ${this.email}: ${message}`);
+    }
+    
+    validateEmail(): boolean {
+        // Validation logic
+        return this.email.includes('@');
+    }
+}
+
+// ✅ Good - Single responsibility per class
+class User {
+    constructor(public readonly name: string, public readonly email: string) {}
+}
+
+class UserRepository {
+    save(user: User): Promise<void> {
+        console.log(`Saving ${user.name} to database...`);
+        return Promise.resolve();
+    }
+}
+
+class EmailService {
+    send(user: User, message: string): Promise<void> {
+        console.log(`Sending email to ${user.email}: ${message}`);
+        return Promise.resolve();
+    }
+}
+
+class EmailValidator {
+    isValid(email: string): boolean {
+        return email.includes('@') && email.includes('.');
+    }
+}
+```
+
+#### 2. Open/Closed Principle (OCP)
+
+```typescript
+// ✅ Good - Using interfaces and inheritance
+interface Shape {
+    area(): number;
+}
+
+class Circle implements Shape {
+    constructor(private radius: number) {}
+    
+    area(): number {
+        return Math.PI * this.radius ** 2;
+    }
+}
+
+class Rectangle implements Shape {
+    constructor(private width: number, private height: number) {}
+    
+    area(): number {
+        return this.width * this.height;
+    }
+}
+
+class AreaCalculator {
+    calculateTotal(shapes: Shape[]): number {
+        return shapes.reduce((total, shape) => total + shape.area(), 0);
+    }
+}
+
+// Adding new shapes doesn't modify existing code
+class Triangle implements Shape {
+    constructor(private base: number, private height: number) {}
+    
+    area(): number {
+        return 0.5 * this.base * this.height;
+    }
+}
+
+// Usage
+const calculator = new AreaCalculator();
+const shapes: Shape[] = [
+    new Circle(5),
+    new Rectangle(4, 6),
+    new Triangle(3, 4)
+];
+console.log(calculator.calculateTotal(shapes));
+```
+
+#### 3. Liskov Substitution Principle (LSP)
+
+```typescript
+// ✅ Good - Proper inheritance hierarchy
+abstract class Bird {
+    abstract move(): string;
+}
+
+abstract class FlyingBird extends Bird {
+    move(): string {
+        return this.fly();
+    }
+    
+    abstract fly(): string;
+}
+
+abstract class WalkingBird extends Bird {
+    move(): string {
+        return this.walk();
+    }
+    
+    abstract walk(): string;
+}
+
+class Eagle extends FlyingBird {
+    fly(): string {
+        return "Eagle soars through the sky";
+    }
+}
+
+class Penguin extends WalkingBird {
+    walk(): string {
+        return "Penguin waddles on ice";
+    }
+}
+
+// All birds can be used interchangeably
+function makeBirdMove(bird: Bird): string {
+    return bird.move();
+}
+
+const eagle: Bird = new Eagle();
+const penguin: Bird = new Penguin();
+console.log(makeBirdMove(eagle));   // Type-safe
+console.log(makeBirdMove(penguin)); // Type-safe
+```
+
+#### 4. Interface Segregation Principle (ISP)
+
+```typescript
+// ❌ Bad - Fat interface
+interface Worker {
+    work(): void;
+    eat(): void;
+    sleep(): void;
+}
+
+// ✅ Good - Segregated interfaces
+interface Workable {
+    work(): void;
+}
+
+interface Eatable {
+    eat(): void;
+}
+
+interface Sleepable {
+    sleep(): void;
+}
+
+class Human implements Workable, Eatable, Sleepable {
+    constructor(private name: string) {}
+    
+    work(): void {
+        console.log(`${this.name} is working`);
+    }
+    
+    eat(): void {
+        console.log(`${this.name} is eating`);
+    }
+    
+    sleep(): void {
+        console.log(`${this.name} is sleeping`);
+    }
+}
+
+class Robot implements Workable {
+    constructor(private model: string) {}
+    
+    work(): void {
+        console.log(`${this.model} robot is working`);
+    }
+    // Robot doesn't need to implement eat() or sleep()
+}
+
+// Factory pattern with ISP
+class WorkerFactory {
+    static createWorker(type: 'human' | 'robot', name: string): Workable {
+        switch (type) {
+            case 'human':
+                return new Human(name);
+            case 'robot':
+                return new Robot(name);
+            default:
+                throw new Error('Unknown worker type');
+        }
+    }
+}
+```
+
+#### 5. Dependency Inversion Principle (DIP)
+
+```typescript
+// ❌ Bad - High-level module depends on low-level module
+class FileLogger {
+    log(message: string): void {
+        console.log(`File: ${message}`);
+    }
+}
+
+class OrderService {
+    private logger = new FileLogger(); // Direct dependency
+    
+    createOrder(order: { id: string; amount: number }): void {
+        // Create order logic
+        this.logger.log(`Order ${order.id} created`);
+    }
+}
+
+// ✅ Good - Depend on abstraction
+interface Logger {
+    log(message: string): void;
+}
+
+class FileLogger implements Logger {
+    log(message: string): void {
+        console.log(`[FILE] ${new Date().toISOString()}: ${message}`);
+    }
+}
+
+class DatabaseLogger implements Logger {
+    log(message: string): void {
+        console.log(`[DB] ${new Date().toISOString()}: ${message}`);
+    }
+}
+
+class ConsoleLogger implements Logger {
+    log(message: string): void {
+        console.log(`[CONSOLE] ${message}`);
+    }
+}
+
+interface Order {
+    id: string;
+    amount: number;
+    customerEmail: string;
+}
+
+class OrderService {
+    constructor(private logger: Logger) {} // Depends on abstraction
+    
+    createOrder(order: Order): void {
+        // Create order logic
+        this.logger.log(`Order ${order.id} for $${order.amount} created`);
+    }
+}
+
+// Usage with dependency injection
+const fileLogger: Logger = new FileLogger();
+const orderService = new OrderService(fileLogger);
+
+// Easy to switch implementations
+const consoleLogger: Logger = new ConsoleLogger();
+const orderServiceWithConsole = new OrderService(consoleLogger);
+```
+
+#### Advanced SOLID Example with TypeScript Features
+
+```typescript
+// Using generics, interfaces, and advanced TypeScript features
+interface Repository<T> {
+    save(entity: T): Promise<T>;
+    findById(id: string): Promise<T | null>;
+    findAll(): Promise<T[]>;
+    delete(id: string): Promise<void>;
+}
+
+interface PaymentProcessor {
+    process(amount: number): Promise<PaymentResult>;
+}
+
+interface NotificationService<TMessage = string> {
+    send(message: TMessage, recipient: string): Promise<void>;
+}
+
+interface Logger {
+    info(message: string): void;
+    error(message: string, error?: Error): void;
+    warn(message: string): void;
+}
+
+// Types
+type PaymentResult = {
+    success: boolean;
+    transactionId?: string;
+    error?: string;
+};
+
+type OrderStatus = 'pending' | 'processing' | 'completed' | 'failed';
+
+interface Order {
+    id: string;
+    customerId: string;
+    amount: number;
+    status: OrderStatus;
+    createdAt: Date;
+}
+
+// Implementations
+class InMemoryOrderRepository implements Repository<Order> {
+    private orders: Map<string, Order> = new Map();
+    
+    async save(order: Order): Promise<Order> {
+        this.orders.set(order.id, order);
+        return order;
+    }
+    
+    async findById(id: string): Promise<Order | null> {
+        return this.orders.get(id) || null;
+    }
+    
+    async findAll(): Promise<Order[]> {
+        return Array.from(this.orders.values());
+    }
+    
+    async delete(id: string): Promise<void> {
+        this.orders.delete(id);
+    }
+}
+
+class StripePaymentProcessor implements PaymentProcessor {
+    async process(amount: number): Promise<PaymentResult> {
+        // Simulate payment processing
+        return {
+            success: true,
+            transactionId: `stripe_${Date.now()}`
+        };
+    }
+}
+
+class EmailNotificationService implements NotificationService {
+    async send(message: string, recipient: string): Promise<void> {
+        console.log(`Email sent to ${recipient}: ${message}`);
+    }
+}
+
+class ConsoleLogger implements Logger {
+    info(message: string): void {
+        console.log(`[INFO] ${message}`);
+    }
+    
+    error(message: string, error?: Error): void {
+        console.error(`[ERROR] ${message}`, error);
+    }
+    
+    warn(message: string): void {
+        console.warn(`[WARN] ${message}`);
+    }
+}
+
+// High-level service
+class OrderProcessor {
+    constructor(
+        private orderRepository: Repository<Order>,
+        private paymentProcessor: PaymentProcessor,
+        private notificationService: NotificationService,
+        private logger: Logger
+    ) {}
+    
+    async processOrder(orderData: Omit<Order, 'id' | 'status' | 'createdAt'>): Promise<Order> {
+        const order: Order = {
+            ...orderData,
+            id: `order_${Date.now()}`,
+            status: 'pending',
+            createdAt: new Date()
+        };
+        
+        try {
+            this.logger.info(`Processing order ${order.id}`);
+            
+            // Save order
+            await this.orderRepository.save(order);
+            
+            // Process payment
+            order.status = 'processing';
+            await this.orderRepository.save(order);
+            
+            const paymentResult = await this.paymentProcessor.process(order.amount);
+            
+            if (paymentResult.success) {
+                order.status = 'completed';
+                await this.orderRepository.save(order);
+                
+                await this.notificationService.send(
+                    `Your order ${order.id} has been processed successfully!`,
+                    order.customerId
+                );
+                
+                this.logger.info(`Order ${order.id} completed successfully`);
+            } else {
+                order.status = 'failed';
+                await this.orderRepository.save(order);
+                this.logger.error(`Order ${order.id} payment failed: ${paymentResult.error}`);
+            }
+            
+            return order;
+        } catch (error) {
+            order.status = 'failed';
+            await this.orderRepository.save(order);
+            this.logger.error(`Order ${order.id} processing failed`, error as Error);
+            throw error;
+        }
+    }
+}
+
+// Dependency injection setup
+const orderRepository = new InMemoryOrderRepository();
+const paymentProcessor = new StripePaymentProcessor();
+const notificationService = new EmailNotificationService();
+const logger = new ConsoleLogger();
+
+const orderProcessor = new OrderProcessor(
+    orderRepository,
+    paymentProcessor,
+    notificationService,
+    logger
+);
+
+// Usage
+orderProcessor.processOrder({
+    customerId: 'customer_123',
+    amount: 99.99
+}).then(order => {
+    console.log('Order processed:', order);
+}).catch(error => {
+    console.error('Order processing failed:', error);
+});
+```
+
 ---
 
 ## 5. Generics
@@ -1417,6 +1868,7 @@ describe('Calculator', () => {
 | **Type Guards** | `if (typeof x === 'string')` | Runtime type checking |
 | **Utility Types** | `Partial<T>`, `Pick<T, K>` | Type transformations |
 | **Decorators** | `@Component` | Metadata and enhancement |
+| **SOLID Principles** | Interface segregation, DIP | Clean architecture |
 
 ---
 

@@ -473,6 +473,283 @@ print(Calculator.get_pi())      # 3.14159 (class method)
 print(Calculator.multiply(4, 5)) # 20 (static method)
 ```
 
+### SOLID Principles in Python
+
+The SOLID principles are five design principles that make software designs more understandable, flexible, and maintainable.
+
+#### 1. Single Responsibility Principle (SRP)
+*"A class should have only one reason to change"*
+
+```python
+# ❌ Bad - Multiple responsibilities
+class User:
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+    
+    def save_to_database(self):
+        # Database logic
+        pass
+    
+    def send_email(self):
+        # Email logic
+        pass
+
+# ✅ Good - Single responsibility per class
+class User:
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+class UserRepository:
+    def save(self, user):
+        # Database logic
+        pass
+
+class EmailService:
+    def send_email(self, user, message):
+        # Email logic
+        pass
+```
+
+#### 2. Open/Closed Principle (OCP)
+*"Classes should be open for extension, but closed for modification"*
+
+```python
+# ✅ Good - Using inheritance for extension
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def area(self):
+        return 3.14159 * self.radius ** 2
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    
+    def area(self):
+        return self.width * self.height
+
+class AreaCalculator:
+    def total_area(self, shapes):
+        return sum(shape.area() for shape in shapes)
+
+# Adding new shapes doesn't modify existing code
+class Triangle(Shape):
+    def __init__(self, base, height):
+        self.base = base
+        self.height = height
+    
+    def area(self):
+        return 0.5 * self.base * self.height
+```
+
+#### 3. Liskov Substitution Principle (LSP)
+*"Objects of a superclass should be replaceable with objects of its subclasses"*
+
+```python
+# ✅ Good - Proper inheritance
+class Bird(ABC):
+    @abstractmethod
+    def move(self):
+        pass
+
+class FlyingBird(Bird):
+    def move(self):
+        return "Flying"
+    
+    def fly(self):
+        return "Flying high"
+
+class WalkingBird(Bird):
+    def move(self):
+        return "Walking"
+    
+    def walk(self):
+        return "Walking on ground"
+
+class Eagle(FlyingBird):
+    def fly(self):
+        return "Soaring through the sky"
+
+class Penguin(WalkingBird):
+    def walk(self):
+        return "Waddling on ice"
+
+# All birds can be used interchangeably for movement
+def make_bird_move(bird: Bird):
+    return bird.move()
+
+eagle = Eagle()
+penguin = Penguin()
+print(make_bird_move(eagle))    # "Flying"
+print(make_bird_move(penguin))  # "Walking"
+```
+
+#### 4. Interface Segregation Principle (ISP)
+*"Clients should not be forced to depend on interfaces they don't use"*
+
+```python
+# ❌ Bad - Fat interface
+class Worker(ABC):
+    @abstractmethod
+    def work(self):
+        pass
+    
+    @abstractmethod
+    def eat(self):
+        pass
+
+# ✅ Good - Segregated interfaces
+class Workable(ABC):
+    @abstractmethod
+    def work(self):
+        pass
+
+class Eatable(ABC):
+    @abstractmethod
+    def eat(self):
+        pass
+
+class Human(Workable, Eatable):
+    def work(self):
+        return "Human working"
+    
+    def eat(self):
+        return "Human eating"
+
+class Robot(Workable):
+    def work(self):
+        return "Robot working"
+    # Robot doesn't need to implement eat()
+```
+
+#### 5. Dependency Inversion Principle (DIP)
+*"Depend on abstractions, not concretions"*
+
+```python
+# ❌ Bad - High-level module depends on low-level module
+class FileLogger:
+    def log(self, message):
+        with open("log.txt", "a") as f:
+            f.write(f"{message}\n")
+
+class UserService:
+    def __init__(self):
+        self.logger = FileLogger()  # Direct dependency
+    
+    def create_user(self, user):
+        # Create user logic
+        self.logger.log(f"User {user.name} created")
+
+# ✅ Good - Depend on abstraction
+class Logger(ABC):
+    @abstractmethod
+    def log(self, message):
+        pass
+
+class FileLogger(Logger):
+    def log(self, message):
+        with open("log.txt", "a") as f:
+            f.write(f"{message}\n")
+
+class DatabaseLogger(Logger):
+    def log(self, message):
+        # Log to database
+        pass
+
+class UserService:
+    def __init__(self, logger: Logger):
+        self.logger = logger  # Depends on abstraction
+    
+    def create_user(self, user):
+        # Create user logic
+        self.logger.log(f"User {user.name} created")
+
+# Usage with dependency injection
+file_logger = FileLogger()
+user_service = UserService(file_logger)
+```
+
+#### SOLID Principles Summary
+
+```python
+# Example combining all SOLID principles
+from abc import ABC, abstractmethod
+from typing import List
+
+# Interfaces (ISP)
+class Readable(ABC):
+    @abstractmethod
+    def read(self) -> str:
+        pass
+
+class Writable(ABC):
+    @abstractmethod
+    def write(self, data: str) -> None:
+        pass
+
+# Single Responsibility (SRP)
+class FileReader(Readable):
+    def __init__(self, filename: str):
+        self.filename = filename
+    
+    def read(self) -> str:
+        with open(self.filename, 'r') as f:
+            return f.read()
+
+class FileWriter(Writable):
+    def __init__(self, filename: str):
+        self.filename = filename
+    
+    def write(self, data: str) -> None:
+        with open(self.filename, 'w') as f:
+            f.write(data)
+
+# Open/Closed Principle (OCP) & Liskov Substitution (LSP)
+class DataProcessor(ABC):
+    @abstractmethod
+    def process(self, data: str) -> str:
+        pass
+
+class UpperCaseProcessor(DataProcessor):
+    def process(self, data: str) -> str:
+        return data.upper()
+
+class JSONProcessor(DataProcessor):
+    def process(self, data: str) -> str:
+        import json
+        return json.dumps({"data": data})
+
+# Dependency Inversion (DIP)
+class DocumentService:
+    def __init__(self, reader: Readable, writer: Writable, processor: DataProcessor):
+        self.reader = reader
+        self.writer = writer
+        self.processor = processor
+    
+    def process_document(self):
+        data = self.reader.read()
+        processed_data = self.processor.process(data)
+        self.writer.write(processed_data)
+
+# Usage
+reader = FileReader("input.txt")
+writer = FileWriter("output.txt")
+processor = UpperCaseProcessor()
+service = DocumentService(reader, writer, processor)
+service.process_document()
+```
+
 ---
 
 ## 6. Advanced Features
@@ -1435,11 +1712,11 @@ for i in range(len(items)):
 | **Data Structures** | Lists, dicts, sets, tuples, comprehensions |
 | **Control Flow** | Conditionals, loops, iteration patterns |
 | **Functions** | Parameters, lambdas, decorators, generators |
-| **OOP** | Classes, inheritance, special methods |
+| **OOP** | Classes, inheritance, special methods, SOLID principles |
 | **Advanced** | Context managers, metaclasses, descriptors |
 | **Concurrency** | Threading, asyncio, multiprocessing |
 | **Testing** | unittest, pytest, mocking |
-| **Best Practices** | PEP 8, type hints, error handling |
+| **Best Practices** | PEP 8, type hints, error handling, design patterns |
 
 ---
 

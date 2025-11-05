@@ -882,6 +882,404 @@ console.log(student.greet()); // Inherited method
 console.log(student.study()); // Own method
 ```
 
+### SOLID Principles in JavaScript
+
+The SOLID principles help create maintainable and scalable JavaScript applications.
+
+#### 1. Single Responsibility Principle (SRP)
+
+```javascript
+// ❌ Bad - Multiple responsibilities
+class User {
+    constructor(name, email) {
+        this.name = name;
+        this.email = email;
+    }
+    
+    saveToDatabase() {
+        // Database logic
+        console.log('Saving to database...');
+    }
+    
+    sendEmail() {
+        // Email logic
+        console.log('Sending email...');
+    }
+    
+    validateEmail() {
+        // Validation logic
+        return this.email.includes('@');
+    }
+}
+
+// ✅ Good - Single responsibility per class
+class User {
+    constructor(name, email) {
+        this.name = name;
+        this.email = email;
+    }
+}
+
+class UserRepository {
+    save(user) {
+        console.log(`Saving ${user.name} to database...`);
+    }
+}
+
+class EmailService {
+    send(user, message) {
+        console.log(`Sending email to ${user.email}: ${message}`);
+    }
+}
+
+class EmailValidator {
+    isValid(email) {
+        return email.includes('@') && email.includes('.');
+    }
+}
+```
+
+#### 2. Open/Closed Principle (OCP)
+
+```javascript
+// ✅ Good - Open for extension, closed for modification
+class Shape {
+    area() {
+        throw new Error('area() method must be implemented');
+    }
+}
+
+class Circle extends Shape {
+    constructor(radius) {
+        super();
+        this.radius = radius;
+    }
+    
+    area() {
+        return Math.PI * this.radius ** 2;
+    }
+}
+
+class Rectangle extends Shape {
+    constructor(width, height) {
+        super();
+        this.width = width;
+        this.height = height;
+    }
+    
+    area() {
+        return this.width * this.height;
+    }
+}
+
+class AreaCalculator {
+    calculateTotal(shapes) {
+        return shapes.reduce((total, shape) => total + shape.area(), 0);
+    }
+}
+
+// Adding new shapes doesn't modify existing code
+class Triangle extends Shape {
+    constructor(base, height) {
+        super();
+        this.base = base;
+        this.height = height;
+    }
+    
+    area() {
+        return 0.5 * this.base * this.height;
+    }
+}
+```
+
+#### 3. Liskov Substitution Principle (LSP)
+
+```javascript
+// ✅ Good - Proper inheritance hierarchy
+class Bird {
+    move() {
+        throw new Error('move() method must be implemented');
+    }
+}
+
+class FlyingBird extends Bird {
+    move() {
+        return this.fly();
+    }
+    
+    fly() {
+        return 'Flying through the air';
+    }
+}
+
+class WalkingBird extends Bird {
+    move() {
+        return this.walk();
+    }
+    
+    walk() {
+        return 'Walking on the ground';
+    }
+}
+
+class Eagle extends FlyingBird {
+    fly() {
+        return 'Soaring majestically';
+    }
+}
+
+class Penguin extends WalkingBird {
+    walk() {
+        return 'Waddling on ice';
+    }
+}
+
+// All birds can be used interchangeably
+function makeBirdMove(bird) {
+    return bird.move();
+}
+
+const eagle = new Eagle();
+const penguin = new Penguin();
+console.log(makeBirdMove(eagle));   // Works correctly
+console.log(makeBirdMove(penguin)); // Works correctly
+```
+
+#### 4. Interface Segregation Principle (ISP)
+
+```javascript
+// ❌ Bad - Fat interface
+class Worker {
+    work() {
+        throw new Error('work() must be implemented');
+    }
+    
+    eat() {
+        throw new Error('eat() must be implemented');
+    }
+    
+    sleep() {
+        throw new Error('sleep() must be implemented');
+    }
+}
+
+// ✅ Good - Segregated interfaces (using mixins in JavaScript)
+const Workable = {
+    work() {
+        throw new Error('work() must be implemented');
+    }
+};
+
+const Eatable = {
+    eat() {
+        throw new Error('eat() must be implemented');
+    }
+};
+
+const Sleepable = {
+    sleep() {
+        throw new Error('sleep() must be implemented');
+    }
+};
+
+class Human {
+    constructor(name) {
+        this.name = name;
+        Object.assign(this, Workable, Eatable, Sleepable);
+    }
+    
+    work() {
+        return `${this.name} is working`;
+    }
+    
+    eat() {
+        return `${this.name} is eating`;
+    }
+    
+    sleep() {
+        return `${this.name} is sleeping`;
+    }
+}
+
+class Robot {
+    constructor(model) {
+        this.model = model;
+        Object.assign(this, Workable);
+    }
+    
+    work() {
+        return `${this.model} robot is working`;
+    }
+    // Robot doesn't implement eat() or sleep()
+}
+```
+
+#### 5. Dependency Inversion Principle (DIP)
+
+```javascript
+// ❌ Bad - High-level module depends on low-level module
+class FileLogger {
+    log(message) {
+        console.log(`File: ${message}`);
+    }
+}
+
+class OrderService {
+    constructor() {
+        this.logger = new FileLogger(); // Direct dependency
+    }
+    
+    createOrder(order) {
+        // Create order logic
+        this.logger.log(`Order ${order.id} created`);
+    }
+}
+
+// ✅ Good - Depend on abstraction
+class Logger {
+    log(message) {
+        throw new Error('log() method must be implemented');
+    }
+}
+
+class FileLogger extends Logger {
+    log(message) {
+        console.log(`[FILE] ${new Date().toISOString()}: ${message}`);
+    }
+}
+
+class DatabaseLogger extends Logger {
+    log(message) {
+        console.log(`[DB] ${new Date().toISOString()}: ${message}`);
+    }
+}
+
+class ConsoleLogger extends Logger {
+    log(message) {
+        console.log(`[CONSOLE] ${message}`);
+    }
+}
+
+class OrderService {
+    constructor(logger) {
+        this.logger = logger; // Depends on abstraction
+    }
+    
+    createOrder(order) {
+        // Create order logic
+        this.logger.log(`Order ${order.id} created successfully`);
+    }
+}
+
+// Usage with dependency injection
+const fileLogger = new FileLogger();
+const orderService = new OrderService(fileLogger);
+
+// Easy to switch implementations
+const consoleLogger = new ConsoleLogger();
+const orderServiceWithConsole = new OrderService(consoleLogger);
+```
+
+#### SOLID Principles in Practice
+
+```javascript
+// Real-world example combining all SOLID principles
+
+// Interfaces (using classes as contracts)
+class PaymentProcessor {
+    process(amount) {
+        throw new Error('process() must be implemented');
+    }
+}
+
+class NotificationService {
+    send(message, recipient) {
+        throw new Error('send() must be implemented');
+    }
+}
+
+class Logger {
+    log(message) {
+        throw new Error('log() must be implemented');
+    }
+}
+
+// Concrete implementations (SRP)
+class StripePaymentProcessor extends PaymentProcessor {
+    process(amount) {
+        return { success: true, transactionId: `stripe_${Date.now()}` };
+    }
+}
+
+class PayPalPaymentProcessor extends PaymentProcessor {
+    process(amount) {
+        return { success: true, transactionId: `paypal_${Date.now()}` };
+    }
+}
+
+class EmailNotificationService extends NotificationService {
+    send(message, recipient) {
+        console.log(`Email sent to ${recipient}: ${message}`);
+    }
+}
+
+class SMSNotificationService extends NotificationService {
+    send(message, recipient) {
+        console.log(`SMS sent to ${recipient}: ${message}`);
+    }
+}
+
+class ConsoleLogger extends Logger {
+    log(message) {
+        console.log(`[LOG] ${new Date().toISOString()}: ${message}`);
+    }
+}
+
+// High-level module (DIP)
+class OrderProcessor {
+    constructor(paymentProcessor, notificationService, logger) {
+        this.paymentProcessor = paymentProcessor;
+        this.notificationService = notificationService;
+        this.logger = logger;
+    }
+    
+    processOrder(order) {
+        try {
+            this.logger.log(`Processing order ${order.id}`);
+            
+            const result = this.paymentProcessor.process(order.amount);
+            
+            if (result.success) {
+                this.notificationService.send(
+                    `Your order ${order.id} has been processed successfully!`,
+                    order.customerEmail
+                );
+                this.logger.log(`Order ${order.id} completed successfully`);
+                return { success: true, transactionId: result.transactionId };
+            }
+        } catch (error) {
+            this.logger.log(`Order ${order.id} failed: ${error.message}`);
+            return { success: false, error: error.message };
+        }
+    }
+}
+
+// Usage with dependency injection
+const stripeProcessor = new StripePaymentProcessor();
+const emailService = new EmailNotificationService();
+const logger = new ConsoleLogger();
+
+const orderProcessor = new OrderProcessor(stripeProcessor, emailService, logger);
+
+const order = {
+    id: 'ORD-001',
+    amount: 99.99,
+    customerEmail: 'customer@example.com'
+};
+
+orderProcessor.processOrder(order);
+```
+
 ---
 
 ## 9. Functional Programming
@@ -1886,7 +2284,7 @@ const { PI, add } = require('./math');
 |----------|-------------|
 | **Fundamentals** | Variables, data types, operators |
 | **Functions** | Arrow functions, closures, higher-order functions |
-| **Objects** | Prototypes, classes, inheritance |
+| **Objects** | Prototypes, classes, inheritance, SOLID principles |
 | **Async** | Promises, async/await, event loop |
 | **DOM** | Selectors, events, manipulation |
 | **ES6+** | Destructuring, spread/rest, modules |
