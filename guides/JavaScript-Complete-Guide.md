@@ -7,6 +7,7 @@
 
 ## 📚 Table of Contents
 
+### Core JavaScript
 1. [JavaScript Fundamentals](#1-javascript-fundamentals)
 2. [Data Types and Variables](#2-data-types-and-variables)
 3. [Functions](#3-functions)
@@ -17,15 +18,28 @@
 8. [Object-Oriented Programming](#8-object-oriented-programming)
 9. [Functional Programming](#9-functional-programming)
 10. [Error Handling](#10-error-handling)
+
+### Backend & Testing
 11. [Node.js Backend Development](#11-nodejs-backend-development)
 12. [Testing Frameworks](#12-testing-frameworks)
+
+### Advanced Topics
 13. [Advanced Concepts](#13-advanced-concepts)
 14. [Performance Optimization](#14-performance-optimization)
 15. [Modern JavaScript Ecosystem](#15-modern-javascript-ecosystem)
 
+### Interview-Critical Topics ⭐
+16. [⚛️ React Framework](#16-️-react-framework-essential-for-interviews)
+17. [�️ Angular Framework](#17-️-angular-framework)
+18. [�🎨 Design Patterns](#18--design-patterns-in-javascript)
+19. [🔒 Security Best Practices](#19--security-best-practices)
+20. [🔌 WebSockets & Real-time Communication](#20--websockets--real-time-communication)
+
 ---
 
 ## 1. JavaScript Fundamentals
+
+**JavaScript is a dynamic, weakly-typed programming language that runs in browsers and on servers (Node.js).** Understanding variables, data types, and type coercion is fundamental to writing effective JavaScript code. JavaScript uses hoisting, which moves declarations to the top of their scope during compilation.
 
 ### Variables and Declarations
 
@@ -56,12 +70,12 @@ const nullValue = null;
 const symbol = Symbol('unique');
 const bigint = BigInt(9007199254740991);
 
-// Type checking
+// Type checking - typeof operator returns string type
 console.log(typeof number);    // "number"
 console.log(typeof string);    // "string"
 console.log(typeof boolean);   // "boolean"
 console.log(typeof undefinedValue); // "undefined"
-console.log(typeof nullValue); // "object" (historical quirk)
+console.log(typeof nullValue); // "object" (historical quirk - bug in JS)
 console.log(typeof symbol);    // "symbol"
 console.log(typeof bigint);    // "bigint"
 
@@ -100,6 +114,8 @@ console.log(Boolean(NaN));      // false
 
 ## 2. Data Types and Variables
 
+**JavaScript has 7 primitive types (string, number, bigint, boolean, undefined, null, symbol) and reference types (objects, arrays, functions).** Primitives are immutable and passed by value, while objects are passed by reference. Understanding the difference is crucial for avoiding bugs and memory issues.
+
 ### Strings
 
 ```javascript
@@ -108,16 +124,16 @@ const singleQuotes = 'Hello, World!';
 const doubleQuotes = "Hello, JavaScript!";
 const templateLiteral = `Hello, ${name}!`;
 
-// String methods
+// String methods - powerful built-in operations
 const text = "JavaScript Programming";
-console.log(text.length);              // 21
+console.log(text.length);              // 21 (number of characters)
 console.log(text.toUpperCase());       // "JAVASCRIPT PROGRAMMING"
 console.log(text.toLowerCase());       // "javascript programming"
-console.log(text.slice(0, 10));       // "JavaScript"
-console.log(text.substring(0, 10));    // "JavaScript"
-console.log(text.indexOf("Script"));   // 4
-console.log(text.includes("Program")); // true
-console.log(text.split(" "));          // ["JavaScript", "Programming"]
+console.log(text.slice(0, 10));       // "JavaScript" (extract substring)
+console.log(text.substring(0, 10));    // "JavaScript" (similar to slice)
+console.log(text.indexOf("Script"));   // 4 (position of substring)
+console.log(text.includes("Program")); // true (checks if contains)
+console.log(text.split(" "));          // ["JavaScript", "Programming"] (array)
 
 // Template literals
 const name = "Alice";
@@ -165,6 +181,8 @@ console.log(Number.isInteger(123));  // true
 ---
 
 ## 3. Functions
+
+**Functions are first-class citizens in JavaScript, meaning they can be assigned to variables, passed as arguments, and returned from other functions.** JavaScript supports multiple function syntaxes including declarations, expressions, and arrow functions. Understanding function scope, closures, and the 'this' keyword is essential for mastering JavaScript.
 
 ### Function Declarations and Expressions
 
@@ -241,11 +259,11 @@ function createMultiplier(factor) {
     };
 }
 
-const double = createMultiplier(2);
-const triple = createMultiplier(3);
+const double = createMultiplier(2);  // Returns function that multiplies by 2
+const triple = createMultiplier(3);  // Returns function that multiplies by 3
 
-console.log(double(5)); // 10
-console.log(triple(5)); // 15
+console.log(double(5)); // 10 (5 * 2)
+console.log(triple(5)); // 15 (5 * 3)
 
 // Currying
 const curry = (fn) => {
@@ -268,6 +286,8 @@ console.log(curriedAdd(1)(2)(3)); // 6
 ---
 
 ## 4. Objects and Arrays
+
+**Objects are key-value collections and the foundation of JavaScript's data structures, while arrays are ordered lists with powerful iteration methods.** Objects use prototypal inheritance, and arrays come with rich built-in methods like map, filter, and reduce. Destructuring and spread operators provide modern syntax for working with these structures efficiently.
 
 ### Objects
 
@@ -333,10 +353,10 @@ fruits.forEach((fruit, index) => {
     console.log(`${index}: ${fruit}`);
 });
 
-// Array transformation
-const doubled = numbers.map(n => n * 2);
-const evens = numbers.filter(n => n % 2 === 0);
-const sum = numbers.reduce((total, n) => total + n, 0);
+// Array transformation - map/filter/reduce are essential
+const doubled = numbers.map(n => n * 2);  // [2, 4, 6, 8, 10]
+const evens = numbers.filter(n => n % 2 === 0);  // [2, 4]
+const sum = numbers.reduce((total, n) => total + n, 0);  // 15
 
 // Array searching
 const foundFruit = fruits.find(fruit => fruit.startsWith('a'));
@@ -377,6 +397,8 @@ const arrayOf = Array.of(1, 2, 3, 4, 5); // [1, 2, 3, 4, 5]
 ---
 
 ## 5. ES6+ Modern Features
+
+**ES6 (ECMAScript 2015) and beyond introduced major improvements to JavaScript including let/const, arrow functions, classes, modules, and async/await.** These features make JavaScript more expressive, readable, and powerful. Modern JavaScript development relies heavily on these enhancements, making code cleaner and more maintainable.
 
 ### Let, Const, and Block Scope
 
@@ -510,6 +532,8 @@ const {name, ...otherProps} = {name: "Alice", age: 30, city: "NYC"};
 ---
 
 ## 6. Asynchronous JavaScript
+
+**JavaScript is single-threaded but handles asynchronous operations through the event loop, callbacks, promises, and async/await.** Async programming is essential for handling API calls, file operations, and timers without blocking the main thread. Modern async/await syntax makes asynchronous code look and behave like synchronous code, improving readability.
 
 ### Callbacks
 
@@ -646,6 +670,8 @@ async function handleErrors() {
 
 ## 7. DOM Manipulation
 
+**The Document Object Model (DOM) is a tree-like representation of HTML that JavaScript can interact with to dynamically modify web pages.** DOM manipulation involves selecting elements, modifying content/styles, handling events, and creating/removing elements. Understanding event propagation (bubbling and capturing) and event delegation is crucial for building interactive web applications.
+
 ### Selecting Elements
 
 ```javascript
@@ -750,6 +776,8 @@ window.addEventListener('resize', handleWindowResize);
 ---
 
 ## 8. Object-Oriented Programming
+
+**JavaScript uses prototypal inheritance but ES6 added class syntax for cleaner OOP code.** Classes support constructors, instance/static methods, getters/setters, and inheritance through extends. Understanding SOLID principles helps create maintainable, scalable object-oriented JavaScript applications.
 
 ### ES6 Classes
 
@@ -1284,6 +1312,8 @@ orderProcessor.processOrder(order);
 
 ## 9. Functional Programming
 
+**Functional programming treats computation as the evaluation of mathematical functions, avoiding state changes and mutable data.** Key concepts include pure functions (no side effects), immutability, higher-order functions, and function composition. Functional programming leads to more predictable, testable, and maintainable code.
+
 ### Pure Functions
 
 ```javascript
@@ -1345,13 +1375,13 @@ const addOne = x => x + 1;
 const double = x => x * 2;
 const square = x => x * x;
 
-// Using compose (right to left)
+// Using compose (right to left execution)
 const addOneThenDouble = compose(double, addOne);
-console.log(addOneThenDouble(3)); // (3 + 1) * 2 = 8
+console.log(addOneThenDouble(3)); // 8 - first addOne(3)=4, then double(4)=8
 
-// Using pipe (left to right)
-const doubleeThenAddOne = pipe(double, addOne);
-console.log(doubleeThenAddOne(3)); // (3 * 2) + 1 = 7
+// Using pipe (left to right execution)
+const doubleThenAddOne = pipe(double, addOne);
+console.log(doubleThenAddOne(3)); // 7 - first double(3)=6, then addOne(6)=7
 
 // Multiple function composition
 const multiCompose = (...fns) => (value) => fns.reduceRight((acc, fn) => fn(acc), value);
@@ -1403,6 +1433,8 @@ const cloned = deepClone(complexObject);
 ---
 
 ## 10. Error Handling
+
+**Proper error handling prevents application crashes and provides meaningful feedback when things go wrong.** JavaScript offers try-catch-finally blocks for synchronous code and .catch() for promises/async functions. Creating custom error classes helps categorize and handle different error types appropriately in production applications.
 
 ### Try-Catch-Finally
 
@@ -1531,6 +1563,8 @@ async function fetchMultipleUsersSafely(userIds) {
 ---
 
 ## 11. Node.js Backend Development
+
+**Node.js enables JavaScript to run on servers, making it possible to use JavaScript for full-stack development.** Node.js uses an event-driven, non-blocking I/O model that makes it efficient for handling concurrent requests. Express.js is the most popular Node.js framework for building web servers and REST APIs.
 
 ### Express.js Server
 
@@ -1665,9 +1699,583 @@ async function exampleUsage() {
 }
 ```
 
+### Express.js Middleware Patterns
+
+```javascript
+const express = require('express');
+const app = express();
+
+// Built-in middleware
+app.use(express.json());  // Parse JSON bodies
+app.use(express.urlencoded({ extended: true }));  // Parse URL-encoded bodies
+app.use(express.static('public'));  // Serve static files
+
+// Custom middleware - Logging
+const requestLogger = (req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    console.log('Headers:', req.headers);
+    console.log('Body:', req.body);
+    next();  // Pass control to next middleware
+};
+
+app.use(requestLogger);
+
+// Authentication middleware
+const authenticate = (req, res, next) => {
+    const token = req.headers.authorization?.split(' ')[1];
+    
+    if (!token) {
+        return res.status(401).json({ error: 'No token provided' });
+    }
+    
+    try {
+        const decoded = verifyToken(token);
+        req.user = decoded;  // Attach user to request
+        next();
+    } catch (error) {
+        res.status(401).json({ error: 'Invalid token' });
+    }
+};
+
+// Role-based authorization middleware
+const authorize = (...roles) => {
+    return (req, res, next) => {
+        if (!req.user) {
+            return res.status(401).json({ error: 'Not authenticated' });
+        }
+        
+        if (!roles.includes(req.user.role)) {
+            return res.status(403).json({ error: 'Insufficient permissions' });
+        }
+        
+        next();
+    };
+};
+
+// Validation middleware
+const validateUser = (req, res, next) => {
+    const { name, email, age } = req.body;
+    const errors = [];
+    
+    if (!name || name.length < 2) {
+        errors.push('Name must be at least 2 characters');
+    }
+    
+    if (!email || !email.includes('@')) {
+        errors.push('Valid email is required');
+    }
+    
+    if (age && (age < 0 || age > 150)) {
+        errors.push('Age must be between 0 and 150');
+    }
+    
+    if (errors.length > 0) {
+        return res.status(400).json({ errors });
+    }
+    
+    next();
+};
+
+// Error handling middleware (must be last)
+const errorHandler = (err, req, res, next) => {
+    console.error('Error:', err);
+    
+    if (err.name === 'ValidationError') {
+        return res.status(400).json({ error: err.message });
+    }
+    
+    if (err.name === 'UnauthorizedError') {
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
+    
+    res.status(500).json({ error: 'Internal server error' });
+};
+
+// Using middleware in routes
+app.post('/api/users', validateUser, (req, res) => {
+    const user = createUser(req.body);
+    res.status(201).json({ user });
+});
+
+app.get('/api/admin', authenticate, authorize('admin'), (req, res) => {
+    res.json({ message: 'Admin access granted', user: req.user });
+});
+
+app.use(errorHandler);
+```
+
+### Express.js REST API Best Practices
+
+```javascript
+const express = require('express');
+const router = express.Router();
+
+// RESTful routes structure
+// GET /api/users - Get all users
+router.get('/users', async (req, res, next) => {
+    try {
+        const { page = 1, limit = 10, sort = 'createdAt' } = req.query;
+        
+        const users = await User.find()
+            .limit(limit * 1)
+            .skip((page - 1) * limit)
+            .sort(sort)
+            .select('-password');  // Exclude password field
+        
+        const count = await User.countDocuments();
+        
+        res.json({
+            users,
+            totalPages: Math.ceil(count / limit),
+            currentPage: page,
+            total: count
+        });
+    } catch (error) {
+        next(error);  // Pass to error handler
+    }
+});
+
+// GET /api/users/:id - Get single user
+router.get('/users/:id', async (req, res, next) => {
+    try {
+        const user = await User.findById(req.params.id).select('-password');
+        
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        
+        res.json({ user });
+    } catch (error) {
+        next(error);
+    }
+});
+
+// POST /api/users - Create user
+router.post('/users', validateUser, async (req, res, next) => {
+    try {
+        const user = await User.create(req.body);
+        res.status(201).json({ user: user.toJSON() });  // 201 = Created
+    } catch (error) {
+        if (error.code === 11000) {  // Duplicate key error
+            return res.status(409).json({ error: 'User already exists' });
+        }
+        next(error);
+    }
+});
+
+// PUT /api/users/:id - Update entire user
+router.put('/users/:id', authenticate, async (req, res, next) => {
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true, runValidators: true }
+        );
+        
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        
+        res.json({ user });
+    } catch (error) {
+        next(error);
+    }
+});
+
+// PATCH /api/users/:id - Partial update
+router.patch('/users/:id', authenticate, async (req, res, next) => {
+    try {
+        const updates = req.body;
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            { $set: updates },
+            { new: true, runValidators: true }
+        );
+        
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        
+        res.json({ user });
+    } catch (error) {
+        next(error);
+    }
+});
+
+// DELETE /api/users/:id - Delete user
+router.delete('/users/:id', authenticate, authorize('admin'), async (req, res, next) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id);
+        
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        
+        res.status(204).send();  // 204 = No Content
+    } catch (error) {
+        next(error);
+    }
+});
+
+module.exports = router;
+```
+
+### Node.js Event Loop & Async Patterns
+
+```javascript
+// Understanding the Event Loop
+console.log('1. Synchronous code');  // Executes first
+
+setTimeout(() => {
+    console.log('2. setTimeout callback');  // Macrotask - executes after microtasks
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log('3. Promise callback');  // Microtask - executes before macrotasks
+});
+
+process.nextTick(() => {
+    console.log('4. nextTick callback');  // Executes before promises
+});
+
+console.log('5. More synchronous code');  // Executes second
+
+// Output order:
+// 1. Synchronous code
+// 5. More synchronous code
+// 4. nextTick callback
+// 3. Promise callback
+// 2. setTimeout callback
+
+// Async patterns - Parallel execution
+async function fetchAllData() {
+    const start = Date.now();
+    
+    // Sequential (slow) - takes 3 seconds
+    const user = await fetchUser(1);      // 1 second
+    const posts = await fetchPosts(1);    // 1 second
+    const comments = await fetchComments(1); // 1 second
+    
+    console.log(`Sequential: ${Date.now() - start}ms`);  // ~3000ms
+    
+    // Parallel (fast) - takes 1 second
+    const [user2, posts2, comments2] = await Promise.all([
+        fetchUser(2),
+        fetchPosts(2),
+        fetchComments(2)
+    ]);
+    
+    console.log(`Parallel: ${Date.now() - start}ms`);  // ~1000ms
+}
+
+// Promise.allSettled - Handle both success and failure
+async function fetchMultipleUsers(userIds) {
+    const results = await Promise.allSettled(
+        userIds.map(id => fetchUser(id))
+    );
+    
+    const successful = results
+        .filter(r => r.status === 'fulfilled')
+        .map(r => r.value);
+    
+    const failed = results
+        .filter(r => r.status === 'rejected')
+        .map(r => ({ reason: r.reason.message }));
+    
+    return { successful, failed };
+}
+
+// Promise.race - First to complete wins
+async function fetchWithTimeout(url, timeout = 5000) {
+    return Promise.race([
+        fetch(url),
+        new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('Request timeout')), timeout)
+        )
+    ]);
+}
+
+// Async iteration
+async function processItems(items) {
+    for (const item of items) {
+        await processItem(item);  // Sequential processing
+    }
+}
+
+async function processItemsConcurrent(items) {
+    await Promise.all(items.map(item => processItem(item)));  // Parallel
+}
+
+// Async generators for streaming data
+async function* fetchPages(startPage, endPage) {
+    for (let page = startPage; page <= endPage; page++) {
+        const data = await fetch(`/api/data?page=${page}`);
+        yield data;
+    }
+}
+
+async function processPages() {
+    for await (const pageData of fetchPages(1, 10)) {
+        console.log('Processing page:', pageData);
+    }
+}
+```
+
+### Node.js Worker Threads (Multithreading)
+
+```javascript
+// Node.js is single-threaded, but Worker Threads enable true parallelism
+// main.js - Main thread
+const { Worker } = require('worker_threads');
+const path = require('path');
+
+// Create a worker thread
+function runWorker(data) {
+    return new Promise((resolve, reject) => {
+        const worker = new Worker(path.join(__dirname, 'worker.js'), {
+            workerData: data
+        });
+        
+        worker.on('message', resolve);  // Worker sends result
+        worker.on('error', reject);     // Worker encounters error
+        worker.on('exit', (code) => {
+            if (code !== 0) {
+                reject(new Error(`Worker stopped with exit code ${code}`));
+            }
+        });
+    });
+}
+
+// Using worker for CPU-intensive task
+async function calculatePrimes(max) {
+    console.log('Main thread: Starting calculation...');
+    const result = await runWorker({ task: 'calculatePrimes', max });
+    console.log('Main thread: Calculation complete');
+    return result;
+}
+
+// Using multiple workers for parallel processing
+async function processDataParallel(dataChunks) {
+    const workers = dataChunks.map(chunk => runWorker({ task: 'process', data: chunk }));
+    return Promise.all(workers);
+}
+
+// Example usage
+(async () => {
+    const primes = await calculatePrimes(1000000);
+    console.log(`Found ${primes.length} prime numbers`);
+    
+    // Process 4 chunks in parallel
+    const chunks = [
+        [1, 100000],
+        [100001, 200000],
+        [200001, 300000],
+        [300001, 400000]
+    ];
+    const results = await processDataParallel(chunks);
+    console.log('Parallel processing complete:', results);
+})();
+
+// worker.js - Worker thread
+const { parentPort, workerData } = require('worker_threads');
+
+function calculatePrimes(max) {
+    const primes = [];
+    for (let i = 2; i <= max; i++) {
+        let isPrime = true;
+        for (let j = 2; j <= Math.sqrt(i); j++) {
+            if (i % j === 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if (isPrime) primes.push(i);
+    }
+    return primes;
+}
+
+function processData(data) {
+    // CPU-intensive processing
+    return data.map(item => item * 2);
+}
+
+// Handle different tasks
+if (workerData.task === 'calculatePrimes') {
+    const result = calculatePrimes(workerData.max);
+    parentPort.postMessage(result);
+} else if (workerData.task === 'process') {
+    const result = processData(workerData.data);
+    parentPort.postMessage(result);
+}
+
+// Worker pool for reusable workers
+class WorkerPool {
+    constructor(workerScript, poolSize = 4) {
+        this.workerScript = workerScript;
+        this.poolSize = poolSize;
+        this.workers = [];
+        this.queue = [];
+        
+        for (let i = 0; i < poolSize; i++) {
+            this.workers.push(this.createWorker());
+        }
+    }
+    
+    createWorker() {
+        return {
+            worker: null,
+            inUse: false
+        };
+    }
+    
+    async execute(data) {
+        return new Promise((resolve, reject) => {
+            const availableWorker = this.workers.find(w => !w.inUse);
+            
+            if (availableWorker) {
+                this.runTask(availableWorker, data, resolve, reject);
+            } else {
+                // Queue task if no workers available
+                this.queue.push({ data, resolve, reject });
+            }
+        });
+    }
+    
+    runTask(workerObj, data, resolve, reject) {
+        workerObj.inUse = true;
+        
+        const worker = new Worker(this.workerScript, { workerData: data });
+        workerObj.worker = worker;
+        
+        worker.on('message', (result) => {
+            workerObj.inUse = false;
+            worker.terminate();
+            resolve(result);
+            this.processQueue();
+        });
+        
+        worker.on('error', (error) => {
+            workerObj.inUse = false;
+            worker.terminate();
+            reject(error);
+            this.processQueue();
+        });
+    }
+    
+    processQueue() {
+        if (this.queue.length > 0) {
+            const { data, resolve, reject } = this.queue.shift();
+            const availableWorker = this.workers.find(w => !w.inUse);
+            if (availableWorker) {
+                this.runTask(availableWorker, data, resolve, reject);
+            }
+        }
+    }
+}
+
+// Usage
+const pool = new WorkerPool('./worker.js', 4);
+
+async function processManyTasks() {
+    const tasks = Array.from({ length: 100 }, (_, i) => ({ task: 'process', id: i }));
+    const results = await Promise.all(tasks.map(task => pool.execute(task)));
+    console.log('All tasks completed:', results.length);
+}
+```
+
+### Node.js Streams for Large Data
+
+```javascript
+const fs = require('fs');
+const { pipeline, Transform } = require('stream');
+const zlib = require('zlib');
+
+// Reading large files with streams (memory efficient)
+const readStream = fs.createReadStream('large-file.txt', { 
+    encoding: 'utf8',
+    highWaterMark: 64 * 1024  // 64KB chunks
+});
+
+readStream.on('data', (chunk) => {
+    console.log(`Received ${chunk.length} bytes`);
+});
+
+readStream.on('end', () => {
+    console.log('Finished reading file');
+});
+
+readStream.on('error', (error) => {
+    console.error('Error reading file:', error);
+});
+
+// Writing with streams
+const writeStream = fs.createWriteStream('output.txt');
+writeStream.write('Hello, ');
+writeStream.write('World!\n');
+writeStream.end();
+
+// Pipe streams together
+fs.createReadStream('input.txt')
+    .pipe(fs.createWriteStream('output.txt'));
+
+// Transform stream - process data as it flows
+class UpperCaseTransform extends Transform {
+    _transform(chunk, encoding, callback) {
+        const upperCased = chunk.toString().toUpperCase();
+        this.push(upperCased);
+        callback();
+    }
+}
+
+// Pipeline with error handling (recommended)
+pipeline(
+    fs.createReadStream('input.txt'),
+    new UpperCaseTransform(),
+    zlib.createGzip(),  // Compress
+    fs.createWriteStream('output.txt.gz'),
+    (error) => {
+        if (error) {
+            console.error('Pipeline failed:', error);
+        } else {
+            console.log('Pipeline succeeded');
+        }
+    }
+);
+
+// Backpressure handling
+const readable = fs.createReadStream('large-file.txt');
+const writable = fs.createWriteStream('output.txt');
+
+readable.on('data', (chunk) => {
+    const canContinue = writable.write(chunk);
+    
+    if (!canContinue) {
+        // Backpressure - pause reading
+        readable.pause();
+    }
+});
+
+writable.on('drain', () => {
+    // Buffer cleared - resume reading
+    readable.resume();
+});
+
+// Async iteration over streams (Node.js 10+)
+async function processFile(filePath) {
+    const stream = fs.createReadStream(filePath, { encoding: 'utf8' });
+    
+    for await (const chunk of stream) {
+        console.log('Processing chunk:', chunk.length);
+        await processChunk(chunk);
+    }
+}
+```
+
 ---
 
 ## 12. Testing Frameworks
+
+**Automated testing ensures code reliability and makes refactoring safer by catching bugs early in development.** Jest is the most popular JavaScript testing framework, offering features like snapshot testing, mocking, and code coverage. Test-Driven Development (TDD) involves writing tests before implementing features, leading to better-designed code.
 
 ### Jest Testing Framework
 
@@ -1832,6 +2440,8 @@ class UserService {
 
 ## 13. Advanced Concepts
 
+**Advanced JavaScript concepts include closures, prototypes, symbols, generators, and iterators that enable powerful programming patterns.** Closures allow functions to remember their lexical scope even when executed outside of it. Generators provide a way to create iterators with pause/resume functionality using yield.
+
 ### Closures
 
 ```javascript
@@ -1843,8 +2453,8 @@ function outerFunction(x) {
     };
 }
 
-const addFive = outerFunction(5);
-console.log(addFive(3)); // 8
+const addFive = outerFunction(5);  // Returns inner function with x=5
+console.log(addFive(3)); // 8 (5 + 3, closure remembers x=5)
 
 // Practical closure example - Module pattern
 const counterModule = (function() {
@@ -1865,10 +2475,10 @@ const counterModule = (function() {
     };
 })();
 
-console.log(counterModule.increment()); // 1
-console.log(counterModule.increment()); // 2
-console.log(counterModule.getCount()); // 2
-// console.log(count); // ReferenceError - count is private
+console.log(counterModule.increment()); // 1 (count is now 1)
+console.log(counterModule.increment()); // 2 (count is now 2)
+console.log(counterModule.getCount()); // 2 (returns private count)
+// console.log(count); // ReferenceError - count is private (not accessible)
 ```
 
 ### Prototypal Inheritance
@@ -1997,6 +2607,8 @@ async function useAsyncGenerator() {
 
 ## 14. Performance Optimization
 
+**Performance optimization involves reducing memory usage, improving execution speed, and ensuring smooth user experiences.** Techniques like debouncing/throttling prevent excessive function calls, while proper memory management avoids leaks. Object pooling and lazy loading help manage resources efficiently in large applications.
+
 ### Memory Management
 
 ```javascript
@@ -2123,6 +2735,8 @@ function gameLoop() {
 
 ## 15. Modern JavaScript Ecosystem
 
+**The modern JavaScript ecosystem includes package managers (npm/yarn), module bundlers (Webpack/Vite), transpilers (Babel), and development tools.** Package.json defines project dependencies and scripts, while build tools optimize code for production. Understanding the ecosystem is essential for professional JavaScript development.
+
 ### Package.json and NPM
 
 ```json
@@ -2240,6 +2854,2250 @@ const { PI, add } = require('./math');
 
 ---
 
+## 16. ⚛️ React Framework (Essential for Interviews)
+
+**React is the most popular JavaScript library for building user interfaces, using a component-based architecture and virtual DOM for efficient rendering.** React's declarative approach makes it easy to create interactive UIs. Understanding hooks, state management, and component lifecycle is crucial for modern React development.
+
+### React Basics and JSX
+
+```javascript
+// React component with JSX
+import React from 'react';
+
+// Functional component
+function Welcome(props) {
+    return <h1>Hello, {props.name}!</h1>;  // JSX - looks like HTML but is JavaScript
+}
+
+// Component with multiple elements
+function App() {
+    return (
+        <div className="app">
+            <Welcome name="Alice" />
+            <Welcome name="Bob" />
+        </div>
+    );
+}
+
+// Component with props destructuring
+const UserCard = ({ name, age, email }) => {
+    return (
+        <div className="user-card">
+            <h2>{name}</h2>
+            <p>Age: {age}</p>
+            <p>Email: {email}</p>
+        </div>
+    );
+};
+```
+
+### React Hooks - useState
+
+```javascript
+import React, { useState } from 'react';
+
+// Simple counter with useState
+function Counter() {
+    const [count, setCount] = useState(0);  // Initial state = 0
+    
+    return (
+        <div>
+            <p>Count: {count}</p>
+            <button onClick={() => setCount(count + 1)}>Increment</button>
+            <button onClick={() => setCount(count - 1)}>Decrement</button>
+            <button onClick={() => setCount(0)}>Reset</button>
+        </div>
+    );
+}
+
+// Multiple state variables
+function UserForm() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [age, setAge] = useState(0);
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log({ name, email, age });
+    };
+    
+    return (
+        <form onSubmit={handleSubmit}>
+            <input 
+                value={name} 
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
+            />
+            <input 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                type="email"
+            />
+            <input 
+                value={age} 
+                onChange={(e) => setAge(Number(e.target.value))}
+                placeholder="Age"
+                type="number"
+            />
+            <button type="submit">Submit</button>
+        </form>
+    );
+}
+
+// State with objects
+function UserProfile() {
+    const [user, setUser] = useState({
+        name: 'Alice',
+        age: 30,
+        preferences: { theme: 'dark', language: 'en' }
+    });
+    
+    // Update nested state immutably
+    const updateTheme = (newTheme) => {
+        setUser(prevUser => ({
+            ...prevUser,
+            preferences: {
+                ...prevUser.preferences,
+                theme: newTheme
+            }
+        }));
+    };
+    
+    return (
+        <div>
+            <h2>{user.name} - {user.age} years old</h2>
+            <p>Theme: {user.preferences.theme}</p>
+            <button onClick={() => updateTheme('light')}>Light Theme</button>
+            <button onClick={() => updateTheme('dark')}>Dark Theme</button>
+        </div>
+    );
+}
+```
+
+### React Hooks - useEffect
+
+```javascript
+import React, { useState, useEffect } from 'react';
+
+// Fetch data on component mount
+function UserList() {
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    
+    useEffect(() => {
+        // This runs after component mounts
+        const fetchUsers = async () => {
+            try {
+                const response = await fetch('https://api.example.com/users');
+                const data = await response.json();
+                setUsers(data);
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
+        };
+        
+        fetchUsers();
+    }, []); // Empty dependency array = run once on mount
+    
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+    
+    return (
+        <ul>
+            {users.map(user => (
+                <li key={user.id}>{user.name}</li>
+            ))}
+        </ul>
+    );
+}
+
+// useEffect with dependencies
+function SearchBar() {
+    const [query, setQuery] = useState('');
+    const [results, setResults] = useState([]);
+    
+    useEffect(() => {
+        // This runs every time 'query' changes
+        if (query.length > 2) {
+            const fetchResults = async () => {
+                const response = await fetch(`/api/search?q=${query}`);
+                const data = await response.json();
+                setResults(data);
+            };
+            
+            // Debounce: delay search until user stops typing
+            const timeoutId = setTimeout(fetchResults, 300);
+            
+            // Cleanup function
+            return () => clearTimeout(timeoutId);
+        }
+    }, [query]); // Runs when query changes
+    
+    return (
+        <div>
+            <input 
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search..."
+            />
+            <ul>
+                {results.map(result => (
+                    <li key={result.id}>{result.title}</li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+
+// Cleanup with useEffect
+function Timer() {
+    const [seconds, setSeconds] = useState(0);
+    
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setSeconds(s => s + 1);
+        }, 1000);
+        
+        // Cleanup function - runs on unmount
+        return () => clearInterval(intervalId);
+    }, []);
+    
+    return <div>Seconds: {seconds}</div>;
+}
+```
+
+### React Hooks - useContext
+
+```javascript
+import React, { createContext, useContext, useState } from 'react';
+
+// Create context
+const ThemeContext = createContext();
+const UserContext = createContext();
+
+// Theme provider component
+function ThemeProvider({ children }) {
+    const [theme, setTheme] = useState('light');
+    
+    const toggleTheme = () => {
+        setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+    };
+    
+    return (
+        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+            {children}
+        </ThemeContext.Provider>
+    );
+}
+
+// Component using context
+function ThemedButton() {
+    const { theme, toggleTheme } = useContext(ThemeContext);
+    
+    return (
+        <button 
+            onClick={toggleTheme}
+            style={{
+                background: theme === 'light' ? '#fff' : '#333',
+                color: theme === 'light' ? '#000' : '#fff'
+            }}
+        >
+            Current theme: {theme}
+        </button>
+    );
+}
+
+// App with multiple contexts
+function App() {
+    const [user, setUser] = useState({ name: 'Alice', role: 'admin' });
+    
+    return (
+        <UserContext.Provider value={{ user, setUser }}>
+            <ThemeProvider>
+                <div>
+                    <ThemedButton />
+                    <UserProfile />
+                </div>
+            </ThemeProvider>
+        </UserContext.Provider>
+    );
+}
+
+function UserProfile() {
+    const { user } = useContext(UserContext);
+    const { theme } = useContext(ThemeContext);
+    
+    return (
+        <div style={{ background: theme === 'light' ? '#f0f0f0' : '#222' }}>
+            <h2>{user.name}</h2>
+            <p>Role: {user.role}</p>
+        </div>
+    );
+}
+```
+
+### Custom Hooks
+
+```javascript
+import { useState, useEffect } from 'react';
+
+// Custom hook for API fetching
+function useFetch(url) {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(url);
+                const result = await response.json();
+                setData(result);
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
+        };
+        
+        fetchData();
+    }, [url]);
+    
+    return { data, loading, error };
+}
+
+// Using custom hook
+function UserList() {
+    const { data: users, loading, error } = useFetch('/api/users');
+    
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+    
+    return (
+        <ul>
+            {users.map(user => <li key={user.id}>{user.name}</li>)}
+        </ul>
+    );
+}
+
+// Custom hook for local storage
+function useLocalStorage(key, initialValue) {
+    const [value, setValue] = useState(() => {
+        try {
+            const item = window.localStorage.getItem(key);
+            return item ? JSON.parse(item) : initialValue;
+        } catch (error) {
+            return initialValue;
+        }
+    });
+    
+    const setStoredValue = (newValue) => {
+        try {
+            setValue(newValue);
+            window.localStorage.setItem(key, JSON.stringify(newValue));
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    
+    return [value, setStoredValue];
+}
+
+// Using local storage hook
+function TodoApp() {
+    const [todos, setTodos] = useLocalStorage('todos', []);
+    
+    const addTodo = (text) => {
+        setTodos([...todos, { id: Date.now(), text, completed: false }]);
+    };
+    
+    return (
+        <div>
+            {/* Todo list UI */}
+        </div>
+    );
+}
+
+// Custom hook for window size
+function useWindowSize() {
+    const [size, setSize] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight
+    });
+    
+    useEffect(() => {
+        const handleResize = () => {
+            setSize({
+                width: window.innerWidth,
+                height: window.innerHeight
+            });
+        };
+        
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    
+    return size;
+}
+```
+
+### React Router
+
+```javascript
+import { BrowserRouter, Routes, Route, Link, useNavigate, useParams } from 'react-router-dom';
+
+// Main app with routes
+function App() {
+    return (
+        <BrowserRouter>
+            <nav>
+                <Link to="/">Home</Link>
+                <Link to="/about">About</Link>
+                <Link to="/users">Users</Link>
+            </nav>
+            
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/users" element={<Users />} />
+                <Route path="/users/:id" element={<UserDetail />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
+    );
+}
+
+// Component with URL parameters
+function UserDetail() {
+    const { id } = useParams();  // Get URL parameter
+    const navigate = useNavigate();  // Programmatic navigation
+    
+    return (
+        <div>
+            <h2>User ID: {id}</h2>
+            <button onClick={() => navigate('/users')}>Back to Users</button>
+        </div>
+    );
+}
+
+// Protected route example
+function ProtectedRoute({ children }) {
+    const isAuthenticated = useAuth();
+    
+    if (!isAuthenticated) {
+        return <Navigate to="/login" />;
+    }
+    
+    return children;
+}
+```
+
+### State Management with Redux Toolkit
+
+```javascript
+// Redux Toolkit slice
+import { createSlice, configureStore } from '@reduxjs/toolkit';
+
+const counterSlice = createSlice({
+    name: 'counter',
+    initialState: { value: 0 },
+    reducers: {
+        increment: (state) => {
+            state.value += 1;  // Redux Toolkit uses Immer for mutations
+        },
+        decrement: (state) => {
+            state.value -= 1;
+        },
+        incrementByAmount: (state, action) => {
+            state.value += action.payload;
+        }
+    }
+});
+
+export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+
+// Configure store
+const store = configureStore({
+    reducer: {
+        counter: counterSlice.reducer
+    }
+});
+
+// React component using Redux
+import { useSelector, useDispatch } from 'react-redux';
+
+function Counter() {
+    const count = useSelector((state) => state.counter.value);
+    const dispatch = useDispatch();
+    
+    return (
+        <div>
+            <h2>Count: {count}</h2>
+            <button onClick={() => dispatch(increment())}>+</button>
+            <button onClick={() => dispatch(decrement())}>-</button>
+            <button onClick={() => dispatch(incrementByAmount(5))}>+5</button>
+        </div>
+    );
+}
+```
+
+---
+
+## 17. �️ Angular Framework
+
+**Angular is a comprehensive TypeScript-based framework for building scalable web applications, featuring dependency injection, RxJS observables, and a powerful CLI.** Unlike React (library), Angular is a full-fledged framework providing routing, forms, HTTP client, and more out of the box. Understanding components, services, directives, and RxJS is essential for Angular development.
+
+### Angular Components
+
+```typescript
+// app.component.ts - Basic component
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  title = 'My Angular App';
+  count = 0;
+  users: User[] = [];
+  
+  ngOnInit() {
+    // Lifecycle hook - runs after component initialization
+    console.log('Component initialized');
+    this.loadUsers();
+  }
+  
+  increment() {
+    this.count++;
+  }
+  
+  decrement() {
+    this.count--;
+  }
+  
+  loadUsers() {
+    this.users = [
+      { id: 1, name: 'Alice', email: 'alice@example.com' },
+      { id: 2, name: 'Bob', email: 'bob@example.com' }
+    ];
+  }
+}
+
+// app.component.html - Template
+/*
+<div class="container">
+  <h1>{{ title }}</h1>
+  
+  <!-- Data binding -->
+  <p>Count: {{ count }}</p>
+  
+  <!-- Event binding -->
+  <button (click)="increment()">+</button>
+  <button (click)="decrement()">-</button>
+  
+  <!-- Two-way binding -->
+  <input [(ngModel)]="title" />
+  
+  <!-- Structural directives -->
+  <div *ngIf="count > 0">Count is positive</div>
+  
+  <ul>
+    <li *ngFor="let user of users; let i = index">
+      {{ i + 1 }}. {{ user.name }} ({{ user.email }})
+    </li>
+  </ul>
+</div>
+*/
+
+// Component with Input and Output
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-user-card',
+  template: `
+    <div class="card">
+      <h3>{{ user.name }}</h3>
+      <p>{{ user.email }}</p>
+      <button (click)="onDelete()">Delete</button>
+    </div>
+  `
+})
+export class UserCardComponent {
+  @Input() user!: User;  // Input from parent
+  @Output() delete = new EventEmitter<number>();  // Output to parent
+  
+  onDelete() {
+    this.delete.emit(this.user.id);
+  }
+}
+
+// Parent component usage:
+// <app-user-card [user]="user" (delete)="handleDelete($event)"></app-user-card>
+```
+
+### Angular Services & Dependency Injection
+
+```typescript
+// user.service.ts - Service for API calls
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, retry } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'  // Singleton service available app-wide
+})
+export class UserService {
+  private apiUrl = 'https://api.example.com/users';
+  
+  constructor(private http: HttpClient) {}
+  
+  // GET all users
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.apiUrl).pipe(
+      retry(2),  // Retry failed requests twice
+      catchError(this.handleError)
+    );
+  }
+  
+  // GET single user
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  // POST create user
+  createUser(user: Partial<User>): Observable<User> {
+    return this.http.post<User>(this.apiUrl, user, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    }).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  // PUT update user
+  updateUser(id: number, user: Partial<User>): Observable<User> {
+    return this.http.put<User>(`${this.apiUrl}/${id}`, user).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  // DELETE user
+  deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  private handleError(error: any) {
+    console.error('API Error:', error);
+    return throwError(() => new Error('Something went wrong'));
+  }
+}
+
+// Using service in component
+import { Component, OnInit } from '@angular/core';
+import { UserService } from './user.service';
+
+@Component({
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html'
+})
+export class UserListComponent implements OnInit {
+  users: User[] = [];
+  loading = false;
+  error: string | null = null;
+  
+  constructor(private userService: UserService) {}  // Dependency injection
+  
+  ngOnInit() {
+    this.loadUsers();
+  }
+  
+  loadUsers() {
+    this.loading = true;
+    this.userService.getUsers().subscribe({
+      next: (users) => {
+        this.users = users;
+        this.loading = false;
+      },
+      error: (error) => {
+        this.error = error.message;
+        this.loading = false;
+      }
+    });
+  }
+  
+  deleteUser(id: number) {
+    this.userService.deleteUser(id).subscribe({
+      next: () => {
+        this.users = this.users.filter(u => u.id !== id);
+      },
+      error: (error) => console.error('Delete failed:', error)
+    });
+  }
+}
+```
+
+### RxJS Observables in Angular
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Observable, Subject, BehaviorSubject, interval, fromEvent } from 'rxjs';
+import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+
+@Component({
+  selector: 'app-rxjs-demo',
+  template: `
+    <input #searchInput placeholder="Search users..." />
+    <div *ngFor="let user of searchResults$ | async">
+      {{ user.name }}
+    </div>
+  `
+})
+export class RxjsDemoComponent implements OnInit {
+  // Observable that emits search results
+  searchResults$!: Observable<User[]>;
+  
+  // Subject - manually emit values
+  private searchSubject = new Subject<string>();
+  
+  // BehaviorSubject - stores current value
+  private currentUser$ = new BehaviorSubject<User | null>(null);
+  
+  constructor(private userService: UserService) {}
+  
+  ngOnInit() {
+    // Search with debounce
+    this.searchResults$ = this.searchSubject.pipe(
+      debounceTime(300),  // Wait 300ms after user stops typing
+      distinctUntilChanged(),  // Only if value changed
+      filter(query => query.length >= 2),  // Minimum 2 characters
+      switchMap(query => this.userService.searchUsers(query))  // Switch to new search
+    );
+  }
+  
+  onSearchInput(event: Event) {
+    const query = (event.target as HTMLInputElement).value;
+    this.searchSubject.next(query);
+  }
+  
+  // Observable operators examples
+  demonstrateOperators() {
+    // Map - transform values
+    interval(1000).pipe(
+      map(n => n * 2)
+    ).subscribe(value => console.log(value));  // 0, 2, 4, 6...
+    
+    // Filter - only even numbers
+    interval(1000).pipe(
+      filter(n => n % 2 === 0)
+    ).subscribe(value => console.log(value));  // 0, 2, 4, 6...
+    
+    // Combine multiple observables
+    const clicks$ = fromEvent(document, 'click');
+    const timer$ = interval(1000);
+    
+    // switchMap - cancel previous, switch to new
+    clicks$.pipe(
+      switchMap(() => timer$)
+    ).subscribe(value => console.log(value));
+  }
+}
+
+// Custom Observable
+import { Observable } from 'rxjs';
+
+function createCustomObservable(): Observable<number> {
+  return new Observable(subscriber => {
+    let count = 0;
+    
+    const interval = setInterval(() => {
+      count++;
+      subscriber.next(count);  // Emit value
+      
+      if (count === 5) {
+        subscriber.complete();  // Complete observable
+        clearInterval(interval);
+      }
+    }, 1000);
+    
+    // Cleanup function
+    return () => {
+      clearInterval(interval);
+    };
+  });
+}
+
+// Usage
+createCustomObservable().subscribe({
+  next: (value) => console.log('Value:', value),
+  error: (error) => console.error('Error:', error),
+  complete: () => console.log('Complete!')
+});
+```
+
+### Angular Routing
+
+```typescript
+// app-routing.module.ts
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { UserListComponent } from './users/user-list.component';
+import { UserDetailComponent } from './users/user-detail.component';
+import { LoginComponent } from './auth/login.component';
+import { AuthGuard } from './auth/auth.guard';
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { 
+    path: 'users', 
+    component: UserListComponent,
+    canActivate: [AuthGuard]  // Protected route
+  },
+  { 
+    path: 'users/:id', 
+    component: UserDetailComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: '**', redirectTo: '' }  // 404 redirect
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
+
+// auth.guard.ts - Route guard
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { AuthService } from './auth.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthGuard implements CanActivate {
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
+  
+  canActivate(): boolean {
+    if (this.authService.isAuthenticated()) {
+      return true;
+    }
+    
+    this.router.navigate(['/login']);
+    return false;
+  }
+}
+
+// Navigation in component
+import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-user-detail',
+  template: '<div>User Detail</div>'
+})
+export class UserDetailComponent {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    // Get route parameters
+    this.route.params.subscribe(params => {
+      const userId = params['id'];
+      console.log('User ID:', userId);
+    });
+    
+    // Get query parameters
+    this.route.queryParams.subscribe(params => {
+      const page = params['page'];
+      console.log('Page:', page);
+    });
+  }
+  
+  navigateToUsers() {
+    this.router.navigate(['/users']);
+  }
+  
+  navigateWithParams() {
+    this.router.navigate(['/users', 123], { 
+      queryParams: { page: 2 }
+    });
+  }
+}
+```
+
+### Angular Forms
+
+```typescript
+// Reactive Forms (Recommended)
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+
+@Component({
+  selector: 'app-user-form',
+  template: `
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <input formControlName="name" placeholder="Name" />
+      <div *ngIf="name?.invalid && name?.touched">
+        <span *ngIf="name?.errors?.['required']">Name is required</span>
+        <span *ngIf="name?.errors?.['minlength']">Min 2 characters</span>
+      </div>
+      
+      <input formControlName="email" placeholder="Email" type="email" />
+      <div *ngIf="email?.invalid && email?.touched">
+        <span *ngIf="email?.errors?.['required']">Email is required</span>
+        <span *ngIf="email?.errors?.['email']">Invalid email</span>
+      </div>
+      
+      <input formControlName="age" placeholder="Age" type="number" />
+      
+      <!-- Form Array - Dynamic fields -->
+      <div formArrayName="hobbies">
+        <div *ngFor="let hobby of hobbies.controls; let i = index">
+          <input [formControlName]="i" placeholder="Hobby" />
+          <button type="button" (click)="removeHobby(i)">Remove</button>
+        </div>
+      </div>
+      <button type="button" (click)="addHobby()">Add Hobby</button>
+      
+      <button type="submit" [disabled]="userForm.invalid">Submit</button>
+    </form>
+  `
+})
+export class UserFormComponent implements OnInit {
+  userForm!: FormGroup;
+  
+  constructor(private fb: FormBuilder) {}
+  
+  ngOnInit() {
+    this.userForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      age: [0, [Validators.required, Validators.min(0), Validators.max(150)]],
+      hobbies: this.fb.array([])
+    });
+  }
+  
+  get name() {
+    return this.userForm.get('name');
+  }
+  
+  get email() {
+    return this.userForm.get('email');
+  }
+  
+  get hobbies() {
+    return this.userForm.get('hobbies') as FormArray;
+  }
+  
+  addHobby() {
+    this.hobbies.push(this.fb.control(''));
+  }
+  
+  removeHobby(index: number) {
+    this.hobbies.removeAt(index);
+  }
+  
+  onSubmit() {
+    if (this.userForm.valid) {
+      console.log('Form value:', this.userForm.value);
+    }
+  }
+}
+
+// Template-driven Forms (Simpler)
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-simple-form',
+  template: `
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+      <input 
+        name="name" 
+        [(ngModel)]="user.name" 
+        required 
+        minlength="2"
+        #name="ngModel"
+      />
+      <div *ngIf="name.invalid && name.touched">
+        Name is required (min 2 chars)
+      </div>
+      
+      <input 
+        name="email" 
+        [(ngModel)]="user.email" 
+        required 
+        email
+        #email="ngModel"
+      />
+      <div *ngIf="email.invalid && email.touched">
+        Valid email is required
+      </div>
+      
+      <button type="submit" [disabled]="userForm.invalid">Submit</button>
+    </form>
+  `
+})
+export class SimpleFormComponent {
+  user = { name: '', email: '' };
+  
+  onSubmit(form: any) {
+    console.log('Form value:', form.value);
+  }
+}
+```
+
+### Angular Directives
+
+```typescript
+// Custom Attribute Directive
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
+  @Input() appHighlight = 'yellow';  // Default color
+  
+  constructor(private el: ElementRef) {}
+  
+  @HostListener('mouseenter') onMouseEnter() {
+    this.highlight(this.appHighlight);
+  }
+  
+  @HostListener('mouseleave') onMouseLeave() {
+    this.highlight('');
+  }
+  
+  private highlight(color: string) {
+    this.el.nativeElement.style.backgroundColor = color;
+  }
+}
+
+// Usage: <p appHighlight="lightblue">Hover over me!</p>
+
+// Structural Directive
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+
+@Directive({
+  selector: '[appUnless]'
+})
+export class UnlessDirective {
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private viewContainer: ViewContainerRef
+  ) {}
+  
+  @Input() set appUnless(condition: boolean) {
+    if (!condition) {
+      this.viewContainer.createEmbeddedView(this.templateRef);
+    } else {
+      this.viewContainer.clear();
+    }
+  }
+}
+
+// Usage: <div *appUnless="condition">Content shown when condition is false</div>
+```
+
+---
+
+## 18. �🎨 Design Patterns in JavaScript
+
+**Design patterns are reusable solutions to common programming problems, improving code organization and maintainability.** JavaScript supports various design patterns including Singleton, Factory, Observer, Module, and Strategy patterns. Understanding these patterns is essential for building scalable applications and acing technical interviews.
+
+### Singleton Pattern
+
+```javascript
+// Singleton - Ensure only one instance exists
+class Database {
+    constructor() {
+        if (Database.instance) {
+            return Database.instance;
+        }
+        
+        this.connection = null;
+        this.isConnected = false;
+        Database.instance = this;
+    }
+    
+    connect() {
+        if (!this.isConnected) {
+            this.connection = 'Connected to database';
+            this.isConnected = true;
+            console.log('Database connected');
+        }
+        return this.connection;
+    }
+    
+    disconnect() {
+        this.isConnected = false;
+        this.connection = null;
+        console.log('Database disconnected');
+    }
+}
+
+// Usage
+const db1 = new Database();
+const db2 = new Database();
+console.log(db1 === db2);  // true - same instance
+
+// Modern ES6 singleton
+const Singleton = (() => {
+    let instance;
+    
+    class SingletonClass {
+        constructor() {
+            if (instance) {
+                return instance;
+            }
+            this.data = [];
+            instance = this;
+        }
+        
+        addData(item) {
+            this.data.push(item);
+        }
+        
+        getData() {
+            return this.data;
+        }
+    }
+    
+    return SingletonClass;
+})();
+```
+
+### Factory Pattern
+
+```javascript
+// Factory - Create objects without specifying exact class
+class Car {
+    constructor(options) {
+        this.doors = options.doors || 4;
+        this.state = options.state || 'new';
+        this.color = options.color || 'white';
+    }
+}
+
+class Truck {
+    constructor(options) {
+        this.doors = options.doors || 2;
+        this.state = options.state || 'new';
+        this.wheelSize = options.wheelSize || 'large';
+    }
+}
+
+class VehicleFactory {
+    createVehicle(type, options) {
+        switch(type) {
+            case 'car':
+                return new Car(options);
+            case 'truck':
+                return new Truck(options);
+            default:
+                throw new Error('Unknown vehicle type');
+        }
+    }
+}
+
+// Usage
+const factory = new VehicleFactory();
+const myCar = factory.createVehicle('car', { color: 'blue', doors: 4 });
+const myTruck = factory.createVehicle('truck', { wheelSize: 'extra-large' });
+
+// Modern factory with classes
+class UserFactory {
+    static createUser(type, data) {
+        const users = {
+            admin: () => new AdminUser(data),
+            regular: () => new RegularUser(data),
+            guest: () => new GuestUser(data)
+        };
+        
+        return users[type] ? users[type]() : null;
+    }
+}
+
+class AdminUser {
+    constructor(data) {
+        this.name = data.name;
+        this.role = 'admin';
+        this.permissions = ['read', 'write', 'delete'];
+    }
+}
+
+class RegularUser {
+    constructor(data) {
+        this.name = data.name;
+        this.role = 'user';
+        this.permissions = ['read', 'write'];
+    }
+}
+```
+
+### Observer Pattern (Pub/Sub)
+
+```javascript
+// Observer - Notify multiple objects about state changes
+class EventEmitter {
+    constructor() {
+        this.events = {};
+    }
+    
+    on(event, listener) {
+        if (!this.events[event]) {
+            this.events[event] = [];
+        }
+        this.events[event].push(listener);
+    }
+    
+    emit(event, ...args) {
+        if (this.events[event]) {
+            this.events[event].forEach(listener => listener(...args));
+        }
+    }
+    
+    off(event, listenerToRemove) {
+        if (this.events[event]) {
+            this.events[event] = this.events[event].filter(
+                listener => listener !== listenerToRemove
+            );
+        }
+    }
+}
+
+// Usage
+const emitter = new EventEmitter();
+
+// Subscribe to events
+emitter.on('userLoggedIn', (user) => {
+    console.log(`Welcome ${user.name}!`);
+});
+
+emitter.on('userLoggedIn', (user) => {
+    console.log(`Logging: User ${user.id} logged in`);
+});
+
+// Emit event
+emitter.emit('userLoggedIn', { id: 1, name: 'Alice' });
+// Output:
+// Welcome Alice!
+// Logging: User 1 logged in
+
+// Real-world example: Shopping cart
+class ShoppingCart {
+    constructor() {
+        this.items = [];
+        this.observers = [];
+    }
+    
+    subscribe(observer) {
+        this.observers.push(observer);
+    }
+    
+    notify(event, data) {
+        this.observers.forEach(observer => observer.update(event, data));
+    }
+    
+    addItem(item) {
+        this.items.push(item);
+        this.notify('itemAdded', { item, total: this.getTotal() });
+    }
+    
+    removeItem(itemId) {
+        this.items = this.items.filter(item => item.id !== itemId);
+        this.notify('itemRemoved', { itemId, total: this.getTotal() });
+    }
+    
+    getTotal() {
+        return this.items.reduce((sum, item) => sum + item.price, 0);
+    }
+}
+
+// Observers
+class CartDisplay {
+    update(event, data) {
+        console.log(`Display: ${event}`, data);
+    }
+}
+
+class CartAnalytics {
+    update(event, data) {
+        console.log(`Analytics: Tracking ${event}`, data);
+    }
+}
+
+// Usage
+const cart = new ShoppingCart();
+cart.subscribe(new CartDisplay());
+cart.subscribe(new CartAnalytics());
+
+cart.addItem({ id: 1, name: 'Book', price: 20 });
+```
+
+### Module Pattern
+
+```javascript
+// Module - Encapsulate private data
+const CounterModule = (() => {
+    // Private variables
+    let count = 0;
+    
+    // Private method
+    function logCount() {
+        console.log(`Current count: ${count}`);
+    }
+    
+    // Public API
+    return {
+        increment() {
+            count++;
+            logCount();
+        },
+        decrement() {
+            count--;
+            logCount();
+        },
+        getCount() {
+            return count;
+        },
+        reset() {
+            count = 0;
+            logCount();
+        }
+    };
+})();
+
+// Usage
+CounterModule.increment();  // Current count: 1
+CounterModule.increment();  // Current count: 2
+console.log(CounterModule.getCount());  // 2
+// console.log(CounterModule.count);  // undefined - private variable
+
+// Modern ES6 module
+class UserService {
+    #users = [];  // Private field (ES2022)
+    
+    addUser(user) {
+        this.#users.push(user);
+        this.#notifyObservers();
+    }
+    
+    #notifyObservers() {
+        console.log('User list updated');
+    }
+    
+    getUsers() {
+        return [...this.#users];  // Return copy
+    }
+}
+```
+
+### Strategy Pattern
+
+```javascript
+// Strategy - Define family of algorithms, make them interchangeable
+class PaymentStrategy {
+    pay(amount) {
+        throw new Error('pay() must be implemented');
+    }
+}
+
+class CreditCardPayment extends PaymentStrategy {
+    constructor(cardNumber) {
+        super();
+        this.cardNumber = cardNumber;
+    }
+    
+    pay(amount) {
+        console.log(`Paid $${amount} with credit card ${this.cardNumber}`);
+        return { success: true, method: 'credit-card', amount };
+    }
+}
+
+class PayPalPayment extends PaymentStrategy {
+    constructor(email) {
+        super();
+        this.email = email;
+    }
+    
+    pay(amount) {
+        console.log(`Paid $${amount} via PayPal account ${this.email}`);
+        return { success: true, method: 'paypal', amount };
+    }
+}
+
+class CryptoPayment extends PaymentStrategy {
+    constructor(walletAddress) {
+        super();
+        this.walletAddress = walletAddress;
+    }
+    
+    pay(amount) {
+        console.log(`Paid $${amount} via crypto wallet ${this.walletAddress}`);
+        return { success: true, method: 'crypto', amount };
+    }
+}
+
+class ShoppingCart {
+    constructor(paymentStrategy) {
+        this.paymentStrategy = paymentStrategy;
+        this.items = [];
+    }
+    
+    setPaymentStrategy(strategy) {
+        this.paymentStrategy = strategy;
+    }
+    
+    checkout() {
+        const amount = this.calculateTotal();
+        return this.paymentStrategy.pay(amount);
+    }
+    
+    calculateTotal() {
+        return this.items.reduce((sum, item) => sum + item.price, 0);
+    }
+}
+
+// Usage
+const cart = new ShoppingCart(new CreditCardPayment('1234-5678-9012-3456'));
+cart.items = [{ name: 'Book', price: 20 }, { name: 'Pen', price: 5 }];
+cart.checkout();  // Paid $25 with credit card
+
+// Switch payment strategy
+cart.setPaymentStrategy(new PayPalPayment('user@example.com'));
+cart.checkout();  // Paid $25 via PayPal
+```
+
+### Decorator Pattern
+
+```javascript
+// Decorator - Add functionality to objects dynamically
+class Coffee {
+    cost() {
+        return 5;
+    }
+    
+    description() {
+        return 'Simple coffee';
+    }
+}
+
+// Decorators
+class MilkDecorator {
+    constructor(coffee) {
+        this.coffee = coffee;
+    }
+    
+    cost() {
+        return this.coffee.cost() + 2;
+    }
+    
+    description() {
+        return this.coffee.description() + ', milk';
+    }
+}
+
+class SugarDecorator {
+    constructor(coffee) {
+        this.coffee = coffee;
+    }
+    
+    cost() {
+        return this.coffee.cost() + 1;
+    }
+    
+    description() {
+        return this.coffee.description() + ', sugar';
+    }
+}
+
+class WhipDecorator {
+    constructor(coffee) {
+        this.coffee = coffee;
+    }
+    
+    cost() {
+        return this.coffee.cost() + 3;
+    }
+    
+    description() {
+        return this.coffee.description() + ', whipped cream';
+    }
+}
+
+// Usage
+let myCoffee = new Coffee();
+console.log(myCoffee.description(), `$${myCoffee.cost()}`);  
+// Simple coffee $5
+
+myCoffee = new MilkDecorator(myCoffee);
+myCoffee = new SugarDecorator(myCoffee);
+myCoffee = new WhipDecorator(myCoffee);
+
+console.log(myCoffee.description(), `$${myCoffee.cost()}`);  
+// Simple coffee, milk, sugar, whipped cream $11
+
+// Modern decorator with functions
+function withLogging(fn) {
+    return function(...args) {
+        console.log(`Calling ${fn.name} with:`, args);
+        const result = fn(...args);
+        console.log(`Result:`, result);
+        return result;
+    };
+}
+
+function add(a, b) {
+    return a + b;
+}
+
+const addWithLogging = withLogging(add);
+addWithLogging(5, 3);
+// Output:
+// Calling add with: [5, 3]
+// Result: 8
+```
+
+---
+
+## 19. 🔒 Security Best Practices
+
+**Web security is critical for protecting user data and preventing attacks like XSS, CSRF, and SQL injection.** Understanding common vulnerabilities and implementing proper security measures is essential for professional web development. Always validate input, sanitize output, use HTTPS, and follow the principle of least privilege.
+
+### Cross-Site Scripting (XSS) Prevention
+
+```javascript
+// ❌ Vulnerable to XSS
+function displayUserInput(input) {
+    document.getElementById('output').innerHTML = input;  // DANGEROUS!
+    // If input = "<img src=x onerror='alert(document.cookie)'>"
+    // This will execute malicious JavaScript
+}
+
+// ✅ Prevent XSS by escaping HTML
+function escapeHtml(unsafe) {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function displayUserInputSafely(input) {
+    const escaped = escapeHtml(input);
+    document.getElementById('output').textContent = escaped;  // Safe
+}
+
+// Using DOMPurify library (recommended for production)
+import DOMPurify from 'dompurify';
+
+function displayRichContent(html) {
+    const clean = DOMPurify.sanitize(html);
+    document.getElementById('output').innerHTML = clean;
+}
+
+// Content Security Policy (CSP) header
+// Set in your server or meta tag:
+// <meta http-equiv="Content-Security-Policy" 
+//       content="default-src 'self'; script-src 'self' https://trusted.com">
+```
+
+### CSRF Protection
+
+```javascript
+// Cross-Site Request Forgery prevention
+
+// Generate CSRF token (server-side)
+const crypto = require('crypto');
+
+function generateCSRFToken() {
+    return crypto.randomBytes(32).toString('hex');
+}
+
+// Store token in session
+app.get('/form', (req, res) => {
+    req.session.csrfToken = generateCSRFToken();
+    res.render('form', { csrfToken: req.session.csrfToken });
+});
+
+// Verify token on submission
+app.post('/submit', (req, res) => {
+    const token = req.body.csrfToken;
+    if (token !== req.session.csrfToken) {
+        return res.status(403).json({ error: 'Invalid CSRF token' });
+    }
+    // Process form...
+});
+
+// Client-side: Include token in forms
+// <form method="POST" action="/submit">
+//     <input type="hidden" name="csrfToken" value="<%= csrfToken %>">
+//     <!-- other fields -->
+// </form>
+
+// For AJAX requests
+fetch('/api/data', {
+    method: 'POST',
+    headers: {
+        'X-CSRF-Token': getCsrfToken(),  // Get from cookie or meta tag
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+});
+```
+
+### Authentication with JWT
+
+```javascript
+// JSON Web Token authentication
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
+const app = express();
+const SECRET_KEY = process.env.JWT_SECRET || 'your-secret-key-change-this';
+
+// Register user
+app.post('/register', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        
+        // Validate input
+        if (!username || !password || password.length < 8) {
+            return res.status(400).json({ error: 'Invalid credentials' });
+        }
+        
+        // Hash password
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+        
+        // Save user to database (example)
+        const user = await User.create({
+            username,
+            password: hashedPassword
+        });
+        
+        res.status(201).json({ message: 'User registered successfully' });
+    } catch (error) {
+        res.status(500).json({ error: 'Registration failed' });
+    }
+});
+
+// Login user
+app.post('/login', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        
+        // Find user
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+        
+        // Verify password
+        const isValid = await bcrypt.compare(password, user.password);
+        if (!isValid) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+        
+        // Generate JWT
+        const token = jwt.sign(
+            { userId: user.id, username: user.username },
+            SECRET_KEY,
+            { expiresIn: '24h' }
+        );
+        
+        res.json({ token, user: { id: user.id, username: user.username } });
+    } catch (error) {
+        res.status(500).json({ error: 'Login failed' });
+    }
+});
+
+// Middleware to verify JWT
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];  // Bearer TOKEN
+    
+    if (!token) {
+        return res.status(401).json({ error: 'Access token required' });
+    }
+    
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+        if (err) {
+            return res.status(403).json({ error: 'Invalid token' });
+        }
+        req.user = user;
+        next();
+    });
+}
+
+// Protected route
+app.get('/api/profile', authenticateToken, (req, res) => {
+    res.json({ user: req.user });
+});
+
+// Refresh token implementation
+app.post('/refresh', (req, res) => {
+    const { refreshToken } = req.body;
+    
+    // Verify refresh token
+    jwt.verify(refreshToken, REFRESH_SECRET, (err, user) => {
+        if (err) {
+            return res.status(403).json({ error: 'Invalid refresh token' });
+        }
+        
+        // Generate new access token
+        const accessToken = jwt.sign(
+            { userId: user.userId, username: user.username },
+            SECRET_KEY,
+            { expiresIn: '15m' }
+        );
+        
+        res.json({ accessToken });
+    });
+});
+```
+
+### Input Validation and Sanitization
+
+```javascript
+// Input validation with Joi
+const Joi = require('joi');
+
+const userSchema = Joi.object({
+    username: Joi.string()
+        .alphanum()
+        .min(3)
+        .max(30)
+        .required(),
+    email: Joi.string()
+        .email()
+        .required(),
+    password: Joi.string()
+        .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+        .required()
+        .messages({
+            'string.pattern.base': 'Password must contain uppercase, lowercase, number, and special character'
+        }),
+    age: Joi.number()
+        .integer()
+        .min(18)
+        .max(120)
+});
+
+app.post('/api/users', (req, res) => {
+    // Validate input
+    const { error, value } = userSchema.validate(req.body);
+    
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
+    
+    // Process validated data
+    createUser(value);
+    res.status(201).json({ message: 'User created' });
+});
+
+// SQL Injection prevention (use parameterized queries)
+// ❌ Vulnerable
+const userId = req.params.id;
+const query = `SELECT * FROM users WHERE id = ${userId}`;  // DANGEROUS!
+
+// ✅ Safe - use parameterized queries
+const query = 'SELECT * FROM users WHERE id = ?';
+db.execute(query, [userId]);
+
+// With MongoDB (use ORM/ODM like Mongoose)
+// ❌ Vulnerable
+User.find({ username: req.body.username });  // Can be exploited with $ne, $gt, etc.
+
+// ✅ Safe - validate input type
+const username = String(req.body.username);  // Ensure it's a string
+User.find({ username: username });
+```
+
+### CORS Configuration
+
+```javascript
+// CORS (Cross-Origin Resource Sharing) setup
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+
+// Simple CORS - Allow all origins (NOT recommended for production)
+app.use(cors());
+
+// Configured CORS - Production recommended
+const corsOptions = {
+    origin: ['https://yourdomain.com', 'https://app.yourdomain.com'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,  // Allow cookies
+    maxAge: 86400  // Cache preflight request for 24 hours
+};
+
+app.use(cors(corsOptions));
+
+// Dynamic CORS based on request
+app.use(cors((req, callback) => {
+    const allowedOrigins = ['https://yourdomain.com', 'https://app.yourdomain.com'];
+    const origin = req.header('Origin');
+    
+    if (allowedOrigins.includes(origin)) {
+        callback(null, { origin: true });
+    } else {
+        callback(new Error('Not allowed by CORS'));
+    }
+}));
+
+// Manual CORS headers
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://yourdomain.com');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    
+    // Handle preflight
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    
+    next();
+});
+```
+
+### Security Headers
+
+```javascript
+// Set security headers with Helmet
+const helmet = require('helmet');
+
+app.use(helmet());
+
+// Custom security headers
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "https://trusted-cdn.com"],
+            styleSrc: ["'self'", "'unsafe-inline'"],
+            imgSrc: ["'self'", "data:", "https:"],
+            connectSrc: ["'self'", "https://api.yourdomain.com"],
+            fontSrc: ["'self'", "https:", "data:"],
+            objectSrc: ["'none'"],
+            mediaSrc: ["'self'"],
+            frameSrc: ["'none'"]
+        }
+    },
+    hsts: {
+        maxAge: 31536000,  // 1 year
+        includeSubDomains: true,
+        preload: true
+    }
+}));
+
+// Rate limiting to prevent brute force
+const rateLimit = require('express-rate-limit');
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,  // 15 minutes
+    max: 100,  // Limit each IP to 100 requests per windowMs
+    message: 'Too many requests, please try again later'
+});
+
+app.use('/api/', limiter);
+
+// Stricter limit for authentication endpoints
+const authLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 5,  // Only 5 login attempts per 15 minutes
+    message: 'Too many login attempts, please try again later'
+});
+
+app.use('/api/login', authLimiter);
+app.use('/api/register', authLimiter);
+```
+
+---
+
+## 20. 🔌 WebSockets & Real-time Communication
+
+**WebSockets provide full-duplex communication channels over a single TCP connection, enabling real-time data transfer between client and server.** Unlike HTTP polling, WebSockets maintain persistent connections for instant, bidirectional communication. This is essential for chat applications, live notifications, real-time dashboards, and multiplayer games.
+
+### Native WebSocket API
+
+```javascript
+// Client-side WebSocket
+const socket = new WebSocket('ws://localhost:8080');
+
+// Connection opened
+socket.addEventListener('open', (event) => {
+    console.log('Connected to WebSocket server');
+    socket.send(JSON.stringify({ type: 'greeting', message: 'Hello Server!' }));
+});
+
+// Listen for messages
+socket.addEventListener('message', (event) => {
+    console.log('Message from server:', event.data);
+    const data = JSON.parse(event.data);
+    
+    if (data.type === 'notification') {
+        showNotification(data.message);
+    }
+});
+
+// Connection closed
+socket.addEventListener('close', (event) => {
+    console.log('Disconnected from server');
+    // Attempt to reconnect
+    setTimeout(() => connectWebSocket(), 1000);
+});
+
+// Handle errors
+socket.addEventListener('error', (error) => {
+    console.error('WebSocket error:', error);
+});
+
+// Send messages
+function sendMessage(message) {
+    if (socket.readyState === WebSocket.OPEN) {
+        socket.send(JSON.stringify({ type: 'message', content: message }));
+    } else {
+        console.error('WebSocket is not open');
+    }
+}
+
+// Close connection
+function closeConnection() {
+    socket.close(1000, 'Client closing connection');
+}
+```
+
+### WebSocket Server with Node.js
+
+```javascript
+// Server-side WebSocket with 'ws' library
+const WebSocket = require('ws');
+const http = require('http');
+
+const server = http.createServer();
+const wss = new WebSocket.Server({ server });
+
+// Store connected clients
+const clients = new Set();
+
+wss.on('connection', (ws, req) => {
+    console.log('New client connected');
+    clients.add(ws);
+    
+    // Send welcome message
+    ws.send(JSON.stringify({
+        type: 'welcome',
+        message: 'Connected to server',
+        clientCount: clients.size
+    }));
+    
+    // Broadcast to all clients
+    broadcastMessage({ type: 'userJoined', count: clients.size });
+    
+    // Handle messages from client
+    ws.on('message', (data) => {
+        try {
+            const message = JSON.parse(data);
+            console.log('Received:', message);
+            
+            // Echo message to all clients
+            broadcastMessage({
+                type: 'message',
+                content: message.content,
+                timestamp: new Date().toISOString()
+            });
+        } catch (error) {
+            console.error('Error parsing message:', error);
+        }
+    });
+    
+    // Handle client disconnect
+    ws.on('close', () => {
+        console.log('Client disconnected');
+        clients.delete(ws);
+        broadcastMessage({ type: 'userLeft', count: clients.size });
+    });
+    
+    // Handle errors
+    ws.on('error', (error) => {
+        console.error('WebSocket error:', error);
+        clients.delete(ws);
+    });
+});
+
+// Broadcast to all connected clients
+function broadcastMessage(message) {
+    const data = JSON.stringify(message);
+    clients.forEach(client => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(data);
+        }
+    });
+}
+
+// Start server
+server.listen(8080, () => {
+    console.log('WebSocket server running on port 8080');
+});
+```
+
+### Socket.IO (Advanced WebSocket Library)
+
+```javascript
+// Socket.IO Client
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:3000', {
+    auth: {
+        token: 'your-auth-token'
+    }
+});
+
+// Connect event
+socket.on('connect', () => {
+    console.log('Connected:', socket.id);
+});
+
+// Listen for events
+socket.on('message', (data) => {
+    console.log('Received message:', data);
+});
+
+socket.on('notification', (data) => {
+    showNotification(data.title, data.body);
+});
+
+// Send events
+socket.emit('sendMessage', { to: 'user123', message: 'Hello!' });
+
+// Room-based communication
+socket.emit('joinRoom', 'room-1');
+socket.on('roomMessage', (data) => {
+    console.log('Room message:', data);
+});
+
+// Disconnect
+socket.on('disconnect', (reason) => {
+    console.log('Disconnected:', reason);
+    if (reason === 'io server disconnect') {
+        // Manually reconnect
+        socket.connect();
+    }
+});
+
+// Socket.IO Server
+const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: 'http://localhost:3000',
+        methods: ['GET', 'POST']
+    }
+});
+
+// Middleware for authentication
+io.use((socket, next) => {
+    const token = socket.handshake.auth.token;
+    if (isValidToken(token)) {
+        socket.userId = getUserIdFromToken(token);
+        next();
+    } else {
+        next(new Error('Authentication error'));
+    }
+});
+
+// Connection handling
+io.on('connection', (socket) => {
+    console.log('User connected:', socket.userId);
+    
+    // Join user to their personal room
+    socket.join(`user-${socket.userId}`);
+    
+    // Handle events
+    socket.on('sendMessage', (data) => {
+        // Send to specific user
+        io.to(`user-${data.to}`).emit('message', {
+            from: socket.userId,
+            message: data.message,
+            timestamp: new Date()
+        });
+    });
+    
+    // Room management
+    socket.on('joinRoom', (roomId) => {
+        socket.join(roomId);
+        socket.to(roomId).emit('userJoined', {
+            userId: socket.userId,
+            roomId
+        });
+    });
+    
+    socket.on('leaveRoom', (roomId) => {
+        socket.leave(roomId);
+        socket.to(roomId).emit('userLeft', {
+            userId: socket.userId,
+            roomId
+        });
+    });
+    
+    // Broadcast to room
+    socket.on('roomMessage', (data) => {
+        io.to(data.roomId).emit('roomMessage', {
+            from: socket.userId,
+            message: data.message,
+            timestamp: new Date()
+        });
+    });
+    
+    // Disconnect
+    socket.on('disconnect', (reason) => {
+        console.log('User disconnected:', socket.userId, reason);
+    });
+});
+
+server.listen(3000, () => {
+    console.log('Socket.IO server running on port 3000');
+});
+```
+
+### Real-time Chat Application
+
+```javascript
+// Complete chat application with React + Socket.IO
+
+// ChatApp.jsx
+import React, { useState, useEffect, useRef } from 'react';
+import io from 'socket.io-client';
+
+function ChatApp() {
+    const [socket, setSocket] = useState(null);
+    const [messages, setMessages] = useState([]);
+    const [inputMessage, setInputMessage] = useState('');
+    const [username, setUsername] = useState('');
+    const [isConnected, setIsConnected] = useState(false);
+    const [onlineUsers, setOnlineUsers] = useState(0);
+    const messagesEndRef = useRef(null);
+    
+    useEffect(() => {
+        // Initialize socket connection
+        const newSocket = io('http://localhost:3000', {
+            auth: { username: username || 'Anonymous' }
+        });
+        
+        newSocket.on('connect', () => {
+            setIsConnected(true);
+            console.log('Connected to chat server');
+        });
+        
+        newSocket.on('disconnect', () => {
+            setIsConnected(false);
+            console.log('Disconnected from chat server');
+        });
+        
+        newSocket.on('message', (message) => {
+            setMessages(prev => [...prev, message]);
+            scrollToBottom();
+        });
+        
+        newSocket.on('userCount', (count) => {
+            setOnlineUsers(count);
+        });
+        
+        setSocket(newSocket);
+        
+        return () => newSocket.close();
+    }, [username]);
+    
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+    
+    const sendMessage = (e) => {
+        e.preventDefault();
+        
+        if (inputMessage.trim() && socket) {
+            socket.emit('sendMessage', {
+                text: inputMessage,
+                timestamp: new Date()
+            });
+            setInputMessage('');
+        }
+    };
+    
+    return (
+        <div className="chat-app">
+            <div className="chat-header">
+                <h2>Real-time Chat</h2>
+                <div className="status">
+                    <span className={isConnected ? 'connected' : 'disconnected'}>
+                        {isConnected ? '● Online' : '○ Offline'}
+                    </span>
+                    <span>{onlineUsers} users online</span>
+                </div>
+            </div>
+            
+            <div className="messages">
+                {messages.map((msg, index) => (
+                    <div key={index} className="message">
+                        <span className="username">{msg.username}:</span>
+                        <span className="text">{msg.text}</span>
+                        <span className="time">
+                            {new Date(msg.timestamp).toLocaleTimeString()}
+                        </span>
+                    </div>
+                ))}
+                <div ref={messagesEndRef} />
+            </div>
+            
+            <form onSubmit={sendMessage} className="input-form">
+                <input
+                    type="text"
+                    value={inputMessage}
+                    onChange={(e) => setInputMessage(e.target.value)}
+                    placeholder="Type a message..."
+                    disabled={!isConnected}
+                />
+                <button type="submit" disabled={!isConnected || !inputMessage.trim()}>
+                    Send
+                </button>
+            </form>
+        </div>
+    );
+}
+
+export default ChatApp;
+```
+
+---
+
 ## 🚀 Next Steps for JavaScript Mastery
 
 ### 1. **Advanced Patterns**
@@ -2282,16 +5140,23 @@ const { PI, add } = require('./math');
 
 | Category | Key Concepts |
 |----------|-------------|
-| **Fundamentals** | Variables, data types, operators |
+| **Fundamentals** | Variables, data types, operators, hoisting |
 | **Functions** | Arrow functions, closures, higher-order functions |
 | **Objects** | Prototypes, classes, inheritance, SOLID principles |
-| **Async** | Promises, async/await, event loop |
-| **DOM** | Selectors, events, manipulation |
-| **ES6+** | Destructuring, spread/rest, modules |
-| **Functional** | Map, filter, reduce, immutability |
-| **Advanced** | Generators, symbols, weak collections |
-| **Testing** | Jest, mocking, TDD |
-| **Performance** | Debouncing, throttling, memory management |
+| **Async** | Promises, async/await, event loop, async iteration |
+| **DOM** | Selectors, events, manipulation, event delegation |
+| **ES6+** | Destructuring, spread/rest, modules, template literals |
+| **Functional** | Map, filter, reduce, immutability, composition |
+| **Advanced** | Generators, symbols, weak collections, proxies |
+| **Testing** | Jest, mocking, TDD, test coverage |
+| **Performance** | Debouncing, throttling, memory management, lazy loading |
+| **Node.js** | Express.js, middleware, REST APIs, Worker Threads, Streams |
+| **⚛️ React** | Hooks, Context, State Management, Custom Hooks, Router, Redux |
+| **🅰️ Angular** | Components, Services, RxJS, Routing, Forms, Directives |
+| **🎨 Patterns** | Singleton, Factory, Observer, Module, Strategy, Decorator |
+| **🔒 Security** | XSS/CSRF prevention, JWT, Input validation, CORS, Rate limiting |
+| **🔌 Real-time** | WebSockets, Socket.IO, bidirectional communication |
+| **Ecosystem** | npm, Webpack, Vite, Babel, ESLint, build tools |
 
 ---
 
