@@ -155,3 +155,195 @@ Desktop.ini
 *.tmp
 *.temp
 .temporary/
+Python/1- Getting Started/1- What is Python.mp4
+Python/1- Getting Started/2- Installing Python.mp4
+Python/1- Getting Started/3- Python Interpreter.mp4
+Python/1- Getting Started/4- Code Editors.mp4
+Python/1- Getting Started/5- Your First Python Program.mp4
+Python/1- Getting Started/6- Python Extension.mp4
+Python/1- Getting Started/7- Linting Python Code.mp4
+Python/1- Getting Started/8- Formatting Python Code.mp4
+Python/1- Getting Started/9- Running Python Code.mp4
+Python/1- Getting Started/10- Python Implementations.mp4
+Python/1- Getting Started/11- How Python Code is Executed.mp4
+Python/1- Getting Started/12- Quiz.mp4
+Python/10- Python Package Index/1- Pypi.mp4
+Python/10- Python Package Index/2- Pip.mp4
+Python/10- Python Package Index/3- Virtual Environments.mp4
+Python/10- Python Package Index/4- Pipenv.mp4
+Python/10- Python Package Index/5- Virtual Environments in VSCode.mp4
+Python/10- Python Package Index/6- Pipfile.mp4
+Python/10- Python Package Index/7- Managing Dependencies.mp4
+Python/10- Python Package Index/8- Publishing Packages.mp4
+Python/10- Python Package Index/9- Docstrings.mp4
+Python/10- Python Package Index/10- Pydoc.mp4
+Python/11- Popular Python Packages/1- Introduction.mp4
+Python/11- Popular Python Packages/2- What are APIs.mp4
+Python/11- Popular Python Packages/3- Yelp API.mp4
+Python/11- Popular Python Packages/4- Searching for Businesses.mp4
+Python/11- Popular Python Packages/5- Hiding API Keys.mp4
+Python/11- Popular Python Packages/6- Sending Text Messages.mp4
+Python/11- Popular Python Packages/7- Web Scraping.mp4
+Python/11- Popular Python Packages/8- Browser Automation.mp4
+Python/11- Popular Python Packages/9- Working with PDFs.mp4
+Python/11- Popular Python Packages/10- Working with Excel Spreadsheets.mp4
+Python/11- Popular Python Packages/11- Command Query Separation Principle.mp4
+Python/11- Popular Python Packages/12- NumPy.mp4
+Python/12- Building Web Applications with Django/1- Introduction.mp4
+Python/12- Building Web Applications with Django/2- Your First Django Project.mp4
+Python/12- Building Web Applications with Django/3- Your First App.mp4
+Python/12- Building Web Applications with Django/4- Views.mp4
+Python/12- Building Web Applications with Django/5- Models.mp4
+Python/12- Building Web Applications with Django/6- Migrations.mp4
+Python/12- Building Web Applications with Django/7- Changing the Models.mp4
+Python/12- Building Web Applications with Django/8- Admin.mp4
+Python/12- Building Web Applications with Django/9- Customizing the Admin.mp4
+Python/12- Building Web Applications with Django/10- Database Abstraction API.mp4
+Python/12- Building Web Applications with Django/11- Templates.mp4
+Python/12- Building Web Applications with Django/12- Adding Bootstrap.mp4
+Python/12- Building Web Applications with Django/13- Customizing the Layout.mp4
+Python/12- Building Web Applications with Django/14- Sharing a Template Across Multiple Apps.mp4
+Python/12- Building Web Applications with Django/15- Url Parameters.mp4
+Python/12- Building Web Applications with Django/16- Getting a Single Object.mp4
+Python/12- Building Web Applications with Django/17- Raising 404 Errors.mp4
+Python/12- Building Web Applications with Django/18- Referencing Urls.mp4
+Python/12- Building Web Applications with Django/19- Creating APIs.mp4
+Python/12- Building Web Applications with Django/20- Adding the Homepage.mp4
+Python/12- Building Web Applications with Django/21- Getting Ready to Deploy.mp4
+Python/12- Building Web Applications with Django/22- Deployment.mp4
+Python/13- Machine Learning with Python/1- What is Machine Learning.mp4
+Python/13- Machine Learning with Python/2- Machine Learning in Action.mp4
+Python/13- Machine Learning with Python/3- Libraries and Tools.mp4
+Python/13- Machine Learning with Python/4- Importing a Data Set.mp4
+Python/13- Machine Learning with Python/5- Jupyter Shortcuts.mp4
+Python/13- Machine Learning with Python/6- A Real Machine Learning Problem.mp4
+Python/13- Machine Learning with Python/7- Preparing the Data.mp4
+Python/13- Machine Learning with Python/8- Learning and Predicting.mp4
+Python/13- Machine Learning with Python/9- Calculating the Accuracy.mp4
+Python/13- Machine Learning with Python/10- Persisting Models.mp4
+Python/13- Machine Learning with Python/11- Visualizing a Decision Tree.mp4
+Python/2- Primitive Types/1- Variables.mp4
+Python/2- Primitive Types/2- Variable Names.mp4
+Python/2- Primitive Types/3- Strings.mp4
+Python/2- Primitive Types/4- Escape Sequences.mp4
+Python/2- Primitive Types/5- Formatted Strings.mp4
+Python/2- Primitive Types/6- String Methods.mp4
+Python/2- Primitive Types/7- Numbers.mp4
+Python/2- Primitive Types/8- Working with Numbers.mp4
+Python/2- Primitive Types/9- Type Conversion.mp4
+Python/2- Primitive Types/10- Quiz.mp4
+Python/3- Control Flow/1- Comparison Operators.mp4
+Python/3- Control Flow/2- Conditional Statements.mp4
+Python/3- Control Flow/3- Ternary Operator.mp4
+Python/3- Control Flow/4- Logical Operators.mp4
+Python/3- Control Flow/5- Short-circuit Evaluation.mp4
+Python/3- Control Flow/6- Chaining Comparison Operators.mp4
+Python/3- Control Flow/7- Quiz.mp4
+Python/3- Control Flow/8- For Loops.mp4
+Python/3- Control Flow/9- For..Else.mp4
+Python/3- Control Flow/10- Nested Loops.mp4
+Python/3- Control Flow/11- Iterables.mp4
+Python/3- Control Flow/12- While Loops.mp4
+Python/3- Control Flow/13- Infinite Loops.mp4
+Python/3- Control Flow/14- Exercise.mp4
+Python/4- Functions/1- Defining Functions.mp4
+Python/4- Functions/2- Arguments.mp4
+Python/4- Functions/3- Types of Functions.mp4
+Python/4- Functions/4- Keyword Arguments.mp4
+Python/4- Functions/5- Default Arguments.mp4
+Python/4- Functions/6- xargs.mp4
+Python/4- Functions/7- xxargs.mp4
+Python/4- Functions/8- Scope.mp4
+Python/4- Functions/9- Debugging.mp4
+Python/4- Functions/10- VSCode Coding Tricks - Windows.mp4
+Python/4- Functions/11- VSCode Coding Tricks - Mac.mp4
+Python/4- Functions/12- Exercise.mp4
+Python/4- Functions/13- Solution.mp4
+Python/5- Data Structures/1- Lists.mp4
+Python/5- Data Structures/2- Accessing Items.mp4
+Python/5- Data Structures/3- List Unpacking.mp4
+Python/5- Data Structures/4- Looping over Lists.mp4
+Python/5- Data Structures/5- Adding or Removing Items.mp4
+Python/5- Data Structures/6- Finding Items.mp4
+Python/5- Data Structures/7- Sorting Lists.mp4
+Python/5- Data Structures/8- Lambda Functions.mp4
+Python/5- Data Structures/9- Map Function.mp4
+Python/5- Data Structures/10- Filter Function.mp4
+Python/5- Data Structures/11- List Comprehensions.mp4
+Python/5- Data Structures/12- Zip Function.mp4
+Python/5- Data Structures/13- Stacks.mp4
+Python/5- Data Structures/14- Queues.mp4
+Python/5- Data Structures/15- Tuples.mp4
+Python/5- Data Structures/16- Swapping Variables.mp4
+Python/5- Data Structures/17- Arrays.mp4
+Python/5- Data Structures/18- Sets.mp4
+Python/5- Data Structures/19- Dictionaries.mp4
+Python/5- Data Structures/20- Dictionary Comprehensions.mp4
+Python/5- Data Structures/21- Generator Expressions.mp4
+Python/5- Data Structures/22- Unpacking Operator.mp4
+Python/5- Data Structures/23- Exercise.mp4
+Python/6- Exceptions/1- Exceptions.mp4
+Python/6- Exceptions/2- Handling Exceptions.mp4
+Python/6- Exceptions/3- Handling Different Exceptions.mp4
+Python/6- Exceptions/4- Cleaning Up.mp4
+Python/6- Exceptions/5- The With Statement.mp4
+Python/6- Exceptions/6- Raising Exceptions.mp4
+Python/6- Exceptions/7- Cost of Raising Exceptions.mp4
+Python/7- Classes/1- Classes.mp4
+Python/7- Classes/2- Creating Classes.mp4
+Python/7- Classes/3- Constructors.mp4
+Python/7- Classes/4- Class vs Instance Attributes.mp4
+Python/7- Classes/5- Class vs Instance Methods.mp4
+Python/7- Classes/6- Magic Methods.mp4
+Python/7- Classes/7- Comparing Objects.mp4
+Python/7- Classes/8- Performing Arithmetic Operations.mp4
+Python/7- Classes/9- Making Custom Containers.mp4
+Python/7- Classes/10- Private Members.mp4
+Python/7- Classes/11- Properties.mp4
+Python/7- Classes/12- Inheritance.mp4
+Python/7- Classes/13- The Object Class.mp4
+Python/7- Classes/14- Method Overriding.mp4
+Python/7- Classes/15- Multi-level Inheritance.mp4
+Python/7- Classes/16- Multiple Inheritance.mp4
+Python/7- Classes/17- A Good Example of Inheritance.mp4
+Python/7- Classes/18- Abstract Base Classes.mp4
+Python/7- Classes/19- Polymorphism.mp4
+Python/7- Classes/20- Duck Typing.mp4
+Python/7- Classes/21- Extending Built-in Types.mp4
+Python/7- Classes/22- Data Classes.mp4
+Python/8- Modules/1- Creating Modules.mp4
+Python/8- Modules/2- Compiled Python Files.mp4
+Python/8- Modules/3- Module Search Path.mp4
+Python/8- Modules/4- Packages.mp4
+Python/8- Modules/5- Sub-packages.mp4
+Python/8- Modules/6- Intra-package References.mp4
+Python/8- Modules/7- The dir Function.mp4
+Python/8- Modules/8- Executing Modules as Scripts.mp4
+Python/9- Python Standard Library/1- Python Standard Library.mp4
+Python/9- Python Standard Library/2- Working With Paths.mp4
+Python/9- Python Standard Library/3- Working with Directories.mp4
+Python/9- Python Standard Library/4- Working with Files.mp4
+Python/9- Python Standard Library/5- Working with Zip Files.mp4
+Python/9- Python Standard Library/6- Working with CSV Files.mp4
+Python/9- Python Standard Library/7- Working with JSON Files.mp4
+Python/9- Python Standard Library/8- Working with a SQLite Database.mp4
+Python/9- Python Standard Library/9- Working with Timestamps.mp4
+Python/9- Python Standard Library/10- Working with DateTimes.mp4
+Python/9- Python Standard Library/11- Working with Time Deltas.mp4
+Python/9- Python Standard Library/12- Generating Random Values.mp4
+Python/9- Python Standard Library/13- Opening the Browser.mp4
+Python/9- Python Standard Library/14- Sending Emails.mp4
+Python/9- Python Standard Library/15- Templates.mp4
+Python/9- Python Standard Library/16- Command-line Arguments.mp4
+Python/9- Python Standard Library/17- Running External Programs.mp4
+
+# Large media files
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# Large compressed files
+*.zip
+*.tar.gz
+*.7z
