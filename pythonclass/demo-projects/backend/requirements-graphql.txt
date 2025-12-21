@@ -1,0 +1,8 @@
+# GraphQL Dependencies (Optional - Install separately if needed)
+# Note: These require SQLAlchemy 1.x, which conflicts with Flask-SQLAlchemy 3.x
+# For GraphQL demo, use a separate virtual environment or install manually
+
+graphene>=2.1.3,<3.0
+graphene-sqlalchemy>=2.3.0
+SQLAlchemy>=1.4,<2.0
+

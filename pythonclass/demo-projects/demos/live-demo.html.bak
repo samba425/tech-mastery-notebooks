@@ -1,0 +1,2402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Full Stack - Live Demo Projects</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        /* Bootstrap enhancements */
+        .card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: white;
+            color: #667eea;
+            transform: scale(1.05);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 80px;
+            width: 280px;
+            height: calc(100vh - 80px);
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            z-index: 999;
+        }
+
+        .sidebar-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-item:hover {
+            background: #f8f8f8;
+            border-left-color: #667eea;
+            padding-left: 17px;
+        }
+
+        .sidebar-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-left-color: white;
+            font-weight: 600;
+        }
+
+        .sidebar-item.active:hover {
+            padding-left: 20px;
+        }
+
+        .sidebar-item-icon {
+            font-size: 1.5em;
+        }
+
+        .sidebar-category {
+            padding: 15px 20px;
+            font-weight: bold;
+            color: #666;
+            background: #f8f8f8;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            border-bottom: 2px solid #e0e0e0;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 30px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            display: none;
+        }
+
+        .demo-container.active {
+            display: block;
+        }
+
+        .demo-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .demo-header h2 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .demo-header p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 0;
+        }
+
+        /* Calculator Styles */
+        .calculator {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #f8f8f8;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .calc-display {
+            background: white;
+            padding: 20px;
+            font-size: 2em;
+            text-align: right;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            min-height: 80px;
+            border: 2px solid #e0e0e0;
+            word-wrap: break-word;
+        }
+
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calc-btn {
+            padding: 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: white;
+            transition: all 0.3s;
+            border: 2px solid #e0e0e0;
+        }
+
+        .calc-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .calc-btn.operator {
+            background: #764ba2;
+            color: white;
+        }
+
+        .calc-btn.equals {
+            background: #667eea;
+            color: white;
+            grid-column: span 2;
+        }
+
+        .calc-btn.clear {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        /* Todo App Styles */
+        .todo-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .todo-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .todo-input input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .todo-input button {
+            padding: 15px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .todo-input button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .todo-list {
+            list-style: none;
+        }
+
+        .todo-item {
+            background: #f8f8f8;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .todo-item.completed {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+
+        .todo-item input[type="checkbox"] {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .todo-item button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Grade Calculator Styles */
+        .grade-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .form-group button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .result-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f8f8;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .result-box h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .grade-display {
+            font-size: 3em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        /* Contact Manager Styles */
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .contact-form input {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .contact-form button {
+            grid-column: span 2;
+            padding: 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .contacts-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .contact-card {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .contact-info p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* API Demo Styles */
+        .api-demo {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .api-endpoint {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .api-endpoint h4 {
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .api-endpoint code {
+            background: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .api-endpoint button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .api-response {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .api-response pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+        <div class="header">
+        <div class="header-content">
+            <h1><i class="bi bi-code-slash"></i> Python Full Stack - Live Demos</h1>
+            <a href="index.html" class="back-btn">
+                <i class="bi bi-arrow-left"></i> Back to Projects
+            </a>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-category">Part 1: Fundamentals</div>
+        <div class="sidebar-item active" onclick="showDemo('calculator')">
+            <span class="sidebar-item-icon">🔢</span>
+            <span>Simple Calculator</span>
+        </div>
+        <div class="sidebar-item" onclick="showDemo('grade-calculator')">
+            <span class="sidebar-item-icon">📊</span>
+            <span>Grade Calculator</span>
+        </div>
+        <div class="sidebar-item" onclick="showDemo('advanced-calculator')">
+            <span class="sidebar-item-icon">🧮</span>
+            <span>Advanced Calculator</span>
+        </div>
+        <div class="sidebar-item" onclick="showDemo('todo-app')">
+            <span class="sidebar-item-icon">✅</span>
+            <span>Todo List App</span>
+        </div>
+        <div class="sidebar-item" onclick="showDemo('contact-manager')">
+            <span class="sidebar-item-icon">👥</span>
+            <span>Contact Manager</span>
+        </div>
+        <div class="sidebar-item" onclick="showDemo('student-system')">
+            <span class="sidebar-item-icon">🎓</span>
+            <span>Student System</span>
+        </div>
+
+        <div class="sidebar-category">Part 2: Backend</div>
+        <div class="sidebar-item" onclick="showDemo('blog-oop')">
+            <span class="sidebar-item-icon">📝</span>
+            <span>Blog System (OOP)</span>
+        </div>
+        <div class="sidebar-item" onclick="showDemo('library-system')">
+            <span class="sidebar-item-icon">📚</span>
+            <span>Library System</span>
+        </div>
+        <div class="sidebar-item" onclick="showDemo('flask-api')">
+            <span class="sidebar-item-icon">🔌</span>
+            <span>Flask API Demo</span>
+        </div>
+        <div class="sidebar-item" onclick="showDemo('auth-system')">
+            <span class="sidebar-item-icon">🔐</span>
+            <span>Auth System</span>
+        </div>
+
+        <div class="sidebar-category">Part 3: Frontend</div>
+        <div class="sidebar-item" onclick="showDemo('react-todo')">
+            <span class="sidebar-item-icon">⚛️</span>
+            <span>React Todo</span>
+        </div>
+        <div class="sidebar-item" onclick="showDemo('weather-app')">
+            <span class="sidebar-item-icon">🌤️</span>
+            <span>Weather App</span>
+        </div>
+        <div class="sidebar-item" onclick="showDemo('fullstack-blog')">
+            <span class="sidebar-item-icon">🚀</span>
+            <span>Full Stack Blog</span>
+        </div>
+
+        <div class="sidebar-category">Part 4: Advanced</div>
+        <div class="sidebar-item" onclick="showDemo('microservices')">
+            <span class="sidebar-item-icon">🔄</span>
+            <span>Microservices</span>
+        </div>
+        <div class="sidebar-item" onclick="showDemo('async-scraper')">
+            <span class="sidebar-item-icon">🕷️</span>
+            <span>Async Scraper</span>
+        </div>
+        <div class="sidebar-item" onclick="showDemo('graphql-demo')">
+            <span class="sidebar-item-icon">📡</span>
+            <span>GraphQL API</span>
+        </div>
+        <div class="sidebar-item" onclick="showDemo('chat-app')">
+            <span class="sidebar-item-icon">💬</span>
+            <span>Chat App</span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Simple Calculator Demo -->
+        <div id="calculator" class="demo-container active">
+            <div class="demo-header">
+                <h2><i class="bi bi-calculator"></i> Simple Calculator</h2>
+                <p>Basic arithmetic operations with a clean interface</p>
+            </div>
+            <div class="calculator">
+                <div class="calc-display" id="calcDisplay">0</div>
+                <div class="calc-buttons">
+                    <button class="calc-btn clear" onclick="clearCalc()">C</button>
+                    <button class="calc-btn" onclick="deleteLast()">⌫</button>
+                    <button class="calc-btn operator" onclick="appendOperator('/')">/</button>
+                    <button class="calc-btn operator" onclick="appendOperator('*')">×</button>
+                    <button class="calc-btn" onclick="appendNumber('7')">7</button>
+                    <button class="calc-btn" onclick="appendNumber('8')">8</button>
+                    <button class="calc-btn" onclick="appendNumber('9')">9</button>
+                    <button class="calc-btn operator" onclick="appendOperator('-')">-</button>
+                    <button class="calc-btn" onclick="appendNumber('4')">4</button>
+                    <button class="calc-btn" onclick="appendNumber('5')">5</button>
+                    <button class="calc-btn" onclick="appendNumber('6')">6</button>
+                    <button class="calc-btn operator" onclick="appendOperator('+')">+</button>
+                    <button class="calc-btn" onclick="appendNumber('1')">1</button>
+                    <button class="calc-btn" onclick="appendNumber('2')">2</button>
+                    <button class="calc-btn" onclick="appendNumber('3')">3</button>
+                    <button class="calc-btn" onclick="appendNumber('0')">0</button>
+                    <button class="calc-btn" onclick="appendNumber('.')">.</button>
+                    <button class="calc-btn equals" onclick="calculate()">=</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grade Calculator Demo -->
+        <div id="grade-calculator" class="demo-container">
+            <div class="demo-header">
+                <h2><i class="bi bi-graph-up"></i> Grade Calculator</h2>
+                <p>Calculate student grades based on marks</p>
+            </div>
+            <div class="container mt-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="studentName" class="form-label fw-bold">Student Name</label>
+                            <input type="text" class="form-control form-control-lg" id="studentName" placeholder="Enter student name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentMarks" class="form-label fw-bold">Marks (0-100)</label>
+                            <input type="number" class="form-control form-control-lg" id="studentMarks" min="0" max="100" placeholder="Enter marks">
+                        </div>
+                        <div class="d-grid">
+                            <button onclick="calculateGrade()" class="btn btn-primary btn-lg">
+                                <i class="bi bi-calculator"></i> Calculate Grade
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grade-form" style="display: none;">
+                <div class="form-group">
+                    <label>Student Name</label>
+                    <input type="text" id="studentName" placeholder="Enter student name">
+                </div>
+                <div class="form-group">
+                    <label>Marks (0-100)</label>
+                    <input type="number" id="studentMarks" min="0" max="100" placeholder="Enter marks">
+                </div>
+                <div class="form-group">
+                    <button onclick="calculateGrade()">Calculate Grade</button>
+                </div>
+                <div id="gradeResult" class="result-box hidden mt-4">
+                    <div class="card border-success">
+                        <div class="card-header bg-success text-white">
+                            <h3 class="mb-0"><i class="bi bi-check-circle"></i> Result</h3>
+                        </div>
+                        <div class="card-body text-center">
+                            <p id="resultName" class="fs-5"></p>
+                            <div class="grade-display display-1 fw-bold text-primary" id="resultGrade"></div>
+                            <p id="resultStatus" class="fs-4 mt-3"></p>
+                            <p id="resultRemarks" class="fs-5 mt-2"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Todo App Demo -->
+        <div id="todo-app" class="demo-container">
+            <div class="demo-header">
+                <h2><i class="bi bi-check2-square"></i> Todo List App</h2>
+                <p>Manage your tasks with CRUD operations</p>
+            </div>
+            <div class="container mt-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="input-group input-group-lg mb-4">
+                            <input type="text" class="form-control" id="todoInput" placeholder="Enter a new task..." onkeypress="if(event.key==='Enter') addTodo()">
+                            <button onclick="addTodo()" class="btn btn-primary">
+                                <i class="bi bi-plus-circle"></i> Add Task
+                            </button>
+                        </div>
+                        <ul class="list-group" id="todoList"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Manager Demo -->
+        <div id="contact-manager" class="demo-container">
+            <div class="demo-header">
+                <h2><i class="bi bi-people"></i> Contact Manager</h2>
+                <p>Manage your contacts efficiently</p>
+            </div>
+            <div class="container mt-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="bi bi-person-plus"></i> Add New Contact</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" id="contactName" placeholder="Enter name">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="contactPhone" placeholder="Enter phone">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="contactEmail" placeholder="Enter email">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Address</label>
+                                <input type="text" class="form-control" id="contactAddress" placeholder="Enter address">
+                            </div>
+                            <div class="col-12">
+                                <button onclick="addContact()" class="btn btn-primary w-100">
+                                    <i class="bi bi-plus-circle"></i> Add Contact
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="contactsList"></div>
+            </div>
+        </div>
+
+        <!-- Flask API Demo -->
+        <div id="flask-api" class="demo-container">
+            <div class="demo-header">
+                <h2><i class="bi bi-plug"></i> Flask API Demo</h2>
+                <p>Test Flask REST API endpoints</p>
+            </div>
+            <div class="container mt-4">
+                <div class="card shadow-sm mb-3">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="bi bi-download"></i> GET /api/todos</h5>
+                    </div>
+                    <div class="card-body">
+                        <code class="d-block mb-3 p-2 bg-light rounded">GET http://localhost:5000/api/todos</code>
+                        <button onclick="testAPI('GET', '/api/todos')" class="btn btn-primary">
+                            <i class="bi bi-play-fill"></i> Test Endpoint
+                        </button>
+                        <div class="api-response hidden mt-3" id="response1"></div>
+                    </div>
+                </div>
+                <div class="card shadow-sm mb-3">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="bi bi-upload"></i> POST /api/todos</h5>
+                    </div>
+                    <div class="card-body">
+                        <code class="d-block mb-3 p-2 bg-light rounded">POST http://localhost:5000/api/todos</code>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="todoTask" placeholder="Enter task name">
+                            <button onclick="testAPI('POST', '/api/todos')" class="btn btn-success">
+                                <i class="bi bi-play-fill"></i> Test Endpoint
+                            </button>
+                        </div>
+                        <div class="api-response hidden" id="response2"></div>
+                    </div>
+                </div>
+                <div class="alert alert-info">
+                    <strong><i class="bi bi-info-circle"></i> Note:</strong> Make sure Flask backend is running on port 5000.
+                    <br>Start it with: <code>python part2/12-flask-basic-api.py</code>
+                    <br>Or use Docker: <code>docker-compose up backend</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Calculator Demo -->
+        <div id="advanced-calculator" class="demo-container">
+            <div class="demo-header">
+                <h2><i class="bi bi-calculator-fill"></i> Advanced Calculator</h2>
+                <p>Multiple calculation modes: Power, Square Root, Factorial, BMI, Area</p>
+            </div>
+            <div class="container mt-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="calcMode" class="form-label fw-bold">Select Calculation Mode</label>
+                            <select id="calcMode" class="form-select form-select-lg">
+                                <option value="power">Power (x^y)</option>
+                                <option value="sqrt">Square Root</option>
+                                <option value="factorial">Factorial</option>
+                                <option value="percentage">Percentage</option>
+                                <option value="bmi">BMI Calculator</option>
+                                <option value="circle">Circle Area</option>
+                                <option value="rectangle">Rectangle Area</option>
+                                <option value="triangle">Triangle Area</option>
+                            </select>
+                        </div>
+                        <div id="calcInputs"></div>
+                        <div class="d-grid mt-3">
+                            <button onclick="calculateAdvanced()" class="btn btn-primary btn-lg">
+                                <i class="bi bi-calculator"></i> Calculate
+                            </button>
+                        </div>
+                        <div id="advancedResult" class="result-box hidden mt-4">
+                            <div class="card border-success">
+                                <div class="card-header bg-success text-white">
+                                    <h3 class="mb-0"><i class="bi bi-check-circle"></i> Result</h3>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="display-1 fw-bold text-primary" id="advancedResultValue"></div>
+                                    <p class="fs-5 mt-3" id="advancedResultDetails"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student System Demo -->
+        <div id="student-system" class="demo-container">
+            <div class="demo-header">
+                <h2><i class="bi bi-mortarboard"></i> Student Management System</h2>
+                <p>OOP-based student management with courses and GPA</p>
+            </div>
+            <div class="container mt-4">
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-person-plus"></i> Add Student</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Student ID</label>
+                                    <input type="text" class="form-control" id="studentId" placeholder="Enter student ID">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="studentName" placeholder="Enter name">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="studentEmail" placeholder="Enter email">
+                                </div>
+                                <button onclick="addStudent()" class="btn btn-primary w-100">
+                                    <i class="bi bi-plus-circle"></i> Add Student
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-book"></i> Add Course</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Course Name</label>
+                                    <input type="text" class="form-control" id="courseName" placeholder="Enter course name">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Capacity</label>
+                                    <input type="number" class="form-control" id="courseCapacity" placeholder="Capacity" value="30">
+                                </div>
+                                <button onclick="addCourse()" class="btn btn-success w-100">
+                                    <i class="bi bi-plus-circle"></i> Add Course
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0"><i class="bi bi-person-check"></i> Enroll Student</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Student</label>
+                                    <select id="enrollStudent" class="form-select"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Course</label>
+                                    <select id="enrollCourse" class="form-select"></select>
+                                </div>
+                                <button onclick="enrollStudent()" class="btn btn-info w-100">
+                                    <i class="bi bi-check-circle"></i> Enroll
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-header bg-warning text-dark">
+                                <h5 class="mb-0"><i class="bi bi-star"></i> Add Grade</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Student</label>
+                                    <select id="gradeStudent" class="form-select"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Course</label>
+                                    <select id="gradeCourse" class="form-select"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Grade</label>
+                                    <select id="gradeValue" class="form-select">
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        <option value="F">F</option>
+                                    </select>
+                                </div>
+                                <button onclick="addGrade()" class="btn btn-warning w-100">
+                                    <i class="bi bi-plus-circle"></i> Add Grade
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow-sm">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0"><i class="bi bi-list-ul"></i> System Overview</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="studentSystemOutput" style="max-height: 400px; overflow-y: auto;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog OOP Demo -->
+        <div id="blog-oop" class="demo-container">
+            <div class="demo-header">
+                <h2><i class="bi bi-pencil-square"></i> Blog System (OOP)</h2>
+                <p>Create users, posts, like and comment</p>
+            </div>
+            <div class="container mt-4">
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-person-plus"></i> Create User</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="blogUsername" placeholder="Enter username">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="blogEmail" placeholder="Enter email">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Bio</label>
+                                    <input type="text" class="form-control" id="blogBio" placeholder="Enter bio">
+                                </div>
+                                <button onclick="createBlogUser()" class="btn btn-primary w-100">
+                                    <i class="bi bi-plus-circle"></i> Create User
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-file-earmark-plus"></i> Create Post</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Author</label>
+                                    <select id="postAuthor" class="form-select"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Post Title</label>
+                                    <input type="text" class="form-control" id="postTitle" placeholder="Enter post title">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Post Content</label>
+                                    <textarea id="postContent" class="form-control" rows="4" placeholder="Enter post content"></textarea>
+                                </div>
+                                <button onclick="createPost()" class="btn btn-success w-100">
+                                    <i class="bi bi-plus-circle"></i> Create Post
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow-sm">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0"><i class="bi bi-list-ul"></i> Blog Feed</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="blogOutput" style="max-height: 500px; overflow-y: auto;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Library System Demo -->
+        <div id="library-system" class="demo-container">
+            <div class="demo-header">
+                <h2><i class="bi bi-book"></i> Library Management System</h2>
+                <p>Manage books with borrow/return system</p>
+            </div>
+            <div class="container mt-4">
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-book-plus"></i> Add Book</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">ISBN</label>
+                                    <input type="text" class="form-control" id="bookIsbn" placeholder="Enter ISBN">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="bookTitle" placeholder="Enter title">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Author</label>
+                                    <input type="text" class="form-control" id="bookAuthor" placeholder="Enter author">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Year</label>
+                                    <input type="number" class="form-control" id="bookYear" placeholder="Enter year">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Type</label>
+                                    <select id="bookType" class="form-select">
+                                        <option value="fiction">Fiction</option>
+                                        <option value="nonfiction">Non-Fiction</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3" id="bookGenreGroup">
+                                    <label class="form-label">Genre/Subject</label>
+                                    <input type="text" class="form-control" id="bookGenre" placeholder="Enter genre">
+                                </div>
+                                <button onclick="addBook()" class="btn btn-primary w-100">
+                                    <i class="bi bi-plus-circle"></i> Add Book
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-arrow-left-right"></i> Borrow/Return Book</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Select Book</label>
+                                    <select id="borrowBook" class="form-select"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Borrower Name</label>
+                                    <input type="text" class="form-control" id="borrowerName" placeholder="Enter borrower name">
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button onclick="borrowBook()" class="btn btn-warning">
+                                        <i class="bi bi-box-arrow-right"></i> Borrow Book
+                                    </button>
+                                    <button onclick="returnBook()" class="btn btn-success">
+                                        <i class="bi bi-box-arrow-in-left"></i> Return Book
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow-sm">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0"><i class="bi bi-list-ul"></i> Library Catalog</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="libraryOutput" style="max-height: 400px; overflow-y: auto;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auth System Demo -->
+        <div id="auth-system" class="demo-container">
+            <div class="demo-header">
+                <h2><i class="bi bi-shield-lock"></i> Authentication System</h2>
+                <p>JWT authentication with registration and login</p>
+            </div>
+            <div class="container mt-4">
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-person-plus"></i> Register</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="regUsername" placeholder="Enter username">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="regEmail" placeholder="Enter email">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="regPassword" placeholder="Enter password">
+                                </div>
+                                <button onclick="registerUser()" class="btn btn-primary w-100">
+                                    <i class="bi bi-person-plus"></i> Register
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-box-arrow-in-right"></i> Login</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="loginUsername" placeholder="Enter username">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="loginPassword" placeholder="Enter password">
+                                </div>
+                                <button onclick="loginUser()" class="btn btn-success w-100">
+                                    <i class="bi bi-box-arrow-in-right"></i> Login
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="authResult" class="result-box hidden mb-4">
+                    <div class="card border-info">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0"><i class="bi bi-info-circle"></i> Authentication Result</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="authMessage" class="fs-5 mb-3"></div>
+                            <div id="authToken" class="bg-light p-2 rounded" style="word-break: break-all; font-size: 0.85em;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="protectedArea" class="hidden">
+                    <div class="card shadow-sm border-warning">
+                        <div class="card-header bg-warning text-dark">
+                            <h5 class="mb-0"><i class="bi bi-shield-check"></i> Protected Area</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>You are now authenticated! Test protected routes below.</p>
+                            <button onclick="testProtectedRoute()" class="btn btn-warning w-100">
+                                <i class="bi bi-shield-check"></i> Test Protected Route
+                            </button>
+                            <div id="protectedResult" class="mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- React Todo Demo -->
+        <div id="react-todo" class="demo-container">
+            <div class="demo-header">
+                <h2>⚛️ React Todo List</h2>
+                <p>React-based todo application with hooks and state management</p>
+            </div>
+            <div class="container mt-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="bi bi-list-check"></i> React Todo Application</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Full React implementation with:</p>
+                        <ul>
+                            <li>✅ React Hooks (useState, useEffect)</li>
+                            <li>✅ Component-based architecture</li>
+                            <li>✅ API integration</li>
+                            <li>✅ State management</li>
+                            <li>✅ CRUD operations</li>
+                        </ul>
+                        <div class="d-grid gap-2">
+                            <a href="http://localhost:3000" target="_blank" class="btn btn-primary">
+                                <i class="bi bi-browser-chrome"></i> Open React App (Port 3000)
+                            </a>
+                            <a href="../frontend/" class="btn btn-outline-secondary">
+                                <i class="bi bi-folder"></i> View Frontend Code
+                            </a>
+                        </div>
+                        <div class="alert alert-info mt-3">
+                            <strong>Note:</strong> Make sure frontend is running via Docker or <code>npm start</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather App Demo -->
+        <div id="weather-app" class="demo-container">
+            <div class="demo-header">
+                <h2>🌤️ Weather Dashboard</h2>
+                <p>Weather API integration with React and charts</p>
+            </div>
+            <div class="container mt-4">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0"><i class="bi bi-cloud-sun"></i> Weather Application</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Features:</p>
+                        <ul>
+                            <li>✅ Weather API integration</li>
+                            <li>✅ React components</li>
+                            <li>✅ Charts and visualizations</li>
+                            <li>✅ Responsive design</li>
+                            <li>✅ City search</li>
+                            <li>✅ 5-day forecast</li>
+                        </ul>
+                        <div class="mb-3">
+                            <label class="form-label">Enter City Name:</label>
+                            <div class="input-group">
+                                <input type="text" id="weatherCity" class="form-control" placeholder="e.g., London, New York">
+                                <button onclick="getWeather()" class="btn btn-info">
+                                    <i class="bi bi-search"></i> Get Weather
+                                </button>
+                            </div>
+                        </div>
+                        <div id="weatherResult" class="mt-3"></div>
+                        <div class="alert alert-warning mt-3">
+                            <strong>Note:</strong> This demo requires a weather API key. 
+                            <br>Full implementation available in frontend folder.
+                            <br>Access: <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full Stack Blog Demo -->
+        <div id="fullstack-blog" class="demo-container">
+            <div class="demo-header">
+                <h2>🚀 Full Stack Blog</h2>
+                <p>Complete full-stack application with React frontend and Flask backend</p>
+            </div>
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-server"></i> Backend API</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Flask REST API running on port 5000</p>
+                                <ul class="list-unstyled">
+                                    <li>✅ User management</li>
+                                    <li>✅ Post CRUD operations</li>
+                                    <li>✅ Authentication</li>
+                                    <li>✅ Database integration</li>
+                                </ul>
+                                <a href="http://localhost:5000/docs" target="_blank" class="btn btn-primary">View API Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-browser-chrome"></i> Frontend UI</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>React application running on port 3000</p>
+                                <ul class="list-unstyled">
+                                    <li>✅ React components</li>
+                                    <li>✅ State management</li>
+                                    <li>✅ API integration</li>
+                                    <li>✅ Responsive design</li>
+                                </ul>
+                                <a href="http://localhost:3000" target="_blank" class="btn btn-success">Open Frontend</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-info">
+                    <strong>Note:</strong> Make sure both backend and frontend are running via Docker Compose.
+                    <br>Access: <a href="http://localhost:3000" target="_blank">Frontend</a> | <a href="http://localhost:5000" target="_blank">Backend API</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Microservices Demo -->
+        <div id="microservices" class="demo-container">
+            <div class="demo-header">
+                <h2>🔄 Microservices Architecture</h2>
+                <p>Multiple microservices with API Gateway</p>
+            </div>
+            <div class="container mt-4">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card h-100 border-primary">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-person"></i> User Service</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Port: 8001</p>
+                                <p class="small">Manages user data and authentication</p>
+                                <a href="http://localhost:8001/docs" target="_blank" class="btn btn-sm btn-primary">API Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-success">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-file-text"></i> Post Service</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Port: 8002</p>
+                                <p class="small">Manages blog posts and content</p>
+                                <a href="http://localhost:8002/docs" target="_blank" class="btn btn-sm btn-success">API Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-warning">
+                            <div class="card-header bg-warning text-dark">
+                                <h5 class="mb-0"><i class="bi bi-diagram-3"></i> API Gateway</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Port: 8000</p>
+                                <p class="small">Routes requests to microservices</p>
+                                <a href="http://localhost:8000/docs" target="_blank" class="btn btn-sm btn-warning">API Docs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-info mt-4">
+                    <strong>To Start:</strong> Run <code>docker-compose --profile microservices up -d</code>
+                    <br>Or manually: <code>python demos/part4/18-microservices/user-service.py</code> (Terminal 1)
+                    <br><code>python demos/part4/18-microservices/post-service.py</code> (Terminal 2)
+                    <br><code>python demos/part4/18-microservices/api-gateway.py</code> (Terminal 3)
+                </div>
+            </div>
+        </div>
+
+        <!-- Async Scraper Demo -->
+        <div id="async-scraper" class="demo-container">
+            <div class="demo-header">
+                <h2>🕷️ Async Web Scraper</h2>
+                <p>Asynchronous web scraping with concurrent processing</p>
+            </div>
+            <div class="container mt-4">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0"><i class="bi bi-code-slash"></i> Web Scraper Demo</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Enter URLs to scrape (one per line):</label>
+                            <textarea id="scraperUrls" class="form-control" rows="5" placeholder="https://www.python.org&#10;https://www.github.com&#10;https://www.stackoverflow.com"></textarea>
+                        </div>
+                        <button onclick="runScraper()" class="btn btn-primary">
+                            <i class="bi bi-play-fill"></i> Start Scraping
+                        </button>
+                        <div id="scraperResults" class="mt-4"></div>
+                    </div>
+                </div>
+                <div class="alert alert-warning mt-3">
+                    <strong>Note:</strong> This is a browser-based demo. For full async scraping with Python, run:
+                    <br><code>python demos/part4/19-async-scraper.py</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- GraphQL Demo -->
+        <div id="graphql-demo" class="demo-container">
+            <div class="demo-header">
+                <h2>📡 GraphQL API</h2>
+                <p>GraphQL queries and mutations</p>
+            </div>
+            <div class="container mt-4">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0"><i class="bi bi-diagram-2"></i> GraphQL Playground</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>GraphQL provides a flexible query language for your API.</p>
+                        <div class="mb-3">
+                            <h6>Example Query:</h6>
+                            <pre class="bg-light p-3 rounded"><code>{
+  posts {
+    id
+    title
+    author
+  }
+}</code></pre>
+                        </div>
+                        <div class="mb-3">
+                            <h6>Example Mutation:</h6>
+                            <pre class="bg-light p-3 rounded"><code>mutation {
+  createPost(title: "New Post", content: "Content", author: "Alice") {
+    post {
+      id
+      title
+    }
+  }
+}</code></pre>
+                        </div>
+                        <a href="http://localhost:5000/graphql" target="_blank" class="btn btn-info">
+                            <i class="bi bi-play-circle"></i> Open GraphQL Playground
+                        </a>
+                        <div class="alert alert-warning mt-3">
+                            <strong>To Start:</strong> Run <code>python demos/part4/20-graphql-api.py</code>
+                            <br>Then open: <a href="http://localhost:5000/graphql" target="_blank">http://localhost:5000/graphql</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat App Demo -->
+        <div id="chat-app" class="demo-container">
+            <div class="demo-header">
+                <h2>💬 Real-time Chat Application</h2>
+                <p>WebSocket-based real-time messaging</p>
+            </div>
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-chat-dots"></i> Chat Server</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Flask-SocketIO server running on port 5001</p>
+                                <ul>
+                                    <li>✅ WebSocket connections</li>
+                                    <li>✅ Real-time messaging</li>
+                                    <li>✅ Multiple chat rooms</li>
+                                    <li>✅ User presence</li>
+                                    <li>✅ Typing indicators</li>
+                                </ul>
+                                <a href="http://localhost:5001" target="_blank" class="btn btn-primary">Open Server</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-window"></i> Chat Client</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>HTML/JavaScript client</p>
+                                <ul>
+                                    <li>✅ Connect to server</li>
+                                    <li>✅ Join rooms</li>
+                                    <li>✅ Send messages</li>
+                                    <li>✅ See typing indicators</li>
+                                </ul>
+                                <a href="part4/21-chat-app/client.html" target="_blank" class="btn btn-success">Open Client</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-info">
+                    <strong>To Start:</strong>
+                    <br>1. Start server: <code>python demos/part4/21-chat-app/server.py</code>
+                    <br>2. Open client: <a href="part4/21-chat-app/client.html" target="_blank">client.html</a> in multiple browser windows
+                    <br>3. Join the same room and start chatting!
+                    <br><br>
+                    <strong>Or with Docker:</strong> <code>docker-compose --profile chat up -d</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Calculator Logic
+        let calcDisplay = '0';
+        let calcOperator = null;
+        let calcWaitingForOperand = false;
+        let calcValue = null;
+
+        function updateCalcDisplay() {
+            document.getElementById('calcDisplay').textContent = calcDisplay;
+        }
+
+        function appendNumber(number) {
+            if (calcWaitingForOperand) {
+                calcDisplay = number;
+                calcWaitingForOperand = false;
+            } else {
+                calcDisplay = calcDisplay === '0' ? number : calcDisplay + number;
+            }
+            updateCalcDisplay();
+        }
+
+        function appendOperator(nextOperator) {
+            const inputValue = parseFloat(calcDisplay);
+
+            if (calcValue === null) {
+                calcValue = inputValue;
+            } else if (calcOperator) {
+                const currentValue = calcValue || 0;
+                const newValue = performCalculation[calcOperator](currentValue, inputValue);
+                calcDisplay = String(newValue);
+                calcValue = newValue;
+            }
+
+            calcWaitingForOperand = true;
+            calcOperator = nextOperator;
+            updateCalcDisplay();
+        }
+
+        const performCalculation = {
+            '/': (prev, next) => prev / next,
+            '*': (prev, next) => prev * next,
+            '+': (prev, next) => prev + next,
+            '-': (prev, next) => prev - next,
+            '=': (prev, next) => next
+        };
+
+        function calculate() {
+            const inputValue = parseFloat(calcDisplay);
+
+            if (calcValue !== null && calcOperator) {
+                const newValue = performCalculation[calcOperator](calcValue, inputValue);
+                calcDisplay = String(newValue);
+                calcValue = null;
+                calcOperator = null;
+                calcWaitingForOperand = true;
+                updateCalcDisplay();
+            }
+        }
+
+        function clearCalc() {
+            calcDisplay = '0';
+            calcValue = null;
+            calcOperator = null;
+            calcWaitingForOperand = false;
+            updateCalcDisplay();
+        }
+
+        function deleteLast() {
+            if (calcDisplay.length > 1) {
+                calcDisplay = calcDisplay.slice(0, -1);
+            } else {
+                calcDisplay = '0';
+            }
+            updateCalcDisplay();
+        }
+
+        // Grade Calculator Logic
+        function calculateGrade() {
+            const name = document.getElementById('studentName').value;
+            const marks = parseInt(document.getElementById('studentMarks').value);
+
+            if (!name || !marks) {
+                alert('Please enter both name and marks!');
+                return;
+            }
+
+            if (marks < 0 || marks > 100) {
+                alert('Marks must be between 0 and 100!');
+                return;
+            }
+
+            let grade, remarks, status;
+
+            if (marks >= 90) {
+                grade = 'A';
+                remarks = 'Excellent! 🌟';
+                status = 'PASSED ✅';
+            } else if (marks >= 80) {
+                grade = 'B';
+                remarks = 'Very Good! 👍';
+                status = 'PASSED ✅';
+            } else if (marks >= 70) {
+                grade = 'C';
+                remarks = 'Good! ✅';
+                status = 'PASSED ✅';
+            } else if (marks >= 60) {
+                grade = 'D';
+                remarks = 'Satisfactory 📚';
+                status = 'PASSED ✅';
+            } else {
+                grade = 'F';
+                remarks = 'Needs Improvement 📖';
+                status = 'FAILED ❌';
+            }
+
+            document.getElementById('resultName').textContent = `Student: ${name}`;
+            document.getElementById('resultGrade').textContent = grade;
+            document.getElementById('resultStatus').textContent = `Status: ${status}`;
+            document.getElementById('resultRemarks').textContent = remarks;
+            document.getElementById('gradeResult').classList.remove('hidden');
+        }
+
+        // Todo App Logic
+        let todos = [];
+        let todoId = 0;
+
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const task = input.value.trim();
+
+            if (task) {
+                todos.push({
+                    id: todoId++,
+                    task: task,
+                    completed: false
+                });
+                input.value = '';
+                renderTodos();
+            }
+        }
+
+        function toggleTodo(id) {
+            todos = todos.map(todo =>
+                todo.id === id ? { ...todo, completed: !todo.completed } : todo
+            );
+            renderTodos();
+        }
+
+        function deleteTodo(id) {
+            todos = todos.filter(todo => todo.id !== id);
+            renderTodos();
+        }
+
+        function renderTodos() {
+            const list = document.getElementById('todoList');
+            if (todos.length === 0) {
+                list.innerHTML = '<li class="list-group-item text-center text-muted">No tasks yet. Add one above!</li>';
+                return;
+            }
+            list.innerHTML = todos.map(todo => `
+                <li class="list-group-item d-flex justify-content-between align-items-center ${todo.completed ? 'bg-light text-decoration-line-through' : ''}">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" ${todo.completed ? 'checked' : ''} 
+                               onchange="toggleTodo(${todo.id})" id="todo-${todo.id}">
+                        <label class="form-check-label" for="todo-${todo.id}">
+                            ${todo.task}
+                        </label>
+                    </div>
+                    <button onclick="deleteTodo(${todo.id})" class="btn btn-sm btn-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </li>
+            `).join('');
+        }
+
+        // Contact Manager Logic
+        let contacts = [];
+        let contactId = 0;
+
+        function addContact() {
+            const name = document.getElementById('contactName').value.trim();
+            const phone = document.getElementById('contactPhone').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const address = document.getElementById('contactAddress').value.trim();
+
+            if (!name || !phone) {
+                alert('Name and phone are required!');
+                return;
+            }
+
+            contacts.push({
+                id: contactId++,
+                name: name,
+                phone: phone,
+                email: email,
+                address: address
+            });
+
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactPhone').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactAddress').value = '';
+
+            renderContacts();
+        }
+
+        function deleteContact(id) {
+            contacts = contacts.filter(contact => contact.id !== id);
+            renderContacts();
+        }
+
+        function renderContacts() {
+            const list = document.getElementById('contactsList');
+            if (contacts.length === 0) {
+                list.innerHTML = '<div class="alert alert-info"><i class="bi bi-info-circle"></i> No contacts yet. Add one above!</div>';
+                return;
+            }
+            list.innerHTML = contacts.map(contact => `
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h5 class="card-title"><i class="bi bi-person-circle"></i> ${contact.name}</h5>
+                                <p class="card-text mb-1"><i class="bi bi-telephone"></i> ${contact.phone}</p>
+                                ${contact.email ? `<p class="card-text mb-1"><i class="bi bi-envelope"></i> ${contact.email}</p>` : ''}
+                                ${contact.address ? `<p class="card-text mb-0"><i class="bi bi-geo-alt"></i> ${contact.address}</p>` : ''}
+                            </div>
+                            <button onclick="deleteContact(${contact.id})" class="btn btn-danger btn-sm">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Advanced Calculator Logic
+        function updateCalcInputs() {
+            const mode = document.getElementById('calcMode').value;
+            const inputsDiv = document.getElementById('calcInputs');
+            inputsDiv.innerHTML = '';
+
+            if (mode === 'power') {
+                inputsDiv.innerHTML = `
+                    <div class="mb-3">
+                        <label class="form-label">Base</label>
+                        <input type="number" class="form-control form-control-lg" id="calcBase" placeholder="Enter base">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Exponent</label>
+                        <input type="number" class="form-control form-control-lg" id="calcExp" placeholder="Enter exponent">
+                    </div>
+                `;
+            } else if (mode === 'sqrt' || mode === 'factorial') {
+                inputsDiv.innerHTML = `
+                    <div class="mb-3">
+                        <label class="form-label">Number</label>
+                        <input type="number" class="form-control form-control-lg" id="calcNum" placeholder="Enter number">
+                    </div>
+                `;
+            } else if (mode === 'percentage') {
+                inputsDiv.innerHTML = `
+                    <div class="mb-3">
+                        <label class="form-label">Value</label>
+                        <input type="number" class="form-control form-control-lg" id="calcValue" placeholder="Enter value">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Percentage</label>
+                        <input type="number" class="form-control form-control-lg" id="calcPercent" placeholder="Enter percentage">
+                    </div>
+                `;
+            } else if (mode === 'bmi') {
+                inputsDiv.innerHTML = `
+                    <div class="mb-3">
+                        <label class="form-label">Weight (kg)</label>
+                        <input type="number" class="form-control form-control-lg" id="calcWeight" placeholder="Enter weight in kg">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Height (m)</label>
+                        <input type="number" step="0.01" class="form-control form-control-lg" id="calcHeight" placeholder="Enter height in meters">
+                    </div>
+                `;
+            } else if (mode === 'circle') {
+                inputsDiv.innerHTML = `
+                    <div class="mb-3">
+                        <label class="form-label">Radius</label>
+                        <input type="number" class="form-control form-control-lg" id="calcRadius" placeholder="Enter radius">
+                    </div>
+                `;
+            } else if (mode === 'rectangle') {
+                inputsDiv.innerHTML = `
+                    <div class="mb-3">
+                        <label class="form-label">Length</label>
+                        <input type="number" class="form-control form-control-lg" id="calcLength" placeholder="Enter length">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Width</label>
+                        <input type="number" class="form-control form-control-lg" id="calcWidth" placeholder="Enter width">
+                    </div>
+                `;
+            } else if (mode === 'triangle') {
+                inputsDiv.innerHTML = `
+                    <div class="mb-3">
+                        <label class="form-label">Base</label>
+                        <input type="number" class="form-control form-control-lg" id="calcBase" placeholder="Enter base">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Height</label>
+                        <input type="number" class="form-control form-control-lg" id="calcHeight" placeholder="Enter height">
+                    </div>
+                `;
+            }
+        }
+
+        function calculateAdvanced() {
+            const mode = document.getElementById('calcMode').value;
+            let result, details = '';
+
+            try {
+                if (mode === 'power') {
+                    const base = parseFloat(document.getElementById('calcBase').value);
+                    const exp = parseFloat(document.getElementById('calcExp').value);
+                    result = Math.pow(base, exp);
+                    details = `${base}^${exp} = ${result}`;
+                } else if (mode === 'sqrt') {
+                    const num = parseFloat(document.getElementById('calcNum').value);
+                    if (num < 0) throw new Error('Cannot calculate square root of negative number');
+                    result = Math.sqrt(num);
+                    details = `√${num} = ${result}`;
+                } else if (mode === 'factorial') {
+                    const num = parseInt(document.getElementById('calcNum').value);
+                    if (num < 0) throw new Error('Factorial not defined for negative numbers');
+                    result = factorial(num);
+                    details = `${num}! = ${result}`;
+                } else if (mode === 'percentage') {
+                    const value = parseFloat(document.getElementById('calcValue').value);
+                    const percent = parseFloat(document.getElementById('calcPercent').value);
+                    result = (value * percent) / 100;
+                    details = `${percent}% of ${value} = ${result}`;
+                } else if (mode === 'bmi') {
+                    const weight = parseFloat(document.getElementById('calcWeight').value);
+                    const height = parseFloat(document.getElementById('calcHeight').value);
+                    result = weight / (height * height);
+                    let category = result < 18.5 ? 'Underweight' : result < 25 ? 'Normal' : result < 30 ? 'Overweight' : 'Obese';
+                    details = `BMI: ${result.toFixed(2)} (${category})`;
+                } else if (mode === 'circle') {
+                    const radius = parseFloat(document.getElementById('calcRadius').value);
+                    result = Math.PI * radius * radius;
+                    details = `Area = π × ${radius}² = ${result.toFixed(2)}`;
+                } else if (mode === 'rectangle') {
+                    const length = parseFloat(document.getElementById('calcLength').value);
+                    const width = parseFloat(document.getElementById('calcWidth').value);
+                    result = length * width;
+                    details = `Area = ${length} × ${width} = ${result}`;
+                } else if (mode === 'triangle') {
+                    const base = parseFloat(document.getElementById('calcBase').value);
+                    const height = parseFloat(document.getElementById('calcHeight').value);
+                    result = 0.5 * base * height;
+                    details = `Area = 0.5 × ${base} × ${height} = ${result}`;
+                }
+
+                document.getElementById('advancedResultValue').textContent = result.toFixed(2);
+                document.getElementById('advancedResultDetails').textContent = details;
+                document.getElementById('advancedResult').classList.remove('hidden');
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        function factorial(n) {
+            if (n <= 1) return 1;
+            return n * factorial(n - 1);
+        }
+
+        // Student System Logic
+        let students = [];
+        let courses = [];
+        let studentIdCounter = 1;
+
+        function addStudent() {
+            const id = document.getElementById('studentId').value || `S${studentIdCounter++}`;
+            const name = document.getElementById('studentName').value;
+            const email = document.getElementById('studentEmail').value;
+            if (!name || !email) {
+                alert('Name and email required!');
+                return;
+            }
+            students.push({ id, name, email, courses: {} });
+            updateStudentSystem();
+            document.getElementById('studentId').value = '';
+            document.getElementById('studentName').value = '';
+            document.getElementById('studentEmail').value = '';
+        }
+
+        function addCourse() {
+            const name = document.getElementById('courseName').value;
+            const capacity = parseInt(document.getElementById('courseCapacity').value) || 30;
+            if (!name) {
+                alert('Course name required!');
+                return;
+            }
+            courses.push({ name, capacity, students: [] });
+            updateStudentSystem();
+            document.getElementById('courseName').value = '';
+        }
+
+        function enrollStudent() {
+            const studentId = document.getElementById('enrollStudent').value;
+            const courseName = document.getElementById('enrollCourse').value;
+            const student = students.find(s => s.id === studentId);
+            const course = courses.find(c => c.name === courseName);
+            if (student && course && course.students.length < course.capacity) {
+                if (!student.courses[courseName]) {
+                    student.courses[courseName] = null;
+                    course.students.push(student);
+                    updateStudentSystem();
+                }
+            }
+        }
+
+        function addGrade() {
+            const studentId = document.getElementById('gradeStudent').value;
+            const courseName = document.getElementById('gradeCourse').value;
+            const grade = document.getElementById('gradeValue').value;
+            const student = students.find(s => s.id === studentId);
+            if (student && student.courses[courseName] !== undefined) {
+                student.courses[courseName] = grade;
+                updateStudentSystem();
+            }
+        }
+
+        function calculateGPA(student) {
+            const grades = Object.values(student.courses).filter(g => g);
+            if (!grades.length) return 0;
+            const points = { 'A': 4, 'B': 3, 'C': 2, 'D': 1, 'F': 0 };
+            const total = grades.reduce((sum, g) => sum + (points[g] || 0), 0);
+            return (total / grades.length).toFixed(2);
+        }
+
+        function updateStudentSystem() {
+            const output = document.getElementById('studentSystemOutput');
+            let html = '';
+            
+            if (students.length === 0 && courses.length === 0) {
+                html = '<div class="alert alert-info"><i class="bi bi-info-circle"></i> No data yet. Add students and courses above!</div>';
+                output.innerHTML = html;
+                return;
+            }
+            
+            html += '<div class="row g-3">';
+            
+            if (students.length > 0) {
+                html += '<div class="col-md-6"><h5 class="text-primary"><i class="bi bi-people"></i> Students</h5>';
+                students.forEach(s => {
+                    const gpa = calculateGPA(s);
+                    const badgeColor = gpa >= 3.5 ? 'success' : gpa >= 2.5 ? 'warning' : 'danger';
+                    html += `<div class="card mb-2">
+                        <div class="card-body">
+                            <h6 class="card-title">${s.name} <span class="badge bg-secondary">${s.id}</span></h6>
+                            <p class="card-text mb-1">
+                                <span class="badge bg-${badgeColor}">GPA: ${gpa}</span>
+                            </p>
+                            <small class="text-muted">
+                                Courses: ${Object.entries(s.courses).map(([c, g]) => 
+                                    `<span class="badge bg-light text-dark">${c} (${g || 'In Progress'})</span>`
+                                ).join(' ')}
+                            </small>
+                        </div>
+                    </div>`;
+                });
+                html += '</div>';
+            }
+            
+            if (courses.length > 0) {
+                html += '<div class="col-md-6"><h5 class="text-success"><i class="bi bi-book"></i> Courses</h5>';
+                courses.forEach(c => {
+                    const progress = (c.students.length / c.capacity * 100).toFixed(0);
+                    html += `<div class="card mb-2">
+                        <div class="card-body">
+                            <h6 class="card-title">${c.name}</h6>
+                            <p class="card-text mb-2">
+                                <span class="badge bg-primary">${c.students.length}/${c.capacity} enrolled</span>
+                            </p>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar" role="progressbar" style="width: ${progress}%"></div>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+                html += '</div>';
+            }
+            
+            html += '</div>';
+            output.innerHTML = html;
+
+            // Update dropdowns
+            document.getElementById('enrollStudent').innerHTML = students.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+            document.getElementById('gradeStudent').innerHTML = students.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+            document.getElementById('enrollCourse').innerHTML = courses.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+            document.getElementById('gradeCourse').innerHTML = courses.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+        }
+
+        // Blog OOP Logic
+        let blogUsers = [];
+        let blogPosts = [];
+        let postIdCounter = 1;
+
+        function createBlogUser() {
+            const username = document.getElementById('blogUsername').value;
+            const email = document.getElementById('blogEmail').value;
+            const bio = document.getElementById('blogBio').value;
+            if (!username || !email) {
+                alert('Username and email required!');
+                return;
+            }
+            blogUsers.push({ username, email, bio, posts: [] });
+            updateBlogSystem();
+            document.getElementById('blogUsername').value = '';
+            document.getElementById('blogEmail').value = '';
+            document.getElementById('blogBio').value = '';
+        }
+
+        function createPost() {
+            const author = document.getElementById('postAuthor').value;
+            const title = document.getElementById('postTitle').value;
+            const content = document.getElementById('postContent').value;
+            if (!author || !title || !content) {
+                alert('All fields required!');
+                return;
+            }
+            const post = { id: postIdCounter++, author, title, content, likes: 0, comments: [] };
+            blogPosts.push(post);
+            const user = blogUsers.find(u => u.username === author);
+            if (user) user.posts.push(post);
+            updateBlogSystem();
+            document.getElementById('postTitle').value = '';
+            document.getElementById('postContent').value = '';
+        }
+
+        function updateBlogSystem() {
+            const output = document.getElementById('blogOutput');
+            let html = '';
+            
+            if (blogUsers.length === 0 && blogPosts.length === 0) {
+                html = '<div class="alert alert-info"><i class="bi bi-info-circle"></i> No users or posts yet. Create them above!</div>';
+                output.innerHTML = html;
+                document.getElementById('postAuthor').innerHTML = '<option value="">No users yet</option>';
+                return;
+            }
+            
+            if (blogUsers.length > 0) {
+                html += '<h5 class="text-primary mb-3"><i class="bi bi-people"></i> Users</h5>';
+                blogUsers.forEach(u => {
+                    html += `<div class="card mb-2">
+                        <div class="card-body">
+                            <h6 class="card-title"><i class="bi bi-person-circle"></i> ${u.username}</h6>
+                            <p class="card-text mb-0">
+                                <span class="badge bg-primary">${u.posts.length} posts</span>
+                                ${u.email ? `<span class="badge bg-secondary">${u.email}</span>` : ''}
+                            </p>
+                        </div>
+                    </div>`;
+                });
+            }
+            
+            if (blogPosts.length > 0) {
+                html += '<h5 class="text-success mt-4 mb-3"><i class="bi bi-file-text"></i> Posts</h5>';
+                blogPosts.forEach(p => {
+                    html += `<div class="card mb-3">
+                        <div class="card-body">
+                            <h6 class="card-title">${p.title}</h6>
+                            <p class="card-text text-muted mb-2">
+                                <small>By <strong>${p.author}</strong></small>
+                            </p>
+                            <p class="card-text">${p.content.substring(0, 150)}${p.content.length > 150 ? '...' : ''}</p>
+                            <div>
+                                <span class="badge bg-danger"><i class="bi bi-heart"></i> ${p.likes} likes</span>
+                                <span class="badge bg-info"><i class="bi bi-chat"></i> ${p.comments.length} comments</span>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+            }
+            
+            output.innerHTML = html;
+            document.getElementById('postAuthor').innerHTML = blogUsers.length > 0 
+                ? blogUsers.map(u => `<option value="${u.username}">${u.username}</option>`).join('')
+                : '<option value="">No users yet</option>';
+        }
+
+        // Library System Logic
+        let libraryBooks = [];
+        let bookIdCounter = 1;
+
+        function addBook() {
+            const isbn = document.getElementById('bookIsbn').value || `ISBN-${bookIdCounter++}`;
+            const title = document.getElementById('bookTitle').value;
+            const author = document.getElementById('bookAuthor').value;
+            const year = parseInt(document.getElementById('bookYear').value);
+            const type = document.getElementById('bookType').value;
+            const genre = document.getElementById('bookGenre').value;
+            if (!title || !author) {
+                alert('Title and author required!');
+                return;
+            }
+            libraryBooks.push({ isbn, title, author, year, type, genre, available: true, borrower: null });
+            updateLibrarySystem();
+            document.getElementById('bookIsbn').value = '';
+            document.getElementById('bookTitle').value = '';
+            document.getElementById('bookAuthor').value = '';
+            document.getElementById('bookYear').value = '';
+            document.getElementById('bookGenre').value = '';
+        }
+
+        function borrowBook() {
+            const isbn = document.getElementById('borrowBook').value;
+            const borrower = document.getElementById('borrowerName').value;
+            const book = libraryBooks.find(b => b.isbn === isbn);
+            if (book && book.available && borrower) {
+                book.available = false;
+                book.borrower = borrower;
+                updateLibrarySystem();
+            }
+        }
+
+        function returnBook() {
+            const isbn = document.getElementById('borrowBook').value;
+            const book = libraryBooks.find(b => b.isbn === isbn);
+            if (book && !book.available) {
+                book.available = true;
+                book.borrower = null;
+                updateLibrarySystem();
+            }
+        }
+
+        function updateLibrarySystem() {
+            const output = document.getElementById('libraryOutput');
+            if (libraryBooks.length === 0) {
+                output.innerHTML = '<div class="alert alert-info"><i class="bi bi-info-circle"></i> No books in library yet. Add books above!</div>';
+                document.getElementById('borrowBook').innerHTML = '<option value="">No books available</option>';
+                return;
+            }
+            
+            let html = '';
+            libraryBooks.forEach(b => {
+                const statusBadge = b.available 
+                    ? '<span class="badge bg-success"><i class="bi bi-check-circle"></i> Available</span>'
+                    : `<span class="badge bg-warning"><i class="bi bi-person"></i> Borrowed by ${b.borrower}</span>`;
+                const typeBadge = b.type === 'fiction' 
+                    ? '<span class="badge bg-info">Fiction</span>'
+                    : '<span class="badge bg-secondary">Non-Fiction</span>';
+                
+                html += `<div class="card mb-2">
+                    <div class="card-body">
+                        <h6 class="card-title">${b.title}</h6>
+                        <p class="card-text mb-2">
+                            <small class="text-muted">by ${b.author} (${b.year})</small>
+                        </p>
+                        <div>
+                            ${typeBadge} ${statusBadge}
+                            ${b.genre ? `<span class="badge bg-light text-dark">${b.genre}</span>` : ''}
+                        </div>
+                    </div>
+                </div>`;
+            });
+            output.innerHTML = html;
+            document.getElementById('borrowBook').innerHTML = libraryBooks.length > 0
+                ? libraryBooks.map(b => `<option value="${b.isbn}">${b.title} ${b.available ? '(Available)' : '(Borrowed)'}</option>`).join('')
+                : '<option value="">No books available</option>';
+        }
+
+        // Auth System Logic
+        let authToken = null;
+        let registeredUsers = {};
+
+        async function registerUser() {
+            const username = document.getElementById('regUsername').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            if (!username || !password) {
+                alert('Username and password required!');
+                return;
+            }
+            registeredUsers[username] = { email, password };
+            document.getElementById('authMessage').textContent = 'User registered successfully!';
+            document.getElementById('authResult').classList.remove('hidden');
+            document.getElementById('regUsername').value = '';
+            document.getElementById('regEmail').value = '';
+            document.getElementById('regPassword').value = '';
+        }
+
+        async function loginUser() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            if (!username || !password) {
+                alert('Username and password required!');
+                return;
+            }
+            if (registeredUsers[username] && registeredUsers[username].password === password) {
+                authToken = 'mock-jwt-token-' + Date.now();
+                document.getElementById('authMessage').textContent = 'Login successful!';
+                document.getElementById('authToken').textContent = 'Token: ' + authToken;
+                document.getElementById('protectedArea').classList.remove('hidden');
+            } else {
+                document.getElementById('authMessage').textContent = 'Invalid credentials!';
+            }
+            document.getElementById('authResult').classList.remove('hidden');
+        }
+
+        async function testProtectedRoute() {
+            if (!authToken) {
+                alert('Please login first!');
+                return;
+            }
+            document.getElementById('protectedResult').innerHTML = `
+                <div class="alert alert-success">
+                    <i class="bi bi-check-circle"></i> Protected route accessed successfully!
+                    <br><small>Token: ${authToken.substring(0, 30)}...</small>
+                </div>
+            `;
+        }
+
+        // Async Scraper Logic
+        async function runScraper() {
+            const urlsText = document.getElementById('scraperUrls').value;
+            const urls = urlsText.split('\n').filter(url => url.trim());
+            
+            if (urls.length === 0) {
+                alert('Please enter at least one URL!');
+                return;
+            }
+
+            const resultsDiv = document.getElementById('scraperResults');
+            resultsDiv.innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>';
+
+            // Simulate async scraping
+            const results = [];
+            const startTime = Date.now();
+
+            for (const url of urls) {
+                try {
+                    // Simulate scraping (in real app, this would use aiohttp)
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    results.push({
+                        url: url.trim(),
+                        status: 'success',
+                        title: `Page Title for ${url}`,
+                        contentLength: Math.floor(Math.random() * 50000) + 10000
+                    });
+                } catch (error) {
+                    results.push({
+                        url: url.trim(),
+                        status: 'error',
+                        error: error.message
+                    });
+                }
+            }
+
+            const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
+
+            let html = `<div class="alert alert-success">
+                <h5><i class="bi bi-check-circle"></i> Scraping Complete!</h5>
+                <p>Scraped ${results.length} URLs in ${elapsedTime} seconds</p>
+            </div>`;
+
+            results.forEach(result => {
+                const statusIcon = result.status === 'success' ? '✅' : '❌';
+                html += `<div class="card mb-2">
+                    <div class="card-body">
+                        <h6>${statusIcon} ${result.url}</h6>
+                        ${result.status === 'success' ? 
+                            `<p class="mb-0"><small>Title: ${result.title}<br>Content Length: ${result.contentLength} bytes</small></p>` :
+                            `<p class="mb-0 text-danger"><small>Error: ${result.error}</small></p>`
+                        }
+                    </div>
+                </div>`;
+            });
+
+            resultsDiv.innerHTML = html;
+        }
+
+        // Weather App Logic
+        async function getWeather() {
+            const city = document.getElementById('weatherCity').value.trim();
+            if (!city) {
+                alert('Please enter a city name!');
+                return;
+            }
+
+            const resultDiv = document.getElementById('weatherResult');
+            resultDiv.innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>';
+
+            // Simulate weather API call
+            setTimeout(() => {
+                const temp = Math.floor(Math.random() * 30) + 10;
+                const conditions = ['Sunny', 'Cloudy', 'Rainy', 'Clear'][Math.floor(Math.random() * 4)];
+                
+                resultDiv.innerHTML = `
+                    <div class="card">
+                        <div class="card-body">
+                            <h5><i class="bi bi-geo-alt"></i> ${city}</h5>
+                            <h2>${temp}°C</h2>
+                            <p class="mb-0">${conditions}</p>
+                            <small class="text-muted">Humidity: ${Math.floor(Math.random() * 40) + 40}% | Wind: ${Math.floor(Math.random() * 20) + 5} km/h</small>
+                        </div>
+                    </div>
+                    <div class="alert alert-info mt-2">
+                        <small><strong>Note:</strong> This is a demo. For real weather data, use OpenWeatherMap API with an API key.</small>
+                    </div>
+                `;
+            }, 1000);
+        }
+
+        // API Testing Logic
+        async function testAPI(method, endpoint) {
+            const baseURL = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'http://backend:5000';
+            const responseId = endpoint.includes('GET') ? 'response1' : 'response2';
+            const responseDiv = document.getElementById(responseId);
+            
+            try {
+                let options = {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                };
+
+                if (method === 'POST') {
+                    const task = document.getElementById('todoTask').value;
+                    options.body = JSON.stringify({ task: task || 'Test task' });
+                }
+
+                const response = await fetch(baseURL + endpoint, options);
+                const data = await response.json();
+
+                responseDiv.innerHTML = `
+                    <div class="alert alert-success">
+                        <h6><i class="bi bi-check-circle"></i> Success!</h6>
+                        <pre class="bg-dark text-light p-3 rounded mt-2" style="max-height: 300px; overflow-y: auto;">${JSON.stringify(data, null, 2)}</pre>
+                    </div>
+                `;
+                responseDiv.classList.remove('hidden');
+            } catch (error) {
+                responseDiv.innerHTML = `
+                    <div class="alert alert-danger">
+                        <h6><i class="bi bi-exclamation-triangle"></i> Error</h6>
+                        <p class="mb-0">${error.message}</p>
+                        <small>Make sure Flask backend is running on port 5000!</small>
+                    </div>
+                `;
+                responseDiv.classList.remove('hidden');
+            }
+        }
+
+        // Navigation Logic
+        function showDemo(demoId) {
+            // Hide all demos
+            document.querySelectorAll('.demo-container').forEach(container => {
+                container.classList.remove('active');
+            });
+
+            // Show selected demo
+            const demo = document.getElementById(demoId);
+            if (demo) {
+                demo.classList.add('active');
+            }
+
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+        }
+
+        // Handle hash navigation
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                const sidebarItem = Array.from(document.querySelectorAll('.sidebar-item')).find(item => {
+                    return item.getAttribute('onclick') && item.getAttribute('onclick').includes(hash);
+                });
+                if (sidebarItem) {
+                    sidebarItem.click();
+                } else {
+                    showDemo(hash);
+                }
+            }
+        });
+
+        // Initialize
+        updateCalcDisplay();
+        renderTodos();
+        renderContacts();
+        
+        // Setup advanced calculator mode change
+        document.getElementById('calcMode').addEventListener('change', updateCalcInputs);
+        updateCalcInputs();
+        
+        // Setup book type change
+        document.getElementById('bookType').addEventListener('change', function() {
+            const genreInput = document.getElementById('bookGenre');
+            const genreLabel = document.querySelector('#bookGenreGroup label');
+            if (this.value === 'fiction') {
+                if (genreLabel) genreLabel.textContent = 'Genre';
+                genreInput.placeholder = 'Genre (e.g., Sci-Fi, Mystery)';
+            } else {
+                if (genreLabel) genreLabel.textContent = 'Subject';
+                genreInput.placeholder = 'Subject (e.g., Programming, History)';
+            }
+        });
+    </script>
+</body>
+</html>
+
