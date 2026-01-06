@@ -65,7 +65,7 @@ function getContentStructure() {
       path: '../guides/ai_ml/AI-Agents-Complete-Guide.md',
     },
     {
-      id: 'ml-from-scratch',
+      id: 'build-models',
       title: '🔬 Build ML Models From Scratch',
       path: '../guides/ai_ml/Build-ML-Models-From-Scratch-Complete-Guide.md',
     },
@@ -80,7 +80,7 @@ function getContentStructure() {
       path: '../guides/ai_ml/Feature-Engineering-Complete-Guide.md',
     },
     {
-      id: 'mlops',
+      id: 'mlops-guide',
       title: '🚀 MLOps Production Complete Guide',
       path: '../guides/ai_ml/MLOps-Production-Complete-Guide.md',
     },
@@ -90,12 +90,12 @@ function getContentStructure() {
       path: '../guides/ai_ml/NLP-Complete-Guide.md',
     },
     {
-      id: 'ml-roadmap',
+      id: 'master-roadmap',
       title: '🗺️ ML/DS Complete Roadmap',
       path: '../guides/ai_ml/MASTER-ML-DS-COMPLETE-ROADMAP.md',
     },
     {
-      id: 'ml-cheatsheet',
+      id: 'ml-quick-ref',
       title: '📋 ML/DS Quick Reference',
       path: '../guides/ai_ml/ML-DS-QUICK-REFERENCE-CHEATSHEET.md',
     },
@@ -160,17 +160,17 @@ function getContentStructure() {
       path: '../infrastructure/database-design.ipynb',
     },
     {
-      id: 'python-examples',
+      id: 'python-code',
       title: '🐍 Python Code Examples',
       path: '../code-examples/python-mastery-guide.py',
     },
     {
-      id: 'js-examples',
+      id: 'javascript-code',
       title: '⚡ JavaScript Code Examples',
       path: '../code-examples/javascript-mastery-guide.js',
     },
     {
-      id: 'ts-examples',
+      id: 'typescript-code',
       title: '📘 TypeScript Code Examples',
       path: '../code-examples/typescript-mastery-guide.ts',
     },
