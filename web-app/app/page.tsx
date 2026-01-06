@@ -33,10 +33,15 @@ export default function Home() {
     setLoading(true)
     try {
       // Load from pre-generated JSON files
-      const basePath = process.env.NODE_ENV === 'production' ? '/tech-mastery-notebooks' : ''
+      // Use window.location to detect if we're on GitHub Pages
+      const isGitHubPages = typeof window !== 'undefined' && window.location.hostname === 'samba425.github.io'
+      const basePath = isGitHubPages ? '/tech-mastery-notebooks' : ''
       const response = await fetch(`${basePath}/content/${item.id}.json`)
+      
+      console.log('Loading content:', `${basePath}/content/${item.id}.json`, 'Response:', response.status)
+      
       if (!response.ok) {
-        throw new Error('Failed to load content')
+        throw new Error(`Failed to load content: ${response.status}`)
       }
       const data = await response.json()
       setSelectedContent(data)
