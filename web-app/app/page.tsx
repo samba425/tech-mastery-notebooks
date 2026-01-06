@@ -32,7 +32,12 @@ export default function Home() {
 
     setLoading(true)
     try {
-      const response = await fetch(`/api/content?id=${item.id}`)
+      // Load from pre-generated JSON files
+      const basePath = process.env.NODE_ENV === 'production' ? '/tech-mastery-notebooks' : ''
+      const response = await fetch(`${basePath}/content/${item.id}.json`)
+      if (!response.ok) {
+        throw new Error('Failed to load content')
+      }
       const data = await response.json()
       setSelectedContent(data)
       
