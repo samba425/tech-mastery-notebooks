@@ -115,6 +115,11 @@ function getContentStructure() {
       path: '../guides/ai_ml/LEARNING-ORDER-GUIDE.md',
     },
     {
+      id: 'complete-system-design',
+      title: '📖 Complete System Design Guide',
+      path: '../system-design/COMPLETE-SYSTEM-DESIGN-GUIDE.md',
+    },
+    {
       id: 'system-architecture',
       title: '🏛️ System Architecture Patterns',
       path: '../system-design/architecture/system-architecture-patterns.ipynb',
