@@ -1,0 +1,60 @@
+# GitLab CI/CD Configuration for Tech Mastery Web App
+# This file deploys your Next.js app to GitLab Pages
+
+image: node:18
+
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - web-app/node_modules/
+    - web-app/.next/cache/
+
+# Build the Next.js application
+build:
+  stage: build
+  script:
+    - cd web-app
+    - npm ci --legacy-peer-deps
+    - npm run build
+  artifacts:
+    paths:
+      - web-app/.next/
+      - web-app/out/
+    expire_in: 1 hour
+  only:
+    - main
+
+# Deploy to GitLab Pages
+pages:
+  stage: deploy
+  script:
+    - cd web-app
+    - npm ci --legacy-peer-deps
+    # Export static site for GitLab Pages
+    - npm run build
+    - mkdir -p ../public
+    - cp -r out/* ../public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+  dependencies:
+    - build
+
+# Optional: Deploy to Vercel (requires VERCEL_TOKEN secret)
+deploy_vercel:
+  stage: deploy
+  image: node:18
+  script:
+    - npm install -g vercel
+    - cd web-app
+    - vercel --prod --token=$VERCEL_TOKEN
+  only:
+    - main
+  when: manual
+  rules:
+    - if: '$VERCEL_TOKEN'

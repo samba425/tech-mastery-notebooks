@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 15, 23, 42;
+    --background-end-rgb: 15, 23, 42;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Markdown content styles */
+.markdown-content {
+  @apply text-gray-800 dark:text-gray-200;
+}
+
+.markdown-content h1 {
+  @apply text-4xl font-bold mb-6 mt-8 text-gray-900 dark:text-white border-b-2 border-primary-500 pb-2;
+}
+
+.markdown-content h2 {
+  @apply text-3xl font-bold mb-4 mt-8 text-gray-900 dark:text-white;
+}
+
+.markdown-content h3 {
+  @apply text-2xl font-semibold mb-3 mt-6 text-gray-800 dark:text-gray-100;
+}
+
+.markdown-content h4 {
+  @apply text-xl font-semibold mb-2 mt-4 text-gray-800 dark:text-gray-100;
+}
+
+.markdown-content p {
+  @apply mb-4 leading-7;
+}
+
+.markdown-content ul, .markdown-content ol {
+  @apply mb-4 ml-6;
+}
+
+.markdown-content li {
+  @apply mb-2;
+}
+
+.markdown-content ul li {
+  @apply list-disc;
+}
+
+.markdown-content ol li {
+  @apply list-decimal;
+}
+
+.markdown-content a {
+  @apply text-primary-600 dark:text-primary-400 hover:underline;
+}
+
+.markdown-content code {
+  @apply bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm font-mono text-pink-600 dark:text-pink-400;
+}
+
+.markdown-content pre {
+  @apply bg-gray-900 dark:bg-gray-950 p-4 rounded-lg overflow-x-auto mb-4 border border-gray-700;
+}
+
+.markdown-content pre code {
+  @apply bg-transparent text-gray-100 p-0;
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-primary-500 pl-4 italic my-4 text-gray-600 dark:text-gray-400;
+}
+
+.markdown-content table {
+  @apply w-full border-collapse mb-4;
+}
+
+.markdown-content th, .markdown-content td {
+  @apply border border-gray-300 dark:border-gray-700 px-4 py-2;
+}
+
+.markdown-content th {
+  @apply bg-gray-100 dark:bg-gray-800 font-semibold;
+}
+
+.markdown-content img {
+  @apply max-w-full h-auto rounded-lg shadow-lg my-4;
+}
+
+.markdown-content hr {
+  @apply my-8 border-gray-300 dark:border-gray-700;
+}
+
+/* Syntax highlighting */
+.hljs {
+  @apply bg-gray-900 dark:bg-gray-950;
+}

@@ -6,6 +6,15 @@ __pycache__/
 # C extensions
 *.so
 
+# Web App - Node.js / Next.js
+web-app/node_modules/
+web-app/.next/
+web-app/out/
+web-app/.env
+web-app/.env.local
+web-app/.env.production.local
+web-app/.vercel
+
 # Distribution / packaging
 .Python
 build/
@@ -347,3 +356,7 @@ Python/9- Python Standard Library/17- Running External Programs.mp4
 *.zip
 *.tar.gz
 *.7z
+run_modernize.sh
+programming-challenges/javascript.challenges.ipynb
+programming-challenges/python.challenges.ipynb
+programming-challenges/leetcode-platform/solutions/003-longest-substring-without-repeating-characters.md
