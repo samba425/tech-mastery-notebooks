@@ -7,8 +7,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Set base path if deploying to a subdomain (uncomment and modify if needed)
-  // basePath: '/tech-mastery-notebooks',
+  // Set base path for GitHub Pages deployment
+  basePath: '/tech-mastery-notebooks',
   webpack: (config) => {
     config.resolve.fallback = { fs: false, path: false };
     return config;
