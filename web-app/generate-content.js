@@ -3,7 +3,6 @@ const path = require('path');
 
 // Import content structure directly (avoiding TS modules)
 function getContentStructure() {
-  // This is a simplified version - we'll copy the structure here
   return [
     {
       id: 'readme',
@@ -15,7 +14,181 @@ function getContentStructure() {
       title: '🚀 Quick Start Guide',
       path: '../START-HERE.md',
     },
-    // Add more items as needed - for now let's just handle these two
+    {
+      id: 'python-guide',
+      title: '🐍 Python Complete Guide',
+      path: '../guides/Python-Complete-Guide.md',
+    },
+    {
+      id: 'javascript-guide',
+      title: '⚡ JavaScript Complete Guide',
+      path: '../guides/JavaScript-Complete-Guide.md',
+    },
+    {
+      id: 'typescript-guide',
+      title: '📘 TypeScript Complete Guide',
+      path: '../guides/TypeScript-Complete-Guide.md',
+    },
+    {
+      id: 'docker-guide',
+      title: '🐳 Docker Zero to Hero',
+      path: '../guides/Docker-Zero-to-Hero.md',
+    },
+    {
+      id: 'kubernetes-guide',
+      title: '☸️ Kubernetes Zero to Hero',
+      path: '../guides/Kubernetes-Zero-to-Hero.md',
+    },
+    {
+      id: 'terraform-guide',
+      title: '🏗️ Terraform Complete Mastery',
+      path: '../guides/Terraform-Complete-Mastery-Guide.md',
+    },
+    {
+      id: 'terraform-part2',
+      title: '🏗️ Terraform Mastery Part 2',
+      path: '../guides/Terraform-Complete-Mastery-Guide-Part2.md',
+    },
+    {
+      id: 'terraform-zero-hero',
+      title: '🏗️ Terraform Zero to Hero',
+      path: '../guides/Terraform-Zero-to-Hero.md',
+    },
+    {
+      id: 'ansible-guide',
+      title: '📦 Ansible Zero to Hero',
+      path: '../guides/Ansible-Zero-to-Hero.md',
+    },
+    {
+      id: 'ai-agents',
+      title: '🤖 AI Agents Complete Guide',
+      path: '../guides/ai_ml/AI-Agents-Complete-Guide.md',
+    },
+    {
+      id: 'ml-from-scratch',
+      title: '🔬 Build ML Models From Scratch',
+      path: '../guides/ai_ml/Build-ML-Models-From-Scratch-Complete-Guide.md',
+    },
+    {
+      id: 'computer-vision',
+      title: '👁️ Computer Vision Complete Guide',
+      path: '../guides/ai_ml/Computer-Vision-Complete-Guide.md',
+    },
+    {
+      id: 'feature-engineering',
+      title: '⚙️ Feature Engineering Complete Guide',
+      path: '../guides/ai_ml/Feature-Engineering-Complete-Guide.md',
+    },
+    {
+      id: 'mlops',
+      title: '🚀 MLOps Production Complete Guide',
+      path: '../guides/ai_ml/MLOps-Production-Complete-Guide.md',
+    },
+    {
+      id: 'nlp-guide',
+      title: '📝 NLP Complete Guide',
+      path: '../guides/ai_ml/NLP-Complete-Guide.md',
+    },
+    {
+      id: 'ml-roadmap',
+      title: '🗺️ ML/DS Complete Roadmap',
+      path: '../guides/ai_ml/MASTER-ML-DS-COMPLETE-ROADMAP.md',
+    },
+    {
+      id: 'ml-cheatsheet',
+      title: '📋 ML/DS Quick Reference',
+      path: '../guides/ai_ml/ML-DS-QUICK-REFERENCE-CHEATSHEET.md',
+    },
+    {
+      id: 'llm-interview',
+      title: '💬 LLM Interview Questions',
+      path: '../guides/ai_ml/LLM-Interview-Questions-Complete.md',
+    },
+    {
+      id: 'rag-interview',
+      title: '� RAG Interview Questions',
+      path: '../guides/ai_ml/RAG-Interview-Questions-Complete.md',
+    },
+    {
+      id: 'learning-order',
+      title: '📚 ML Learning Order Guide',
+      path: '../guides/ai_ml/LEARNING-ORDER-GUIDE.md',
+    },
+    {
+      id: 'system-architecture',
+      title: '🏛️ System Architecture Patterns',
+      path: '../system-design/architecture/system-architecture-patterns.ipynb',
+    },
+    {
+      id: 'system-hld',
+      title: '🎯 High-Level Design (HLD)',
+      path: '../system-design/hld/system-design-hld.ipynb',
+    },
+    {
+      id: 'system-lld',
+      title: '🔧 Low-Level Design (LLD)',
+      path: '../system-design/lld/system-design-lld.ipynb',
+    },
+    {
+      id: 'python-challenges',
+      title: '🎯 Python Challenges',
+      path: '../programming-challenges/python.challenges.ipynb',
+    },
+    {
+      id: 'js-challenges',
+      title: '🎯 JavaScript Challenges',
+      path: '../programming-challenges/javascript.challenges.ipynb',
+    },
+    {
+      id: 'ai-ml-systems',
+      title: '🧠 AI/ML Systems',
+      path: '../infrastructure/ai-ml-systems.ipynb',
+    },
+    {
+      id: 'cloud-devops',
+      title: '☁️ Cloud & DevOps',
+      path: '../infrastructure/cloud-devops.ipynb',
+    },
+    {
+      id: 'database-design',
+      title: '💾 Database Design',
+      path: '../infrastructure/database-design.ipynb',
+    },
+    {
+      id: 'python-examples',
+      title: '🐍 Python Code Examples',
+      path: '../code-examples/python-mastery-guide.py',
+    },
+    {
+      id: 'js-examples',
+      title: '⚡ JavaScript Code Examples',
+      path: '../code-examples/javascript-mastery-guide.js',
+    },
+    {
+      id: 'ts-examples',
+      title: '📘 TypeScript Code Examples',
+      path: '../code-examples/typescript-mastery-guide.ts',
+    },
+    {
+      id: 'career-roadmap',
+      title: '🎯 Career Roadmap',
+      path: '../docs/career-roadmap.md',
+    },
+    {
+      id: 'interview-guide',
+      title: '💼 Interview Guide',
+      path: '../docs/interview-guide.md',
+    },
+    {
+      id: 'fullstack-training',
+      title: '🌐 Full Stack Developer Training',
+      path: '../Full_Stack_Developer_Training_Notes.md',
+    },
+    {
+      id: 'vedic-math',
+      title: '🔢 Vedic Mathematics',
+      path: '../vedic-mathematics-zero-to-hero.md',
+    },
   ];
 }
 
@@ -66,7 +239,7 @@ function loadContentFromFile(relativePath) {
   }
 }
 
-// Pre-generate simple welcome content
+// Pre-generate content for all items
 function generateStaticContent() {
   const outputDir = path.join(__dirname, 'public', 'content');
   
@@ -75,16 +248,35 @@ function generateStaticContent() {
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
-  // Generate a simple welcome message
-  const welcomeContent = {
-    id: 'readme',
-    title: '🏠 Welcome & Getting Started',
-    content: `# 🎉 Tech Mastery Platform\n\nWelcome to your complete learning platform!\n\nThis platform contains 45,000+ lines of educational content including:\n\n- System Design (HLD/LLD)\n- AI/ML Guides\n- Programming Languages\n- DevOps & Infrastructure\n\nSelect a guide from the sidebar to start learning! 🚀`
-  };
+  const contentItems = getContentStructure();
+  let successCount = 0;
+  let errorCount = 0;
   
-  const outputPath = path.join(outputDir, 'readme.json');
-  fs.writeFileSync(outputPath, JSON.stringify(welcomeContent));
-  console.log('✓ Generated welcome content');
+  console.log(`Generating content for ${contentItems.length} items...`);
+  
+  contentItems.forEach(item => {
+    try {
+      const content = loadContentFromFile(item.path);
+      const contentData = {
+        id: item.id,
+        title: item.title,
+        content: content
+      };
+      
+      const outputPath = path.join(outputDir, `${item.id}.json`);
+      fs.writeFileSync(outputPath, JSON.stringify(contentData));
+      successCount++;
+      console.log(`✓ Generated: ${item.id}`);
+    } catch (error) {
+      errorCount++;
+      console.error(`✗ Failed to generate ${item.id}: ${error.message}`);
+    }
+  });
+  
+  console.log(`\n✓ Successfully generated ${successCount}/${contentItems.length} content files`);
+  if (errorCount > 0) {
+    console.log(`✗ Failed: ${errorCount} files`);
+  }
 }
 
 generateStaticContent();
