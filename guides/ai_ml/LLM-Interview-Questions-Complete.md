@@ -2,8 +2,6 @@
 
 **Consolidated Interview Questions and Answers**
 
-*Authored by Kalyan KS - [Twitter](https://x.com/kalyan_kpl) | [LinkedIn](https://www.linkedin.com/in/kalyanksnlp/)*
-
 ---
 
 **Total Questions: 117** (approximately)
@@ -74,19 +72,6 @@ Tokens, represented as integer IDs after tokenization, are converted into embedd
 
 Specifically, the token ID is used as an index to retrieve its corresponding high-dimensional vector from the embedding matrix. This retrieved vector is the numerical representation that captures the token's semantic and syntactic meaning. The embeddings of input tokens are then processed by the subsequent transformer layers. 
 
-## **🚀 AIxFunda Newsletter (free)**
-
-
-Join 🚀 AIxFunda free newsletter to get the latest updates and interesting tutorials related to Generative AI, LLMs, Agents and RAG.
-
-- ✨ Weekly GenAI updates.
-- 📄 Weekly LLM, Agents and RAG paper updates.
-- 📝 1 fresh blog post on an interesting topic every week.
-
-👉 [Subcribe Now](https://aixfunda.substack.com/)
-
----
-
 ## Questions 7-9
 
 ## 📌 Q7: Explain why subword tokenization is preferred over word-level tokenization in the Transformer model. 
@@ -112,18 +97,6 @@ Larger vocabularies also make softmax computations more expensive and may lead t
 Self-attention in the Transformer model is computed by first projecting each input token into three vectors: queries, keys, and values using learned weight matrices. Then, attention scores are calculated by taking the dot product of a query with all keys, scaled by the square root of the key dimension to stabilize gradients. 
 
 These scores are normalized using the softmax function to obtain attention weights, representing the importance of each token relative to others. Finally, each token's output is computed as the weighted sum of the value vectors, allowing the model to capture contextual relationships within the input sequence.
-
-## **👨🏻‍💻 Prompt Engineering Techniques Hub**
-
-This GitHub repo includes implementations of must know 25+ prompt engineering techniques.
-
-👉 [Repo link](https://github.com/KalyanKS-NLP/Prompt-Engineering-Techniques-Hub)
-
-Knowledge of prompt engineering techniques is essential for Data Scientists, AI/ML Engineers working with LLMs, RAG and Agents. 
-
-![Prompt Engineering Techniques Hub](images/prompt-eng-techniques-hub.jpg)
-
----
 
 ## Questions 10-12
 
@@ -153,20 +126,6 @@ Tokenization is the process of converting raw text into smaller, discrete units 
 Tokenization allows mapping the input text to a vocabulary of known tokens. These tokens are then converted into numerical representations called embeddings. These embeddings are then used by LLMs for training and inference, fundamentally enabling input text processing.
 
 
-**☕ Support the Author**
--------------------------------------------------------------------------------------------
-I hope you found this “LLM Interview Questions and Answers Hub”  highly useful.  
-
-I’ve made this freely available to help the AI and NLP community grow and to support learners like you. If you found it helpful and would like to show your appreciation, you can buy me a coffee to keep me motivated in creating more free resources like this.
-
-👉 [Buy Me a Coffee](https://ko-fi.com/kalyanksnlp)
-
-Your small gesture goes a long way in supporting my work—thank you for being part of this journey! 🙏
-
-— Kalyan KS
-
----
-
 ## Questions 13-15
 
 ## 📌 Q13: Explain the role of token embeddings in the Transformer model.
@@ -191,18 +150,6 @@ The self-attention mechanism enables the model to compute context-rich represent
 
 The mechanism is called “self-attention” because the attention is computed within the same sequence - each token attends to itself and others without external input. This process helps build rich contextual embeddings crucial for understanding meaning and structure in text.
 
-
-**👨🏻‍💻 LLM Engineer Toolkit**
---------------------------------------------------------------------------------------------
-🤖 This repository contains a curated list of 120+ LLM, RAG and Agent related libraries category wise. 
-
-👉 [Repo link](https://github.com/KalyanKS-NLP/llm-engineer-toolkit) 
-
-This repository is highly useful for Data Scientists, AI/ML Engineers working with LLM, RAG and Agents. 
-
-![LLM Engineer Toolkit](images/llm-engineer-toolkit.jpg)
-
----
 
 ## Questions 16-18
 
@@ -231,14 +178,6 @@ The encoder-decoder structure in a Transformer is used for sequence-to-sequence 
 
 The decoder then uses a separate self-attention mechanism, masked to prevent looking ahead, to generate the output sequence one token at a time, autoregressively. The decoder also incorporates an encoder-decoder attention layer, allowing it to focus on the most relevant parts of the encoder's output for each token it generates.
 
-## LLM Survey Papers Collection
-
-👉 [Repo Link](https://github.com/KalyanKS-NLP/LLM-Survey-Papers-Collection)
-
-![LLM Survey Papers Collection](images/llm-survey-papers-collection.jpg)
-
----
-
 ## Questions 19-21
 
 ## 📌 Q19: What is the purpose of scaling in the self-attention mechanism in the Transformer model?
@@ -266,18 +205,6 @@ In the multi-head attention model of the Transformer, the outputs from multiple 
 This concatenated result is passed through a final linear projection layer,  which projects it back into the model’s expected dimension for further processing. This mechanism allows the model to integrate diverse information captured by each head into a unified representation.
 
 
-## **👨🏻‍💻 Prompt Engineering Techniques Hub**
-
-This GitHub repo includes implementations of must know 25+ prompt engineering techniques.
-
-👉 [Repo link](https://github.com/KalyanKS-NLP/Prompt-Engineering-Techniques-Hub)
-
-Knowledge of prompt engineering techniques is essential for Data Scientists, AI/ML Engineers working with LLMs, RAG and Agents. 
-
-![Prompt Engineering Techniques Hub](images/prompt-eng-techniques-hub.jpg)
-
----
-
 ## Questions 22-24
 
 ## 📌 Q22: How does masked self-attention differ from regular self-attention, and where is it used in a Transformer?
@@ -304,20 +231,6 @@ During output generation, masked self-attention in the decoder prevents the mode
 
 This ensures (i) auto-regressive behavior, allowing the model to generate text one token at a time, and (ii) the model learns to make predictions based solely on past context, maintaining the integrity and correctness of language modeling.
 
-**☕ Support the Author**
--------------------------------------------------------------------------------------------
-I hope you found this “LLM Interview Questions and Answers Hub”  highly useful.  
-
-I’ve made this freely available to help the AI and NLP community grow and to support learners like you. If you found it helpful and would like to show your appreciation, you can buy me a coffee to keep me motivated in creating more free resources like this.
-
-👉 [Buy Me a Coffee](https://ko-fi.com/kalyanksnlp)
-
-Your small gesture goes a long way in supporting my work—thank you for being part of this journey! 🙏
-
-— Kalyan KS
-
----
-
 ## Questions 25-27
 
 ## 📌 Q25: Explain how masking works in masked self-attention in Transformer.
@@ -342,18 +255,6 @@ The softmax function is a mathematical operation that converts a vector of raw s
 
 Additionally, softmax is used within the self-attention mechanism to normalize the  attention weights.  This normalization allows the model to weigh the importance of different input tokens effectively. Thus, softmax plays a crucial role in handling probabilities both in self-attention and final predictions.​
 
-
-**👨🏻‍💻 LLM Engineer Toolkit**
---------------------------------------------------------------------------------------------
-🤖 This repository contains a curated list of 120+ LLM, RAG and Agent related libraries category wise. 
-
-👉 [Repo link](https://github.com/KalyanKS-NLP/llm-engineer-toolkit) 
-
-This repository is highly useful for Data Scientists, AI/ML Engineers working with LLM, RAG and Agents.
-
-![LLM Engineer Toolkit](images/llm-engineer-toolkit.jpg)
-
----
 
 ## Questions 28-30
 
@@ -381,18 +282,6 @@ Cross-entropy loss measures the difference between the predicted probability dis
 
 The loss penalizes incorrect predictions with higher values, encouraging the model to assign greater probability to the correct token. Minimizing the cross-entropy loss through backpropagation helps optimize the model’s parameters for accurate sequence generation.
 
-## **👨🏻‍💻 Prompt Engineering Techniques Hub**
-
-This GitHub repo includes implementations of must know 25+ prompt engineering techniques.
-
-👉 [Repo link](https://github.com/KalyanKS-NLP/Prompt-Engineering-Techniques-Hub)
-
-Knowledge of prompt engineering techniques is essential for Data Scientists, AI/ML Engineers working with LLMs, RAG and Agents. 
-
-![Prompt Engineering Techniques Hub](images/prompt-eng-techniques-hub.jpg)
-
----
-
 ## Questions 31-33
 
 ## 📌 Q31: Compare transformers and RNNs in terms of handling long-range dependencies.
@@ -419,19 +308,6 @@ Transformers address the limitations of traditional deep learning models like CN
 
 The self-attention mechanism allows transformers to process all parts of the input in parallel, assessing the importance of every word/token to every other word/token regardless of their distance. Compared to traditional models, transformers can scale better and train faster on large datasets. 
 
-## **🚀 AIxFunda Newsletter (free)**
-
-
-Join 🚀 AIxFunda free newsletter to get the latest updates and interesting tutorials related to Generative AI, LLMs, Agents and RAG.
-
-- ✨ Weekly GenAI updates.
-- 📄 Weekly LLM, Agents and RAG paper updates.
-- 📝 1 fresh blog post on an interesting topic every week.
-
-👉 [Subcribe Now](https://aixfunda.substack.com/)
-
----
-
 ## Questions 34-36
 
 ## 📌 Q34: How does Transformer model address the vanishing gradient problem?
@@ -455,20 +331,6 @@ This sublayer adds non-linearity and increases the model's capacity to learn com
 ### ✅ Answer
 
 LLM training is the process where a large language model learns patterns and relationships from massive datasets, adjusting its internal parameters (weights) to minimize prediction error. LLM inference is the deployment phase where the trained, fixed-parameter model uses its learned knowledge to generate a response for a new, unseen input prompt. Training is computationally intensive and done once, while inference is fast and happens every time the model is used.
-
-**☕ Support the Author**
--------------------------------------------------------------------------------------------
-I hope you found this “LLM Interview Questions and Answers Hub”  highly useful.  
-
-I’ve made this freely available to help the AI and NLP community grow and to support learners like you. If you found it helpful and would like to show your appreciation, you can buy me a coffee to keep me motivated in creating more free resources like this.
-
-👉 [Buy Me a Coffee](https://ko-fi.com/kalyanksnlp)
-
-Your small gesture goes a long way in supporting my work—thank you for being part of this journey! 🙏
-
-— Kalyan KS
-
----
 
 ## Questions 37-39
 
@@ -497,18 +359,6 @@ Batching significantly improves LLM inference efficiency by enabling parallel pr
 Continuous batching further enhances efficiency by using iteration-level scheduling, where new requests can replace completed ones within a batch without waiting for all sequences to finish, achieving much higher throughput improvements. This approach transforms GPU utilization from underutilized sequential processing to optimized parallel execution, making it essential for production LLM serving.
 
 
-**👨🏻‍💻 LLM Engineer Toolkit**
---------------------------------------------------------------------------------------------
-🤖 This repository contains a curated list of 120+ LLM, RAG and Agent related libraries category wise. 
-
-👉 [Repo link](https://github.com/KalyanKS-NLP/llm-engineer-toolkit) 
-
-This repository is highly useful for Data Scientists, AI/ML Engineers working with LLM, RAG and Agents. 
-
-![LLM Engineer Toolkit](images/llm-engineer-toolkit.jpg)
-
----
-
 ## Questions 40-42
 
 ## 📌 Q40: Explain the trade-offs between batching and latency in LLM serving.
@@ -535,14 +385,6 @@ Decoding strategies in LLMs are the decision rules a model uses to choose the ne
 
 The choice of strategy heavily influences whether the output is predictable and factual, or creative and diverse. Common decoding strategies include greedy search, beam search, and sampling methods like temperature scaling and top-k/top-p sampling.
 
-
-## 👨🏻‍💻 LLM Survey Papers Collection
-
-👉 [Repo Link](https://github.com/KalyanKS-NLP/LLM-Survey-Papers-Collection)
-
-![LLM Survey Papers Collection](images/llm-survey-papers-collection.jpg)
-
----
 
 ## Questions 43-45
 
@@ -582,19 +424,6 @@ The greedy search decoding strategy in LLMs is a straightforward method where th
 
 By only focusing on the locally optimal choice, it often fails to find a sequence with the globally highest overall probability, potentially leading to repetitive, less coherent, or suboptimal text.
 
-## **🚀 AIxFunda Newsletter (free)**
-
-
-Join 🚀 AIxFunda free newsletter to get the latest updates and interesting tutorials related to Generative AI, LLMs, Agents and RAG.
-
-- ✨ Weekly GenAI updates.
-- 📄 Weekly LLM, Agents and RAG paper updates.
-- 📝 1 fresh blog post on an interesting topic every week.
-
-👉 [Subcribe Now](https://aixfunda.substack.com/)
-
----
-
 ## Questions 46-48
 
 ## 📌 Q46: How does Beam Search improve upon Greedy Search, and what is the role of the beam width parameter?
@@ -623,16 +452,6 @@ Conversely, Beam Search maintains k (the beam width) of the most promising parti
 
 
 ## **☕ Support the Author**
-
-I hope you found this “LLM Interview Questions and Answers Hub”  highly useful.  
-
-I’ve made this freely available to help the AI and NLP community grow and to support learners like you. If you found it helpful and would like to show your appreciation, you can buy me a coffee to keep me motivated in creating more free resources like this.
-
-👉 [Buy Me a Coffee](https://ko-fi.com/kalyanksnlp)
-
-Your small gesture goes a long way in supporting my work—thank you for being part of this journey! 🙏
-
-— Kalyan KS
 
 ---
 
@@ -693,14 +512,6 @@ The context window in LLMs defines the maximum number of tokens it can process a
 Conversely, a small context window is faster and more memory-efficient, making it suitable for lower-resource environments or real-time applications. However,  it limits the model's 'memory,' potentially causing it to lose track of earlier information and generate less consistent or relevant outputs. 
 
 
-## 👨🏻‍💻 LLM Survey Papers Collection
-
-👉 [Repo Link](https://github.com/KalyanKS-NLP/LLM-Survey-Papers-Collection)
-
-![LLM Survey Papers Collection](images/llm-survey-papers-collection.jpg)
-
----
-
 ## Questions 55-57
 
 ## 📌 Q55: What is the purpose of temperature in LLM inference, and how does it affect the output?
@@ -729,19 +540,6 @@ The main strength of autoregressive text generation in LLMs is its ability to pr
 However, its primary limitation is that it's inherently slow because each new token must be generated serially, precluding true parallelization. Additionally, in the sequential generation process, errors can accumulate over time since each prediction depends on the previous tokens.
 
 
-## **🚀 AIxFunda Newsletter (free)**
-
-
-Join 🚀 AIxFunda free newsletter to get the latest updates and interesting tutorials related to Generative AI, LLMs, Agents and RAG.
-
-- ✨ Weekly GenAI updates.
-- 📄 Weekly LLM, Agents and RAG paper updates.
-- 📝 1 fresh blog post on an interesting topic every week.
-
-👉 [Subcribe Now](https://aixfunda.substack.com/)
-
----
-
 ## Questions 58-60
 
 ## 📌 Q58: Explain how diffusion language models (DLMs) differ from Large Language Models (LLMs).
@@ -767,20 +565,6 @@ While a single denoising step in a DLM can be computationally heavier than an LL
 Token streaming during LLM inference is an optimization technique where the model's output, typically the next predicted token, is sent to the user immediately as soon as it's generated, rather than waiting for the entire response to be completed. 
 
 Token streaming significantly reduces the perceived latency because the user can begin reading the output almost instantly, making the interaction feel much faster and more responsive. The full response is thus "streamed" out token by token until an end-of-sequence token is reached.
-
-**☕ Support the Author**
--------------------------------------------------------------------------------------------
-I hope you found this “LLM Interview Questions and Answers Hub”  highly useful.  
-
-I’ve made this freely available to help the AI and NLP community grow and to support learners like you. If you found it helpful and would like to show your appreciation, you can buy me a coffee to keep me motivated in creating more free resources like this.
-
-👉 [Buy Me a Coffee](https://ko-fi.com/kalyanksnlp)
-
-Your small gesture goes a long way in supporting my work—thank you for being part of this journey! 🙏
-
-— Kalyan KS
-
----
 
 ## Questions 61-63
 
@@ -847,19 +631,6 @@ Mixed precision is a technique that uses a combination of different numerical fo
 Halving the bit-width cuts the model's memory consumption by roughly half, which allows for either larger models to fit onto the GPU or for a larger batch size. Crucially, modern hardware like NVIDIA Tensor Cores can execute FP16 operations significantly faster, thus boosting overall throughput with minimal loss in model accuracy.
 
 
-## **🚀 AIxFunda Newsletter (free)**
-
-
-Join 🚀 AIxFunda free newsletter to get the latest updates and interesting tutorials related to Generative AI, LLMs, Agents and RAG.
-
-- ✨ Weekly GenAI updates.
-- 📄 Weekly LLM, Agents and RAG paper updates.
-- 📝 1 fresh blog post on an interesting topic every week.
-
-👉 [Subcribe Now](https://aixfunda.substack.com/)
-
----
-
 ## Questions 67-69
 
 ## 📌 Q67: Differentiate between online and offline LLM inference deployment scenarios and discuss their respective requirements.
@@ -888,14 +659,6 @@ As the KV cache grows during text generation, it consumes more GPU memory, forci
 
 In hybrid CPU-GPU systems, inefficient task scheduling can leave GPU cores underutilized, while multi-GPU setups face extra communication delays that reduce scalability. Overcoming these challenges involves techniques like caching, model quantization, smarter scheduling, and balanced workload distribution to fully harness GPU power and minimize latency.
 
-
-## LLM Survey Papers Collection
-
-👉 [Repo Link](https://github.com/KalyanKS-NLP/LLM-Survey-Papers-Collection)
-
-![LLM Survey Papers Collection](images/llm-survey-papers-collection.jpg)
-
----
 
 ## Questions 70-72
 
@@ -942,20 +705,6 @@ The main challenges in LLM inference are high latency, computational intensity, 
 5. Accuracy issues such as hallucinations can compromise output reliability. 
 
 6. Scalability remains a challenge in handling many concurrent requests without performance degradation.
-
-**☕ Support the Author**
--------------------------------------------------------------------------------------------
-I hope you found this “LLM Interview Questions and Answers Hub”  highly useful.  
-
-I’ve made this freely available to help the AI and NLP community grow and to support learners like you. If you found it helpful and would like to show your appreciation, you can buy me a coffee to keep me motivated in creating more free resources like this.
-
-👉 [Buy Me a Coffee](https://ko-fi.com/kalyanksnlp)
-
-Your small gesture goes a long way in supporting my work—thank you for being part of this journey! 🙏
-
-— Kalyan KS
-
----
 
 ## Questions 73-75
 
@@ -1021,14 +770,6 @@ The fundamental difference lies in the number of examples within the prompt. In 
 
 In contrast, few-shot prompting includes a small number of input-output examples (the "shots") in the prompt. The examples guide the LLM to understand the desired format, style, or task better, often leading to significantly improved performance.
 
-## LLM Survey Papers Collection
-
-👉 [Repo Link](https://github.com/KalyanKS-NLP/LLM-Survey-Papers-Collection)
-
-![LLM Survey Papers Collection](images/llm-survey-papers-collection.jpg)
-
----
-
 ## Questions 79-81
 
 ## 📌 Q79: What are the different approaches for choosing examples for few-shot prompting?
@@ -1083,18 +824,6 @@ Context is crucial in prompt design because it provides the LLMs with the necess
 
 This may result in the generation of  ambiguous, generic, or incorrect responses that don't meet the user's specific needs. 
 
-## **🚀 AIxFunda Newsletter (free)**
-
-Join 🚀 AIxFunda free newsletter to get the latest updates and interesting tutorials related to Generative AI, LLMs, Agents and RAG.
-
-- ✨ Weekly GenAI updates.
-- 📄 Weekly LLM, Agents and RAG paper updates.
-- 📝 1 fresh blog post on an interesting topic every week.
-
-👉 [Subcribe Now](https://aixfunda.substack.com/)
-
----
-
 ## Questions 85-87
 
 ## 📌 Q85: Describe a strategy for reducing hallucinations via prompt design.
@@ -1120,18 +849,6 @@ It is also helpful to provide a schema or example of the required JSON structure
 ReAct (Reasoning and Acting) prompting allows the agent to solve complex, multi-step tasks by allowing it to dynamically plan, execute external actions (e.g., using a search engine or tool), and refine its approach based on observations. 
 
 This loop of thinking, acting, and observing keeps the model’s reasoning grounded in real-world feedback, which reduces hallucinations and makes its decisions more accurate, interpretable, and reliable. By combining logical reasoning with real-world interaction, ReAct enables more flexible, reliable, and human-like problem-solving.
-
-## **👨🏻‍💻 Prompt Engineering Techniques Hub**
-
-This GitHub repo includes implementations of must know 25+ prompt engineering techniques.
-
-👉 [Repo link](https://github.com/KalyanKS-NLP/Prompt-Engineering-Techniques-Hub)
-
-Knowledge of prompt engineering techniques is essential for Data Scientists, AI/ML Engineers working with LLMs, RAG and Agents. 
-
-![Prompt Engineering Techniques Hub](images/prompt-eng-techniques-hub.jpg)
-
----
 
 ## Questions 88-90
 
@@ -1163,20 +880,6 @@ Fine-tuning, in the context of LLMs, is a broad term that can refer to instructi
 Instruction tuning greatly improves how well a large language model (LLM) understands and follows user directions in the input prompt. While raw, pretrained LLMs trained only to predict the next word are good at continuing text. But they often struggle to follow explicit instructions. 
 
 Instruction fine-tuning fixes this by training the model on high-quality pairs of prompts and responses. Through exposure to diverse examples, the model learns to correctly interpret the user instructions and perform the given tasks. To summarize, instruction tuning makes LLMs better at understanding the user prompts and producing desired outputs. 
-
-**☕ Support the Author**
--------------------------------------------------------------------------------------------
-I hope you found this “LLM Interview Questions and Answers Hub”  highly useful.  
-
-I’ve made this freely available to help the AI and NLP community grow and to support learners like you. If you found it helpful and would like to show your appreciation, you can buy me a coffee to keep me motivated in creating more free resources like this.
-
-👉 [Buy Me a Coffee](https://ko-fi.com/kalyanksnlp)
-
-Your small gesture goes a long way in supporting my work—thank you for being part of this journey! 🙏
-
-— Kalyan KS
-
----
 
 ## Questions 91-93
 
@@ -1235,19 +938,6 @@ Prompt engineering is generally preferred over task-specific fine-tuning when th
 
 It is also the better choice when data for fine-tuning is scarce or if rapid iteration and experimentation are needed, as modifying a prompt is significantly faster and more resource-efficient than fine-tuning the model. Furthermore, if a single LLM must handle a variety of diverse tasks , prompt engineering is preferred, as it avoids creating and deploying a separate fine-tuned model for each.
 
-## **🚀 AIxFunda Newsletter (free)**
-
-
-Join 🚀 AIxFunda free newsletter to get the latest updates and interesting tutorials related to Generative AI, LLMs, Agents and RAG.
-
-- ✨ Weekly GenAI updates.
-- 📄 Weekly LLM, Agents and RAG paper updates.
-- 📝 1 fresh blog post on an interesting topic every week.
-
-👉 [Subcribe Now](https://aixfunda.substack.com/)
-
----
-
 ## Questions 97-99
 
 ## 📌 Q97: When should you use fine-tuning vs. RAG?
@@ -1273,18 +963,6 @@ Fine-tuning achieves all these by updating the model’s weights. Additionally, 
 The main drawback of fine-tuning compared to RAG is the model’s static knowledge. Once the model is trained, it can’t access new or real-time information without undergoing an expensive and time-consuming retraining process. Fine-tuning also requires significant computational resources and specialized expertise for preparing data and training the model. 
 
 Moreover, fine-tuned models risk “catastrophic forgetting,” where learning new information causes them to lose some of their original general knowledge. RAG avoids the catastrophic forgetting problem, as it keeps the base model unchanged.
-
-## **👨🏻‍💻 Prompt Engineering Techniques Hub**
-
-This GitHub repo includes implementations of must know 25+ prompt engineering techniques.
-
-👉 [Repo link](https://github.com/KalyanKS-NLP/Prompt-Engineering-Techniques-Hub)
-
-Knowledge of prompt engineering techniques is essential for Data Scientists, AI/ML Engineers working with LLMs, RAG and Agents. 
-
-![Prompt Engineering Techniques Hub](images/prompt-eng-techniques-hub.jpg)
-
----
 
 ## Questions 100-102
 
@@ -1314,20 +992,6 @@ At inference, the adapted weights are effectively merged with the original model
 The key ingredient behind the effectiveness of the LoRA technique lies in its low-rank decomposition of weight updates, which captures task-specific information within a much smaller subspace of the model’s full parameter space. By expressing the weight change as the product of two small matrices, LoRA enables efficient fine-tuning with minimal memory and computational overhead.
 
 This approach leverages the observation that large language models have redundant parameters, and most adaptations can be represented in a low-dimensional form. As a result, LoRA achieves performance comparable to full fine-tuning while training only a tiny fraction of the model’s parameters.
-
-**☕ Support the Author**
--------------------------------------------------------------------------------------------
-I hope you found this “LLM Interview Questions and Answers Hub”  highly useful.  
-
-I’ve made this freely available to help the AI and NLP community grow and to support learners like you. If you found it helpful and would like to show your appreciation, you can buy me a coffee to keep me motivated in creating more free resources like this.
-
-👉 [Buy Me a Coffee](https://ko-fi.com/kalyanksnlp)
-
-Your small gesture goes a long way in supporting my work—thank you for being part of this journey! 🙏
-
-— Kalyan KS
-
----
 
 ## Questions 103-105
 
@@ -1391,19 +1055,6 @@ To speed up LLM fine-tuning, several optimization strategies can be used. Techni
 
 Additionally, mixed precision training (FP16/BF16) for faster computation, gradient accumulation for simulating larger batch sizes, and distributed training across multiple GPUs achieve quicker convergence and shorter training times. These approaches drastically cut down both computational cost and the fine-tuning time. 
 
-## **🚀 AIxFunda Newsletter (free)**
-
-
-Join 🚀 AIxFunda free newsletter to get the latest updates and interesting tutorials related to Generative AI, LLMs, Agents and RAG.
-
-- ✨ Weekly GenAI updates.
-- 📄 Weekly LLM, Agents and RAG paper updates.
-- 📝 1 fresh blog post on an interesting topic every week.
-
-👉 [Subcribe Now](https://aixfunda.substack.com/)
-
----
-
 ## Questions 109-111
 
 ## 📌 Q109: Explain the pretraining objective used in LLM pretraining.
@@ -1429,18 +1080,6 @@ In contrast, Masked Language Modeling (MLM) is an autoencoding approach where th
 LLMs handle out-of-vocabulary (OOV) words using subword tokenization methods such as Byte Pair Encoding (BPE), WordPiece, or SentencePiece. These techniques split rare or unseen words into smaller, known subword units or characters. 
 
 This allows the model to represent and understand new words from existing tokens in the vocabulary. For example, the word “unhappiness” might be split into “un”, “happy”, and “ness”. This approach reduces the OOV problem and improves generalization to unseen vocabulary.
-
-## **👨🏻‍💻 Prompt Engineering Techniques Hub**
-
-This GitHub repo includes implementations of must know 25+ prompt engineering techniques.
-
-👉 [Repo link](https://github.com/KalyanKS-NLP/Prompt-Engineering-Techniques-Hub)
-
-Knowledge of prompt engineering techniques is essential for Data Scientists, AI/ML Engineers working with LLMs, RAG and Agents. 
-
-![Prompt Engineering Techniques Hub](images/prompt-eng-techniques-hub.jpg)
-
----
 
 ## Questions 112-114
 
@@ -1469,20 +1108,6 @@ Model parallelism is a technique used to train large language models that are to
 
 During forward and backward passes, activations and gradients are communicated between GPUs to complete computation. This allows efficient utilization of hardware for massive models. However, it requires careful coordination to minimize communication overhead and latency.
 
-**☕ Support the Author**
--------------------------------------------------------------------------------------------
-I hope you found this “LLM Interview Questions and Answers Hub”  highly useful.  
-
-I’ve made this freely available to help the AI and NLP community grow and to support learners like you. If you found it helpful and would like to show your appreciation, you can buy me a coffee to keep me motivated in creating more free resources like this.
-
-👉 [Buy Me a Coffee](https://ko-fi.com/kalyanksnlp)
-
-Your small gesture goes a long way in supporting my work—thank you for being part of this journey! 🙏
-
-— Kalyan KS
-
----
-
 ## Questions 115-117
 
 ## 📌 Q115: What is the significance of self-supervised learning in LLM pretraining?
@@ -1495,14 +1120,4 @@ This eliminates the need for expensive human annotation. By predicting the next 
 
 ---
 
-
-## Additional Resources
-
-### 👨🏻‍💻 LLM Engineer Toolkit
-
-🤖 This repository contains a curated list of 120+ LLM, RAG and Agent related libraries category wise.
-
-👉 [Repo link](https://github.com/KalyanKS-NLP/llm-engineer-toolkit)
-
-This repository is highly useful for Data Scientists, AI/ML Engineers working with LLMs, RAG and Agents.
 

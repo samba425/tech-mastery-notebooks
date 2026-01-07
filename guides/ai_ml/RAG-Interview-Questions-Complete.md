@@ -2,8 +2,6 @@
 
 **Consolidated Interview Questions and Answers**
 
-*Authored by Kalyan KS - [Twitter](https://x.com/kalyan_kpl) | [LinkedIn](https://www.linkedin.com/in/kalyanksnlp/)*
-
 ---
 
 **Total Questions: 105** (approximately)
