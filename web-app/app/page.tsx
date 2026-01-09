@@ -21,7 +21,8 @@ function HomeContent() {
     'programming-challenges',
     'career',
     'teaching',
-    'extras'
+    'extras',
+    'others'
   ]
 
   useEffect(() => {

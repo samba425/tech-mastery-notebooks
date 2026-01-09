@@ -432,6 +432,100 @@ export function getContentStructure(): any[] {
           description: 'Ancient mathematical techniques'
         }
       ]
+    },
+    {
+      id: 'others',
+      title: '🎓 Other Learning Guides',
+      children: [
+        {
+          id: 'aws-cloud',
+          title: 'AWS Cloud Zero to Hero',
+          path: '../Others/aws-cloud-zero-to-hero.md',
+          category: 'others',
+          readTime: 90,
+          description: 'Complete AWS cloud services guide'
+        },
+        {
+          id: 'cicd-guide',
+          title: 'CI/CD Zero to Hero',
+          path: '../Others/cicd-zero-to-hero.md',
+          category: 'others',
+          readTime: 70,
+          description: 'Continuous Integration & Deployment mastery'
+        },
+        {
+          id: 'git-github',
+          title: 'Git & GitHub Zero to Hero',
+          path: '../Others/git-github-zero-to-hero.md',
+          category: 'others',
+          readTime: 60,
+          description: 'Version control and collaboration'
+        },
+        {
+          id: 'kafka-queues',
+          title: 'Kafka & Message Queues Zero to Hero',
+          path: '../Others/kafka-message-queues-zero-to-hero.md',
+          category: 'others',
+          readTime: 80,
+          description: 'Distributed messaging systems'
+        },
+        {
+          id: 'linux-cli',
+          title: 'Linux Command Line Zero to Hero',
+          path: '../Others/linux-command-line-zero-to-hero.md',
+          category: 'others',
+          readTime: 75,
+          description: 'Master the Linux terminal'
+        },
+        {
+          id: 'react-frontend',
+          title: 'React Frontend Zero to Hero',
+          path: '../Others/react-frontend-zero-to-hero.md',
+          category: 'others',
+          readTime: 100,
+          description: 'Modern React development'
+        },
+        {
+          id: 'redis-caching',
+          title: 'Redis & Caching Zero to Hero',
+          path: '../Others/redis-caching-zero-to-hero.md',
+          category: 'others',
+          readTime: 65,
+          description: 'In-memory data store and caching'
+        },
+        {
+          id: 'rest-api',
+          title: 'REST API Development Zero to Hero',
+          path: '../Others/rest-api-development-zero-to-hero.md',
+          category: 'others',
+          readTime: 85,
+          description: 'Build robust RESTful APIs'
+        },
+        {
+          id: 'security-practices',
+          title: 'Security Best Practices Zero to Hero',
+          path: '../Others/security-best-practices-zero-to-hero.md',
+          category: 'others',
+          readTime: 90,
+          description: 'Application security fundamentals'
+        },
+        {
+          id: 'sql-databases',
+          title: 'SQL Databases Zero to Hero',
+          path: '../Others/sql-databases-zero-to-hero.md',
+          category: 'others',
+          readTime: 95,
+          description: 'Relational database mastery'
+        },
+        {
+          id: 'testing-tdd',
+          title: 'Testing & TDD Zero to Hero',
+          path: '../Others/testing-tdd-zero-to-hero.md',
+          category: 'others',
+          readTime: 70,
+          description: 'Test-driven development practices'
+        }
+      ]
     }
   ]
 }
