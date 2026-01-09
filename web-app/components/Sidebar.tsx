@@ -10,7 +10,6 @@ interface SidebarProps {
   onSelectContent: (content: ContentItem) => void
   searchQuery: string
   isOpen: boolean
-  showAllSectionsHint?: boolean
 }
 
 export default function Sidebar({
@@ -19,7 +18,6 @@ export default function Sidebar({
   onSelectContent,
   searchQuery,
   isOpen,
-  showAllSectionsHint = false,
 }: SidebarProps) {
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(
     new Set([
@@ -136,27 +134,6 @@ export default function Sidebar({
           <nav className="space-y-1">
             {renderItems(contentStructure)}
           </nav>
-
-          {showAllSectionsHint && (
-            <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900 rounded-lg border border-blue-200 dark:border-blue-700">
-              <h3 className="font-semibold text-blue-900 dark:text-blue-100 mb-2 flex items-center gap-2">
-                <span>🔓</span>
-                <span>View All Sections</span>
-              </h3>
-              <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
-                Some sections are hidden by default. To view all content sections:
-              </p>
-              <button
-                onClick={() => {
-                  const currentUrl = window.location.href.split('?')[0]
-                  window.location.href = `${currentUrl}?all=true`
-                }}
-                className="w-full px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm font-medium transition-colors"
-              >
-                Show All Sections
-              </button>
-            </div>
-          )}
 
           <div className="mt-8 p-4 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900 dark:to-primary-800 rounded-lg">
             <h3 className="font-semibold text-primary-900 dark:text-primary-100 mb-2">
