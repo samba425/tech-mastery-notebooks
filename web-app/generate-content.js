@@ -12,6 +12,7 @@ function getContentStructure() {
     { id: 'python-code', title: '🐍 Python Code Examples', path: '../code-examples/python-mastery-guide.py' },
     { id: 'javascript-code', title: '⚡ JavaScript Code Examples', path: '../code-examples/javascript-mastery-guide.js' },
     { id: 'typescript-code', title: '📘 TypeScript Code Examples', path: '../code-examples/typescript-mastery-guide.ts' },
+    { id: 'dsa-zero-to-hero', title: '📊 DSA Zero to Hero', path: '../data-structures-algorithms-zero-to-hero.md' },
     { id: 'docker-guide', title: '🐳 Docker Zero to Hero', path: '../guides/Docker-Zero-to-Hero.md' },
     { id: 'kubernetes-guide', title: '☸️ Kubernetes Zero to Hero', path: '../guides/Kubernetes-Zero-to-Hero.md' },
     { id: 'terraform-guide', title: '🏗️ Terraform Zero to Hero', path: '../guides/Terraform-Zero-to-Hero.md' },

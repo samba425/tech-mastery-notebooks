@@ -85,6 +85,21 @@ export function getContentStructure(): any[] {
       ]
     },
     {
+      id: 'dsa',
+      title: '📊 Data Structures & Algorithms',
+      children: [
+        {
+          id: 'dsa-zero-to-hero',
+          title: 'DSA Zero to Hero',
+          path: '../data-structures-algorithms-zero-to-hero.md',
+          category: 'dsa',
+          badge: 'Essential',
+          readTime: 180,
+          description: 'Complete beginner to expert DSA guide with 7000+ lines'
+        }
+      ]
+    },
+    {
       id: 'ai-ml',
       title: '🤖 AI/ML & Data Science',
       children: [
