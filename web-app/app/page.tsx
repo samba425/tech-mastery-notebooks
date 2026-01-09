@@ -1,28 +1,51 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Sidebar from '@/components/Sidebar'
 import Header from '@/components/Header'
 import ContentViewer from '@/components/ContentViewer'
 import { getContentStructure, type ContentItem } from '@/lib/contentLoader'
 
-export default function Home() {
+function HomeContent() {
   const [selectedContent, setSelectedContent] = useState<ContentItem | null>(null)
   const [contentStructure, setContentStructure] = useState<any[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [loading, setLoading] = useState(false)
+  const searchParams = useSearchParams()
+
+  // IDs to hide by default (shown only when ?all=true or /all is in URL)
+  const HIDDEN_SECTION_IDS = [
+    'devops',
+    'infrastructure-notebooks', 
+    'system-design',
+    'programming-challenges',
+    'career',
+    'teaching',
+    'extras'
+  ]
 
   useEffect(() => {
     const structure = getContentStructure()
-    setContentStructure(structure)
+    
+    // Check if 'all' parameter is present in URL or pathname contains 'all'
+    const showAll = searchParams.get('all') === 'true' || 
+                    (typeof window !== 'undefined' && window.location.pathname.includes('/all'))
+    
+    // Filter content structure based on showAll flag
+    const filteredStructure = showAll 
+      ? structure 
+      : structure.filter(item => !HIDDEN_SECTION_IDS.includes(item.id))
+    
+    setContentStructure(filteredStructure)
     
     // Set default content to README
-    const readme = structure.find((item: any) => item.id === 'readme')
+    const readme = filteredStructure.find((item: any) => item.id === 'readme')
     if (readme) {
       loadContent(readme)
     }
-  }, [])
+  }, [searchParams])
 
   const loadContent = async (item: ContentItem) => {
     if (!item.path) {
@@ -101,6 +124,10 @@ export default function Home() {
   }
 
   const navigation = getNavigation()
+  
+  // Check if showing filtered content
+  const showAll = searchParams.get('all') === 'true' || 
+                  (typeof window !== 'undefined' && window.location.pathname.includes('/all'))
 
   return (
     <div className="flex flex-col h-screen bg-gray-50 dark:bg-slate-900">
@@ -116,6 +143,7 @@ export default function Home() {
           onSelectContent={handleContentSelect}
           searchQuery={searchQuery}
           isOpen={sidebarOpen}
+          showAllSectionsHint={!showAll}
         />
         
         <main className="flex-1 overflow-auto scroll-smooth">
@@ -129,5 +157,20 @@ export default function Home() {
         </main>
       </div>
     </div>
+  )
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center h-screen bg-gray-50 dark:bg-slate-900">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-400">Loading...</p>
+        </div>
+      </div>
+    }>
+      <HomeContent />
+    </Suspense>
   )
 }

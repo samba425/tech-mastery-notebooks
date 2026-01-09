@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeSlug from 'rehype-slug'
+import remarkCustomHeadingId from '@/lib/remark-custom-heading-id'
 import type { ContentItem } from '@/lib/contentLoader'
 import { Book, Clock, Tag } from 'lucide-react'
 import 'highlight.js/styles/github-dark.css'
@@ -81,7 +82,7 @@ export default function ContentViewer({ content, loading, onNavigate, prevConten
       {/* Markdown content */}
       <div className="markdown-content">
         <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
+          remarkPlugins={[remarkGfm, remarkCustomHeadingId]}
           rehypePlugins={[rehypeSlug, rehypeHighlight]}
           components={{
             // Make anchor links work with smooth scrolling
