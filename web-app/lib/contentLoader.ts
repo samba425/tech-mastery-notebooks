@@ -91,7 +91,7 @@ export function getContentStructure(): any[] {
         {
           id: 'dsa-zero-to-hero',
           title: 'DSA Zero to Hero',
-          path: '../data-structures-algorithms-zero-to-hero.md',
+          path: '../Others/data-structures-algorithms-zero-to-hero.md',
           category: 'dsa',
           badge: 'Essential',
           readTime: 180,
@@ -366,7 +366,7 @@ export function getContentStructure(): any[] {
         {
           id: 'fullstack-notes',
           title: 'Full Stack Developer Training',
-          path: '../Full_Stack_Developer_Training_Notes.md',
+          path: '../Others/Full_Stack_Developer_Training_Notes.md',
           category: 'career',
           readTime: 60,
           description: 'Complete full stack development path'
