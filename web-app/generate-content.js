@@ -65,6 +65,11 @@ function getContentStructure() {
     { id: 'security-practices', title: '🔒 Security Best Practices Zero to Hero', path: '../Others/security-best-practices-zero-to-hero.md' },
     { id: 'sql-databases', title: '💾 SQL Databases Zero to Hero', path: '../Others/sql-databases-zero-to-hero.md' },
     { id: 'testing-tdd', title: '🧪 Testing & TDD Zero to Hero', path: '../Others/testing-tdd-zero-to-hero.md' },
+    { id: 'nodejs-express', title: '🟢 Node.js & Express Zero to Hero', path: '../Others/nodejs-express-zero-to-hero.md' },
+    { id: 'mongodb', title: '🍃 MongoDB Zero to Hero', path: '../Others/mongodb-zero-to-hero.md' },
+    { id: 'microservices', title: '🔧 Microservices Architecture Complete Guide', path: '../Others/microservices-complete-guide.md' },
+    { id: 'nextjs', title: '▲ Next.js Zero to Hero', path: '../Others/nextjs-zero-to-hero.md' },
+    { id: 'azure-cloud', title: '☁️ Azure Cloud Zero to Hero', path: '../Others/azure-cloud-zero-to-hero.md' },
   ];
 }
 

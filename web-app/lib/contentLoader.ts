@@ -578,6 +578,51 @@ export function getContentStructure(): any[] {
           category: 'others',
           readTime: 70,
           description: 'Test-driven development practices'
+        },
+        {
+          id: 'nodejs-express',
+          title: 'Node.js & Express Zero to Hero',
+          path: '../Others/nodejs-express-zero-to-hero.md',
+          category: 'others',
+          readTime: 100,
+          badge: 'New',
+          description: 'Backend JavaScript development with Node.js and Express'
+        },
+        {
+          id: 'mongodb',
+          title: 'MongoDB Zero to Hero',
+          path: '../Others/mongodb-zero-to-hero.md',
+          category: 'others',
+          readTime: 90,
+          badge: 'New',
+          description: 'NoSQL database mastery - from basics to production'
+        },
+        {
+          id: 'microservices',
+          title: 'Microservices Architecture Complete Guide',
+          path: '../Others/microservices-complete-guide.md',
+          category: 'others',
+          readTime: 120,
+          badge: 'New',
+          description: 'Senior-level microservices patterns and best practices'
+        },
+        {
+          id: 'nextjs',
+          title: 'Next.js Zero to Hero',
+          path: '../Others/nextjs-zero-to-hero.md',
+          category: 'others',
+          readTime: 85,
+          badge: 'New',
+          description: 'Modern React framework for production applications'
+        },
+        {
+          id: 'azure-cloud',
+          title: 'Azure Cloud Zero to Hero',
+          path: '../Others/azure-cloud-zero-to-hero.md',
+          category: 'others',
+          readTime: 95,
+          badge: 'New',
+          description: 'Microsoft Azure cloud platform - enterprise alternative to AWS'
         }
       ]
     }
