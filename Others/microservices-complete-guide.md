@@ -520,7 +520,45 @@ const response = await fetch(`${userServiceUrl}/api/users/123`)
 
 ### Saga Pattern (Distributed Transactions)
 
-Handle transactions across multiple services using compensating transactions.
+**What is Saga Pattern?**
+
+Saga is a design pattern for managing distributed transactions across multiple microservices without using traditional two-phase commit. Each service performs a local transaction and publishes an event or message.
+
+**Why Use Saga?**
+
+- **No Distributed Locks**: Avoids the complexity and performance issues of 2PC (two-phase commit)
+- **High Availability**: Services remain independent, no blocking transactions
+- **Eventual Consistency**: Data becomes consistent over time, not immediately
+- **Fault Tolerance**: Built-in compensation for failures
+
+**How Saga Works:**
+
+1. **Forward Flow**: Each service completes its transaction and triggers the next
+2. **Compensation Flow**: If any step fails, execute compensating transactions to rollback previous steps
+
+**Two Implementation Approaches:**
+
+1. **Choreography**: Each service listens to events and knows what to do next (decentralized)
+2. **Orchestration**: Central coordinator tells each service what to do (centralized)
+
+**Saga Flow Example:**
+```
+[Create Order] → [Reserve Inventory] → [Process Payment] → [Confirm Order]
+       ↓                  ↓                    ✗               
+[Cancel Order] ← [Release Inventory] ← [Compensation Needed]
+```
+
+**When to Use Saga:**
+- Multi-step business processes across services
+- E-commerce order processing
+- Travel booking systems
+- Financial transactions
+- Any workflow requiring cross-service consistency
+
+**Challenges:**
+- Complex error handling and compensation logic
+- Eventual consistency (not immediate)
+- Debugging distributed workflows
 
 **Example: Order Processing Saga**
 
@@ -577,6 +615,47 @@ async function createOrder(userId, items) {
 
 ### Event Sourcing
 
+**What is Event Sourcing?**
+
+Event Sourcing stores all changes to application state as a sequence of events, rather than just storing the current state. The current state is derived by replaying all events.
+
+**Why Use Event Sourcing?**
+
+- **Complete Audit Trail**: Every change is recorded, perfect for compliance
+- **Time Travel**: Reconstruct state at any point in time
+- **Debugging**: Replay events to understand what happened
+- **Event-Driven Architecture**: Natural fit for microservices
+- **Flexibility**: Create new views/reports from historical events
+
+**How Event Sourcing Works:**
+
+1. **Command**: User action (e.g., "Create Order")
+2. **Event**: Result stored (e.g., "OrderCreated", "PaymentProcessed")
+3. **Event Store**: Append-only log of all events
+4. **Projection**: Current state built by replaying events
+
+**Event Sourcing Flow:**
+```
+Command → Validate → Create Event → Store Event → Update Projection
+                                         ↓
+                                    [Event Store]
+                                    - OrderCreated
+                                    - ItemAdded
+                                    - PaymentProcessed
+```
+
+**When to Use Event Sourcing:**
+- Banking and financial systems (audit requirements)
+- Collaborative applications (version control, undo/redo)
+- Complex business domains
+- Systems requiring complete history
+
+**Challenges:**
+- Event schema evolution
+- Storage costs (all events forever)
+- Complex querying (need projections)
+- Learning curve
+
 Store all changes as a sequence of events.
 
 ```javascript
@@ -611,6 +690,46 @@ function rebuildOrderState(events) {
 ```
 
 ### CQRS (Command Query Responsibility Segregation)
+
+**What is CQRS?**
+
+CQRS separates read and write operations into different models. Commands (writes) modify data, while Queries (reads) retrieve data from optimized read models.
+
+**Why Use CQRS?**
+
+- **Optimized Performance**: Write model normalized for consistency, read model denormalized for speed
+- **Scalability**: Scale reads and writes independently
+- **Flexibility**: Different databases for reads vs writes (polyglot persistence)
+- **Complex Domains**: Clearer separation of concerns
+
+**How CQRS Works:**
+
+1. **Command Side (Write)**: Handles create/update/delete operations
+2. **Event Publishing**: Commands publish events when data changes
+3. **Read Model Sync**: Event handlers update optimized read models
+4. **Query Side (Read)**: Serves read requests from denormalized data
+
+**When to Use CQRS:**
+- High read/write ratio (different scaling needs)
+- Complex business logic
+- Need for multiple read models (different views of same data)
+- Event-driven architectures
+
+**CQRS vs Traditional:**
+
+| Aspect | Traditional | CQRS |
+|--------|------------|------|
+| Model | Single unified model | Separate read/write models |
+| Database | One database | Can use different DBs |
+| Complexity | Simple | More complex |
+| Performance | Good for simple | Optimized for each operation |
+| Scaling | Uniform | Independent scaling |
+
+**Challenges:**
+- Increased complexity
+- Eventual consistency between read/write models
+- Event synchronization overhead
+- Not needed for simple CRUD apps
 
 Separate read and write operations.
 
@@ -940,7 +1059,44 @@ app.get('/health', async (req, res) => {
 
 ### 1. Circuit Breaker
 
-Prevent cascading failures by stopping requests to failing services.
+**What is Circuit Breaker?**
+
+Circuit Breaker is a resilience pattern that prevents your application from repeatedly trying to execute an operation that's likely to fail. It acts like an electrical circuit breaker, stopping the flow when things go wrong.
+
+**Why Use Circuit Breaker?**
+
+- **Prevent Cascading Failures**: Stop failures from spreading across services
+- **Fast Failures**: Return errors immediately instead of waiting for timeouts
+- **System Recovery**: Give failing services time to recover
+- **Resource Protection**: Prevent thread exhaustion from hanging calls
+
+**How Circuit Breaker Works:**
+
+**Three States:**
+
+1. **CLOSED** (Normal): Requests pass through, failures counted
+2. **OPEN** (Failed): Requests immediately rejected, no calls to service
+3. **HALF-OPEN** (Testing): After timeout, allow few test requests
+
+**State Transitions:**
+```
+CLOSED → (threshold failures) → OPEN
+OPEN → (timeout expires) → HALF-OPEN
+HALF-OPEN → (success) → CLOSED
+HALF-OPEN → (failure) → OPEN
+```
+
+**When to Use:**
+- Calling external APIs or services
+- Database connections
+- Network operations
+- Any remote call that can fail or timeout
+
+**Benefits:**
+- Improves system resilience
+- Better user experience (fast failures vs timeouts)
+- Allows graceful degradation
+- Monitors service health
 
 ```
 ┌──────────────────────────────────────┐
@@ -1595,6 +1751,221 @@ microservices/
 
 ---
 
+## 🕸️ Service Mesh {#servicemesh}
+
+**What is a Service Mesh?**
+
+A service mesh is an infrastructure layer that handles service-to-service communication, providing features like traffic management, security, and observability without changing application code.
+
+**Why Use Service Mesh?**
+
+- **Traffic Control**: Advanced routing, load balancing, retries
+- **Security**: Mutual TLS (mTLS) for all service communication
+- **Observability**: Automatic metrics, logs, traces
+- **Policy Enforcement**: Rate limiting, access control
+- **No Code Changes**: Features added via sidecar proxies
+
+**How Service Mesh Works:**
+
+Each service gets a "sidecar" proxy (usually Envoy). All traffic goes through these proxies, which enforce policies and collect metrics.
+
+```
+Service A ──▶ Sidecar Proxy ──▶ Network ──▶ Sidecar Proxy ──▶ Service B
+              (Envoy)                         (Envoy)
+```
+
+**Service Mesh Architecture:**
+
+```
+┌─────────────────────────────────────────┐
+│        Control Plane (Istio)            │
+│  - Configuration                        │
+│  - Service Discovery                    │
+│  - Certificate Management               │
+└────────────┬────────────────────────────┘
+             │
+    ┌────────┴────────┐
+    │                 │
+┌───▼────┐      ┌────▼─────┐
+│ Pod A  │      │  Pod B   │
+│┌──────┐│      │┌────────┐│
+││Service││      ││ Service││
+│└──────┘│      │└────────┘│
+│┌──────┐│      │┌────────┐│
+││ Envoy││◀────▶││  Envoy ││
+│└──────┘│      │└────────┘│
+└────────┘      └──────────┘
+Data Plane      Data Plane
+```
+
+**Popular Service Meshes:**
+
+| Service Mesh | Pros | Cons |
+|--------------|------|------|
+| **Istio** | Feature-rich, mature | Complex, heavy |
+| **Linkerd** | Lightweight, simple | Fewer features |
+| **Consul** | Multi-cloud, HashiCorp ecosystem | Learning curve |
+| **AWS App Mesh** | AWS-native | AWS only |
+
+**When to Use Service Mesh:**
+- Many microservices (10+)
+- Need advanced traffic management
+- Security requirements (mTLS)
+- Polyglot architecture (multiple languages)
+- Need observability without code changes
+
+**Istio Traffic Management**
+
+```yaml
+# Canary deployment with Istio
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: product-service
+spec:
+  hosts:
+  - product-service
+  http:
+  - route:
+    - destination:
+        host: product-service
+        subset: v1
+      weight: 90  # 90% to stable version
+    - destination:
+        host: product-service
+        subset: v2
+      weight: 10  # 10% to canary
+```
+
+**Service Mesh vs Library Approach:**
+
+| Feature | Service Mesh (Istio) | Library (Resilience4j) |
+|---------|----------------------|------------------------|
+| Implementation | Sidecar proxy | Application library |
+| Language | Any language | Language-specific |
+| Code Changes | None | Modify code |
+| Overhead | Higher (extra container) | Lower |
+| Features | Traffic, security, observability | Resilience patterns only |
+
+---
+
+## 🚀 Deployment Strategies {#deployment}
+
+**What are Deployment Strategies?**
+
+Deployment strategies are methods to release new versions of services while minimizing risk and downtime.
+
+### 1. Blue-Green Deployment
+
+**What it is:** Run two identical environments (Blue = current, Green = new). Switch traffic when ready.
+
+**Why use it:**
+- **Zero Downtime**: Instant cutover
+- **Easy Rollback**: Switch back to blue if issues
+- **Full Testing**: Test green in production environment
+
+**How it works:**
+
+```
+Step 1: Blue (v1) serves 100% traffic
+┌────────┐
+│ Blue   │ ◀──── 100% Traffic
+│  (v1)  │
+└────────┘
+┌────────┐
+│ Green  │       (Idle)
+│  (v2)  │
+└────────┘
+
+Step 2: Deploy to Green, test
+┌────────┐
+│ Blue   │ ◀──── 100% Traffic
+│  (v1)  │
+└────────┘
+┌────────┐
+│ Green  │       Testing
+│  (v2)  │ ◀──── Internal tests
+└────────┘
+
+Step 3: Switch traffic to Green
+┌────────┐
+│ Blue   │       (Standby)
+│  (v1)  │
+└────────┘
+┌────────┐
+│ Green  │ ◀──── 100% Traffic
+│  (v2)  │
+└────────┘
+```
+
+**Kubernetes Blue-Green**
+
+```yaml
+# Service (switch by changing selector)
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-service
+spec:
+  selector:
+    app: product-service
+    version: v1  # Change to v2 to switch
+  ports:
+  - port: 80
+    targetPort: 3000
+```
+
+### 2. Canary Deployment
+
+**What it is:** Gradually roll out to a small percentage of users, then increase if successful.
+
+**Why use it:**
+- **Risk Reduction**: Test with small user subset
+- **Performance Validation**: Monitor metrics on real traffic
+- **Easy Rollback**: Affect minimal users if issues
+- **A/B Testing**: Compare versions
+
+**How it works:**
+
+```
+Step 1: 95% v1, 5% v2 (Canary)
+┌────────┐
+│   v1   │ ◀──── 95% Traffic
+└────────┘
+┌────────┐
+│   v2   │ ◀──── 5% Traffic (Canary)
+└────────┘
+
+Step 2: If healthy, 50% v1, 50% v2
+┌────────┐
+│   v1   │ ◀──── 50% Traffic
+└────────┘
+┌────────┐
+│   v2   │ ◀──── 50% Traffic
+└────────┘
+
+Step 3: All traffic to v2
+┌────────┐
+│   v2   │ ◀──── 100% Traffic
+└────────┘
+```
+
+**Deployment Strategy Comparison:**
+
+| Strategy | Downtime | Risk | Complexity | Rollback Speed | Cost |
+|----------|----------|------|------------|----------------|------|
+| **Blue-Green** | None | Medium | Medium | Instant | High (2x resources) |
+| **Canary** | None | Low | High | Fast | Medium |
+| **Rolling** | None | Medium | Low | Slow | Low |
+
+**When to Use Each:**
+
+- **Blue-Green**: Critical services, need instant rollback
+- **Canary**: User-facing services, want gradual validation
+- **Rolling**: Internal services, cost-conscious
+
+---
+
 ## 🏆 Congratulations!
 
 You've completed the Microservices Architecture guide! You now know:
@@ -1602,16 +1973,22 @@ You've completed the Microservices Architecture guide! You now know:
 - ✅ Microservices patterns and principles
 - ✅ Service communication (sync & async)
 - ✅ API Gateway and service discovery
-- ✅ Data management strategies
-- ✅ Resilience and fault tolerance
-- ✅ Container orchestration
+- ✅ Data management strategies (Saga, Event Sourcing, CQRS)
+- ✅ Resilience patterns (Circuit Breaker, Retry, Timeout, Bulkhead)
+- ✅ Security (JWT, OAuth, mTLS)
+- ✅ Observability (Logging, Metrics, Tracing)
+- ✅ Service Mesh (Istio, traffic management, mTLS)
+- ✅ Deployment Strategies (Blue-Green, Canary, Rolling)
+- ✅ Container orchestration with Kubernetes
 - ✅ Testing microservices
-- ✅ Production deployment
+- ✅ Production best practices
 
 **Next Steps:**
-- Build a real microservices project
-- Learn Kubernetes in depth
-- Study event-driven architecture
-- Explore service mesh (Istio)
+- Build a real microservices project (e-commerce, booking system)
+- Master Kubernetes and Helm charts
+- Study event-driven architecture in depth
+- Implement full observability stack (ELK + Prometheus + Jaeger)
+- Explore serverless microservices (AWS Lambda, Cloud Functions)
 
 Happy coding! 🚀
+

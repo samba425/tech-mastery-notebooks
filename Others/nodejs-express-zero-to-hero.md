@@ -315,7 +315,28 @@ server.listen(3000, () => {
 
 ### 5. Streams (Efficient Data Processing)
 
-Streams allow you to process data piece by piece instead of loading everything into memory.
+**What are Streams?**
+
+Streams are objects that let you read data from a source or write data to a destination in a continuous manner. Instead of reading an entire file into memory, streams process data chunk by chunk.
+
+**Why Use Streams?**
+
+- **Memory Efficient**: Handle large files without consuming lots of RAM
+- **Time Efficient**: Start processing data before entire file is loaded
+- **Composable**: Chain multiple operations together using pipes
+
+**Types of Streams:**
+
+1. **Readable**: Read data from source (e.g., `fs.createReadStream`, HTTP requests)
+2. **Writable**: Write data to destination (e.g., `fs.createWriteStream`, HTTP responses)
+3. **Duplex**: Both readable and writable (e.g., TCP sockets)
+4. **Transform**: Modify data while reading/writing (e.g., compression, encryption)
+
+**When to Use Streams:**
+- Processing large files (logs, videos, databases)
+- Real-time data processing
+- Network communication (HTTP, WebSockets)
+- File uploads/downloads
 
 ```javascript
 const fs = require('fs')
@@ -386,7 +407,29 @@ pipeline(
 
 ### 6. Buffer (Binary Data)
 
-Buffers handle binary data (images, files, network data).
+**What is Buffer?**
+
+Buffer is a temporary storage area for binary data. Unlike strings (which handle text), Buffers work with raw binary data like images, videos, or network packets.
+
+**Why Use Buffers?**
+
+- JavaScript strings are designed for UTF-16 text, not binary data
+- Buffers provide efficient low-level memory operations
+- Essential for file I/O, network protocols, cryptography
+
+**How Buffers Work:**
+
+Buffers allocate raw memory outside V8's heap memory. This makes them:
+- Faster for binary operations
+- Fixed-size (can't be resized)
+- Not subject to garbage collection during allocation
+
+**When to Use Buffers:**
+- Reading/writing files
+- Network communication (TCP/UDP)
+- Image/video processing
+- Encryption/decryption
+- Working with binary protocols
 
 ```javascript
 // Create buffer
@@ -460,7 +503,41 @@ process.on('message', (msg) => {
 
 ### 8. Worker Threads (True Parallelism)
 
-Run CPU-intensive tasks in parallel without blocking the main thread.
+**What are Worker Threads?**
+
+Worker Threads enable true parallel JavaScript execution by creating separate V8 instances. Unlike the event loop (which is concurrent but not parallel), worker threads run code simultaneously on multiple CPU cores.
+
+**Why Use Worker Threads?**
+
+- **True Parallelism**: Multiple threads execute at the same time
+- **CPU-Intensive Tasks**: Handle heavy computations without blocking
+- **Shared Memory**: Can share data via SharedArrayBuffer (faster than IPC)
+- **Better than Child Processes**: Lighter weight, faster communication
+
+**How Worker Threads Work:**
+
+Each worker thread has:
+- Own V8 instance and event loop
+- Separate memory space (isolated)
+- Message-based communication with main thread
+- Ability to share memory via SharedArrayBuffer
+
+**Worker Threads vs Child Processes:**
+
+| Feature | Worker Threads | Child Processes |
+|---------|---------------|----------------|
+| Memory | Shared (can use SharedArrayBuffer) | Separate |
+| Startup Time | Fast (~2ms) | Slower (~30ms) |
+| Communication | `postMessage()` | IPC / Streams |
+| Use Case | CPU-intensive JS | External programs, isolation |
+| Overhead | Lightweight | Heavier |
+
+**When to Use Worker Threads:**
+- Image/video processing
+- Data encryption/hashing
+- Complex calculations (ML, simulations)
+- Parallel array processing
+- Tasks taking >50ms on main thread
 
 ```javascript
 const { Worker, isMainThread, parentPort, workerData } = require('worker_threads')
@@ -565,6 +642,51 @@ async function processTasks() {
 ```
 
 ### 9. Cluster Module (Multi-Process Scaling)
+
+**What is Cluster Module?**
+
+The Cluster module allows you to create multiple Node.js processes (workers) that share the same server port. This enables horizontal scaling on multi-core systems.
+
+**Why Use Cluster Module?**
+
+- **Full CPU Utilization**: Node.js is single-threaded; clustering uses all cores
+- **High Availability**: If one worker crashes, others continue serving requests
+- **Load Distribution**: Master process distributes connections across workers
+- **Zero-Downtime Restarts**: Restart workers one at a time
+
+**How Clustering Works:**
+
+1. **Master Process**: Manages worker processes, distributes incoming connections
+2. **Worker Processes**: Handle actual requests, each has own event loop
+3. **Load Balancing**: Master uses round-robin (default on most OS) to distribute load
+4. **IPC Communication**: Workers can communicate via master process
+
+**Cluster Architecture:**
+
+```
+                    [Master Process]
+                          |
+        +-----------------+-----------------+
+        |                 |                 |
+    [Worker 1]        [Worker 2]       [Worker 3]
+      Port 3000        Port 3000         Port 3000
+```
+
+**When to Use Cluster Module:**
+- Production web servers
+- High-traffic APIs
+- Applications needing high availability
+- When you need process-level isolation (crash recovery)
+
+**Cluster vs Worker Threads vs Child Processes:**
+
+| Feature | Cluster | Worker Threads | Child Processes |
+|---------|---------|---------------|----------------|
+| Purpose | HTTP load balancing | CPU-intensive tasks | System commands |
+| Shares Port | ✅ Yes | ❌ No | ❌ No |
+| Memory | Separate | Shared option | Separate |
+| Communication | IPC | postMessage | IPC/Streams |
+| Use Case | Web servers | Parallel computing | Shell integration |
 
 ```javascript
 const cluster = require('cluster')
@@ -1600,6 +1722,227 @@ const { protect, authorize } = require('../middleware/auth');
 router.get('/profile', protect, getUserProfile);
 router.delete('/:id', protect, authorize('admin'), deleteUser);
 ```
+
+---
+
+## 🎨 GraphQL Basics {#graphql}
+
+**What is GraphQL?**
+
+GraphQL is a query language for APIs that allows clients to request exactly the data they need. Unlike REST where you get fixed data structures, GraphQL lets clients specify the exact fields they want.
+
+**Why Use GraphQL?**
+
+- **No Over-fetching**: Get only what you need
+- **No Under-fetching**: Get all data in one request (no multiple REST calls)
+- **Strongly Typed**: Schema defines all types and operations
+- **Self-Documenting**: Schema serves as documentation
+- **Real-time with Subscriptions**: WebSocket-based real-time updates
+
+**GraphQL vs REST:**
+
+| Feature | REST | GraphQL |
+|---------|------|---------|
+| Endpoints | Multiple (/users, /posts, /comments) | Single (/graphql) |
+| Data Fetching | Fixed response structure | Client specifies fields |
+| Over-fetching | Common (get all fields) | None (request what you need) |
+| Under-fetching | Multiple requests needed | Single request |
+| Versioning | URL versioning (/v1/, /v2/) | Schema evolution |
+
+**When to Use GraphQL:**
+- Mobile apps (minimize data transfer)
+- Complex data requirements
+- Rapid frontend development
+- Real-time features needed
+- Multiple clients with different data needs
+
+**Setup with Express**
+
+```bash
+npm install apollo-server-express graphql
+```
+
+**Basic GraphQL Server**
+
+```javascript
+const { ApolloServer, gql } = require('apollo-server-express')
+const express = require('express')
+
+// Type definitions (schema)
+const typeDefs = gql`
+  type User {
+    id: ID!
+    name: String!
+    email: String!
+    posts: [Post!]!
+  }
+  
+  type Post {
+    id: ID!
+    title: String!
+    content: String!
+    author: User!
+  }
+  
+  type Query {
+    users: [User!]!
+    user(id: ID!): User
+    posts: [Post!]!
+  }
+  
+  type Mutation {
+    createUser(name: String!, email: String!): User!
+    createPost(title: String!, content: String!, authorId: ID!): Post!
+  }
+`
+
+// Resolvers (how to fetch data)
+const resolvers = {
+  Query: {
+    users: async () => await User.find(),
+    user: async (_, { id }) => await User.findById(id),
+    posts: async () => await Post.find()
+  },
+  
+  Mutation: {
+    createUser: async (_, { name, email }) => {
+      const user = new User({ name, email })
+      await user.save()
+      return user
+    },
+    createPost: async (_, { title, content, authorId }) => {
+      const post = new Post({ title, content, author: authorId })
+      await post.save()
+      return post
+    }
+  },
+  
+  // Nested resolvers
+  User: {
+    posts: async (parent) => await Post.find({ author: parent.id })
+  },
+  Post: {
+    author: async (parent) => await User.findById(parent.author)
+  }
+}
+
+// Create Apollo Server
+const server = new ApolloServer({ typeDefs, resolvers })
+
+const app = express()
+await server.start()
+server.applyMiddleware({ app })
+
+app.listen(4000, () => {
+  console.log(`Server ready at http://localhost:4000${server.graphqlPath}`)
+})
+```
+
+**Example Queries**
+
+```graphql
+# Get specific user fields
+query {
+  user(id: "123") {
+    name
+    email
+    posts {
+      title
+    }
+  }
+}
+
+# Create user
+mutation {
+  createUser(name: "John Doe", email: "john@example.com") {
+    id
+    name
+  }
+}
+```
+
+---
+
+## 🔄 API Versioning {#versioning}
+
+**What is API Versioning?**
+
+API versioning allows you to make breaking changes while maintaining backward compatibility with existing clients.
+
+**Why Version APIs?**
+
+- **Breaking Changes**: Modify data structures without breaking existing apps
+- **Gradual Migration**: Clients update at their own pace
+- **Deprecation**: Sunset old versions gracefully
+- **Multiple Client Versions**: Support old mobile apps while updating backend
+
+**Versioning Strategies:**
+
+### 1. URL Path Versioning (Most Common)
+
+**Pros**: Clear, easy to understand, cacheable
+**Cons**: URL pollution, harder to maintain
+
+```javascript
+// V1 API
+app.get('/api/v1/users', (req, res) => {
+  res.json({ users: [...] })
+})
+
+// V2 API (new structure)
+app.get('/api/v2/users', (req, res) => {
+  res.json({
+    data: { users: [...] },
+    meta: { total: 100, page: 1 }
+  })
+})
+```
+
+### 2. Query Parameter Versioning
+
+**Pros**: Clean URLs
+**Cons**: Harder to route, not cacheable
+
+```javascript
+app.get('/api/users', (req, res) => {
+  const version = req.query.version || 'v1'
+  
+  if (version === 'v2') {
+    res.json({ data: { users: [...] }, meta: {} })
+  } else {
+    res.json({ users: [...] })
+  }
+})
+
+// Usage: GET /api/users?version=v2
+```
+
+### 3. Header Versioning
+
+**Pros**: Clean URLs, RESTful
+**Cons**: Not visible in URL, harder to test
+
+```javascript
+app.get('/api/users', (req, res) => {
+  const version = req.header('API-Version') || 'v1'
+  
+  if (version === 'v2') {
+    res.json({ data: { users: [...] }, meta: {} })
+  } else {
+    res.json({ users: [...] })
+  }
+})
+
+// Usage: GET /api/users
+// Header: API-Version: v2
+```
+
+**Best Practices:**
+- Use semantic versioning (v1, v2, not v1.1)
+- Document deprecation timelines
+- Monitor version usage
+- Provide migration guides
+- Default to latest stable version
 
 ---
 

@@ -860,12 +860,41 @@ db.createCollection("users", {
 
 ### What is Aggregation?
 
-Aggregation is a pipeline of stages that process documents.
+Aggregation is a powerful way to process and analyze data by passing documents through a multi-stage pipeline. Each stage transforms the documents and passes the result to the next stage.
+
+**Why Use Aggregation?**
+
+- **Data Analysis**: Calculate statistics, averages, totals, counts
+- **Data Transformation**: Reshape documents, add computed fields
+- **Complex Queries**: Join collections ($lookup), group data, filter results
+- **Performance**: Server-side processing faster than client-side for large datasets
+
+**How Aggregation Works:**
+
+Documents flow through stages like a factory assembly line. Each stage performs an operation:
 
 ```
-Documents ──▶ Stage 1 ──▶ Stage 2 ──▶ Stage 3 ──▶ Result
-              $match      $group      $sort
+Input Documents ──▶ [$match] ──▶ [$group] ──▶ [$sort] ──▶ [$project] ──▶ Output
+                    Filter      Aggregate     Order      Shape
 ```
+
+**Common Use Cases:**
+- Sales reports and revenue analytics
+- User behavior analysis
+- Real-time dashboards
+- Data aggregation for charts
+- ETL (Extract, Transform, Load) operations
+
+**Aggregation vs Find:**
+
+| Feature | find() | aggregate() |
+|---------|--------|-------------|
+| Purpose | Simple queries | Complex data processing |
+| Joins | ❌ No | ✅ Yes ($lookup) |
+| Grouping | ❌ No | ✅ Yes ($group) |
+| Calculations | Limited | Extensive operators |
+| Transformations | No reshaping | ✅ $project, $addFields |
+| Performance | Fast for simple | Better for analytics |
 
 ### Basic Aggregation
 
@@ -886,6 +915,13 @@ db.orders.aggregate([
 
 **$match - Filter Documents**
 
+**What it does**: Filters documents (like `find()`). Should be placed early in pipeline for better performance.
+
+**When to use**: 
+- Reduce documents before processing
+- Filter by date range, status, or any field
+- Always use early to minimize data in pipeline
+
 ```javascript
 db.orders.aggregate([
   {
@@ -898,6 +934,22 @@ db.orders.aggregate([
 ```
 
 **$group - Group Documents**
+
+**What it does**: Groups documents by a specified field and performs aggregate calculations on grouped data.
+
+**Common Accumulators:**
+- `$sum`: Calculate totals or count documents (`{ $sum: 1 }` for count)
+- `$avg`: Calculate average of numeric values
+- `$min` / `$max`: Find minimum/maximum values
+- `$push`: Create array of all values from grouped docs
+- `$addToSet`: Create array of unique values
+- `$first` / `$last`: Get first/last document value
+
+**When to use**:
+- Calculate totals (revenue, orders)
+- Count occurrences (users per country)
+- Find statistics (min, max, average prices)
+- Create arrays of related data
 
 ```javascript
 // Count documents by category
@@ -921,6 +973,21 @@ db.products.aggregate([
 ```
 
 **$project - Shape Output**
+
+**What it does**: Reshapes documents by including, excluding, or computing fields. Like SQL's SELECT.
+
+**Use Cases:**
+- Include/exclude specific fields (reduce data size)
+- Rename fields
+- Compute new fields with expressions
+- Extract nested field values
+- Format dates, strings, numbers
+
+**When to use**:
+- Clean up response structure
+- Add calculated fields (fullName = firstName + lastName)
+- Convert data types or formats
+- Reduce bandwidth (exclude large fields)
 
 ```javascript
 db.users.aggregate([
@@ -960,6 +1027,24 @@ db.users.aggregate([
 ```
 
 **$lookup - Join Collections**
+
+**What it does**: Performs a left outer join with another collection, similar to SQL JOIN.
+
+**How it works**:
+1. Matches `localField` from current collection
+2. With `foreignField` from target collection
+3. Returns matching documents in an array field
+
+**When to use**:
+- Get related data from another collection
+- Denormalize data for reads
+- Combine user orders with user profiles
+- Join products with categories
+
+**Performance Tips**:
+- Index `foreignField` for faster joins
+- Use `$match` before `$lookup` to reduce documents
+- Consider embedding data if frequently accessed together
 
 ```javascript
 // Left outer join
@@ -1595,6 +1680,379 @@ mongorestore --db myDatabase --collection users /backup/myDatabase/users.bson
 - Use role-based access control
 - Encrypt sensitive data
 - Regular backups
+
+---
+
+## 🔄 Change Streams (Real-time Data) {#changestreams}
+
+**What are Change Streams?**
+
+Change Streams allow applications to listen to real-time changes in MongoDB collections, databases, or entire deployments. They provide a stream of change events that occur in your database.
+
+**Why Use Change Streams?**
+
+- **Real-time Updates**: Instantly notify users of data changes
+- **Event-Driven Architecture**: Trigger actions based on database changes
+- **Data Synchronization**: Keep multiple systems in sync
+- **Audit Logging**: Track all changes for compliance
+- **No Polling**: More efficient than constantly querying database
+
+**How Change Streams Work:**
+
+1. Open a stream on a collection/database
+2. MongoDB tracks changes using the oplog (operation log)
+3. Your application receives change events
+4. Process events in real-time
+
+**When to Use Change Streams:**
+- Live dashboards and analytics
+- Collaborative applications (Google Docs style)
+- Real-time notifications
+- Data synchronization across services
+- Invalidating caches when data changes
+
+**Change Stream Types:**
+
+| Type | Scope | Use Case |
+|------|-------|----------|
+| Collection | Single collection | Product updates |
+| Database | All collections in DB | User activity tracking |
+| Deployment | All databases | Global audit log |
+
+**Basic Change Stream**
+
+```javascript
+const { MongoClient } = require('mongodb')
+
+// Watch collection for changes
+const collection = db.collection('products')
+const changeStream = collection.watch()
+
+changeStream.on('change', (change) => {
+  console.log('Change detected:', change)
+  
+  // Types of changes: insert, update, replace, delete
+  if (change.operationType === 'insert') {
+    console.log('New document:', change.fullDocument)
+  }
+  
+  if (change.operationType === 'update') {
+    console.log('Updated fields:', change.updateDescription.updatedFields)
+  }
+  
+  if (change.operationType === 'delete') {
+    console.log('Deleted document ID:', change.documentKey._id)
+  }
+})
+```
+
+**Filter Change Events**
+
+```javascript
+// Only watch specific operations
+const pipeline = [
+  { $match: { operationType: 'insert' } },
+  { $match: { 'fullDocument.price': { $gte: 1000 } } }
+]
+
+const changeStream = collection.watch(pipeline)
+changeStream.on('change', (change) => {
+  console.log('Expensive product added:', change.fullDocument)
+})
+```
+
+**Mongoose Change Streams**
+
+```javascript
+const Product = mongoose.model('Product', productSchema)
+
+// Watch for changes
+Product.watch().on('change', (change) => {
+  console.log('Product changed:', change)
+  
+  // Emit to WebSocket clients
+  io.emit('productUpdate', change.fullDocument)
+})
+```
+
+**Real-time Notifications Example**
+
+```javascript
+// Server-side: Listen to orders
+const Order = mongoose.model('Order', orderSchema)
+
+Order.watch([
+  { $match: { operationType: 'insert' } }
+]).on('change', async (change) => {
+  const newOrder = change.fullDocument
+  
+  // Send email notification
+  await sendEmail(newOrder.customerEmail, 'Order Confirmed')
+  
+  // Update analytics
+  await Analytics.increment('totalOrders', 1)
+  
+  // Broadcast to admin dashboard
+  io.to('admins').emit('newOrder', newOrder)
+})
+```
+
+---
+
+## 🔍 Text Search {#textsearch}
+
+**What is Text Search?**
+
+MongoDB's text search allows you to search string content using text indexes. It supports stemming, stop words, and relevance scoring.
+
+**Why Use Text Search?**
+
+- **User Search**: Search products, articles, documents
+- **Full-text Queries**: Match words, phrases, negations
+- **Language Support**: 15+ languages with stemming
+- **Relevance Scoring**: Rank results by relevance
+- **Performance**: Optimized text indexes
+
+**How Text Search Works:**
+
+1. Create text index on string fields
+2. MongoDB tokenizes and stems words
+3. Removes stop words (the, a, an, etc.)
+4. Stores in inverted index structure
+5. Searches match tokens, not exact strings
+
+**Create Text Index**
+
+```javascript
+// Single field
+db.articles.createIndex({ title: "text" })
+
+// Multiple fields
+db.products.createIndex({
+  name: "text",
+  description: "text",
+  tags: "text"
+})
+
+// With weights (importance)
+db.products.createIndex(
+  {
+    name: "text",
+    description: "text"
+  },
+  {
+    weights: {
+      name: 10,        // Name is 10x more important
+      description: 5
+    }
+  }
+)
+```
+
+**Basic Text Search**
+
+```javascript
+// Search for "laptop"
+db.products.find({ $text: { $search: "laptop" } })
+
+// Search for phrase
+db.products.find({ $text: { $search: "\"gaming laptop\"" } })
+
+// Search multiple words (OR)
+db.products.find({ $text: { $search: "laptop desktop tablet" } })
+
+// Exclude words (negation)
+db.products.find({ $text: { $search: "laptop -gaming" } })
+```
+
+**Text Search with Score**
+
+```javascript
+// Get relevance score
+db.products.find(
+  { $text: { $search: "laptop gaming" } },
+  { score: { $meta: "textScore" } }
+).sort({ score: { $meta: "textScore" } })
+
+// Results sorted by relevance
+```
+
+**Mongoose Text Search**
+
+```javascript
+const articleSchema = new Schema({
+  title: String,
+  content: String,
+  tags: [String]
+})
+
+// Create text index
+articleSchema.index({ title: 'text', content: 'text', tags: 'text' })
+
+const Article = mongoose.model('Article', articleSchema)
+
+// Search
+const results = await Article.find(
+  { $text: { $search: "mongodb tutorial" } },
+  { score: { $meta: "textScore" } }
+).sort({ score: { $meta: "textScore" } })
+.limit(10)
+```
+
+**Language-Specific Search**
+
+```javascript
+// Create index with language
+db.articles.createIndex(
+  { content: "text" },
+  { default_language: "spanish" }
+)
+
+// Search in specific language
+db.articles.find(
+  { $text: { $search: "búsqueda", $language: "spanish" } }
+)
+```
+
+**Limitations:**
+- Only one text index per collection
+- Cannot combine with other index types
+- Case-insensitive by default
+- For complex search, consider Elasticsearch
+
+---
+
+## 📦 GridFS (Large Files) {#gridfs}
+
+**What is GridFS?**
+
+GridFS is a specification for storing and retrieving files larger than 16MB (BSON document size limit). It splits files into chunks and stores them in two collections.
+
+**Why Use GridFS?**
+
+- **Large Files**: Store files bigger than 16MB
+- **Streaming**: Stream file data (don't load entire file in memory)
+- **Metadata**: Store file metadata with the file
+- **Range Queries**: Serve partial file content
+- **Replication**: Files replicated like any MongoDB data
+
+**How GridFS Works:**
+
+1. **fs.files**: Stores file metadata (filename, size, upload date)
+2. **fs.chunks**: Stores file data in 255KB chunks
+3. Files split automatically when uploaded
+4. Reassembled automatically when downloaded
+
+**When to Use GridFS:**
+- Files > 16MB (videos, backups, large images)
+- Need atomic operations on files + metadata
+- Want files to be replicated with MongoDB
+- Need to access file chunks individually
+
+**When NOT to Use GridFS:**
+- Small files < 16MB (use regular documents with Binary data)
+- High-performance file serving (use CDN/S3 instead)
+- Need file system features (permissions, links)
+
+**GridFS with Node.js**
+
+```javascript
+const { MongoClient, GridFSBucket } = require('mongodb')
+const fs = require('fs')
+
+const client = await MongoClient.connect('mongodb://localhost:27017')
+const db = client.db('mydb')
+
+// Create GridFS bucket
+const bucket = new GridFSBucket(db, {
+  bucketName: 'files'  // Creates files.files and files.chunks
+})
+
+// Upload file
+const uploadStream = bucket.openUploadStream('video.mp4', {
+  metadata: { 
+    uploadedBy: 'user123',
+    type: 'video',
+    size: 52428800
+  }
+})
+
+fs.createReadStream('./video.mp4')
+  .pipe(uploadStream)
+  .on('finish', () => {
+    console.log('Upload complete')
+  })
+
+// Download file
+const downloadStream = bucket.openDownloadStreamByName('video.mp4')
+downloadStream.pipe(fs.createWriteStream('./downloaded-video.mp4'))
+
+// Find files
+const files = await bucket.find({ 
+  'metadata.type': 'video' 
+}).toArray()
+
+// Delete file
+await bucket.delete(fileId)
+```
+
+**GridFS with Multer (Express)**
+
+```javascript
+const multer = require('multer')
+const { GridFsStorage } = require('multer-gridfs-storage')
+
+// Create storage engine
+const storage = new GridFsStorage({
+  url: 'mongodb://localhost:27017/mydb',
+  file: (req, file) => {
+    return {
+      filename: Date.now() + '-' + file.originalname,
+      bucketName: 'uploads',
+      metadata: {
+        uploadedBy: req.user.id,
+        originalName: file.originalname
+      }
+    }
+  }
+})
+
+const upload = multer({ storage })
+
+// Upload endpoint
+app.post('/upload', upload.single('file'), (req, res) => {
+  res.json({ 
+    file: req.file,
+    message: 'File uploaded successfully'
+  })
+})
+
+// Download endpoint
+app.get('/files/:filename', async (req, res) => {
+  const bucket = new GridFSBucket(db, { bucketName: 'uploads' })
+  
+  const files = await bucket.find({ 
+    filename: req.params.filename 
+  }).toArray()
+  
+  if (files.length === 0) {
+    return res.status(404).json({ error: 'File not found' })
+  }
+  
+  // Stream file to response
+  bucket.openDownloadStreamByName(req.params.filename).pipe(res)
+})
+```
+
+**GridFS vs Regular Storage:**
+
+| Feature | GridFS | File System | Cloud Storage (S3) |
+|---------|--------|-------------|-------------------|
+| Max Size | Unlimited | Unlimited | 5 TB per file |
+| Performance | Good | Excellent | Excellent |
+| Replication | Automatic | Manual | Automatic |
+| Cost | Storage cost | Included | Storage + transfer |
+| Use Case | MongoDB-centric apps | High performance | Scalable, global |
 
 ---
 
