@@ -2112,6 +2112,543 @@ const postSchema = new Schema({
 
 ---
 
+## ⚡ Performance Optimization Advanced {#performance-advanced}
+
+### 1. Query Performance Analysis
+
+```javascript
+// Explain query execution
+const explanation = await db.users.find({ age: { $gte: 25 } })
+  .explain('executionStats')
+
+console.log('Execution time:', explanation.executionStats.executionTimeMillis, 'ms')
+console.log('Documents examined:', explanation.executionStats.totalDocsExamined)
+console.log('Documents returned:', explanation.executionStats.nReturned)
+console.log('Index used:', explanation.executionStats.executionStages.indexName)
+
+// Good query: Uses index
+// IXSCAN (Index Scan) - Fast ✅
+// Bad query: Full collection scan
+// COLLSCAN (Collection Scan) - Slow ❌
+```
+
+### 2. Covered Queries (Index-Only Queries)
+
+**What are Covered Queries?**
+
+Covered queries can be answered using ONLY the index without touching documents, making them extremely fast.
+
+```javascript
+// Create compound index
+db.users.createIndex({ age: 1, name: 1, email: 1 })
+
+// Covered query - only uses index
+db.users.find(
+  { age: { $gte: 25 } },
+  { _id: 0, age: 1, name: 1, email: 1 }  // Only indexed fields
+).explain('executionStats')
+
+// Result: totalDocsExamined = 0 (no documents read!)
+```
+
+### 3. Index Intersection
+
+```javascript
+// MongoDB can use multiple indexes
+db.users.createIndex({ age: 1 })
+db.users.createIndex({ city: 1 })
+
+// This query uses BOTH indexes
+db.users.find({
+  age: { $gte: 25 },
+  city: 'New York'
+})
+```
+
+### 4. Avoid These Performance Killers
+
+```javascript
+// ❌ BAD: $where operator (executes JavaScript)
+db.users.find({
+  $where: function() {
+    return this.age > 25
+  }
+})
+
+// ✅ GOOD: Use query operators
+db.users.find({ age: { $gt: 25 } })
+
+// ❌ BAD: Negation without index
+db.users.find({ status: { $ne: 'active' } })  // Slow
+
+// ✅ GOOD: Use positive condition with index
+db.users.createIndex({ status: 1 })
+db.users.find({ status: 'active' })
+
+// ❌ BAD: Sort without index
+db.users.find().sort({ createdAt: -1 })  // In-memory sort
+
+// ✅ GOOD: Index on sort field
+db.users.createIndex({ createdAt: -1 })
+db.users.find().sort({ createdAt: -1 })  // Index sort
+```
+
+### 5. Connection Pooling
+
+```javascript
+const mongoose = require('mongoose')
+
+mongoose.connect(process.env.MONGODB_URI, {
+  // Connection pool settings
+  maxPoolSize: 50,  // Max connections
+  minPoolSize: 10,  // Min connections always open
+  socketTimeoutMS: 45000,
+  serverSelectionTimeoutMS: 5000,
+  
+  // Retry logic
+  retryWrites: true,
+  retryReads: true
+})
+
+// Monitor pool
+mongoose.connection.on('connected', () => {
+  console.log('MongoDB connected')
+})
+
+mongoose.connection.on('disconnected', () => {
+  console.log('MongoDB disconnected')
+})
+
+mongoose.connection.on('error', (err) => {
+  console.error('MongoDB error:', err)
+})
+```
+
+### 6. Bulk Operations (Much Faster)
+
+```javascript
+// ❌ BAD: Multiple individual inserts
+for (const user of users) {
+  await User.create(user)  // N database calls
+}
+
+// ✅ GOOD: Bulk insert
+await User.insertMany(users)  // 1 database call
+
+// Bulk updates
+const bulk = db.users.initializeUnorderedBulkOp()
+
+users.forEach(user => {
+  bulk.find({ _id: user._id }).update({ $set: { status: 'active' } })
+})
+
+await bulk.execute()  // Executes all at once
+```
+
+---
+
+## 🔐 Security Best Practices {#security-best}
+
+### 1. Principle of Least Privilege
+
+```javascript
+// Create read-only user for analytics
+db.createUser({
+  user: 'analytics',
+  pwd: 'securePassword',
+  roles: [
+    { role: 'read', db: 'myDatabase' }
+  ]
+})
+
+// Create app user with limited permissions
+db.createUser({
+  user: 'appUser',
+  pwd: 'securePassword',
+  roles: [
+    { role: 'readWrite', db: 'myDatabase' }
+  ]
+})
+
+// Admin user (use sparingly)
+db.createUser({
+  user: 'admin',
+  pwd: 'verySecurePassword',
+  roles: [
+    { role: 'dbOwner', db: 'myDatabase' }
+  ]
+})
+```
+
+### 2. Network Security
+
+```javascript
+// mongod.conf
+net:
+  port: 27017
+  bindIp: 127.0.0.1  # Only localhost (not 0.0.0.0)
+
+security:
+  authorization: enabled
+
+# Use TLS/SSL
+net:
+  tls:
+    mode: requireTLS
+    certificateKeyFile: /path/to/cert.pem
+    CAFile: /path/to/ca.pem
+```
+
+### 3. Audit Logging
+
+```javascript
+// Enable audit logging (Enterprise feature)
+auditLog:
+  destination: file
+  format: JSON
+  path: /var/log/mongodb/audit.json
+  filter: '{
+    atype: { $in: ["authenticate", "createUser", "dropDatabase"] }
+  }'
+```
+
+### 4. Field-Level Encryption
+
+```javascript
+const { ClientEncryption } = require('mongodb-client-encryption')
+
+// Automatic encryption
+const encrypted = new ClientEncryption(client, {
+  keyVaultNamespace: 'encryption.__keyVault',
+  kmsProviders: {
+    local: {
+      key: masterKey  // 96-byte master key
+    }
+  }
+})
+
+// Encrypt sensitive fields
+const encryptedSSN = await encrypted.encrypt(
+  user.ssn,
+  {
+    algorithm: 'AEAD_AES_256_CBC_HMAC_SHA_512-Deterministic',
+    keyId: dataEncryptionKey
+  }
+)
+
+await db.users.insertOne({
+  name: user.name,
+  ssn: encryptedSSN  // Encrypted
+})
+```
+
+---
+
+## 🎯 MongoDB Atlas (Cloud) {#atlas}
+
+### 1. Atlas Setup
+
+```javascript
+// Connection string format
+mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/<database>?retryWrites=true&w=majority
+
+// Mongoose connection
+mongoose.connect(process.env.MONGODB_ATLAS_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+```
+
+### 2. Atlas Features
+
+- **Automated Backups**: Point-in-time recovery
+- **Monitoring**: Real-time performance metrics
+- **Alerts**: Custom thresholds
+- **Scaling**: Vertical and horizontal scaling
+- **Global Clusters**: Multi-region deployments
+- **Data Lake**: Query archived data with S3
+
+### 3. Atlas Search (Full-Text Search)
+
+```javascript
+// Create search index in Atlas UI
+{
+  "mappings": {
+    "dynamic": true
+  }
+}
+
+// Use Atlas Search
+db.products.aggregate([
+  {
+    $search: {
+      text: {
+        query: "laptop gaming",
+        path: ["name", "description"],
+        fuzzy: {
+          maxEdits: 2
+        }
+      }
+    }
+  },
+  {
+    $limit: 10
+  },
+  {
+    $project: {
+      name: 1,
+      description: 1,
+      score: { $meta: "searchScore" }
+    }
+  }
+])
+```
+
+---
+
+## 📊 Advanced Data Modeling Patterns {#advanced-modeling}
+
+### 1. Polymorphic Pattern
+
+Store different types of entities in same collection.
+
+```javascript
+// Products collection with different types
+{
+  _id: ObjectId("..."),
+  type: "book",
+  name: "MongoDB Guide",
+  author: "John Doe",
+  isbn: "123-456",
+  pages: 300
+}
+
+{
+  _id: ObjectId("..."),
+  type: "electronics",
+  name: "Laptop",
+  brand: "Dell",
+  warranty: "2 years",
+  specs: {
+    cpu: "Intel i7",
+    ram: "16GB"
+  }
+}
+
+// Query by type
+db.products.find({ type: "book" })
+
+// Polymorphic schema with Mongoose
+const productSchema = new Schema({
+  type: { type: String, required: true },
+  name: String
+}, { discriminatorKey: 'type' })
+
+const bookSchema = new Schema({
+  author: String,
+  isbn: String,
+  pages: Number
+})
+
+const electronicsSchema = new Schema({
+  brand: String,
+  warranty: String,
+  specs: Schema.Types.Mixed
+})
+
+const Product = mongoose.model('Product', productSchema)
+const Book = Product.discriminator('book', bookSchema)
+const Electronics = Product.discriminator('electronics', electronicsSchema)
+```
+
+### 2. Attribute Pattern
+
+Handle variable fields without schema explosion.
+
+```javascript
+// BAD: Schema explosion
+{
+  name: "Laptop",
+  color: "Silver",
+  weight: "2kg",
+  screenSize: "15 inch",
+  // What about TVs? Shirts? Books? All different fields!
+}
+
+// GOOD: Attribute pattern
+{
+  name: "Laptop",
+  category: "electronics",
+  attributes: [
+    { key: "color", value: "Silver" },
+    { key: "weight", value: "2kg", unit: "kg" },
+    { key: "screenSize", value: 15, unit: "inch" }
+  ]
+}
+
+// Query attributes
+db.products.find({
+  "attributes.key": "color",
+  "attributes.value": "Silver"
+})
+
+// Index on attributes
+db.products.createIndex({ "attributes.key": 1, "attributes.value": 1 })
+```
+
+### 3. Bucket Pattern
+
+Group time-series data into buckets for better performance.
+
+```javascript
+// BAD: One document per reading
+{
+  sensorId: "sensor1",
+  temperature: 22.5,
+  timestamp: ISODate("2024-01-01T10:00:00Z")
+}
+// Millions of documents!
+
+// GOOD: Bucket pattern (hourly buckets)
+{
+  sensorId: "sensor1",
+  date: ISODate("2024-01-01T10:00:00Z"),
+  readings: [
+    { time: 0, temperature: 22.5 },
+    { time: 5, temperature: 22.7 },
+    { time: 10, temperature: 22.9 },
+    // ... up to 60 minutes
+  ],
+  count: 12,
+  avgTemp: 22.8
+}
+
+// Mongoose implementation
+const bucketSchema = new Schema({
+  sensorId: String,
+  date: Date,
+  readings: [{
+    time: Number,
+    temperature: Number
+  }],
+  count: Number,
+  avgTemp: Number
+})
+
+// Upsert to add reading
+db.sensors.updateOne(
+  {
+    sensorId: 'sensor1',
+    date: ISODate('2024-01-01T10:00:00Z')
+  },
+  {
+    $push: { readings: { time: 30, temperature: 23.1 } },
+    $inc: { count: 1 }
+  },
+  { upsert: true }
+)
+```
+
+### 4. Computed Pattern
+
+Pre-calculate and store expensive computations.
+
+```javascript
+// Store pre-computed values
+{
+  _id: ObjectId("..."),
+  userId: ObjectId("user123"),
+  orders: [
+    { orderId: ObjectId("..."), amount: 100 },
+    { orderId: ObjectId("..."), amount: 250 },
+    { orderId: ObjectId("..."), amount: 75 }
+  ],
+  
+  // Pre-computed fields
+  totalOrders: 3,
+  totalSpent: 425,
+  avgOrderValue: 141.67,
+  lastOrderDate: ISODate("2024-01-15")
+}
+
+// Update pre-computed values
+db.users.updateOne(
+  { _id: userId },
+  {
+    $push: { orders: newOrder },
+    $inc: {
+      totalOrders: 1,
+      totalSpent: newOrder.amount
+    },
+    $set: {
+      avgOrderValue: { $divide: ['$totalSpent', '$totalOrders'] },
+      lastOrderDate: new Date()
+    }
+  }
+)
+```
+
+---
+
+## 🔄 Schema Evolution & Migration {#schema-migration}
+
+### 1. Versioned Schema
+
+```javascript
+// Add schema version
+const userSchemaV2 = new Schema({
+  schemaVersion: { type: Number, default: 2 },
+  name: String,
+  email: String,
+  profile: {  // New in v2
+    avatar: String,
+    bio: String
+  }
+})
+
+// Migrate on read
+userSchema.post('findOne', function(doc) {
+  if (doc && doc.schemaVersion === 1) {
+    // Migrate v1 to v2
+    doc.profile = {
+      avatar: doc.avatarUrl || null,  // Old field
+      bio: null
+    }
+    doc.schemaVersion = 2
+    doc.save()
+  }
+})
+```
+
+### 2. Migration Script
+
+```javascript
+// migrations/001-add-profile.js
+const mongoose = require('mongoose')
+const User = require('../models/User')
+
+async function migrate() {
+  console.log('Starting migration: Add profile field')
+  
+  const users = await User.find({ schemaVersion: { $ne: 2 } })
+  
+  for (const user of users) {
+    user.profile = {
+      avatar: user.avatarUrl || null,
+      bio: null
+    }
+    user.schemaVersion = 2
+    await user.save()
+  }
+  
+  console.log(`Migrated ${users.length} users`)
+}
+
+module.exports = { migrate }
+```
+
+---
+
 ## 🎓 Learning Path
 
 ### Beginner
@@ -2122,15 +2659,19 @@ const postSchema = new Schema({
 
 ### Intermediate
 5. ✅ Master aggregation
-6. ✅ Learn indexing
+6. ✅ Learn indexing and covered queries
 7. ✅ Use Mongoose ODM
 8. ✅ Implement authentication
+9. ✅ Study data modeling patterns
+10. ✅ Optimize query performance
 
 ### Advanced
-9. ✅ Design complex schemas
-10. ✅ Optimize performance
-11. ✅ Setup replication
-12. ✅ Deploy to production
+11. ✅ Design complex schemas with patterns
+12. ✅ Implement change streams for real-time
+13. ✅ Setup replication and sharding
+14. ✅ Master security best practices
+15. ✅ Deploy to production (Atlas)
+16. ✅ Performance tuning and monitoring
 
 ---
 
@@ -2138,16 +2679,32 @@ const postSchema = new Schema({
 
 You've completed the MongoDB Zero to Hero guide! You can now:
 
-- ✅ Design flexible NoSQL schemas
+- ✅ Design flexible NoSQL schemas with advanced patterns
 - ✅ Perform complex queries and aggregations
-- ✅ Optimize database performance
+- ✅ Optimize database performance with indexes and covered queries
+- ✅ Implement real-time features with change streams
+- ✅ Handle large files with GridFS
+- ✅ Implement full-text search
 - ✅ Build production-ready applications
-- ✅ Scale MongoDB horizontally
+- ✅ Scale MongoDB horizontally with sharding
+- ✅ Secure MongoDB with authentication and encryption
+- ✅ Monitor and troubleshoot performance issues
+- ✅ Migrate schemas safely
+- ✅ Use MongoDB Atlas cloud features
 
 **Next Steps:**
-- Build real-world projects
-- Learn MongoDB Atlas (cloud)
-- Explore advanced patterns
-- Study MongoDB administration
+- Build real-world projects (e-commerce, social media, IoT)
+- Learn MongoDB Atlas advanced features
+- Study operational MongoDB (administration, monitoring)
+- Explore advanced aggregation pipelines
+- Practice schema design for different use cases
+- Contribute to MongoDB community
+
+**Project Ideas:**
+1. **E-commerce Platform**: Products, orders, users with complex relationships
+2. **Social Media App**: Posts, comments, likes with real-time updates
+3. **IoT Dashboard**: Time-series data with bucket pattern
+4. **Content Management System**: Polymorphic documents, full-text search
+5. **Analytics Platform**: Aggregation pipelines, materialized views
 
 Keep building! 🚀

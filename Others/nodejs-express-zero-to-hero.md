@@ -2480,3 +2480,191 @@ You've completed the Node.js & Express Zero to Hero guide! You now have the skil
 - Study GraphQL
 
 Keep coding! 🚀
+
+---
+
+## 🔒 Advanced Security Topics {#advanced-security}
+
+### 1. Helmet.js Security Headers
+
+```javascript
+const helmet = require('helmet')
+
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'"],
+      imgSrc: ["'self'", "data:", "https:"]
+    }
+  },
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true,
+    preload: true
+  }
+}))
+```
+
+### 2. Advanced Rate Limiting
+
+```javascript
+const rateLimit = require('express-rate-limit')
+const RedisStore = require('rate-limit-redis')
+
+// Different limits for different endpoints
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5, // 5 attempts per 15 minutes
+  message: 'Too many login attempts'
+})
+
+app.post('/api/auth/login', authLimiter, loginHandler)
+```
+
+### 3. OAuth 2.0 Integration
+
+```javascript
+const passport = require('passport')
+const GoogleStrategy = require('passport-google-oauth20').Strategy
+
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: '/auth/google/callback'
+  },
+  async (accessToken, refreshToken, profile, done) => {
+    let user = await User.findOne({ googleId: profile.id })
+    if (!user) {
+      user = await User.create({
+        googleId: profile.id,
+        name: profile.displayName,
+        email: profile.emails[0].value
+      })
+    }
+    done(null, user)
+  }
+))
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+)
+```
+
+---
+
+## 🚀 Performance Best Practices {#performance-best}
+
+### 1. Response Compression
+
+```javascript
+const compression = require('compression')
+
+app.use(compression({
+  level: 6,
+  threshold: 1024,
+  filter: (req, res) => {
+    return compression.filter(req, res)
+  }
+}))
+```
+
+### 2. Database Query Optimization
+
+```javascript
+// ❌ BAD: N+1 problem
+const posts = await Post.find()
+for (const post of posts) {
+  post.author = await User.findById(post.authorId)
+}
+
+// ✅ GOOD: Use populate
+const posts = await Post.find()
+  .populate('author', 'name email')
+  .select('title content')
+  .lean()
+```
+
+### 3. Caching with Redis
+
+```javascript
+const redis = require('redis')
+const client = redis.createClient()
+
+// Cache middleware
+const cache = async (req, res, next) => {
+  const key = req.originalUrl
+  const data = await client.get(key)
+  
+  if (data) {
+    return res.json(JSON.parse(data))
+  }
+  next()
+}
+
+app.get('/api/users', cache, async (req, res) => {
+  const users = await User.find()
+  await client.setex(req.originalUrl, 3600, JSON.stringify(users))
+  res.json(users)
+})
+```
+
+---
+
+## 📊 Production Monitoring {#monitoring}
+
+### 1. Health Check Endpoints
+
+```javascript
+app.get('/health', async (req, res) => {
+  const health = {
+    status: 'UP',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    checks: {}
+  }
+  
+  try {
+    await mongoose.connection.db.admin().ping()
+    health.checks.database = { status: 'UP' }
+  } catch (error) {
+    health.checks.database = { status: 'DOWN' }
+    health.status = 'DOWN'
+  }
+  
+  res.status(health.status === 'UP' ? 200 : 503).json(health)
+})
+```
+
+### 2. Request Logging
+
+```javascript
+const winston = require('winston')
+
+const logger = winston.createLogger({
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'combined.log' })
+  ]
+})
+
+app.use((req, res, next) => {
+  const start = Date.now()
+  res.on('finish', () => {
+    logger.info({
+      method: req.method,
+      url: req.originalUrl,
+      status: res.statusCode,
+      duration: `${Date.now() - start}ms`
+    })
+  })
+  next()
+})
+```
+
+Keep building amazing things! 🚀
