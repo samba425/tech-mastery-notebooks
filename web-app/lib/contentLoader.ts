@@ -362,6 +362,60 @@ export function getContentStructure(): any[] {
           category: 'career',
           readTime: 45,
           description: 'Ace your technical interviews'
+        },
+        {
+          id: 'master-roadmap-career',
+          title: 'ML/DS Career Complete Roadmap',
+          path: '../guides/ai_ml/MASTER-ML-DS-COMPLETE-ROADMAP.md',
+          category: 'career',
+          badge: 'Career Growth',
+          readTime: 60,
+          description: 'Complete ML/DS career path from junior to senior'
+        },
+        {
+          id: 'llm-interview-career',
+          title: 'LLM Interview Questions',
+          path: '../guides/ai_ml/LLM-Interview-Questions-Complete.md',
+          category: 'career',
+          badge: 'Interview Prep',
+          readTime: 60,
+          description: 'Master LLM interviews for AI/ML roles'
+        },
+        {
+          id: 'rag-interview-career',
+          title: 'RAG Interview Questions',
+          path: '../guides/ai_ml/RAG-Interview-Questions-Complete.md',
+          category: 'career',
+          badge: 'Interview Prep',
+          readTime: 45,
+          description: 'RAG systems interview preparation'
+        },
+        {
+          id: 'system-design-career',
+          title: 'Complete System Design Guide',
+          path: '../system-design/COMPLETE-SYSTEM-DESIGN-GUIDE.md',
+          category: 'career',
+          badge: 'Must Read',
+          readTime: 180,
+          description: 'Master system design for senior+ interviews'
+        },
+        {
+          id: 'python-challenges-career',
+          title: 'Python Coding Challenges',
+          path: '../programming-challenges/python.challenges.ipynb',
+          category: 'career',
+          badge: 'Practice',
+          readTime: 90,
+          description: 'Interview coding practice - Python'
+        },
+        {
+          id: 'javascript-challenges-career',
+          title: 'JavaScript Coding Challenges',
+          path: '../programming-challenges/javascript.challenges.ipynb',
+          category: 'career',
+          badge: 'Practice',
+          readTime: 85,
+          description: 'Interview coding practice - JavaScript'
         }
       ]
     },
