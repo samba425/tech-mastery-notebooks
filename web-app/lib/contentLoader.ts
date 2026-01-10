@@ -362,14 +362,6 @@ export function getContentStructure(): any[] {
           category: 'career',
           readTime: 45,
           description: 'Ace your technical interviews'
-        },
-        {
-          id: 'fullstack-notes',
-          title: 'Full Stack Developer Training',
-          path: '../Others/Full_Stack_Developer_Training_Notes.md',
-          category: 'career',
-          readTime: 60,
-          description: 'Complete full stack development path'
         }
       ]
     },
@@ -437,6 +429,14 @@ export function getContentStructure(): any[] {
       id: 'others',
       title: '🎓 Other Learning Guides',
       children: [
+        {
+          id: 'fullstack-notes',
+          title: 'Full Stack Developer Training',
+          path: '../Others/Full_Stack_Developer_Training_Notes.md',
+          category: 'others',
+          readTime: 60,
+          description: 'Complete full stack development path'
+        },
         {
           id: 'aws-cloud',
           title: 'AWS Cloud Zero to Hero',
