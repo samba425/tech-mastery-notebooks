@@ -70,6 +70,18 @@ function getContentStructure() {
     { id: 'microservices', title: '🔧 Microservices Architecture Complete Guide', path: '../Others/microservices-complete-guide.md' },
     { id: 'nextjs', title: '▲ Next.js Zero to Hero', path: '../Others/nextjs-zero-to-hero.md' },
     { id: 'azure-cloud', title: '☁️ Azure Cloud Zero to Hero', path: '../Others/azure-cloud-zero-to-hero.md' },
+    
+    // Big Data & Analytics Category
+    { id: 'data-engineering', title: '🗄️ Data Engineering Zero to Hero', path: '../guides/big-data-analytics/Data-Engineering-Zero-to-Hero.md' },
+    
+    // Architecture & Design Category
+    { id: 'event-driven-arch', title: '🏗️ Event-Driven Architecture Zero to Hero', path: '../guides/architecture-design/Event-Driven-Architecture-Zero-to-Hero.md' },
+    
+    // DevOps & Infrastructure Category
+    { id: 'load-balancing-ha', title: '🚀 Load Balancing & High Availability Zero to Hero', path: '../guides/devops-infrastructure/Load-Balancing-High-Availability-Zero-to-Hero.md' },
+    
+    // Performance Engineering Category
+    { id: 'performance-optimization', title: '⚡ Performance Optimization Complete Guide', path: '../guides/performance-engineering/Performance-Optimization-Complete-Guide.md' },
   ];
 }
 
