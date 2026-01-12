@@ -85,17 +85,33 @@ export function getContentStructure(): any[] {
       ]
     },
     {
-      id: 'dsa',
-      title: '📊 Data Structures & Algorithms',
+      id: 'fundamentals',
+      title: '📊 Fundamentals',
       children: [
         {
           id: 'dsa-zero-to-hero',
           title: 'DSA Zero to Hero',
-          path: '../Others/data-structures-algorithms-zero-to-hero.md',
-          category: 'dsa',
+          path: '../guides/fundamentals/data-structures-algorithms-zero-to-hero.md',
+          category: 'fundamentals',
           badge: 'Essential',
           readTime: 180,
           description: 'Complete beginner to expert DSA guide with 7000+ lines'
+        },
+        {
+          id: 'git-github',
+          title: 'Git & GitHub Zero to Hero',
+          path: '../guides/fundamentals/git-github-zero-to-hero.md',
+          category: 'fundamentals',
+          readTime: 60,
+          description: 'Version control and collaboration'
+        },
+        {
+          id: 'linux-cli',
+          title: 'Linux Command Line Zero to Hero',
+          path: '../guides/fundamentals/linux-command-line-zero-to-hero.md',
+          category: 'fundamentals',
+          readTime: 75,
+          description: 'Master the Linux terminal'
         }
       ]
     },
@@ -480,149 +496,217 @@ export function getContentStructure(): any[] {
       ]
     },
     {
-      id: 'others',
-      title: '🎓 Other Learning Guides',
+      id: 'cloud-platforms',
+      title: '☁️ Cloud Platforms',
       children: [
-        {
-          id: 'fullstack-notes',
-          title: 'Full Stack Developer Training',
-          path: '../Others/Full_Stack_Developer_Training_Notes.md',
-          category: 'others',
-          readTime: 60,
-          description: 'Complete full stack development path'
-        },
         {
           id: 'aws-cloud',
           title: 'AWS Cloud Zero to Hero',
-          path: '../Others/aws-cloud-zero-to-hero.md',
-          category: 'others',
+          path: '../guides/cloud-platforms/aws-cloud-zero-to-hero.md',
+          category: 'cloud',
           readTime: 90,
           description: 'Complete AWS cloud services guide'
         },
         {
-          id: 'cicd-guide',
-          title: 'CI/CD Zero to Hero',
-          path: '../Others/cicd-zero-to-hero.md',
-          category: 'others',
-          readTime: 70,
-          description: 'Continuous Integration & Deployment mastery'
-        },
-        {
-          id: 'git-github',
-          title: 'Git & GitHub Zero to Hero',
-          path: '../Others/git-github-zero-to-hero.md',
-          category: 'others',
-          readTime: 60,
-          description: 'Version control and collaboration'
-        },
-        {
-          id: 'kafka-queues',
-          title: 'Kafka & Message Queues Zero to Hero',
-          path: '../Others/kafka-message-queues-zero-to-hero.md',
-          category: 'others',
-          readTime: 80,
-          description: 'Distributed messaging systems'
-        },
-        {
-          id: 'linux-cli',
-          title: 'Linux Command Line Zero to Hero',
-          path: '../Others/linux-command-line-zero-to-hero.md',
-          category: 'others',
-          readTime: 75,
-          description: 'Master the Linux terminal'
-        },
-        {
-          id: 'react-frontend',
-          title: 'React Frontend Zero to Hero',
-          path: '../Others/react-frontend-zero-to-hero.md',
-          category: 'others',
-          readTime: 100,
-          description: 'Modern React development'
-        },
-        {
-          id: 'redis-caching',
-          title: 'Redis & Caching Zero to Hero',
-          path: '../Others/redis-caching-zero-to-hero.md',
-          category: 'others',
-          readTime: 65,
-          description: 'In-memory data store and caching'
-        },
-        {
-          id: 'rest-api',
-          title: 'REST API Development Zero to Hero',
-          path: '../Others/rest-api-development-zero-to-hero.md',
-          category: 'others',
-          readTime: 85,
-          description: 'Build robust RESTful APIs'
-        },
-        {
-          id: 'security-practices',
-          title: 'Security Best Practices Zero to Hero',
-          path: '../Others/security-best-practices-zero-to-hero.md',
-          category: 'others',
-          readTime: 90,
-          description: 'Application security fundamentals'
-        },
-        {
-          id: 'sql-databases',
-          title: 'SQL Databases Zero to Hero',
-          path: '../Others/sql-databases-zero-to-hero.md',
-          category: 'others',
+          id: 'azure-cloud',
+          title: 'Azure Cloud Zero to Hero',
+          path: '../guides/cloud-platforms/azure-cloud-zero-to-hero.md',
+          category: 'cloud',
           readTime: 95,
-          description: 'Relational database mastery'
-        },
-        {
-          id: 'testing-tdd',
-          title: 'Testing & TDD Zero to Hero',
-          path: '../Others/testing-tdd-zero-to-hero.md',
-          category: 'others',
-          readTime: 70,
-          description: 'Test-driven development practices'
-        },
+          badge: 'New',
+          description: 'Microsoft Azure cloud platform - enterprise alternative to AWS'
+        }
+      ]
+    },
+    {
+      id: 'backend-development',
+      title: '🟢 Backend Development',
+      children: [
         {
           id: 'nodejs-express',
           title: 'Node.js & Express Zero to Hero',
-          path: '../Others/nodejs-express-zero-to-hero.md',
-          category: 'others',
+          path: '../guides/backend-development/nodejs-express-zero-to-hero.md',
+          category: 'backend',
           readTime: 100,
           badge: 'New',
           description: 'Backend JavaScript development with Node.js and Express'
         },
         {
-          id: 'mongodb',
-          title: 'MongoDB Zero to Hero',
-          path: '../Others/mongodb-zero-to-hero.md',
-          category: 'others',
-          readTime: 90,
-          badge: 'New',
-          description: 'NoSQL database mastery - from basics to production'
-        },
+          id: 'rest-api',
+          title: 'REST API Development Zero to Hero',
+          path: '../guides/backend-development/rest-api-development-zero-to-hero.md',
+          category: 'backend',
+          readTime: 85,
+          description: 'Build robust RESTful APIs'
+        }
+      ]
+    },
+    {
+      id: 'frontend-development',
+      title: '⚛️ Frontend Development',
+      children: [
         {
-          id: 'microservices',
-          title: 'Microservices Architecture Complete Guide',
-          path: '../Others/microservices-complete-guide.md',
-          category: 'others',
-          readTime: 120,
-          badge: 'New',
-          description: 'Senior-level microservices patterns and best practices'
+          id: 'react-frontend',
+          title: 'React Frontend Zero to Hero',
+          path: '../guides/frontend-development/react-frontend-zero-to-hero.md',
+          category: 'frontend',
+          readTime: 100,
+          description: 'Modern React development'
         },
         {
           id: 'nextjs',
           title: 'Next.js Zero to Hero',
-          path: '../Others/nextjs-zero-to-hero.md',
-          category: 'others',
+          path: '../guides/frontend-development/nextjs-zero-to-hero.md',
+          category: 'frontend',
           readTime: 85,
           badge: 'New',
           description: 'Modern React framework for production applications'
         },
         {
-          id: 'azure-cloud',
-          title: 'Azure Cloud Zero to Hero',
-          path: '../Others/azure-cloud-zero-to-hero.md',
-          category: 'others',
-          readTime: 95,
+          id: 'fullstack-notes',
+          title: 'Full Stack Developer Training',
+          path: '../guides/frontend-development/Full_Stack_Developer_Training_Notes.md',
+          category: 'frontend',
+          readTime: 60,
+          description: 'Complete full stack development path'
+        }
+      ]
+    },
+    {
+      id: 'databases',
+      title: '💾 Databases',
+      children: [
+        {
+          id: 'mongodb',
+          title: 'MongoDB Zero to Hero',
+          path: '../guides/databases/mongodb-zero-to-hero.md',
+          category: 'databases',
+          readTime: 90,
           badge: 'New',
-          description: 'Microsoft Azure cloud platform - enterprise alternative to AWS'
+          description: 'NoSQL database mastery - from basics to production'
+        },
+        {
+          id: 'sql-databases',
+          title: 'SQL Databases Zero to Hero',
+          path: '../guides/databases/sql-databases-zero-to-hero.md',
+          category: 'databases',
+          readTime: 95,
+          description: 'Relational database mastery'
+        },
+        {
+          id: 'redis-caching',
+          title: 'Redis & Caching Zero to Hero',
+          path: '../guides/databases/redis-caching-zero-to-hero.md',
+          category: 'databases',
+          readTime: 65,
+          description: 'In-memory data store and caching'
+        }
+      ]
+    },
+    {
+      id: 'architecture-design',
+      title: '🏗️ Architecture & Design',
+      children: [
+        {
+          id: 'microservices',
+          title: 'Microservices Architecture Complete Guide',
+          path: '../guides/architecture-design/microservices-complete-guide.md',
+          category: 'architecture',
+          readTime: 120,
+          badge: 'New',
+          description: 'Senior-level microservices patterns and best practices'
+        },
+        {
+          id: 'kafka-queues',
+          title: 'Kafka & Message Queues Zero to Hero',
+          path: '../guides/architecture-design/kafka-message-queues-zero-to-hero.md',
+          category: 'architecture',
+          readTime: 80,
+          description: 'Distributed messaging systems'
+        },
+        {
+          id: 'event-driven-arch',
+          title: 'Event-Driven Architecture Zero to Hero',
+          path: '../guides/architecture-design/Event-Driven-Architecture-Zero-to-Hero.md',
+          category: 'architecture',
+          readTime: 100,
+          badge: 'New',
+          description: 'Build scalable event-driven systems'
+        }
+      ]
+    },
+    {
+      id: 'big-data-analytics',
+      title: '🗄️ Big Data & Analytics',
+      children: [
+        {
+          id: 'data-engineering',
+          title: 'Data Engineering Zero to Hero',
+          path: '../guides/big-data-analytics/Data-Engineering-Zero-to-Hero.md',
+          category: 'big-data',
+          readTime: 180,
+          badge: 'New',
+          description: 'Complete data engineering pipeline mastery'
+        }
+      ]
+    },
+    {
+      id: 'devops-infrastructure-advanced',
+      title: '🚀 DevOps & Infrastructure (Advanced)',
+      children: [
+        {
+          id: 'cicd-guide',
+          title: 'CI/CD Zero to Hero',
+          path: '../guides/devops-infrastructure/cicd-zero-to-hero.md',
+          category: 'devops-advanced',
+          readTime: 70,
+          description: 'Continuous Integration & Deployment mastery'
+        },
+        {
+          id: 'load-balancing-ha',
+          title: 'Load Balancing & High Availability Zero to Hero',
+          path: '../guides/devops-infrastructure/Load-Balancing-High-Availability-Zero-to-Hero.md',
+          category: 'devops-advanced',
+          readTime: 80,
+          badge: 'New',
+          description: 'Build highly available and scalable systems'
+        }
+      ]
+    },
+    {
+      id: 'performance-engineering',
+      title: '⚡ Performance Engineering',
+      children: [
+        {
+          id: 'performance-optimization',
+          title: 'Performance Optimization Complete Guide',
+          path: '../guides/performance-engineering/Performance-Optimization-Complete-Guide.md',
+          category: 'performance',
+          readTime: 120,
+          badge: 'New',
+          description: 'Frontend, backend, and database performance optimization'
+        }
+      ]
+    },
+    {
+      id: 'security-testing',
+      title: '🔒 Security & Testing',
+      children: [
+        {
+          id: 'security-practices',
+          title: 'Security Best Practices Zero to Hero',
+          path: '../guides/security-testing/security-best-practices-zero-to-hero.md',
+          category: 'security',
+          readTime: 90,
+          description: 'Application security fundamentals'
+        },
+        {
+          id: 'testing-tdd',
+          title: 'Testing & TDD Zero to Hero',
+          path: '../guides/security-testing/testing-tdd-zero-to-hero.md',
+          category: 'testing',
+          readTime: 70,
+          description: 'Test-driven development practices'
         }
       ]
     }
