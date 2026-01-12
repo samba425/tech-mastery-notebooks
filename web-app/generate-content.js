@@ -47,41 +47,54 @@ function getContentStructure() {
     { id: 'system-design-career', title: '📖 Complete System Design Guide', path: '../system-design/COMPLETE-SYSTEM-DESIGN-GUIDE.md' },
     { id: 'python-challenges-career', title: '🎯 Python Coding Challenges', path: '../programming-challenges/python.challenges.ipynb' },
     { id: 'javascript-challenges-career', title: '🎯 JavaScript Coding Challenges', path: '../programming-challenges/javascript.challenges.ipynb' },
-    { id: 'fullstack-notes', title: '🌐 Full Stack Developer Training', path: '../Others/Full_Stack_Developer_Training_Notes.md' },
     { id: 'teaching-plan', title: '🎓 Python Teaching Plan (12 Days)', path: '../pythonclass/Python_Teaching_Plan_12_Days.md' },
     { id: 'part1-fundamentals', title: '📘 Part 1: Python Fundamentals (Hours 1-10)', path: '../pythonclass/Part1_Python_Fundamentals_Hours_1-10.md' },
     { id: 'part2-backend', title: '🔧 Part 2: Backend Development (Hours 11-20)', path: '../pythonclass/Part2_Backend_Development_Hours_11-20.md' },
     { id: 'part3-frontend', title: '🎨 Part 3: Frontend Development (Hours 21-30)', path: '../pythonclass/Part3_Frontend_Development_Hours_21-30.md' },
     { id: 'part4-advanced', title: '🚀 Part 4: Advanced Backend (Hours 31-40)', path: '../pythonclass/Part4_Advanced_Backend_Hours_31-40.md' },
     { id: 'vedic-math', title: '🔢 Vedic Mathematics', path: '../vedic-mathematics-zero-to-hero.md' },
-    { id: 'aws-cloud', title: '☁️ AWS Cloud Zero to Hero', path: '../Others/aws-cloud-zero-to-hero.md' },
-    { id: 'cicd-guide', title: '🔄 CI/CD Zero to Hero', path: '../Others/cicd-zero-to-hero.md' },
-    { id: 'git-github', title: '🌿 Git & GitHub Zero to Hero', path: '../Others/git-github-zero-to-hero.md' },
-    { id: 'kafka-queues', title: '📨 Kafka & Message Queues Zero to Hero', path: '../Others/kafka-message-queues-zero-to-hero.md' },
-    { id: 'linux-cli', title: '🐧 Linux Command Line Zero to Hero', path: '../Others/linux-command-line-zero-to-hero.md' },
-    { id: 'react-frontend', title: '⚛️ React Frontend Zero to Hero', path: '../Others/react-frontend-zero-to-hero.md' },
-    { id: 'redis-caching', title: '🔴 Redis & Caching Zero to Hero', path: '../Others/redis-caching-zero-to-hero.md' },
-    { id: 'rest-api', title: '🌐 REST API Development Zero to Hero', path: '../Others/rest-api-development-zero-to-hero.md' },
-    { id: 'security-practices', title: '🔒 Security Best Practices Zero to Hero', path: '../Others/security-best-practices-zero-to-hero.md' },
-    { id: 'sql-databases', title: '💾 SQL Databases Zero to Hero', path: '../Others/sql-databases-zero-to-hero.md' },
-    { id: 'testing-tdd', title: '🧪 Testing & TDD Zero to Hero', path: '../Others/testing-tdd-zero-to-hero.md' },
-    { id: 'nodejs-express', title: '🟢 Node.js & Express Zero to Hero', path: '../Others/nodejs-express-zero-to-hero.md' },
-    { id: 'mongodb', title: '🍃 MongoDB Zero to Hero', path: '../Others/mongodb-zero-to-hero.md' },
-    { id: 'microservices', title: '🔧 Microservices Architecture Complete Guide', path: '../Others/microservices-complete-guide.md' },
-    { id: 'nextjs', title: '▲ Next.js Zero to Hero', path: '../Others/nextjs-zero-to-hero.md' },
-    { id: 'azure-cloud', title: '☁️ Azure Cloud Zero to Hero', path: '../Others/azure-cloud-zero-to-hero.md' },
     
     // Big Data & Analytics Category
     { id: 'data-engineering', title: '🗄️ Data Engineering Zero to Hero', path: '../guides/big-data-analytics/Data-Engineering-Zero-to-Hero.md' },
     
     // Architecture & Design Category
     { id: 'event-driven-arch', title: '🏗️ Event-Driven Architecture Zero to Hero', path: '../guides/architecture-design/Event-Driven-Architecture-Zero-to-Hero.md' },
+    { id: 'microservices', title: '🔧 Microservices Architecture Complete Guide', path: '../guides/architecture-design/microservices-complete-guide.md' },
+    { id: 'kafka-queues', title: '📨 Kafka & Message Queues Zero to Hero', path: '../guides/architecture-design/kafka-message-queues-zero-to-hero.md' },
     
     // DevOps & Infrastructure Category
     { id: 'load-balancing-ha', title: '🚀 Load Balancing & High Availability Zero to Hero', path: '../guides/devops-infrastructure/Load-Balancing-High-Availability-Zero-to-Hero.md' },
+    { id: 'cicd-guide', title: '🔄 CI/CD Zero to Hero', path: '../guides/devops-infrastructure/cicd-zero-to-hero.md' },
     
     // Performance Engineering Category
     { id: 'performance-optimization', title: '⚡ Performance Optimization Complete Guide', path: '../guides/performance-engineering/Performance-Optimization-Complete-Guide.md' },
+    
+    // Cloud Platforms Category
+    { id: 'aws-cloud', title: '☁️ AWS Cloud Zero to Hero', path: '../guides/cloud-platforms/aws-cloud-zero-to-hero.md' },
+    { id: 'azure-cloud', title: '☁️ Azure Cloud Zero to Hero', path: '../guides/cloud-platforms/azure-cloud-zero-to-hero.md' },
+    
+    // Backend Development Category
+    { id: 'nodejs-express', title: '🟢 Node.js & Express Zero to Hero', path: '../guides/backend-development/nodejs-express-zero-to-hero.md' },
+    { id: 'rest-api', title: '🌐 REST API Development Zero to Hero', path: '../guides/backend-development/rest-api-development-zero-to-hero.md' },
+    
+    // Frontend Development Category
+    { id: 'react-frontend', title: '⚛️ React Frontend Zero to Hero', path: '../guides/frontend-development/react-frontend-zero-to-hero.md' },
+    { id: 'nextjs', title: '▲ Next.js Zero to Hero', path: '../guides/frontend-development/nextjs-zero-to-hero.md' },
+    { id: 'fullstack-notes', title: '🌐 Full Stack Developer Training', path: '../guides/frontend-development/Full_Stack_Developer_Training_Notes.md' },
+    
+    // Databases Category
+    { id: 'mongodb', title: '🍃 MongoDB Zero to Hero', path: '../guides/databases/mongodb-zero-to-hero.md' },
+    { id: 'sql-databases', title: '💾 SQL Databases Zero to Hero', path: '../guides/databases/sql-databases-zero-to-hero.md' },
+    { id: 'redis-caching', title: '🔴 Redis & Caching Zero to Hero', path: '../guides/databases/redis-caching-zero-to-hero.md' },
+    
+    // Fundamentals Category
+    { id: 'dsa-zero-to-hero', title: '📊 DSA Zero to Hero', path: '../guides/fundamentals/data-structures-algorithms-zero-to-hero.md' },
+    { id: 'git-github', title: '🌿 Git & GitHub Zero to Hero', path: '../guides/fundamentals/git-github-zero-to-hero.md' },
+    { id: 'linux-cli', title: '🐧 Linux Command Line Zero to Hero', path: '../guides/fundamentals/linux-command-line-zero-to-hero.md' },
+    
+    // Security & Testing Category
+    { id: 'security-practices', title: '🔒 Security Best Practices Zero to Hero', path: '../guides/security-testing/security-best-practices-zero-to-hero.md' },
+    { id: 'testing-tdd', title: '🧪 Testing & TDD Zero to Hero', path: '../guides/security-testing/testing-tdd-zero-to-hero.md' },
   ];
 }
 
