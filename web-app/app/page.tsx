@@ -13,8 +13,9 @@ function HomeContent() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [loading, setLoading] = useState(false)
 
-  // IDs to hide by default (shown only when ?all=true or /all is in URL)
+  // IDs to hide by default (shown only when /all is in URL)
   const HIDDEN_SECTION_IDS = [
+    // Core Categories
     'devops',
     'infrastructure-notebooks', 
     'system-design',
@@ -22,7 +23,18 @@ function HomeContent() {
     'career',
     'teaching',
     'extras',
-    'others'
+    
+    // New Professional Categories (hidden by default, shown in /all)
+    'fundamentals',
+    'cloud-platforms',
+    'backend-development',
+    'frontend-development',
+    'databases',
+    'architecture-design',
+    'big-data-analytics',
+    'devops-infrastructure-advanced',
+    'performance-engineering',
+    'security-testing'
   ]
 
   useEffect(() => {
