@@ -224,14 +224,6 @@ export function getContentStructure(): any[] {
           description: 'Complete containerization mastery'
         },
         {
-          id: 'kubernetes-guide',
-          title: 'Kubernetes Zero to Hero',
-          path: '../guides/Kubernetes-Zero-to-Hero.md',
-          category: 'devops',
-          readTime: 120,
-          description: 'Container orchestration expertise'
-        },
-        {
           id: 'terraform-guide',
           title: 'Terraform Zero to Hero',
           path: '../guides/Terraform-Zero-to-Hero.md',
@@ -654,6 +646,14 @@ export function getContentStructure(): any[] {
       id: 'devops-infrastructure-advanced',
       title: '🚀 DevOps & Infrastructure (Advanced)',
       children: [
+        {
+          id: 'kubernetes-guide',
+          title: 'Kubernetes Zero to Hero',
+          path: '../guides/devops-infrastructure/Kubernetes-Zero-to-Hero.md',
+          category: 'devops-advanced',
+          readTime: 120,
+          description: 'Container orchestration expertise'
+        },
         {
           id: 'cicd-guide',
           title: 'CI/CD Zero to Hero',

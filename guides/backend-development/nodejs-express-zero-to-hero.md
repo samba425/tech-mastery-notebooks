@@ -2667,4 +2667,939 @@ app.use((req, res, next) => {
 })
 ```
 
+---
+
+## 🎯 Advanced Topics {#advanced-topics}
+
+### 1. GraphQL with Node.js
+
+**What is GraphQL?**
+- Query language for APIs
+- Request exactly what you need
+- Single endpoint for all queries
+
+```javascript
+const { ApolloServer, gql } = require('apollo-server-express')
+
+// Define schema
+const typeDefs = gql`
+  type User {
+    id: ID!
+    name: String!
+    email: String!
+    posts: [Post!]!
+  }
+  
+  type Post {
+    id: ID!
+    title: String!
+    content: String!
+    author: User!
+  }
+  
+  type Query {
+    users: [User!]!
+    user(id: ID!): User
+    posts: [Post!]!
+  }
+  
+  type Mutation {
+    createUser(name: String!, email: String!): User!
+    createPost(title: String!, content: String!, authorId: ID!): Post!
+  }
+`
+
+// Define resolvers
+const resolvers = {
+  Query: {
+    users: async () => await User.find().populate('posts'),
+    user: async (_, { id }) => await User.findById(id).populate('posts'),
+    posts: async () => await Post.find().populate('author')
+  },
+  
+  Mutation: {
+    createUser: async (_, { name, email }) => {
+      const user = new User({ name, email })
+      await user.save()
+      return user
+    },
+    createPost: async (_, { title, content, authorId }) => {
+      const post = new Post({ title, content, author: authorId })
+      await post.save()
+      await User.findByIdAndUpdate(authorId, { $push: { posts: post._id } })
+      return post
+    }
+  },
+  
+  User: {
+    posts: async (parent) => await Post.find({ author: parent.id })
+  },
+  
+  Post: {
+    author: async (parent) => await User.findById(parent.author)
+  }
+}
+
+// Create Apollo Server
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => {
+    // Add user from JWT to context
+    const token = req.headers.authorization || ''
+    const user = getUser(token)
+    return { user }
+  }
+})
+
+// Apply middleware
+await server.start()
+server.applyMiddleware({ app, path: '/graphql' })
+
+console.log(`🚀 GraphQL Server ready at http://localhost:4000${server.graphqlPath}`)
+```
+
+**GraphQL Queries**
+
+```graphql
+# Query: Get user with posts
+query GetUserWithPosts {
+  user(id: "123") {
+    id
+    name
+    email
+    posts {
+      id
+      title
+      content
+    }
+  }
+}
+
+# Mutation: Create user
+mutation CreateUser {
+  createUser(name: "John Doe", email: "john@example.com") {
+    id
+    name
+    email
+  }
+}
+
+# Query: Get all posts with author
+query GetPostsWithAuthors {
+  posts {
+    id
+    title
+    author {
+      name
+      email
+    }
+  }
+}
+```
+
+### 2. Microservices Architecture
+
+**Microservices Pattern**
+
+```javascript
+// User Service (Port 3001)
+const express = require('express')
+const app = express()
+
+app.get('/api/users/:id', async (req, res) => {
+  const user = await User.findById(req.params.id)
+  res.json(user)
+})
+
+app.listen(3001, () => console.log('User Service on port 3001'))
+
+// Order Service (Port 3002)
+const express = require('express')
+const axios = require('axios')
+const app = express()
+
+app.post('/api/orders', async (req, res) => {
+  const { userId, items } = req.body
+  
+  // Call User Service
+  const userResponse = await axios.get(`http://localhost:3001/api/users/${userId}`)
+  const user = userResponse.data
+  
+  // Create order
+  const order = await Order.create({
+    user: userId,
+    items,
+    total: calculateTotal(items)
+  })
+  
+  res.status(201).json(order)
+})
+
+app.listen(3002, () => console.log('Order Service on port 3002'))
+
+// API Gateway (Port 3000)
+const express = require('express')
+const { createProxyMiddleware } = require('http-proxy-middleware')
+const app = express()
+
+// Route requests to microservices
+app.use('/api/users', createProxyMiddleware({ 
+  target: 'http://localhost:3001',
+  changeOrigin: true 
+}))
+
+app.use('/api/orders', createProxyMiddleware({ 
+  target: 'http://localhost:3002',
+  changeOrigin: true 
+}))
+
+app.listen(3000, () => console.log('API Gateway on port 3000'))
+```
+
+### 3. Message Queues with RabbitMQ
+
+```javascript
+const amqp = require('amqplib')
+
+class MessageQueue {
+  constructor() {
+    this.connection = null
+    this.channel = null
+  }
+  
+  async connect() {
+    this.connection = await amqp.connect('amqp://localhost')
+    this.channel = await this.connection.createChannel()
+  }
+  
+  async publish(queue, message) {
+    await this.channel.assertQueue(queue, { durable: true })
+    this.channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)), {
+      persistent: true
+    })
+    console.log(`✉️  Message sent to ${queue}:`, message)
+  }
+  
+  async consume(queue, callback) {
+    await this.channel.assertQueue(queue, { durable: true })
+    this.channel.consume(queue, async (msg) => {
+      if (msg) {
+        const content = JSON.parse(msg.content.toString())
+        await callback(content)
+        this.channel.ack(msg)
+      }
+    })
+  }
+}
+
+// Usage: Email Service
+const mq = new MessageQueue()
+await mq.connect()
+
+// Producer (API)
+app.post('/api/register', async (req, res) => {
+  const user = await User.create(req.body)
+  
+  // Send email task to queue
+  await mq.publish('emails', {
+    type: 'welcome',
+    email: user.email,
+    name: user.name
+  })
+  
+  res.status(201).json(user)
+})
+
+// Consumer (Email Worker)
+await mq.consume('emails', async (message) => {
+  console.log('Processing email:', message)
+  await sendEmail(message.email, message.type, { name: message.name })
+})
+```
+
+### 4. Server-Sent Events (SSE)
+
+```javascript
+// Real-time notifications without WebSockets
+app.get('/api/notifications/stream', (req, res) => {
+  res.setHeader('Content-Type', 'text/event-stream')
+  res.setHeader('Cache-Control', 'no-cache')
+  res.setHeader('Connection', 'keep-alive')
+  
+  const userId = req.query.userId
+  
+  // Send initial connection message
+  res.write('data: {"message": "Connected to notifications"}\n\n')
+  
+  // Listen for notifications
+  const notificationListener = (notification) => {
+    if (notification.userId === userId) {
+      res.write(`data: ${JSON.stringify(notification)}\n\n`)
+    }
+  }
+  
+  eventEmitter.on('notification', notificationListener)
+  
+  // Cleanup on client disconnect
+  req.on('close', () => {
+    eventEmitter.off('notification', notificationListener)
+    res.end()
+  })
+})
+
+// Trigger notification
+app.post('/api/notifications', async (req, res) => {
+  const notification = await Notification.create(req.body)
+  eventEmitter.emit('notification', notification)
+  res.status(201).json(notification)
+})
+```
+
+---
+
+## 🏗️ Real-World Project: E-Commerce API {#ecommerce-project}
+
+### Complete E-Commerce Backend
+
+**1. Product Management**
+
+```javascript
+// models/Product.js
+const productSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  description: String,
+  price: { type: Number, required: true, min: 0 },
+  category: { type: String, required: true },
+  stock: { type: Number, default: 0 },
+  images: [String],
+  ratings: [{
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    rating: { type: Number, min: 1, max: 5 },
+    comment: String,
+    createdAt: { type: Date, default: Date.now }
+  }],
+  averageRating: { type: Number, default: 0 },
+  tags: [String],
+  isActive: { type: Boolean, default: true }
+}, { timestamps: true })
+
+// Virtual for total reviews
+productSchema.virtual('totalReviews').get(function() {
+  return this.ratings.length
+})
+
+// Calculate average rating before save
+productSchema.pre('save', function(next) {
+  if (this.ratings.length > 0) {
+    const sum = this.ratings.reduce((acc, r) => acc + r.rating, 0)
+    this.averageRating = sum / this.ratings.length
+  }
+  next()
+})
+
+module.exports = mongoose.model('Product', productSchema)
+
+// routes/products.js
+router.get('/products', async (req, res) => {
+  const { 
+    page = 1, 
+    limit = 10, 
+    category, 
+    minPrice, 
+    maxPrice, 
+    search,
+    sortBy = 'createdAt',
+    order = 'desc'
+  } = req.query
+  
+  // Build query
+  const query = { isActive: true }
+  
+  if (category) query.category = category
+  if (minPrice || maxPrice) {
+    query.price = {}
+    if (minPrice) query.price.$gte = Number(minPrice)
+    if (maxPrice) query.price.$lte = Number(maxPrice)
+  }
+  if (search) {
+    query.$or = [
+      { name: { $regex: search, $options: 'i' } },
+      { description: { $regex: search, $options: 'i' } },
+      { tags: { $in: [new RegExp(search, 'i')] } }
+    ]
+  }
+  
+  // Execute query with pagination
+  const products = await Product.find(query)
+    .sort({ [sortBy]: order === 'asc' ? 1 : -1 })
+    .limit(limit * 1)
+    .skip((page - 1) * limit)
+    .select('-__v')
+  
+  const count = await Product.countDocuments(query)
+  
+  res.json({
+    products,
+    totalPages: Math.ceil(count / limit),
+    currentPage: page,
+    total: count
+  })
+})
+
+// Add product review
+router.post('/products/:id/reviews', authenticate, async (req, res) => {
+  const { rating, comment } = req.body
+  
+  const product = await Product.findById(req.params.id)
+  if (!product) return res.status(404).json({ error: 'Product not found' })
+  
+  // Check if user already reviewed
+  const existingReview = product.ratings.find(
+    r => r.user.toString() === req.user.id
+  )
+  
+  if (existingReview) {
+    return res.status(400).json({ error: 'You already reviewed this product' })
+  }
+  
+  product.ratings.push({
+    user: req.user.id,
+    rating,
+    comment
+  })
+  
+  await product.save()
+  res.status(201).json(product)
+})
+```
+
+**2. Shopping Cart**
+
+```javascript
+// models/Cart.js
+const cartSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  items: [{
+    product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+    quantity: { type: Number, required: true, min: 1 },
+    price: Number
+  }],
+  totalAmount: { type: Number, default: 0 }
+}, { timestamps: true })
+
+cartSchema.pre('save', async function(next) {
+  // Calculate total amount
+  this.totalAmount = this.items.reduce((sum, item) => {
+    return sum + (item.price * item.quantity)
+  }, 0)
+  next()
+})
+
+// routes/cart.js
+router.post('/cart/items', authenticate, async (req, res) => {
+  const { productId, quantity } = req.body
+  
+  const product = await Product.findById(productId)
+  if (!product) return res.status(404).json({ error: 'Product not found' })
+  
+  if (product.stock < quantity) {
+    return res.status(400).json({ error: 'Insufficient stock' })
+  }
+  
+  let cart = await Cart.findOne({ user: req.user.id })
+  
+  if (!cart) {
+    cart = new Cart({ user: req.user.id, items: [] })
+  }
+  
+  const existingItem = cart.items.find(
+    item => item.product.toString() === productId
+  )
+  
+  if (existingItem) {
+    existingItem.quantity += quantity
+  } else {
+    cart.items.push({
+      product: productId,
+      quantity,
+      price: product.price
+    })
+  }
+  
+  await cart.save()
+  await cart.populate('items.product')
+  
+  res.json(cart)
+})
+
+router.delete('/cart/items/:productId', authenticate, async (req, res) => {
+  const cart = await Cart.findOne({ user: req.user.id })
+  if (!cart) return res.status(404).json({ error: 'Cart not found' })
+  
+  cart.items = cart.items.filter(
+    item => item.product.toString() !== req.params.productId
+  )
+  
+  await cart.save()
+  res.json(cart)
+})
+```
+
+**3. Order Processing**
+
+```javascript
+// models/Order.js
+const orderSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  items: [{
+    product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+    quantity: Number,
+    price: Number,
+    name: String
+  }],
+  totalAmount: { type: Number, required: true },
+  status: { 
+    type: String, 
+    enum: ['pending', 'processing', 'shipped', 'delivered', 'cancelled'],
+    default: 'pending'
+  },
+  paymentMethod: { type: String, required: true },
+  paymentStatus: {
+    type: String,
+    enum: ['pending', 'completed', 'failed'],
+    default: 'pending'
+  },
+  shippingAddress: {
+    street: String,
+    city: String,
+    state: String,
+    zipCode: String,
+    country: String
+  },
+  trackingNumber: String,
+  notes: String
+}, { timestamps: true })
+
+// routes/orders.js
+router.post('/orders', authenticate, async (req, res) => {
+  const { paymentMethod, shippingAddress } = req.body
+  
+  const cart = await Cart.findOne({ user: req.user.id }).populate('items.product')
+  if (!cart || cart.items.length === 0) {
+    return res.status(400).json({ error: 'Cart is empty' })
+  }
+  
+  // Check stock availability
+  for (const item of cart.items) {
+    if (item.product.stock < item.quantity) {
+      return res.status(400).json({ 
+        error: `Insufficient stock for ${item.product.name}` 
+      })
+    }
+  }
+  
+  // Create order
+  const order = await Order.create({
+    user: req.user.id,
+    items: cart.items.map(item => ({
+      product: item.product._id,
+      quantity: item.quantity,
+      price: item.price,
+      name: item.product.name
+    })),
+    totalAmount: cart.totalAmount,
+    paymentMethod,
+    shippingAddress
+  })
+  
+  // Update product stock
+  for (const item of cart.items) {
+    await Product.findByIdAndUpdate(item.product._id, {
+      $inc: { stock: -item.quantity }
+    })
+  }
+  
+  // Clear cart
+  await Cart.findByIdAndDelete(cart._id)
+  
+  // Send confirmation email (background job)
+  await emailQueue.add('order-confirmation', {
+    userId: req.user.id,
+    orderId: order._id
+  })
+  
+  res.status(201).json(order)
+})
+
+// Get order status
+router.get('/orders/:id', authenticate, async (req, res) => {
+  const order = await Order.findOne({
+    _id: req.params.id,
+    user: req.user.id
+  }).populate('items.product')
+  
+  if (!order) return res.status(404).json({ error: 'Order not found' })
+  
+  res.json(order)
+})
+
+// Admin: Update order status
+router.patch('/admin/orders/:id/status', [authenticate, isAdmin], async (req, res) => {
+  const { status, trackingNumber } = req.body
+  
+  const order = await Order.findByIdAndUpdate(
+    req.params.id,
+    { status, trackingNumber },
+    { new: true }
+  )
+  
+  // Notify customer
+  await emailQueue.add('order-update', {
+    userId: order.user,
+    orderId: order._id,
+    status
+  })
+  
+  res.json(order)
+})
+```
+
+**4. Payment Integration (Stripe)**
+
+```javascript
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+
+router.post('/payments/create-intent', authenticate, async (req, res) => {
+  const { orderId } = req.body
+  
+  const order = await Order.findById(orderId)
+  if (!order) return res.status(404).json({ error: 'Order not found' })
+  
+  if (order.user.toString() !== req.user.id) {
+    return res.status(403).json({ error: 'Unauthorized' })
+  }
+  
+  // Create payment intent
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: Math.round(order.totalAmount * 100), // Convert to cents
+    currency: 'usd',
+    metadata: {
+      orderId: order._id.toString(),
+      userId: req.user.id
+    }
+  })
+  
+  res.json({ clientSecret: paymentIntent.client_secret })
+})
+
+// Stripe webhook
+router.post('/webhooks/stripe', express.raw({ type: 'application/json' }), async (req, res) => {
+  const sig = req.headers['stripe-signature']
+  let event
+  
+  try {
+    event = stripe.webhooks.constructEvent(
+      req.body,
+      sig,
+      process.env.STRIPE_WEBHOOK_SECRET
+    )
+  } catch (err) {
+    return res.status(400).send(`Webhook Error: ${err.message}`)
+  }
+  
+  if (event.type === 'payment_intent.succeeded') {
+    const paymentIntent = event.data.object
+    const orderId = paymentIntent.metadata.orderId
+    
+    await Order.findByIdAndUpdate(orderId, {
+      paymentStatus: 'completed',
+      status: 'processing'
+    })
+    
+    console.log(`✅ Payment succeeded for order ${orderId}`)
+  }
+  
+  res.json({ received: true })
+})
+```
+
+---
+
+## 💡 Interview Questions & Answers {#interview}
+
+### Beginner Level
+
+**Q1: What is the event loop in Node.js?**
+
+**A:** The event loop is what allows Node.js to perform non-blocking I/O operations despite JavaScript being single-threaded. It continuously checks the callback queue and executes callbacks when the call stack is empty.
+
+```javascript
+console.log('1. Start')
+
+setTimeout(() => {
+  console.log('2. Timeout')
+}, 0)
+
+Promise.resolve().then(() => {
+  console.log('3. Promise')
+})
+
+console.log('4. End')
+
+// Output:
+// 1. Start
+// 4. End
+// 3. Promise (microtask - higher priority)
+// 2. Timeout (macrotask)
+```
+
+**Q2: Difference between `require()` and `import`?**
+
+**A:** 
+- `require()`: CommonJS, synchronous, dynamic, can be called anywhere
+- `import`: ES Modules, asynchronous, static, must be at top level
+
+```javascript
+// CommonJS
+const express = require('express')
+if (condition) {
+  const module = require('./module') // ✅ Works
+}
+
+// ES Modules
+import express from 'express'
+if (condition) {
+  import module from './module' // ❌ Error
+}
+// Use dynamic import instead
+const module = await import('./module') // ✅ Works
+```
+
+### Intermediate Level
+
+**Q3: How do you handle errors in async/await?**
+
+**A:**
+```javascript
+// Method 1: try/catch
+async function getUser(id) {
+  try {
+    const user = await User.findById(id)
+    return user
+  } catch (error) {
+    logger.error('Error fetching user:', error)
+    throw new Error('Failed to fetch user')
+  }
+}
+
+// Method 2: Wrapper function
+const asyncHandler = (fn) => (req, res, next) => {
+  Promise.resolve(fn(req, res, next)).catch(next)
+}
+
+router.get('/users/:id', asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id)
+  res.json(user)
+}))
+
+// Method 3: Global error handler
+app.use((err, req, res, next) => {
+  logger.error(err.stack)
+  res.status(500).json({ error: err.message })
+})
+```
+
+**Q4: What are streams and why use them?**
+
+**A:** Streams process data in chunks instead of loading everything into memory.
+
+```javascript
+const fs = require('fs')
+
+// ❌ Bad: Loads entire file into memory
+app.get('/download', (req, res) => {
+  const file = fs.readFileSync('large-file.zip') // 5GB file!
+  res.send(file) // Server crashes
+})
+
+// ✅ Good: Streams data in chunks
+app.get('/download', (req, res) => {
+  const stream = fs.createReadStream('large-file.zip')
+  stream.pipe(res) // Memory efficient
+})
+
+// File processing with streams
+const readStream = fs.createReadStream('input.txt')
+const writeStream = fs.createWriteStream('output.txt')
+const transform = new Transform({
+  transform(chunk, encoding, callback) {
+    callback(null, chunk.toString().toUpperCase())
+  }
+})
+
+readStream
+  .pipe(transform)
+  .pipe(writeStream)
+  .on('finish', () => console.log('Done!'))
+```
+
+### Advanced Level
+
+**Q5: How do you scale a Node.js application?**
+
+**A:**
+
+```javascript
+// 1. Cluster Mode (Vertical Scaling)
+const cluster = require('cluster')
+const os = require('os')
+const numCPUs = os.cpus().length
+
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} starting`)
+  
+  // Fork workers
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork()
+  }
+  
+  cluster.on('exit', (worker) => {
+    console.log(`Worker ${worker.process.pid} died. Starting new one...`)
+    cluster.fork()
+  })
+} else {
+  // Worker processes
+  const app = express()
+  // ... app setup
+  app.listen(3000, () => {
+    console.log(`Worker ${process.pid} started`)
+  })
+}
+
+// 2. Load Balancing (Horizontal Scaling)
+// Use NGINX or PM2
+
+// PM2 Ecosystem File
+module.exports = {
+  apps: [{
+    name: 'api',
+    script: './app.js',
+    instances: 'max', // Use all CPU cores
+    exec_mode: 'cluster',
+    env: {
+      NODE_ENV: 'production'
+    }
+  }]
+}
+
+// 3. Caching Strategy
+const NodeCache = require('node-cache')
+const cache = new NodeCache({ stdTTL: 600 })
+
+app.get('/api/products', async (req, res) => {
+  const cacheKey = `products_${JSON.stringify(req.query)}`
+  
+  // Check cache
+  let products = cache.get(cacheKey)
+  
+  if (!products) {
+    products = await Product.find(req.query)
+    cache.set(cacheKey, products)
+  }
+  
+  res.json(products)
+})
+
+// 4. Database Connection Pooling
+mongoose.connect(process.env.MONGODB_URI, {
+  maxPoolSize: 10, // Maximum 10 connections
+  minPoolSize: 2,
+  socketTimeoutMS: 45000
+})
+```
+
+**Q6: Memory leak prevention?**
+
+**A:**
+```javascript
+// ❌ Memory Leak: Event listeners not removed
+class UserService {
+  constructor() {
+    setInterval(() => {
+      this.processUsers() // Keeps reference even after instance destroyed
+    }, 1000)
+  }
+}
+
+// ✅ Fix: Clean up resources
+class UserService {
+  constructor() {
+    this.interval = setInterval(() => {
+      this.processUsers()
+    }, 1000)
+  }
+  
+  destroy() {
+    clearInterval(this.interval)
+  }
+}
+
+// Monitor memory usage
+setInterval(() => {
+  const usage = process.memoryUsage()
+  console.log({
+    rss: `${Math.round(usage.rss / 1024 / 1024)}MB`,
+    heapUsed: `${Math.round(usage.heapUsed / 1024 / 1024)}MB`,
+    external: `${Math.round(usage.external / 1024 / 1024)}MB`
+  })
+}, 10000)
+```
+
+---
+
+## 🎓 Learning Path & Resources {#learning-path}
+
+### Month 1: Fundamentals
+- ✅ JavaScript ES6+
+- ✅ Node.js basics
+- ✅ NPM & package management
+- ✅ Async programming
+- ✅ File system operations
+
+### Month 2: Express & APIs
+- ✅ Express.js
+- ✅ RESTful API design
+- ✅ Middleware
+- ✅ Error handling
+- ✅ Database integration
+
+### Month 3: Advanced Topics
+- ✅ Authentication/Authorization
+- ✅ Testing (Jest, Supertest)
+- ✅ WebSockets
+- ✅ GraphQL
+- ✅ Microservices
+
+### Month 4: Production
+- ✅ Performance optimization
+- ✅ Security best practices
+- ✅ Deployment (Docker, AWS)
+- ✅ Monitoring & logging
+- ✅ CI/CD pipelines
+
+---
+
+## 🚀 Next Steps
+
 Keep building amazing things! 🚀
+
+**Your Node.js Journey:**
+1. ✅ Build 3-5 full projects
+2. ✅ Contribute to open source
+3. ✅ Deploy to production
+4. ✅ Learn system design
+5. ✅ Master DevOps
+
+**Ready for:** Senior Backend Developer roles ($100K-$180K+)
+
