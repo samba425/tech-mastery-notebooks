@@ -70,6 +70,11 @@ function getContentStructure() {
     
     // Cloud Platforms Category
     { id: 'aws-cloud', title: '☁️ AWS Cloud Zero to Hero', path: '../guides/cloud-platforms/aws-cloud-zero-to-hero.md' },
+    { id: 'aws-cert-index', title: '📚 AWS Certification Master Guide', path: '../guides/cloud-platforms/README-AWS-Certifications.md' },
+    { id: 'aws-cloud-practitioner', title: '📖 AWS Cloud Practitioner (CLF-C02)', path: '../guides/cloud-platforms/AWS-Cloud-Practitioner-Complete-Guide.md' },
+    { id: 'aws-solutions-architect', title: '🏗️ AWS Solutions Architect (SAA-C03)', path: '../guides/cloud-platforms/AWS-Solutions-Architect-Associate-Guide.md' },
+    { id: 'aws-quick-reference', title: '⚡ AWS Exam Quick Reference', path: '../guides/cloud-platforms/AWS-Exam-Quick-Reference-Cheatsheet.md' },
+    { id: 'aws-roadmap', title: '🗺️ AWS Certification Roadmap', path: '../docs/aws-certification-roadmap.md' },
     { id: 'azure-cloud', title: '☁️ Azure Cloud Zero to Hero', path: '../guides/cloud-platforms/azure-cloud-zero-to-hero.md' },
     
     // Backend Development Category
@@ -95,12 +100,7 @@ function getContentStructure() {
     { id: 'security-practices', title: '🔒 Security Best Practices Zero to Hero', path: '../guides/security-testing/security-best-practices-zero-to-hero.md' },
     { id: 'testing-tdd', title: '🧪 Testing & TDD Zero to Hero', path: '../guides/security-testing/testing-tdd-zero-to-hero.md' },
     
-    // AWS Certification Materials
-    { id: 'aws-cert-index', title: '☁️ AWS Certification Master Guide', path: '../guides/cloud-platforms/README-AWS-Certifications.md' },
-    { id: 'aws-cloud-practitioner', title: '📚 AWS Cloud Practitioner (CLF-C02)', path: '../guides/cloud-platforms/AWS-Cloud-Practitioner-Complete-Guide.md' },
-    { id: 'aws-solutions-architect', title: '🏗️ AWS Solutions Architect Associate (SAA-C03)', path: '../guides/cloud-platforms/AWS-Solutions-Architect-Associate-Guide.md' },
-    { id: 'aws-quick-reference', title: '⚡ AWS Exam Quick Reference Cheatsheet', path: '../guides/cloud-platforms/AWS-Exam-Quick-Reference-Cheatsheet.md' },
-    { id: 'aws-roadmap', title: '🗺️ AWS Certification Roadmap', path: '../docs/aws-certification-roadmap.md' },
+    // LeetCode & Coding Challenges
     { id: 'leetcode-solutions', title: '💻 LeetCode Solutions', path: '../code-examples/leetcode_solve.md' },
   ];
 }
