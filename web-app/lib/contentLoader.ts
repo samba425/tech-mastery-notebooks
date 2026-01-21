@@ -348,6 +348,15 @@ export function getContentStructure(): any[] {
           category: 'challenges',
           readTime: 85,
           description: 'JavaScript coding challenges and solutions'
+        },
+        {
+          id: 'leetcode-solutions',
+          title: 'LeetCode Solutions',
+          path: '../code-examples/leetcode_solve.md',
+          category: 'challenges',
+          badge: 'New',
+          readTime: 45,
+          description: 'Two Sum problem with 4 solution approaches - Python & JavaScript'
         }
       ]
     },
@@ -498,6 +507,51 @@ export function getContentStructure(): any[] {
           category: 'cloud',
           readTime: 90,
           description: 'Complete AWS cloud services guide'
+        },
+        {
+          id: 'aws-cert-index',
+          title: 'AWS Certification Master Guide',
+          path: '../guides/cloud-platforms/README-AWS-Certifications.md',
+          category: 'cloud',
+          badge: 'New',
+          readTime: 15,
+          description: 'Complete AWS certification roadmap and study plan'
+        },
+        {
+          id: 'aws-cloud-practitioner',
+          title: 'AWS Cloud Practitioner (CLF-C02)',
+          path: '../guides/cloud-platforms/AWS-Cloud-Practitioner-Complete-Guide.md',
+          category: 'cloud',
+          badge: 'New',
+          readTime: 180,
+          description: '1500+ lines complete exam preparation with 40+ practice questions'
+        },
+        {
+          id: 'aws-solutions-architect',
+          title: 'AWS Solutions Architect (SAA-C03)',
+          path: '../guides/cloud-platforms/AWS-Solutions-Architect-Associate-Guide.md',
+          category: 'cloud',
+          badge: 'New',
+          readTime: 240,
+          description: '3800+ lines advanced guide with architecture patterns and 40+ questions'
+        },
+        {
+          id: 'aws-quick-reference',
+          title: 'AWS Exam Quick Reference',
+          path: '../guides/cloud-platforms/AWS-Exam-Quick-Reference-Cheatsheet.md',
+          category: 'cloud',
+          badge: 'New',
+          readTime: 30,
+          description: 'Last 24-hour exam review cheatsheet - print friendly'
+        },
+        {
+          id: 'aws-roadmap',
+          title: 'AWS Certification Roadmap',
+          path: '../docs/aws-certification-roadmap.md',
+          category: 'cloud',
+          badge: 'New',
+          readTime: 20,
+          description: '12-week progressive study plan for both certifications'
         },
         {
           id: 'azure-cloud',
