@@ -33,6 +33,11 @@ jobs:
           cd web-app
           npm ci
       
+      - name: Generate static content
+        run: |
+          cd web-app
+          npm run prebuild
+      
       - name: Build Next.js app
         run: |
           cd web-app
