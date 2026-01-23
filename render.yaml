@@ -25,7 +25,6 @@ services:
       - key: SECRET_KEY
         generateValue: true
     healthCheckPath: /api/todos
-    plan: free
 
   # Frontend React App (Static Site)
   - type: web
@@ -36,7 +35,6 @@ services:
     envVars:
       - key: REACT_APP_API_URL
         value: https://python-fullstack-backend.onrender.com
-    plan: free
 
   # Demo Server (Static Site)
   - type: web
@@ -44,7 +42,6 @@ services:
     runtime: static
     buildCommand: echo "No build needed"
     staticPublishPath: ./pythonclass/demo-projects/demos
-    plan: free
 
 # Databases
 databases:
