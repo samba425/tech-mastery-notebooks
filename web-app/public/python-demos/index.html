@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Full-Stack Demo Projects - Interactive Showcase</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --card-hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .main-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .section-header h2 {
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+        }
+
+        .section-header p {
+            color: #666;
+            margin: 0;
+            margin-top: 5px;
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-hover-shadow);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .card-body {
+            padding: 25px !important;
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            border-radius: 15px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .project-level {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .project-level.easy { 
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724; 
+        }
+        .project-level.medium { 
+            background: linear-gradient(135deg, #fff3cd, #ffeeba);
+            color: #856404; 
+        }
+        .project-level.advanced { 
+            background: linear-gradient(135deg, #d1ecf1, #bee5eb);
+            color: #0c5460; 
+        }
+        .project-level.expert { 
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            color: #721c24; 
+        }
+
+        .project-description {
+            color: #718096;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .project-tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .tech-badge {
+            background: #f7fafc;
+            color: #4a5568;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-demo {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-demo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .btn-fullscreen {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-fullscreen:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+            color: white;
+        }
+
+        .btn-group-demo {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-group-demo .btn-demo,
+        .btn-group-demo .btn-fullscreen {
+            flex: 1;
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px 0;
+            margin-top: 60px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-code-square me-2"></i>Python Full-Stack Demos
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#fundamentals"><i class="bi bi-book me-1"></i>Fundamentals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#backend"><i class="bi bi-server me-1"></i>Backend</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#frontend"><i class="bi bi-palette me-1"></i>Frontend</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#advanced"><i class="bi bi-rocket me-1"></i>Advanced</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-primary ms-2" href="live-demo.html">
+                            <i class="bi bi-play-circle me-1"></i>Live Demos
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="container">
+                <h1><i class="bi bi-grid-3x3-gap-fill"></i> Python Full-Stack Projects</h1>
+                <p>19 Production-Ready Demo Applications | Complete Learning Path | Modern Tech Stack</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">19</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">40</span>
+                        <span class="stat-label">Hours Content</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">9</span>
+                        <span class="stat-label">Technologies</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Working Code</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container pb-5">
+        <div class="container pb-5">
+            <!-- Part 1: Python Fundamentals -->
+            <div id="fundamentals" class="mb-5">
+                <div class="section-header">
+                    <h2><i class="bi bi-book-fill me-2"></i>Part 1: Python Fundamentals</h2>
+                    <p>Hours 1-10 | Foundation concepts and core Python programming</p>
+                </div>
+                <div class="projects-grid">
+                    <!-- Calculator Project -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">🔢</div>
+                            <h3 class="project-title">Simple Calculator</h3>
+                            <span class="project-level easy">Beginner</span>
+                            <p class="project-description">
+                                Basic arithmetic operations with user input handling, error management, and clean code structure.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Functions</span>
+                                <span class="tech-badge">Error Handling</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#calculator" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#calculator" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grade Calculator -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">📊</div>
+                            <h3 class="project-title">Grade Calculator</h3>
+                            <span class="project-level medium">Intermediate</span>
+                            <p class="project-description">
+                                Calculate student grades (A-F), validate marks, determine pass/fail status with comprehensive logic.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Conditionals</span>
+                                <span class="tech-badge">Validation</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#grade-calculator" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#grade-calculator" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Calculator -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">🧮</div>
+                            <h3 class="project-title">Advanced Calculator</h3>
+                            <span class="project-level medium">Intermediate</span>
+                            <p class="project-description">
+                                Scientific calculator with trigonometry, logarithms, square roots, and advanced mathematical operations.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Math Module</span>
+                                <span class="tech-badge">Advanced Functions</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#advanced-calculator" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#advanced-calculator" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Todo List -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">✅</div>
+                            <h3 class="project-title">Todo List Manager</h3>
+                            <span class="project-level medium">Intermediate</span>
+                            <p class="project-description">
+                                Full CRUD operations for task management with priority levels and completion tracking.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Data Structures</span>
+                                <span class="tech-badge">CRUD</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#todo-app" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#todo-app" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Manager -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">👥</div>
+                            <h3 class="project-title">Contact Manager</h3>
+                            <span class="project-level medium">Intermediate</span>
+                            <p class="project-description">
+                                Manage contacts with add, search, update, and delete functionality using dictionaries and file operations.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Dictionaries</span>
+                                <span class="tech-badge">File I/O</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#contact-manager" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#contact-manager" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Student System -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">🎓</div>
+                            <h3 class="project-title">Student Management</h3>
+                            <span class="project-level advanced">Advanced</span>
+                            <p class="project-description">
+                                Manage student records, enrollments, grades, and generate reports with OOP principles.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">OOP</span>
+                                <span class="tech-badge">Classes</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#student-system" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#student-system" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Part 2: Backend Development -->
+            <div id="backend" class="mb-5">
+                <div class="section-header">
+                    <h2><i class="bi bi-server me-2"></i>Part 2: Backend Development</h2>
+                    <p>Hours 11-20 | Flask, APIs, Databases & Authentication</p>
+                </div>
+                <div class="projects-grid">
+                    <!-- Blog OOP -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">�</div>
+                            <h3 class="project-title">Blog Publishing (OOP)</h3>
+                            <span class="project-level advanced">Advanced</span>
+                            <p class="project-description">
+                                Object-oriented blog system with posts, categories, authors using Python classes and inheritance.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">OOP</span>
+                                <span class="tech-badge">Inheritance</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#blog-oop" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#blog-oop" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Library Management -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">📚</div>
+                            <h3 class="project-title">Library Management</h3>
+                            <span class="project-level advanced">Advanced</span>
+                            <p class="project-description">
+                                Book inventory system with borrowing, returns, search functionality, and member management.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">OOP</span>
+                                <span class="tech-badge">File Operations</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#library-system" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#library-system" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flask Basic API -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">�</div>
+                            <h3 class="project-title">Flask Basic API</h3>
+                            <span class="project-level medium">Intermediate</span>
+                            <p class="project-description">
+                                RESTful API fundamentals with Flask - routes, request handling, JSON responses, and CRUD operations.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">Flask</span>
+                                <span class="tech-badge">REST API</span>
+                                <span class="tech-badge">JSON</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#flask-api" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#flask-api" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Authentication System -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">🔐</div>
+                            <h3 class="project-title">Auth & Security</h3>
+                            <span class="project-level expert">Expert</span>
+                            <p class="project-description">
+                                Secure user authentication with registration, login, JWT tokens, and password hashing.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">JWT</span>
+                                <span class="tech-badge">bcrypt</span>
+                                <span class="tech-badge">Sessions</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#auth-system" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#auth-system" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weather Dashboard -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">🌤️</div>
+                            <h3 class="project-title">Weather Dashboard</h3>
+                            <span class="project-level medium">Intermediate</span>
+                            <p class="project-description">
+                                Real-time weather data integration with forecasts, multiple cities, and API consumption.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">APIs</span>
+                                <span class="tech-badge">JSON</span>
+                                <span class="tech-badge">External Data</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#weather-app" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#weather-app" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Visualization -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">�</div>
+                            <h3 class="project-title">Data Visualization</h3>
+                            <span class="project-level advanced">Advanced</span>
+                            <p class="project-description">
+                                Interactive charts and graphs with Chart.js - multiple chart types, real-time updates, and beautiful animations.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">Chart.js</span>
+                                <span class="tech-badge">Interactive</span>
+                                <span class="tech-badge">Real-time</span>
+                                <span class="tech-badge">Analytics</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#data-visualization" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="part2/15-data-visualization.html" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Part 3: Frontend Development -->
+            <div id="frontend" class="mb-5">
+                <div class="section-header">
+                    <h2><i class="bi bi-palette-fill me-2"></i>Part 3: Frontend Development</h2>
+                    <p>Hours 21-30 | React, Components & Modern UI</p>
+                </div>
+                <div class="projects-grid">
+                    <!-- React Todo App -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">⚛️</div>
+                            <h3 class="project-title">React Todo Application</h3>
+                            <span class="project-level advanced">Advanced</span>
+                            <p class="project-description">
+                                Modern React app with hooks, state management, API integration, and responsive design.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">React 18</span>
+                                <span class="tech-badge">Hooks</span>
+                                <span class="tech-badge">REST API</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#react-todo" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="http://localhost:3000" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weather App -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">�️</div>
+                            <h3 class="project-title">Weather App</h3>
+                            <span class="project-level medium">Intermediate</span>
+                            <p class="project-description">
+                                Full-stack weather application with React frontend and Flask backend integration.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">Flask</span>
+                                <span class="tech-badge">API</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#weather-app" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#weather-app" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Full Stack Blog -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">�</div>
+                            <h3 class="project-title">Full Stack Blog</h3>
+                            <span class="project-level expert">Expert</span>
+                            <p class="project-description">
+                                Complete blogging platform with React frontend, Flask backend, and PostgreSQL database.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">Flask</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#fullstack-blog" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#fullstack-blog" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Part 4: Advanced Topics -->
+            <div id="advanced" class="mb-5">
+                <div class="section-header">
+                    <h2><i class="bi bi-rocket-takeoff-fill me-2"></i>Part 4: Advanced Backend</h2>
+                    <p>Hours 31-40 | Microservices, Async, GraphQL & Real-time</p>
+                </div>
+                <div class="projects-grid">
+                    <!-- Microservices -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">🔄</div>
+                            <h3 class="project-title">Microservices Architecture</h3>
+                            <span class="project-level expert">Expert</span>
+                            <p class="project-description">
+                                Distributed services: User Service, Post Service, API Gateway with service communication.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">FastAPI</span>
+                                <span class="tech-badge">Microservices</span>
+                                <span class="tech-badge">Docker</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#microservices" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="http://localhost:8000/docs" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GraphQL -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">🌐</div>
+                            <h3 class="project-title">GraphQL API</h3>
+                            <span class="project-level expert">Expert</span>
+                            <p class="project-description">
+                                Modern API with flexible queries, mutations, subscriptions, and efficient data fetching.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">GraphQL</span>
+                                <span class="tech-badge">Queries</span>
+                                <span class="tech-badge">Mutations</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#graphql-demo" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="http://localhost:5001/graphql" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Async Scraper -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">🕷️</div>
+                            <h3 class="project-title">Async Web Scraper</h3>
+                            <span class="project-level advanced">Advanced</span>
+                            <p class="project-description">
+                                Asynchronous web scraping with BeautifulSoup, concurrent tasks, and data extraction.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">Async/Await</span>
+                                <span class="tech-badge">BeautifulSoup</span>
+                                <span class="tech-badge">Scraping</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#async-scraper" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="live-demo.html#async-scraper" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Application -->
+                    <div class="project-card">
+                        <div class="card-body">
+                            <div class="project-icon">💬</div>
+                            <h3 class="project-title">Real-time Chat</h3>
+                            <span class="project-level expert">Expert</span>
+                            <p class="project-description">
+                                WebSocket-based messaging with rooms, private messages, presence, and real-time updates.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-badge">WebSockets</span>
+                                <span class="tech-badge">Real-time</span>
+                                <span class="tech-badge">Socket.IO</span>
+                            </div>
+                            <div class="btn-group-demo">
+                                <a href="live-demo.html#chat-app" class="btn-demo">
+                                    <i class="bi bi-play-circle-fill"></i> Try Demo
+                                </a>
+                                <a href="http://localhost:3001" target="_blank" class="btn-fullscreen">
+                                    <i class="bi bi-arrows-fullscreen"></i> Full Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div>
+                            <h5 class="mb-3" style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                <i class="bi bi-code-square me-2"></i>Python Full-Stack Demos
+                            </h5>
+                            <p class="text-muted mb-0">Complete 40-hour training course with 19 production-ready projects</p>
+                        </div>
+                        <div>
+                            <p class="text-muted mb-2"><i class="bi bi-stack me-2"></i><strong>Tech Stack:</strong></p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="tech-badge">Python 3.11</span>
+                                <span class="tech-badge">Flask</span>
+                                <span class="tech-badge">React 18</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">Redis</span>
+                                <span class="tech-badge">MongoDB</span>
+                                <span class="tech-badge">Docker</span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="live-demo.html" class="btn btn-primary btn-lg">
+                                <i class="bi bi-play-circle-fill me-2"></i>Try Live Demos
+                            </a>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="text-center text-muted">
+                        <p class="mb-0">
+                            <i class="bi bi-heart-fill text-danger"></i> Built with Python, Flask, React & Docker | 
+                            <i class="bi bi-github ms-3"></i> View on GitHub
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

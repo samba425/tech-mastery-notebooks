@@ -479,6 +479,15 @@ export function getContentStructure(): any[] {
           category: 'teaching',
           readTime: 90,
           description: 'Advanced patterns and deployment'
+        },
+        {
+          id: 'python-demos',
+          title: '🎮 Python Full-Stack Live Demos (21 Projects)',
+          path: '../pythonclass/demo-projects/PYTHON-DEMOS.md',
+          category: 'teaching',
+          badge: 'Interactive',
+          readTime: 45,
+          description: 'Interactive showcase of 21+ Python full-stack projects with live demos'
         }
       ]
     },

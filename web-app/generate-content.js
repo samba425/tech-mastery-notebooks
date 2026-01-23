@@ -50,6 +50,7 @@ function getContentStructure() {
     { id: 'part2-backend', title: '🔧 Part 2: Backend Development (Hours 11-20)', path: '../pythonclass/Part2_Backend_Development_Hours_11-20.md' },
     { id: 'part3-frontend', title: '🎨 Part 3: Frontend Development (Hours 21-30)', path: '../pythonclass/Part3_Frontend_Development_Hours_21-30.md' },
     { id: 'part4-advanced', title: '🚀 Part 4: Advanced Backend (Hours 31-40)', path: '../pythonclass/Part4_Advanced_Backend_Hours_31-40.md' },
+    { id: 'python-demos', title: '🎮 Python Full-Stack Live Demos (21 Projects)', path: '../pythonclass/demo-projects/PYTHON-DEMOS.md' },
     { id: 'vedic-math', title: '🔢 Vedic Mathematics', path: '../vedic-mathematics-zero-to-hero.md' },
     
     // Big Data & Analytics Category

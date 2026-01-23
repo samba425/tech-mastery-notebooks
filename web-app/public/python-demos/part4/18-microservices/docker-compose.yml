@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  user-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.user
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT=8001
+    networks:
+      - microservices-network
+
+  post-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.post
+    ports:
+      - "8002:8002"
+    environment:
+      - PORT=8002
+    networks:
+      - microservices-network
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.gateway
+    ports:
+      - "8000:8000"
+    environment:
+      - USER_SERVICE_URL=http://user-service:8001
+      - POST_SERVICE_URL=http://post-service:8002
+    depends_on:
+      - user-service
+      - post-service
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge
+
+
