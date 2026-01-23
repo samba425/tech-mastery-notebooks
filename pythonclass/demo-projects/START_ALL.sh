@@ -9,6 +9,10 @@ echo "=========================================="
 echo "🚀 Python Full Stack - Complete Setup"
 echo "=========================================="
 echo ""
+echo "💡 TIP: Next time, you can just run:"
+echo "   docker-compose up -d"
+echo "   (This script does the same + extra checks)"
+echo ""
 
 # Colors for output
 GREEN='\033[0;32m'
