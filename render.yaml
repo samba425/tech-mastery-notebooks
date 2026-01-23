@@ -1,0 +1,58 @@
+# Render.com Blueprint Configuration
+# This file tells Render how to deploy your full-stack application
+
+services:
+  # Backend Flask API
+  - type: web
+    name: python-fullstack-backend
+    runtime: docker
+    dockerfilePath: ./pythonclass/demo-projects/backend/Dockerfile
+    dockerContext: ./pythonclass/demo-projects/backend
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: fullstack-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: fullstack-redis
+          type: redis
+          property: connectionString
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: SECRET_KEY
+        generateValue: true
+    healthCheckPath: /api/todos
+    plan: free
+
+  # Frontend React App (Static Site)
+  - type: web
+    name: python-fullstack-frontend
+    runtime: static
+    buildCommand: cd pythonclass/demo-projects/frontend && npm install && npm run build
+    staticPublishPath: ./pythonclass/demo-projects/frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://python-fullstack-backend.onrender.com
+    plan: free
+
+  # Demo Server (Static Site)
+  - type: web
+    name: python-fullstack-demos
+    runtime: static
+    buildCommand: echo "No build needed"
+    staticPublishPath: ./pythonclass/demo-projects/demos
+    plan: free
+
+# Databases
+databases:
+  # PostgreSQL Database
+  - name: fullstack-db
+    databaseName: demo_db
+    plan: free
+
+  # Redis Cache
+  - name: fullstack-redis
+    plan: free
