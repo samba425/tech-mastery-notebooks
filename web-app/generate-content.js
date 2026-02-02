@@ -85,6 +85,7 @@ function getContentStructure() {
     // Frontend Development Category
     { id: 'react-frontend', title: '⚛️ React Frontend Zero to Hero', path: '../guides/frontend-development/react-frontend-zero-to-hero.md' },
     { id: 'nextjs', title: '▲ Next.js Zero to Hero', path: '../guides/frontend-development/nextjs-zero-to-hero.md' },
+    { id: 'flutter-dart', title: '📱 Flutter & Dart Complete Guide', path: '../guides/frontend-development/Flutter-Dart-Complete-Guide.md' },
     { id: 'fullstack-notes', title: '🌐 Full Stack Developer Training', path: '../guides/frontend-development/Full_Stack_Developer_Training_Notes.md' },
     
     // Databases Category

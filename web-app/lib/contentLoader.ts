@@ -618,6 +618,15 @@ export function getContentStructure(): any[] {
           description: 'Modern React framework for production applications'
         },
         {
+          id: 'flutter-dart',
+          title: 'Flutter & Dart Complete Guide',
+          path: '../guides/frontend-development/Flutter-Dart-Complete-Guide.md',
+          category: 'frontend',
+          readTime: 180,
+          badge: 'New',
+          description: '12-16 week comprehensive Flutter & Dart guide from beginner to expert'
+        },
+        {
           id: 'fullstack-notes',
           title: 'Full Stack Developer Training',
           path: '../guides/frontend-development/Full_Stack_Developer_Training_Notes.md',
