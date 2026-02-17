@@ -46,26 +46,200 @@ Phase 4: Expert Level (Weeks 13-16)
 
 ## 🌟 Part 1: Dart Language Mastery (Week 1)
 
-### 1.1 Dart Fundamentals
+### 📚 Learning Objectives
+By the end of this week, you will:
+- Understand Dart's role in Flutter ecosystem
+- Master Dart syntax, data types, and control structures
+- Implement object-oriented programming concepts
+- Handle asynchronous programming with Futures and Streams
+- Build confidence in Dart problem-solving
 
-#### Why Dart for Flutter?
+---
+
+### 1.1 Understanding Dart: The Foundation
+
+#### 🤔 What is Dart and Why Does It Matter?
+
+**Dart is Google's programming language** designed specifically for building user interfaces. Think of it as the **blueprint language** for Flutter apps - just like how architects use specific drawing standards to design buildings, Flutter uses Dart to design mobile apps.
+
+#### 🎯 Why Dart for Flutter? (Theory Deep Dive)
+
+**1. Compilation Strategy - Best of Both Worlds**
 
 ```
-🎯 DART ADVANTAGES FOR MOBILE DEVELOPMENT
+🔄 DART'S DUAL COMPILATION APPROACH
 
-Performance Benefits:
-├─ AOT Compilation → Fast startup, predictable performance
-├─ JIT Compilation → Hot reload during development
-├─ Garbage Collection → Automatic memory management
-└─ Single-threaded → No race conditions, simpler debugging
+Development Time (JIT - Just In Time):
+┌─────────────────────────────────────────┐
+│  Your Dart Code                         │
+│       ↓                                 │
+│  Dart VM interprets code instantly      │ ← Hot Reload Magic!
+│       ↓                                 │
+│  See changes immediately in app         │
+└─────────────────────────────────────────┘
 
-Developer Experience:
-├─ Type Safety → Catch errors at compile time
-├─ Null Safety → Eliminate null pointer exceptions
-├─ Modern Syntax → Clean, readable code
-├─ Rich Standard Library → Built-in collections, async/await
-└─ Great Tooling → Excellent IDE support
+Production Time (AOT - Ahead Of Time):
+┌─────────────────────────────────────────┐
+│  Your Dart Code                         │
+│       ↓                                 │
+│  Compiled to native machine code        │ ← Fast Performance!
+│       ↓                                 │
+│  Optimized app runs directly on device  │
+└─────────────────────────────────────────┘
 ```
+
+**Key Insight:** This dual approach means you get **instant feedback** during development (like Python) but **high performance** in production (like C++).
+
+**2. Memory Management - Automatic and Efficient**
+
+**Concept:** Unlike languages like C++ where you manually manage memory, Dart uses **Garbage Collection**.
+
+**Real-world analogy:** Think of memory management like a restaurant:
+- **Manual (C++):** You have to clean each table yourself after customers leave
+- **Garbage Collection (Dart):** A cleaning service automatically cleans tables when customers leave
+
+**3. Single-Threading Model - Simplicity**
+
+**Concept:** Dart runs on a single thread with an **event loop**, similar to JavaScript.
+
+```
+📊 EVENT LOOP VISUALIZATION
+
+┌─────────────────────────────────────────┐
+│             EVENT LOOP                  │
+├─────────────────────────────────────────┤
+│  1. Execute current task                │
+│  2. Check for completed async operations │
+│  3. Handle UI events (taps, scrolls)    │
+│  4. Run scheduled callbacks             │
+│  5. Repeat...                          │
+└─────────────────────────────────────────┘
+```
+
+**Why This Matters:** No complex thread synchronization = fewer bugs and easier debugging.
+
+**4. Type Safety with Flexibility**
+
+**Concept:** Dart offers **gradual typing** - you can be strict when you want precision, flexible when you need speed.
+
+**Example of Progressive Typing:**
+```dart
+// Flexible - for rapid prototyping
+var userAge = 25; // Dart infers this is an int
+
+// Strict - for production code  
+int calculateAge(DateTime birthDate) {
+  // Compiler guarantees age is always an integer
+  return DateTime.now().year - birthDate.year;
+}
+```
+
+---
+
+### 1.2 Dart Language Concepts (Theory + Practice)
+
+#### 🏗️ Variables and Data Types - Building Blocks of Programs
+
+**Theoretical Foundation:**
+Variables are like **labeled containers** that store data. In Dart, every variable has a **type** that determines what kind of data it can hold and what operations you can perform on it.
+
+**Mental Model:** Think of variables like different types of containers:
+- `String` = Text box (can hold letters, words, sentences)
+- `int` = Number box (can hold whole numbers)  
+- `double` = Decimal box (can hold decimal numbers)
+- `bool` = Switch (can be ON/true or OFF/false)
+
+#### 📝 Variable Declaration Patterns
+
+```dart
+// PATTERN 1: Type Inference (Let Dart figure it out)
+void typeInferenceExample() {
+  var studentName = 'Alice';        // Dart knows: String
+  var studentAge = 20;              // Dart knows: int
+  var studentGPA = 3.85;            // Dart knows: double
+  var isEnrolled = true;            // Dart knows: bool
+  
+  print('Student: $studentName, Age: $studentAge, GPA: $studentGPA');
+  // Why use var? Quick prototyping, cleaner code when type is obvious
+}
+
+// PATTERN 2: Explicit Typing (Tell Dart exactly what you want)
+void explicitTypingExample() {
+  String courseName = 'Computer Science';   // Explicit String
+  int creditHours = 3;                     // Explicit int
+  double tuitionCost = 15000.50;           // Explicit double
+  bool isOnline = false;                   // Explicit bool
+  
+  // Why use explicit types? 
+  // 1. Documentation (other developers know your intent)
+  // 2. Error prevention (compiler catches type mismatches)
+  // 3. Better IDE support (autocomplete, refactoring)
+}
+
+// PATTERN 3: Late Initialization (I'll set this value later)
+void lateInitializationExample() {
+  late String universityName;     // Promise: "I'll initialize this before using it"
+  late int establishedYear;
+  
+  // Later in the code...
+  if (DateTime.now().month >= 9) {
+    universityName = 'Fall University';
+    establishedYear = 1995;
+  } else {
+    universityName = 'Spring University'; 
+    establishedYear = 2000;
+  }
+  
+  print('$universityName established in $establishedYear');
+  // Why use late? Conditional initialization, expensive operations
+}
+
+// PATTERN 4: Nullable Types (This might be empty/null)
+void nullSafetyExample() {
+  String? optionalMessage;          // Can be String or null
+  int? optionalCount;               // Can be int or null
+  
+  // Safe handling of nullable values
+  if (optionalMessage != null) {
+    print('Message length: ${optionalMessage.length}');
+  }
+  
+  // Null-aware operators (shorthand)
+  print('Message: ${optionalMessage ?? 'No message'}');  // Use default if null
+  print('Count: ${optionalCount?.toString() ?? 'Unknown'}');  // Safe call
+  
+  // Why nullable types? Represent absence of data, prevent null crashes
+}
+
+// PATTERN 5: Constants (Values that never change)
+void constantsExample() {
+  // Runtime constant (calculated when program runs)
+  final DateTime appStartTime = DateTime.now();
+  final String deviceModel = getDeviceModel(); // Can call functions
+  
+  // Compile-time constant (known when code compiles)
+  const double pi = 3.14159;                   // Mathematical constant
+  const String appVersion = '1.0.0';           // Fixed value
+  const int maxRetries = 3;                    // Configuration constant
+  
+  // Why use constants?
+  // - Performance (no recalculation)
+  // - Safety (prevent accidental changes)
+  // - Clarity (indicate unchanging values)
+}
+
+String getDeviceModel() {
+  return 'iPhone 15'; // Placeholder implementation
+}
+```
+
+#### 🎯 Key Learning Points:
+
+1. **Type Inference (`var`)** - Let Dart be smart, but only when the type is obvious
+2. **Explicit Types** - Use for function parameters, class fields, and when clarity matters  
+3. **Late Variables** - For conditional initialization or expensive calculations
+4. **Nullable Types (`?`)** - Explicitly handle cases where data might be missing
+5. **Constants (`final`/`const`)** - Prevent bugs and improve performance
 
 #### Setting Up Dart Environment
 
@@ -123,81 +297,539 @@ void main() {
 }
 ```
 
-#### Collections and Generics
+#### 📚 Collections and Generics - Organizing Data Efficiently
+
+**Theoretical Foundation:**
+Collections are **containers that hold multiple items**. Think of them as different types of organizers:
+- **Lists** = Ordered shelves (items have positions: 1st, 2nd, 3rd...)
+- **Maps** = Filing cabinets with labels (find items by their label/key)
+- **Sets** = Unique item containers (no duplicates allowed)
+
+**Generics** are like **type templates** - they let you specify what type of data a collection holds, providing type safety and better performance.
+
+#### 📋 Lists - Ordered Collections (Like Arrays)
+
+**Concept:** Lists maintain **order** and allow **duplicates**. Each item has an **index** (position).
 
 ```dart
-// Lists (Arrays)
-void listsExample() {
-  // Dynamic list
+// Understanding Lists Through Real-World Example: Student Grades
+void listsDeepDive() {
+  // CONCEPT: Type-safe list - only String fruits allowed
   List<String> fruits = ['apple', 'banana', 'orange'];
   
-  // List operations
-  fruits.add('grape');
-  fruits.insert(0, 'mango');
-  fruits.remove('banana');
+  // WHY GENERICS? Compare these two approaches:
   
-  // List methods
-  print('First fruit: ${fruits.first}');
-  print('Last fruit: ${fruits.last}');
-  print('Fruits count: ${fruits.length}');
+  // ❌ Without generics (old way - error-prone)
+  List dynamicList = ['apple', 123, true]; // Mixed types - confusing!
+  // var firstItem = dynamicList[0]; // What type is this? String? int? bool?
   
-  // List iteration
+  // ✅ With generics (modern way - type-safe)
+  List<String> fruitList = ['apple', 'banana', 'orange']; // Only strings!
+  String firstFruit = fruitList[0]; // Guaranteed to be a String!
+  
+  // CORE LIST OPERATIONS - Think of managing a queue of customers
+  
+  // 1. Adding items (customers join the queue)
+  fruits.add('grape');              // Add to end (most common)
+  fruits.insert(0, 'mango');        // Insert at specific position
+  fruits.addAll(['kiwi', 'peach']); // Add multiple items
+  
+  // 2. Removing items (customers leave the queue)
+  fruits.remove('banana');          // Remove by value
+  fruits.removeAt(1);              // Remove by position
+  fruits.removeLast();             // Remove last item
+  
+  // 3. Accessing items (check who's in queue)
+  print('First fruit: ${fruits.first}');      // Safe access to first
+  print('Last fruit: ${fruits.last}');        // Safe access to last
+  print('Fruit at index 2: ${fruits[2]}');    // Direct index access
+  print('Total fruits: ${fruits.length}');     // Count of items
+  
+  // 4. Checking contents (is customer in queue?)
+  bool hasApple = fruits.contains('apple');
+  int appleIndex = fruits.indexOf('apple'); // Returns -1 if not found
+  
+  print('Has apple: $hasApple, Apple at index: $appleIndex');
+  
+  // ITERATION PATTERNS - Different ways to process each item
+  
+  // Pattern 1: For-each (when you need the value only)
+  print('\n--- Processing each fruit ---');
   for (String fruit in fruits) {
-    print('Fruit: $fruit');
+    print('Processing: $fruit');
   }
   
-  // Functional programming methods
-  var upperFruits = fruits.map((fruit) => fruit.toUpperCase()).toList();
-  var longFruits = fruits.where((fruit) => fruit.length > 5).toList();
+  // Pattern 2: Indexed loop (when you need position and value)
+  print('\n--- Processing with positions ---');
+  for (int i = 0; i < fruits.length; i++) {
+    print('Position $i: ${fruits[i]}');
+  }
   
-  print('Upper fruits: $upperFruits');
-  print('Long fruits: $longFruits');
-}
-
-// Maps (Dictionaries)
-void mapsExample() {
-  // Map declaration
-  Map<String, int> scores = {
-    'Alice': 95,
-    'Bob': 87,
-    'Charlie': 92
-  };
-  
-  // Map operations
-  scores['David'] = 88;
-  scores.remove('Bob');
-  
-  // Map iteration
-  scores.forEach((name, score) {
-    print('$name: $score');
+  // Pattern 3: forEach with function (functional style)
+  print('\n--- Functional processing ---');
+  fruits.forEach((fruit) {
+    print('Fruit: ${fruit.toUpperCase()}');
   });
   
-  // Map methods
-  var names = scores.keys.toList();
-  var allScores = scores.values.toList();
-  var highScorers = scores.entries
-      .where((entry) => entry.value > 90)
-      .map((entry) => entry.key)
+  // FUNCTIONAL PROGRAMMING METHODS - Transform data elegantly
+  
+  // map() - Transform each item (like Excel formulas)
+  List<String> upperFruits = fruits
+      .map((fruit) => fruit.toUpperCase()) // Transform each fruit
+      .toList(); // Convert back to list
+  
+  // where() - Filter items (like database WHERE clause)
+  List<String> longFruits = fruits
+      .where((fruit) => fruit.length > 5) // Keep only long names
       .toList();
   
-  print('High scorers: $highScorers');
+  // reduce() - Combine all items into single result
+  String allFruits = fruits.reduce((value, element) => value + ', ' + element);
+  
+  // Advanced: Chaining operations (like Excel formulas)
+  List<String> processedFruits = fruits
+      .where((fruit) => fruit.length > 4)    // Filter: only long names
+      .map((fruit) => fruit.toUpperCase())   // Transform: to uppercase
+      .toList();                             // Convert: to list
+  
+  print('Original: $fruits');
+  print('Uppercase: $upperFruits');
+  print('Long fruits: $longFruits');
+  print('All combined: $allFruits');
+  print('Processed: $processedFruits');
 }
 
-// Sets (Unique collections)
-void setsExample() {
-  Set<String> technologies = {'Flutter', 'Dart', 'Firebase'};
+// PRACTICAL EXAMPLE: Managing a Shopping Cart
+void shoppingCartExample() {
+  List<String> cart = [];
   
-  // Set operations
-  technologies.add('Provider');
-  technologies.add('Flutter'); // Duplicate, won't be added
+  // Customer adds items
+  void addToCart(String item) {
+    cart.add(item);
+    print('Added $item to cart. Total items: ${cart.length}');
+  }
   
-  // Set methods
-  var hasFlutter = technologies.contains('Flutter');
-  var intersection = technologies.intersection({'Flutter', 'React', 'Vue'});
+  // Customer removes items
+  void removeFromCart(String item) {
+    if (cart.contains(item)) {
+      cart.remove(item);
+      print('Removed $item from cart');
+    } else {
+      print('$item not found in cart');
+    }
+  }
   
-  print('Technologies: $technologies');
-  print('Has Flutter: $hasFlutter');
-  print('Common with web: $intersection');
+  // View cart contents
+  void viewCart() {
+    if (cart.isEmpty) {
+      print('Cart is empty');
+      return;
+    }
+    
+    print('Shopping Cart Contents:');
+    for (int i = 0; i < cart.length; i++) {
+      print('${i + 1}. ${cart[i]}');
+    }
+  }
+  
+  // Simulate shopping
+  addToCart('Laptop');
+  addToCart('Mouse');
+  addToCart('Keyboard');
+  viewCart();
+  removeFromCart('Mouse');
+  viewCart();
+}
+```
+
+#### 🗂️ Maps - Key-Value Pairs (Like Dictionaries)
+
+**Concept:** Maps store **key-value pairs**. Think of a real dictionary where you look up a **word (key)** to find its **meaning (value)**.
+
+```dart
+// Understanding Maps: Student Records System
+void mapsDeepDive() {
+  // CONCEPT: Maps are like databases - store related information
+  Map<String, int> studentGrades = {
+    'Alice': 95,   // Key: 'Alice', Value: 95
+    'Bob': 87,     // Key: 'Bob', Value: 87
+    'Charlie': 92  // Key: 'Charlie', Value: 92
+  };
+  
+  // WHY USE MAPS? Compare with Lists:
+  
+  // ❌ Using Lists (inefficient for lookups)
+  List<String> names = ['Alice', 'Bob', 'Charlie'];
+  List<int> grades = [95, 87, 92];
+  // To find Alice's grade: search names, remember index, use index in grades
+  
+  // ✅ Using Maps (efficient, clear relationship)
+  // To find Alice's grade: studentGrades['Alice'] - done!
+  
+  // CORE MAP OPERATIONS
+  
+  // 1. Adding/Updating entries
+  studentGrades['David'] = 88;      // Add new entry
+  studentGrades['Alice'] = 98;      // Update existing entry
+  
+  // 2. Accessing values
+  int? aliceGrade = studentGrades['Alice'];         // Safe access (nullable)
+  int bobGrade = studentGrades['Bob'] ?? 0;         // With default value
+  int charlieGrade = studentGrades['Charlie']!;     // Force unwrap (use carefully!)
+  
+  print('Alice: $aliceGrade, Bob: $bobGrade, Charlie: $charlieGrade');
+  
+  // 3. Checking existence
+  bool hasStudent = studentGrades.containsKey('Eve');
+  bool hasGrade = studentGrades.containsValue(100);
+  
+  // 4. Removing entries
+  studentGrades.remove('Bob');      // Remove Bob's record
+  
+  // ITERATION PATTERNS FOR MAPS
+  
+  // Pattern 1: Keys only
+  print('\n--- All Students ---');
+  for (String name in studentGrades.keys) {
+    print('Student: $name');
+  }
+  
+  // Pattern 2: Values only  
+  print('\n--- All Grades ---');
+  for (int grade in studentGrades.values) {
+    print('Grade: $grade');
+  }
+  
+  // Pattern 3: Key-value pairs (most common)
+  print('\n--- Student Records ---');
+  for (String name in studentGrades.keys) {
+    print('$name scored ${studentGrades[name]}');
+  }
+  
+  // Pattern 4: Modern approach with entries
+  studentGrades.forEach((name, grade) {
+    String performance = grade >= 90 ? 'Excellent' : 
+                        grade >= 80 ? 'Good' : 'Needs Improvement';
+    print('$name ($grade): $performance');
+  });
+  
+  // ADVANCED MAP OPERATIONS
+  
+  // Filter high performers
+  Map<String, int> highPerformers = Map.fromEntries(
+    studentGrades.entries.where((entry) => entry.value >= 90)
+  );
+  
+  // Calculate statistics
+  List<int> allGrades = studentGrades.values.toList();
+  double averageGrade = allGrades.reduce((a, b) => a + b) / allGrades.length;
+  int highestGrade = allGrades.reduce((a, b) => a > b ? a : b);
+  
+  print('\nStatistics:');
+  print('Average grade: ${averageGrade.toStringAsFixed(1)}');
+  print('Highest grade: $highestGrade');
+  print('High performers: $highPerformers');
+}
+```
+
+#### 🎯 Sets - Unique Collections (No Duplicates)
+
+**Concept:** Sets are like **exclusive clubs** - each member can only appear once. They automatically prevent duplicates and are perfect for tracking unique items.
+
+```dart
+// Understanding Sets: Managing Unique Skills
+void setsDeepDive() {
+  // CONCEPT: Sets automatically eliminate duplicates
+  Set<String> developerSkills = {'Flutter', 'Dart', 'Firebase'};
+  
+  // WHY USE SETS? Compare with Lists:
+  
+  // ❌ Using Lists (allows duplicates, manual checking needed)
+  List<String> skillsList = ['Flutter', 'Dart', 'Flutter', 'Firebase'];
+  print('Skills list: $skillsList'); // Shows: [Flutter, Dart, Flutter, Firebase]
+  
+  // ✅ Using Sets (automatic duplicate prevention)  
+  Set<String> skillsSet = {'Flutter', 'Dart', 'Flutter', 'Firebase'};
+  print('Skills set: $skillsSet'); // Shows: {Flutter, Dart, Firebase}
+  
+  // CORE SET OPERATIONS
+  
+  // 1. Adding skills (duplicates ignored automatically)
+  developerSkills.add('Provider');      // New skill - added
+  developerSkills.add('Flutter');       // Duplicate - ignored silently
+  developerSkills.addAll(['Riverpod', 'HTTP', 'Dart']); // Multiple adds
+  
+  print('Current skills: $developerSkills');
+  
+  // 2. Checking skills
+  bool knowsFlutter = developerSkills.contains('Flutter');
+  bool knowsReact = developerSkills.contains('React');
+  
+  print('Knows Flutter: $knowsFlutter');
+  print('Knows React: $knowsReact');
+  
+  // 3. SET THEORY OPERATIONS (Mathematical operations)
+  Set<String> webSkills = {'React', 'Vue', 'JavaScript', 'Flutter'};
+  Set<String> mobileSkills = {'Flutter', 'React Native', 'Swift', 'Kotlin'};
+  
+  // Union (Combined skills - all unique skills from both sets)
+  Set<String> allSkills = developerSkills.union(webSkills);
+  print('All skills (Union): $allSkills');
+  
+  // Intersection (Common skills - skills present in both sets)
+  Set<String> commonSkills = developerSkills.intersection(webSkills);
+  print('Common skills (Intersection): $commonSkills');
+  
+  // Difference (Unique to first set - skills in first but not second)
+  Set<String> uniqueToMobile = mobileSkills.difference(webSkills);
+  print('Unique to mobile (Difference): $uniqueToMobile');
+  
+  // 4. Set size and emptiness
+  print('Total unique skills: ${developerSkills.length}');
+  print('Has any skills: ${developerSkills.isNotEmpty}');
+  
+  // PRACTICAL EXAMPLE: User Role Management
+  manageUserRoles();
+}
+
+void manageUserRoles() {
+  // Real-world scenario: Managing user permissions
+  Set<String> adminRoles = {'read', 'write', 'delete', 'manage_users'};
+  Set<String> editorRoles = {'read', 'write'};
+  Set<String> viewerRoles = {'read'};
+  
+  // Check what extra permissions admin has over editor
+  Set<String> adminOnlyPermissions = adminRoles.difference(editorRoles);
+  print('Admin-only permissions: $adminOnlyPermissions');
+  
+  // Check common permissions between admin and editor
+  Set<String> commonPermissions = adminRoles.intersection(editorRoles);
+  print('Common permissions: $commonPermissions');
+  
+  // Grant new permission to all roles
+  void grantPermissionToAll(String permission) {
+    adminRoles.add(permission);
+    editorRoles.add(permission);
+    viewerRoles.add(permission);
+    print('Granted "$permission" to all users');
+  }
+  
+  grantPermissionToAll('view_analytics');
+  
+  print('Updated admin roles: $adminRoles');
+  print('Updated editor roles: $editorRoles');
+  print('Updated viewer roles: $viewerRoles');
+}
+```
+
+#### 🔧 Functions and Methods - Reusable Code Blocks
+
+**Theoretical Foundation:**
+Functions are like **recipes** - they take ingredients (parameters), follow steps (code), and produce a result (return value). They help you **avoid repetition** and **organize code logically**.
+
+**Key Concepts:**
+1. **Parameters** = Ingredients you provide to the function
+2. **Return Value** = Result the function gives back
+3. **Side Effects** = Other things the function does (like printing, saving files)
+
+```dart
+// Understanding Functions: Building a Calculator
+void functionsDeepDive() {
+  // BASIC FUNCTION ANATOMY
+  
+  // Function signature breakdown:
+  // [return_type] [function_name]([parameter_type] [parameter_name]) { ... }
+  
+  int addNumbers(int a, int b) {
+    // Function body - the recipe steps
+    int result = a + b;
+    return result; // Return the ingredient/result
+  }
+  
+  // PARAMETER PATTERNS - Different ways to pass data
+  
+  // 1. POSITIONAL PARAMETERS (order matters)
+  String greetUser(String name, int age) {
+    return 'Hello $name, you are $age years old';
+  }
+  
+  // Usage: order matters!
+  print(greetUser('Alice', 25)); // ✅ Correct
+  // print(greetUser(25, 'Alice')); // ❌ Error - wrong order
+  
+  // 2. OPTIONAL POSITIONAL PARAMETERS (can be skipped)
+  String greetWithOptional(String name, [int age = 0, String title = 'User']) {
+    if (age > 0) {
+      return 'Hello $title $name, you are $age years old';
+    }
+    return 'Hello $title $name';
+  }
+  
+  // Usage examples:
+  print(greetWithOptional('Bob'));                    // Uses defaults
+  print(greetWithOptional('Carol', 30));              // Provides age
+  print(greetWithOptional('David', 35, 'Dr.'));       // Provides all
+  
+  // 3. NAMED PARAMETERS (self-documenting, order doesn't matter)
+  String greetWithNamed({
+    required String name,        // Must be provided
+    int age = 0,                // Optional with default
+    String title = 'User',      // Optional with default
+    bool isVip = false          // Optional with default
+  }) {
+    String greeting = isVip ? 'Welcome VIP' : 'Hello';
+    return '$greeting $title $name' + (age > 0 ? ', age $age' : '');
+  }
+  
+  // Usage: clear and flexible!
+  print(greetWithNamed(name: 'Emma'));
+  print(greetWithNamed(name: 'Frank', age: 28, isVip: true));
+  print(greetWithNamed(age: 45, name: 'Grace', title: 'Dr.')); // Order doesn't matter!
+  
+  // 4. FUNCTION TYPES AND VARIABLES
+  
+  // Functions are "first-class citizens" - you can store them in variables!
+  
+  // Store function in variable
+  int Function(int, int) mathOperation = addNumbers;
+  print('5 + 3 = ${mathOperation(5, 3)}');
+  
+  // Change the operation
+  mathOperation = multiplyNumbers;
+  print('5 * 3 = ${mathOperation(5, 3)}');
+  
+  // 5. ARROW FUNCTIONS (shorthand for simple functions)
+  
+  // Traditional function
+  int square(int number) {
+    return number * number;
+  }
+  
+  // Arrow function (same thing, shorter)
+  int squareArrow(int number) => number * number;
+  
+  // Boolean checks are perfect for arrow functions
+  bool isEven(int number) => number % 2 == 0;
+  bool isAdult(int age) => age >= 18;
+  bool isEmpty(String text) => text.length == 0;
+  
+  print('4 squared: ${square(4)}');
+  print('4 squared (arrow): ${squareArrow(4)}');
+  print('Is 8 even? ${isEven(8)}');
+  print('Is 15 adult? ${isAdult(15)}');
+  
+  // DEMONSTRATION: Function composition and reusability
+  demonstrateCalculator();
+}
+
+int multiplyNumbers(int a, int b) => a * b;
+
+// PRACTICAL EXAMPLE: Building a modular calculator
+void demonstrateCalculator() {
+  print('\n--- Calculator Demo ---');
+  
+  // Define operations as functions
+  double add(double a, double b) => a + b;
+  double subtract(double a, double b) => a - b;
+  double multiply(double a, double b) => a * b;
+  double divide(double a, double b) {
+    if (b == 0) {
+      print('Error: Cannot divide by zero!');
+      return 0;
+    }
+    return a / b;
+  }
+  
+  // Higher-order function - takes other functions as parameters!
+  double calculate(double a, double b, double Function(double, double) operation) {
+    return operation(a, b);
+  }
+  
+  // Usage - very flexible!
+  double x = 10, y = 5;
+  
+  print('$x + $y = ${calculate(x, y, add)}');
+  print('$x - $y = ${calculate(x, y, subtract)}');  
+  print('$x * $y = ${calculate(x, y, multiply)}');
+  print('$x / $y = ${calculate(x, y, divide)}');
+  
+  // You can even create operations on the fly!
+  print('$x ^ $y = ${calculate(x, y, (a, b) => math.pow(a, b).toDouble())}');
+}
+
+// Import for math operations
+import 'dart:math' as math;
+
+// ADVANCED: Function closures (functions that remember variables)
+void demonstrateClosures() {
+  print('\n--- Closures Demo ---');
+  
+  // Create a function that "remembers" a multiplier
+  Function createMultiplier(int multiplier) {
+    // This inner function "closes over" the multiplier variable
+    return (int number) => number * multiplier;
+  }
+  
+  // Create specialized functions
+  var doubler = createMultiplier(2);     // Function that doubles
+  var tripler = createMultiplier(3);     // Function that triples
+  
+  print('Double 5: ${doubler(5)}');      // 10
+  print('Triple 5: ${tripler(5)}');      // 15
+  
+  // Each function remembers its own multiplier!
+  var tenTimes = createMultiplier(10);
+  print('Ten times 5: ${tenTimes(5)}');  // 50
+}
+```
+
+#### 🎯 Function Best Practices & Patterns
+
+```dart
+void functionBestPractices() {
+  // ✅ GOOD: Descriptive names that explain what the function does
+  bool validateEmail(String email) => email.contains('@');
+  double calculateTax(double amount, double rate) => amount * rate;
+  
+  // ❌ BAD: Cryptic names
+  bool check(String s) => s.contains('@');
+  double calc(double a, double r) => a * r;
+  
+  // ✅ GOOD: Single responsibility (function does one thing well)
+  String formatCurrency(double amount) {
+    return '\$${amount.toStringAsFixed(2)}';
+  }
+  
+  bool isValidPrice(double price) {
+    return price > 0;
+  }
+  
+  // ❌ BAD: Multiple responsibilities
+  String processPrice(double price) {
+    // Validation AND formatting in one function - confusing!
+    if (price <= 0) return 'Invalid';
+    return '\$${price.toStringAsFixed(2)}';
+  }
+  
+  // ✅ GOOD: Use named parameters for clarity
+  void sendEmail({
+    required String to,
+    required String subject,
+    required String body,
+    List<String> attachments = const [],
+    bool isUrgent = false,
+  }) {
+    print('Sending email to $to: $subject');
+    // Implementation
+  }
+  
+  // Usage is self-documenting:
+  sendEmail(
+    to: 'user@example.com',
+    subject: 'Welcome!',
+    body: 'Welcome to our app',
+    isUrgent: true,
+  );
 }
 ```
 
