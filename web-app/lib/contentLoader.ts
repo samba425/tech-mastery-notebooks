@@ -547,7 +547,7 @@ export function getContentStructure(): any[] {
         {
           id: 'aws-saa-c03-solutions',
           title: 'AWS SAA-C03 Solutions Guide',
-          path: '../../web-app/guides/cloud-platforms/AWS_SAA-C03_Solutions.md',
+          path: '../guides/cloud-platforms/AWS_SAA-C03_Solutions.md',
           category: 'cloud',
           badge: 'New',
           readTime: 300,
