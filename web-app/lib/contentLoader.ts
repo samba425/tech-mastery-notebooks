@@ -545,6 +545,15 @@ export function getContentStructure(): any[] {
           description: '3800+ lines advanced guide with architecture patterns and 40+ questions'
         },
         {
+          id: 'aws-saa-c03-solutions',
+          title: 'AWS SAA-C03 Solutions Guide',
+          path: '../../web-app/guides/cloud-platforms/AWS_SAA-C03_Solutions.md',
+          category: 'cloud',
+          badge: 'New',
+          readTime: 300,
+          description: '634 Q&A with explanations for AWS Solutions Architect Associate exam'
+        },
+        {
           id: 'aws-quick-reference',
           title: 'AWS Exam Quick Reference',
           path: '../guides/cloud-platforms/AWS-Exam-Quick-Reference-Cheatsheet.md',
