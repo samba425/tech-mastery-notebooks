@@ -70,13 +70,14 @@ function getContentStructure() {
     { id: 'performance-optimization', title: '⚡ Performance Optimization Complete Guide', path: '../guides/performance-engineering/Performance-Optimization-Complete-Guide.md' },
     
     // Cloud Platforms Category
-    { id: 'aws-cloud', title: '☁️ AWS Cloud Zero to Hero', path: '../guides/cloud-platforms/aws-cloud-zero-to-hero.md' },
-    { id: 'aws-cert-index', title: '📚 AWS Certification Master Guide', path: '../guides/cloud-platforms/README-AWS-Certifications.md' },
-    { id: 'aws-cloud-practitioner', title: '📖 AWS Cloud Practitioner (CLF-C02)', path: '../guides/cloud-platforms/AWS-Cloud-Practitioner-Complete-Guide.md' },
-    { id: 'aws-solutions-architect', title: '🏗️ AWS Solutions Architect (SAA-C03)', path: '../guides/cloud-platforms/AWS-Solutions-Architect-Associate-Guide.md' },
-    { id: 'aws-quick-reference', title: '⚡ AWS Exam Quick Reference', path: '../guides/cloud-platforms/AWS-Exam-Quick-Reference-Cheatsheet.md' },
-    { id: 'aws-roadmap', title: '🗺️ AWS Certification Roadmap', path: '../docs/aws-certification-roadmap.md' },
-    { id: 'azure-cloud', title: '☁️ Azure Cloud Zero to Hero', path: '../guides/cloud-platforms/azure-cloud-zero-to-hero.md' },
+  { id: 'aws-cloud', title: '☁️ AWS Cloud Zero to Hero', path: '../guides/cloud-platforms/aws-cloud-zero-to-hero.md' },
+  { id: 'aws-cert-index', title: '📚 AWS Certification Master Guide', path: '../guides/cloud-platforms/README-AWS-Certifications.md' },
+  { id: 'aws-cloud-practitioner', title: '📖 AWS Cloud Practitioner (CLF-C02)', path: '../guides/cloud-platforms/AWS-Cloud-Practitioner-Complete-Guide.md' },
+  { id: 'aws-solutions-architect', title: '🏗️ AWS Solutions Architect (SAA-C03)', path: '../guides/cloud-platforms/AWS-Solutions-Architect-Associate-Guide.md' },
+  { id: 'aws-saa-c03-solutions', title: 'AWS SAA-C03 Solutions Guide', path: '../guides/cloud-platforms/AWS_SAA-C03_Solutions.md' },
+  { id: 'aws-quick-reference', title: '⚡ AWS Exam Quick Reference', path: '../guides/cloud-platforms/AWS-Exam-Quick-Reference-Cheatsheet.md' },
+  { id: 'aws-roadmap', title: '🗺️ AWS Certification Roadmap', path: '../docs/aws-certification-roadmap.md' },
+  { id: 'azure-cloud', title: '☁️ Azure Cloud Zero to Hero', path: '../guides/cloud-platforms/azure-cloud-zero-to-hero.md' },
     
     // Backend Development Category
     { id: 'nodejs-express', title: '🟢 Node.js & Express Zero to Hero', path: '../guides/backend-development/nodejs-express-zero-to-hero.md' },
