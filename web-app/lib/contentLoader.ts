@@ -42,16 +42,16 @@ export function getContentStructure(): any[] {
     },
     {
       id: 'python',
-      title: '🐍 Python (Zero to Hero)',
+      title: '🐍 Python Zero to Hero',
       children: [
         {
           id: 'python-zero-to-hero',
-          title: 'Start Here — Roadmap',
+          title: 'Start Here — Full Path',
           path: '../guides/PYTHON-ZERO-TO-HERO.md',
           category: 'python',
           badge: 'Start',
-          readTime: 15,
-          description: 'One place: theory, examples, week plan, practice links'
+          readTime: 20,
+          description: 'All phases: basics → FastAPI → AI/ML in one roadmap'
         },
         {
           id: 'python-guide',
@@ -60,16 +60,16 @@ export function getContentStructure(): any[] {
           category: 'python',
           readTime: 120,
           badge: 'Main Book',
-          description: '§1–29: fundamentals through NumPy, Pandas, FastAPI, and more'
+          description: 'Sec. 1–29: fundamentals, NumPy, Pandas, FastAPI, Docker'
         },
         {
           id: 'python-aiml-path',
-          title: 'AI/ML Path (after §11)',
+          title: 'AI/ML Path (after Sec. 11)',
           path: '../guides/PYTHON-AIML-PATH.md',
           category: 'python',
           readTime: 20,
           badge: 'AI/ML',
-          description: '§1–5 → §11 → ML guides → checkpoints'
+          description: 'Sec. 1–5 → Sec. 11 → open ML guides in AI/ML folder'
         },
         {
           id: 'python-code',
@@ -227,7 +227,7 @@ export function getContentStructure(): any[] {
           category: 'ai-ml',
           badge: 'Phase 3',
           readTime: 30,
-          description: 'Step-by-step ML curriculum after Python §11'
+          description: 'Step-by-step ML curriculum after Python Sec. 11'
         },
         {
           id: 'ml-quick-ref',

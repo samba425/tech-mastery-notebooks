@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeSlug from 'rehype-slug'
 import remarkCustomHeadingId from '@/lib/remark-custom-heading-id'
+import { enrichChildren, prepareMarkdownForDisplay } from '@/lib/sectionRefs'
 import type { ContentItem } from '@/lib/contentLoader'
 import { Book, Clock, Tag } from 'lucide-react'
 import 'highlight.js/styles/github-dark.css'
@@ -50,6 +51,15 @@ export default function ContentViewer({ content, loading, onNavigate, prevConten
   const resolvedPdfUrl = content.pdfUrl
     ? (content.pdfUrl.startsWith('http') ? content.pdfUrl : `${basePath}${content.pdfUrl}`)
     : null
+
+  const markdownBody = prepareMarkdownForDisplay(content.content || '')
+
+  const withSectionRefs = (Tag: keyof JSX.IntrinsicElements) => {
+    return ({ children, ...props }: React.HTMLAttributes<HTMLElement>) => {
+      const Component = Tag as 'p'
+      return <Component {...props}>{enrichChildren(children)}</Component>
+    }
+  }
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-8">
@@ -119,6 +129,16 @@ export default function ContentViewer({ content, loading, onNavigate, prevConten
             remarkPlugins={[remarkGfm, remarkCustomHeadingId]}
             rehypePlugins={[rehypeSlug, rehypeHighlight]}
             components={{
+              p: withSectionRefs('p'),
+              li: withSectionRefs('li'),
+              td: withSectionRefs('td'),
+              th: withSectionRefs('th'),
+              strong: withSectionRefs('strong'),
+              em: withSectionRefs('em'),
+              h1: withSectionRefs('h1'),
+              h2: withSectionRefs('h2'),
+              h3: withSectionRefs('h3'),
+              h4: withSectionRefs('h4'),
               // Make anchor links work with smooth scrolling
               a: ({ node, href, children, ...props }) => {
                 // If it's an internal anchor link (starts with #)
@@ -161,7 +181,7 @@ export default function ContentViewer({ content, loading, onNavigate, prevConten
               },
             }}
           >
-            {content.content || ''}
+            {markdownBody}
           </ReactMarkdown>
         </div>
       )}

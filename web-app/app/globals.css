@@ -118,6 +118,13 @@ body {
   @apply bg-gray-100 dark:bg-gray-800 font-semibold;
 }
 
+/* Section sign (§) — use fonts that include U+00A7 (tables used to show blank cells) */
+.markdown-content .section-ref {
+  font-family: Georgia, 'Times New Roman', 'Noto Serif', 'Segoe UI Symbol', serif;
+  font-weight: 600;
+  @apply text-primary-700 dark:text-primary-300;
+}
+
 .markdown-content img {
   @apply max-w-full h-auto rounded-lg shadow-lg my-4;
 }

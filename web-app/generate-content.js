@@ -23,7 +23,7 @@ function getContentStructure() {
     { id: 'readme', title: '🏠 Welcome & Getting Started', path: '../README.md' },
     { id: 'start-here', title: '🚀 Quick Start Guide', path: '../START-HERE.md' },
     { id: 'learning-checkpoints', title: '✅ Learning Checkpoints (All Folders)', path: '../LEARNING-CHECKPOINTS.md' },
-    { id: 'python-zero-to-hero', title: '🐍 Python Zero to Hero (All-in-One)', path: '../guides/PYTHON-ZERO-TO-HERO.md' },
+    { id: 'python-zero-to-hero', title: '🐍 Python Zero to Hero — Full Path', path: '../guides/PYTHON-ZERO-TO-HERO.md' },
     { id: 'python-aiml-path', title: '🤖 Python for AI/ML — 4-Phase Path', path: '../guides/PYTHON-AIML-PATH.md' },
     { id: 'python-guide', title: '🐍 Python Complete Guide', path: '../guides/Python-Complete-Guide.md' },
     { id: 'javascript-guide', title: '⚡ JavaScript Complete Guide', path: '../guides/JavaScript-Complete-Guide.md' },

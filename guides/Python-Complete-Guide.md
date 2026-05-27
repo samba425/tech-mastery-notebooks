@@ -17,7 +17,7 @@
 **AI/ML path after basics:** [`PYTHON-AIML-PATH.md`](PYTHON-AIML-PATH.md)  
 **Track progress:** [`../LEARNING-CHECKPOINTS.md`](../LEARNING-CHECKPOINTS.md)
 
-You do not need separate theory notes and example files for core learning — they are already combined here in §1–§29.
+You do not need separate theory notes and example files for core learning — they are already combined here in Sec. 1–29.
 
 ---
 
@@ -27,10 +27,10 @@ If your goal is **AI/ML**, follow **[PYTHON-AIML-PATH.md](PYTHON-AIML-PATH.md)**
 
 | Week | Focus | Sections in this guide |
 |------|--------|-------------------------|
-| 1 | Syntax, data structures, functions | §1–§4 |
-| 2 | OOP + files + venv | §5, §8, §24 |
-| 3 | **NumPy + Pandas** (critical) | §11 (full section) |
-| 4 | Plotting + sklearn intro + Jupyter | §11.4–§11.6 |
+| 1 | Syntax, data structures, functions | Sec. 1–4 |
+| 2 | OOP + files + venv | Sec. 5, 8, 24 |
+| 3 | **NumPy + Pandas** (critical) | Sec. 11 (full section) |
+| 4 | Plotting + sklearn intro + Jupyter | Sec. 11.4–11.6 |
 | 5+ | Deep ML content | `guides/ai_ml/LEARNING-ORDER-GUIDE.md` |
 
 **Yes — NumPy and Pandas are in this guide** (Section 11, expanded below). For production ML, MLOps, and LLMs, continue with the `guides/ai_ml/` library after Section 11.

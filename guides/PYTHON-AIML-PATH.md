@@ -4,8 +4,8 @@
 
 | Phase | What | Guide | Time (2 h/day) |
 |-------|------|-------|----------------|
-| **1** | Python syntax & core | `Python-Complete-Guide.md` §1–§5 | ~2 weeks |
-| **2** | NumPy, Pandas, first model | `Python-Complete-Guide.md` §11 | ~2 weeks |
+| **1** | Python syntax & core | `Python-Complete-Guide.md` Sec. 1–5 | ~2 weeks |
+| **2** | NumPy, Pandas, first model | `Python-Complete-Guide.md` Sec. 11 | ~2 weeks |
 | **3** | Full ML curriculum | `ai_ml/LEARNING-ORDER-GUIDE.md` | ~12–16 weeks |
 | **4** | Progress & job readiness | `LEARNING-CHECKPOINTS.md` | Ongoing |
 
@@ -32,8 +32,8 @@ In the web app: open **Python for AI/ML — 4-Phase Path** (this file) and pin *
 
 | Week | Sections | You should be able to |
 |------|----------|------------------------|
-| 1 | §1 Fundamentals, §2 Data structures | Variables, lists, dicts, loops, comprehensions |
-| 2 | §3 Control flow, §4 Functions | `if/for/while`, functions, `*args`, lambdas |
+| 1 | Sec. 1 Fundamentals, Sec. 2 Data structures | Variables, lists, dicts, loops, comprehensions |
+| 2 | Sec. 3 Control flow, Sec. 4 Functions | `if/for/while`, functions, `*args`, lambdas |
 
 ### §5 Object-Oriented Programming (end of Phase 1)
 
@@ -60,8 +60,8 @@ In the web app: open **Python for AI/ML — 4-Phase Path** (this file) and pin *
 
 | Week | Focus | Practice |
 |------|-------|----------|
-| 3 | §11.2 NumPy | Arrays, shape, broadcasting, normalize a column |
-| 4 | §11.3–§11.6 Pandas + plots + sklearn | CSV EDA, missing values, first `train_test_split` |
+| 3 | Sec. 11.2 NumPy | Arrays, shape, broadcasting, normalize a column |
+| 4 | Sec. 11.3–11.6 Pandas + plots + sklearn | CSV EDA, missing values, first `train_test_split` |
 
 ### Mini-project (required)
 
