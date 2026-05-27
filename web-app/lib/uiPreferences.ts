@@ -1,9 +1,12 @@
-export type ReadingWidth = 'comfortable' | 'wide'
+export type ReadingWidth = 'full' | 'narrow'
+
+export type ThemeMode = 'light' | 'dark' | 'system'
 
 const KEYS = {
   sidebar: 'tm-sidebar-open',
   readingWidth: 'tm-reading-width',
   fontScale: 'tm-font-scale',
+  theme: 'tm-theme',
 } as const
 
 export function loadSidebarOpen(): boolean {
@@ -18,9 +21,11 @@ export function saveSidebarOpen(open: boolean) {
 }
 
 export function loadReadingWidth(): ReadingWidth {
-  if (typeof window === 'undefined') return 'comfortable'
+  if (typeof window === 'undefined') return 'full'
   const v = localStorage.getItem(KEYS.readingWidth)
-  return v === 'wide' ? 'wide' : 'comfortable'
+  if (v === 'narrow' || v === 'comfortable') return 'narrow'
+  if (v === 'full' || v === 'wide') return 'full'
+  return 'full'
 }
 
 export function saveReadingWidth(width: ReadingWidth) {
@@ -37,4 +42,29 @@ export function loadFontScale(): number {
 export function saveFontScale(scale: number) {
   if (typeof window === 'undefined') return
   localStorage.setItem(KEYS.fontScale, String(scale))
+}
+
+export function loadTheme(): ThemeMode {
+  if (typeof window === 'undefined') return 'system'
+  const v = localStorage.getItem(KEYS.theme)
+  if (v === 'light' || v === 'dark' || v === 'system') return v
+  return 'system'
+}
+
+export function saveTheme(theme: ThemeMode) {
+  if (typeof window === 'undefined') return
+  localStorage.setItem(KEYS.theme, theme)
+}
+
+export function resolveDark(theme: ThemeMode): boolean {
+  if (theme === 'dark') return true
+  if (theme === 'light') return false
+  if (typeof window === 'undefined') return false
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+}
+
+export function applyTheme(theme: ThemeMode) {
+  if (typeof document === 'undefined') return
+  const isDark = resolveDark(theme)
+  document.documentElement.classList.toggle('dark', isDark)
 }

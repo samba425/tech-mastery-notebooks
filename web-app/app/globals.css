@@ -4,15 +4,12 @@
 
 :root {
   --foreground: 15 23 42;
-  --background: 248 250 252;
-  --article-max: 42rem;
+  --background: 241 245 249;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: 248 250 252;
-    --background: 2 6 23;
-  }
+html.dark {
+  --foreground: 248 250 252;
+  --background: 2 6 23;
 }
 
 body {
@@ -37,10 +34,8 @@ body {
   border-radius: 3px;
 }
 
-@media (prefers-color-scheme: dark) {
-  ::-webkit-scrollbar-thumb {
-    background: #475569;
-  }
+html.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
 }
 
 ::-webkit-scrollbar-thumb:hover {

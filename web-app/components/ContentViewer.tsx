@@ -10,6 +10,7 @@ import type { ContentItem } from '@/lib/contentLoader'
 import type { ReadingWidth } from '@/lib/uiPreferences'
 import ReadingToolbar from '@/components/ReadingToolbar'
 import { Book, Clock, Tag, ChevronLeft, ChevronRight } from 'lucide-react'
+import { stripEmojis, NavIconBox } from '@/lib/navIcons'
 import 'highlight.js/styles/github-dark.css'
 
 interface ContentViewerProps {
@@ -34,7 +35,7 @@ export default function ContentViewer({
   nextContent,
   sidebarOpen = true,
   onToggleSidebar,
-  readingWidth = 'comfortable',
+  readingWidth = 'full',
   onReadingWidthChange,
   fontScale = 100,
   onFontScaleChange,
@@ -77,7 +78,10 @@ export default function ContentViewer({
     : null
 
   const markdownBody = prepareMarkdownForDisplay(content.content || '')
-  const widthClass = readingWidth === 'wide' ? 'max-w-5xl' : 'max-w-[42rem]'
+  const containerClass =
+    readingWidth === 'narrow'
+      ? 'max-w-3xl mx-auto px-4 sm:px-6 lg:px-8'
+      : 'w-full max-w-none px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-16'
 
   const withSectionRefs = (Tag: keyof JSX.IntrinsicElements) => {
     return ({ children, ...props }: React.HTMLAttributes<HTMLElement>) => {
@@ -87,7 +91,7 @@ export default function ContentViewer({
   }
 
   return (
-    <div className={`mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 ${widthClass}`}>
+    <div className={`py-5 lg:py-7 ${containerClass}`}>
       {onToggleSidebar && onReadingWidthChange && onFontScaleChange && (
         <ReadingToolbar
           sidebarOpen={sidebarOpen}
@@ -96,14 +100,22 @@ export default function ContentViewer({
           onReadingWidthChange={onReadingWidthChange}
           fontScale={fontScale}
           onFontScaleChange={onFontScaleChange}
-          title={content.title}
+          title={stripEmojis(content.title)}
         />
       )}
 
       <article className="article-card rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm shadow-slate-200/50 dark:shadow-none overflow-hidden">
         <header className="px-6 sm:px-8 pt-8 pb-6 border-b border-slate-100 dark:border-slate-800 bg-gradient-to-b from-slate-50/80 to-transparent dark:from-slate-800/30">
+          <div className="flex items-start gap-4">
+            <NavIconBox
+              id={content.id}
+              category={content.category}
+              fileType={content.fileType}
+              selected
+            />
+            <div className="min-w-0 flex-1">
           <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-tight">
-            {content.title}
+            {stripEmojis(content.title)}
           </h1>
           {content.description && (
             <p className="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -128,6 +140,8 @@ export default function ContentViewer({
                 {content.badge}
               </span>
             )}
+          </div>
+            </div>
           </div>
         </header>
 
@@ -232,7 +246,7 @@ export default function ContentViewer({
                       Previous
                     </div>
                     <div className="text-sm font-medium text-slate-800 dark:text-slate-100 truncate">
-                      {prevContent.title}
+                      {stripEmojis(prevContent.title)}
                     </div>
                   </div>
                 </button>
@@ -250,7 +264,7 @@ export default function ContentViewer({
                       Next
                     </div>
                     <div className="text-sm font-medium text-slate-800 dark:text-slate-100 truncate">
-                      {nextContent.title}
+                      {stripEmojis(nextContent.title)}
                     </div>
                   </div>
                   <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-primary-500 flex-shrink-0" />
