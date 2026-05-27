@@ -27,7 +27,6 @@ function HomeContent() {
     'system-design',
     'programming-challenges',
     'career',
-    'teaching',
     'extras',
     
     // New Professional Categories (hidden by default, shown in /all)

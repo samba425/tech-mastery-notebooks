@@ -21,14 +21,13 @@ export default function Sidebar({
 }: SidebarProps) {
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(
     new Set([
-      'programming', 
-      'ai-ml', 
-      'devops', 
+      'python',
+      'ai-ml',
+      'devops',
       'infrastructure-notebooks',
       'system-design',
       'programming-challenges',
       'career',
-      'teaching'
     ])
   )
 

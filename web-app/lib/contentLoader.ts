@@ -41,34 +41,107 @@ export function getContentStructure(): any[] {
       description: 'Pass criteria for every major folder and career path'
     },
     {
-      id: 'python-zero-to-hero',
-      title: '🐍 Python Zero to Hero (All-in-One)',
-      path: '../guides/PYTHON-ZERO-TO-HERO.md',
-      category: 'overview',
-      badge: 'Start Here',
-      description: 'Theory + examples + practice map in one place'
-    },
-    {
-      id: 'python-aiml-path',
-      title: '🤖 Python for AI/ML — 4-Phase Path',
-      path: '../guides/PYTHON-AIML-PATH.md',
-      category: 'overview',
-      badge: 'AI/ML Start',
-      description: '§1–5 → §11 → LEARNING-ORDER → CHECKPOINTS'
+      id: 'python',
+      title: '🐍 Python (Zero to Hero)',
+      children: [
+        {
+          id: 'python-zero-to-hero',
+          title: 'Start Here — Roadmap',
+          path: '../guides/PYTHON-ZERO-TO-HERO.md',
+          category: 'python',
+          badge: 'Start',
+          readTime: 15,
+          description: 'One place: theory, examples, week plan, practice links'
+        },
+        {
+          id: 'python-guide',
+          title: 'Complete Guide (Theory + Code)',
+          path: '../guides/Python-Complete-Guide.md',
+          category: 'python',
+          readTime: 120,
+          badge: 'Main Book',
+          description: '§1–29: fundamentals through NumPy, Pandas, FastAPI, and more'
+        },
+        {
+          id: 'python-aiml-path',
+          title: 'AI/ML Path (after §11)',
+          path: '../guides/PYTHON-AIML-PATH.md',
+          category: 'python',
+          readTime: 20,
+          badge: 'AI/ML',
+          description: '§1–5 → §11 → ML guides → checkpoints'
+        },
+        {
+          id: 'python-code',
+          title: 'Code Examples',
+          path: '../code-examples/python-mastery-guide.py',
+          category: 'python',
+          readTime: 60,
+          description: 'Extra runnable Python scripts'
+        },
+        {
+          id: 'python-challenges',
+          title: 'Challenges Notebook',
+          path: '../programming-challenges/python.challenges.ipynb',
+          category: 'python',
+          readTime: 90,
+          description: 'Practice problems with solutions'
+        },
+        {
+          id: 'teaching-plan',
+          title: 'Teaching Plan (12 Days)',
+          path: '../pythonclass/Python_Teaching_Plan_12_Days.md',
+          category: 'python',
+          readTime: 40,
+          description: 'Structured 12-day Python course'
+        },
+        {
+          id: 'part1-fundamentals',
+          title: 'Part 1: Fundamentals (Hours 1–10)',
+          path: '../pythonclass/Part1_Python_Fundamentals_Hours_1-10.md',
+          category: 'python',
+          readTime: 90,
+          description: 'Python basics and core concepts'
+        },
+        {
+          id: 'part2-backend',
+          title: 'Part 2: Backend (Hours 11–20)',
+          path: '../pythonclass/Part2_Backend_Development_Hours_11-20.md',
+          category: 'python',
+          readTime: 90,
+          description: 'Flask, APIs, and databases'
+        },
+        {
+          id: 'part3-frontend',
+          title: 'Part 3: Frontend (Hours 21–30)',
+          path: '../pythonclass/Part3_Frontend_Development_Hours_21-30.md',
+          category: 'python',
+          readTime: 90,
+          description: 'HTML, CSS, JavaScript integration'
+        },
+        {
+          id: 'part4-advanced',
+          title: 'Part 4: Advanced Backend (Hours 31–40)',
+          path: '../pythonclass/Part4_Advanced_Backend_Hours_31-40.md',
+          category: 'python',
+          readTime: 90,
+          description: 'Advanced patterns and deployment'
+        },
+        {
+          id: 'python-demos',
+          title: 'Full-Stack Live Demos (21 Projects)',
+          path: '../pythonclass/demo-projects/PYTHON-DEMOS.md',
+          category: 'python',
+          badge: 'Demos',
+          readTime: 45,
+          description: 'Interactive Python project showcase'
+        }
+      ]
     },
     {
       id: 'programming',
-      title: '💻 Programming Languages',
+      title: '💻 JavaScript & TypeScript',
       children: [
-        {
-          id: 'python-guide',
-          title: 'Python Complete Guide',
-          path: '../guides/Python-Complete-Guide.md',
-          category: 'programming',
-          readTime: 120,
-          badge: 'Phase 1–2',
-          description: 'Syntax (§1–5) + NumPy/Pandas (§11) for AI/ML'
-        },
         {
           id: 'javascript-guide',
           title: 'JavaScript Complete Guide',
@@ -84,14 +157,6 @@ export function getContentStructure(): any[] {
           category: 'programming',
           readTime: 90,
           description: 'Type-safe JavaScript development'
-        },
-        {
-          id: 'python-code',
-          title: 'Python Code Examples',
-          path: '../code-examples/python-mastery-guide.py',
-          category: 'programming',
-          readTime: 60,
-          description: 'Executable Python examples'
         },
         {
           id: 'javascript-code',
@@ -370,14 +435,6 @@ export function getContentStructure(): any[] {
       title: '💪 Programming Challenges',
       children: [
         {
-          id: 'python-challenges',
-          title: 'Python Challenges Notebook',
-          path: '../programming-challenges/python.challenges.ipynb',
-          category: 'challenges',
-          readTime: 90,
-          description: 'Python coding challenges and solutions'
-        },
-        {
           id: 'javascript-challenges',
           title: 'JavaScript Challenges Notebook',
           path: '../programming-challenges/javascript.challenges.ipynb',
@@ -453,15 +510,6 @@ export function getContentStructure(): any[] {
           description: 'Master system design for senior+ interviews'
         },
         {
-          id: 'python-challenges-career',
-          title: 'Python Coding Challenges',
-          path: '../programming-challenges/python.challenges.ipynb',
-          category: 'career',
-          badge: 'Practice',
-          readTime: 90,
-          description: 'Interview coding practice - Python'
-        },
-        {
           id: 'javascript-challenges-career',
           title: 'JavaScript Coding Challenges',
           path: '../programming-challenges/javascript.challenges.ipynb',
@@ -469,61 +517,6 @@ export function getContentStructure(): any[] {
           badge: 'Practice',
           readTime: 85,
           description: 'Interview coding practice - JavaScript'
-        }
-      ]
-    },
-    {
-      id: 'teaching',
-      title: '🎓 Python Teaching Curriculum',
-      children: [
-        {
-          id: 'teaching-plan',
-          title: 'Python Teaching Plan (12 Days)',
-          path: '../pythonclass/Python_Teaching_Plan_12_Days.md',
-          category: 'teaching',
-          readTime: 40,
-          description: '12-day comprehensive Python course'
-        },
-        {
-          id: 'part1-fundamentals',
-          title: 'Part 1: Python Fundamentals (Hours 1-10)',
-          path: '../pythonclass/Part1_Python_Fundamentals_Hours_1-10.md',
-          category: 'teaching',
-          readTime: 90,
-          description: 'Python basics and core concepts'
-        },
-        {
-          id: 'part2-backend',
-          title: 'Part 2: Backend Development (Hours 11-20)',
-          path: '../pythonclass/Part2_Backend_Development_Hours_11-20.md',
-          category: 'teaching',
-          readTime: 90,
-          description: 'Flask, APIs, and databases'
-        },
-        {
-          id: 'part3-frontend',
-          title: 'Part 3: Frontend Development (Hours 21-30)',
-          path: '../pythonclass/Part3_Frontend_Development_Hours_21-30.md',
-          category: 'teaching',
-          readTime: 90,
-          description: 'HTML, CSS, JavaScript integration'
-        },
-        {
-          id: 'part4-advanced',
-          title: 'Part 4: Advanced Backend (Hours 31-40)',
-          path: '../pythonclass/Part4_Advanced_Backend_Hours_31-40.md',
-          category: 'teaching',
-          readTime: 90,
-          description: 'Advanced patterns and deployment'
-        },
-        {
-          id: 'python-demos',
-          title: '🎮 Python Full-Stack Live Demos (21 Projects)',
-          path: '../pythonclass/demo-projects/PYTHON-DEMOS.md',
-          category: 'teaching',
-          badge: 'Interactive',
-          readTime: 45,
-          description: 'Interactive showcase of 21+ Python full-stack projects with live demos'
         }
       ]
     },
