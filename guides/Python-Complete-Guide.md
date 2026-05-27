@@ -13,8 +13,7 @@
 - **Examples** — runnable code blocks directly below the explanation  
 - **Patterns** — common interview and production usage  
 
-**Navigation hub (week plan + practice links):** [`PYTHON-ZERO-TO-HERO.md`](PYTHON-ZERO-TO-HERO.md)  
-**AI/ML path after basics:** [`PYTHON-AIML-PATH.md`](PYTHON-AIML-PATH.md)  
+**Navigation hub (full plan + AI/ML phases):** [`PYTHON-ZERO-TO-HERO.md`](PYTHON-ZERO-TO-HERO.md)  
 **Track progress:** [`../LEARNING-CHECKPOINTS.md`](../LEARNING-CHECKPOINTS.md)
 
 You do not need separate theory notes and example files for core learning — they are already combined here in Sec. 1–29.
@@ -23,7 +22,7 @@ You do not need separate theory notes and example files for core learning — th
 
 ## 🤖 Python for AI/ML — Fast Track (Read This First)
 
-If your goal is **AI/ML**, follow **[PYTHON-AIML-PATH.md](PYTHON-AIML-PATH.md)** (4 phases with checkpoints). You do not need every web/DevOps section on day one. Use this order:
+If your goal is **AI/ML**, follow **[PYTHON-ZERO-TO-HERO.md — AI/ML 4-Phase Path](PYTHON-ZERO-TO-HERO.md#ai-ml-4-phase-path)**. You do not need every web/DevOps section on day one. Use this order:
 
 | Week | Focus | Sections in this guide |
 |------|--------|-------------------------|
@@ -2158,15 +2157,9 @@ Mark complete in `LEARNING-CHECKPOINTS.md` → Python guide.
 
 ---
 
-### 11.8 What to Study Next (AI/ML Path)
+### 11.8 What to Study Next (AI/ML)
 
-| After Section 11 | Open |
-|------------------|------|
-| Feature engineering depth | `guides/ai_ml/Feature-Engineering-Complete-Guide.md` |
-| Models from scratch | `guides/ai_ml/Build-ML-Models-From-Scratch-Complete-Guide.md` |
-| Full roadmap | `guides/ai_ml/LEARNING-ORDER-GUIDE.md` |
-| LLM / RAG interviews | `guides/ai_ml/LLM-Interview-Questions-Complete.md` |
-| Deploy models | `guides/ai_ml/MLOps-Production-Complete-Guide.md` |
+Continue in **[PYTHON-ZERO-TO-HERO.md — AI/ML Phase A3](PYTHON-ZERO-TO-HERO.md#ai-ml-phase-a3--ml-guides-after-python-is-solid)**. In the web app: **AI/ML & Data Science** folder → **AI/ML Learning Order**, then Feature Engineering → Build Models → MLOps.
 
 ---
 

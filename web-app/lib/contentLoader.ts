@@ -46,12 +46,12 @@ export function getContentStructure(): any[] {
       children: [
         {
           id: 'python-zero-to-hero',
-          title: 'Start Here — Full Path',
+          title: 'Start Here (Python + AI/ML)',
           path: '../guides/PYTHON-ZERO-TO-HERO.md',
           category: 'python',
           badge: 'Start',
-          readTime: 20,
-          description: 'All phases: basics → FastAPI → AI/ML in one roadmap'
+          readTime: 45,
+          description: 'Full plan: Python + FastAPI + AI/ML 4 phases in one file'
         },
         {
           id: 'python-guide',
@@ -61,15 +61,6 @@ export function getContentStructure(): any[] {
           readTime: 120,
           badge: 'Main Book',
           description: 'Sec. 1–29: fundamentals, NumPy, Pandas, FastAPI, Docker'
-        },
-        {
-          id: 'python-aiml-path',
-          title: 'AI/ML Path (after Sec. 11)',
-          path: '../guides/PYTHON-AIML-PATH.md',
-          category: 'python',
-          readTime: 20,
-          badge: 'AI/ML',
-          description: 'Sec. 1–5 → Sec. 11 → open ML guides in AI/ML folder'
         },
         {
           id: 'python-code',

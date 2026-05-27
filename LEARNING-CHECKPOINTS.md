@@ -13,14 +13,14 @@
 
 ---
 
-## Python for AI/ML — 4-Phase Path (your confirmed plan)
+## Python + AI/ML — 4 phases (in Zero to Hero file)
 
-> **Full schedule:** [`guides/PYTHON-AIML-PATH.md`](guides/PYTHON-AIML-PATH.md)
+> **Full schedule:** [`guides/PYTHON-ZERO-TO-HERO.md`](guides/PYTHON-ZERO-TO-HERO.md#ai-ml-4-phase-path) (AI/ML section in one file)
 
 | Phase | Resource | Checkpoint (check when done) |
 |-------|----------|------------------------------|
-| **1** | `Python-Complete-Guide.md` **§1–§5** | [ ] 10 scripts, 5 challenge problems, 1 OOP class — date: ______ |
-| **2** | `Python-Complete-Guide.md` **§11** + mini-project | [ ] NumPy/Pandas fluent + project repo URL: ______ |
+| **1** | `Python-Complete-Guide.md` **Sec. 1–5** | [ ] 10 scripts, 5 challenge problems, 1 OOP class — date: ______ |
+| **2** | `Python-Complete-Guide.md` **Sec. 11** + mini-project | [ ] NumPy/Pandas fluent + project repo URL: ______ |
 | **3** | `guides/ai_ml/LEARNING-ORDER-GUIDE.md` | [ ] Path chosen + 3 core guides + 3 portfolio projects |
 | **4** | This file (ongoing) | [ ] Weekly progress log updated |
 

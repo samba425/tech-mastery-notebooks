@@ -21,7 +21,7 @@ This repository contains **$30,000+ worth of education** across:
 
 ## ⚡ QUICK START (5 Minutes)
 
-**AI/ML Python path (4 steps):** [`guides/PYTHON-AIML-PATH.md`](guides/PYTHON-AIML-PATH.md)  
+**Python + AI/ML (one file):** [`guides/PYTHON-ZERO-TO-HERO.md`](guides/PYTHON-ZERO-TO-HERO.md)  
 **Track progress:** [`LEARNING-CHECKPOINTS.md`](LEARNING-CHECKPOINTS.md) · **System design drills:** [`system-design/SYSTEM-DESIGN-PRACTICE-TRACK.md`](system-design/SYSTEM-DESIGN-PRACTICE-TRACK.md)
 
 ### **Step 1: Choose Your Path** ⏱️ 1 minute
@@ -186,7 +186,7 @@ Week 21+: Interviews & Offers
 ### **Start Here:**
 ```bash
 # Step 1–2: Python syntax + NumPy/Pandas
-open guides/PYTHON-AIML-PATH.md
+open guides/PYTHON-ZERO-TO-HERO.md
 open guides/Python-Complete-Guide.md
 
 # Step 3: After §11 mini-project is done

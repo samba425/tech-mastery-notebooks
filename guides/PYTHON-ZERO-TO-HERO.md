@@ -1,199 +1,325 @@
-# Python Zero to Hero — Learn Everything Here
+# Python Zero to Hero — Everything in One File
 
-> **One folder, one path:** fundamentals → data science → **FastAPI** → production Python → **AI/ML**.  
-> **Sec.** = section number in [`Python-Complete-Guide.md`](Python-Complete-Guide.md) (theory + runnable code in the same place).
+> **Read only this page for the full plan.** Theory + runnable examples for Python and the **AI/ML Python stack** live in [`Python-Complete-Guide.md`](Python-Complete-Guide.md) (Sec. 1–29).  
+> **Sec.** = section in that guide. Open it from the sidebar: **Complete Guide (Theory + Code)**.
 
-**In the web app:** Sidebar → **🐍 Python (Zero to Hero)** → start with this page → open **Complete Guide** for each Sec.
-
----
-
-## How to read this path (simplest method)
-
-1. **Read** the Sec. in **Complete Guide** (concept, then copy the code block).
-2. **Run** every example in a terminal or Jupyter.
-3. **Practice** challenges when a phase says to.
-4. **Check off** [`LEARNING-CHECKPOINTS.md`](../LEARNING-CHECKPOINTS.md).
-
-You do **not** need separate theory files and example files for core Python — they are already together in the Complete Guide.
+**Web app:** [Tech Mastery — All guides](https://samba425.github.io/tech-mastery-notebooks/all) → **🐍 Python Zero to Hero** → **Start Here — Full Path** (this page).
 
 ---
 
-## Full curriculum (12–16 weeks at ~2 hours/day)
+## How to learn (do not skip)
 
-| Phase | Weeks | What you learn | Where (sidebar under Python) |
-|-------|-------|----------------|------------------------------|
-| **1** | 1–2 | Syntax, data structures, functions | Complete Guide Sec. 1–4 |
-| **2** | 3–4 | OOP, files, virtualenv | Sec. 5, 8, 24 |
-| **3** | 5–6 | Decorators, errors, testing | Sec. 6–7, 22, 13, 19 |
-| **4** | 7–8 | **NumPy, Pandas, plots, sklearn** | Sec. 11 (all subsections) |
-| **5** | 9–10 | **FastAPI, async, APIs, databases** | Sec. 12, 16, 17, 18 |
-| **6** | 11–12 | Docker, logging, security, interviews | Sec. 25–27, 21, 28 |
-| **7** | 13+ | **AI/ML career track** | AI/ML Path + ML Curriculum guides |
-| **8** | Ongoing | Job readiness | Learning Checkpoints |
+| Step | Action |
+|------|--------|
+| 1 | Read the **theory** line for the step below |
+| 2 | Open **Complete Guide** at that **Sec.** and run **every** code block |
+| 3 | Do the **practice** for that week |
+| 4 | Check the box in **Learning Checkpoints** (sidebar top) |
+
+---
+
+## Master roadmap (all tracks)
+
+| Phase | Weeks | Topic | Where to read & code |
+|-------|-------|--------|----------------------|
+| 1 | 1–2 | Python syntax | Complete Guide Sec. 1–4 |
+| 2 | 3–4 | OOP, files, venv | Sec. 5, 8, 24 |
+| 3 | 5–6 | Decorators, errors, tests | Sec. 6–7, 22, 13, 19 |
+| 4 | 7–8 | **NumPy, Pandas, sklearn** | Sec. 11 + examples below |
+| 5 | 9–10 | **FastAPI**, async, DB | Sec. 12, 16, 17, 18 |
+| 6 | 11–12 | Docker, logging, security | Sec. 25–27, 21, 28 |
+| 7 | 13+ | **AI/ML career** | Sec. 11 + [AI/ML 4-phase](#ai-ml-4-phase-path) below + **AI/ML** sidebar folder |
+| 8 | Ongoing | Job readiness | **Learning Checkpoints** |
 
 ---
 
 ## Phase 1 — Foundations (Weeks 1–2)
 
-| Sec. | Topics | Practice today |
-|------|--------|----------------|
-| Sec. 1 | Variables, types, strings | 5 mini scripts |
-| Sec. 2 | Lists, dicts, sets, tuples | 5 list/dict exercises |
-| Sec. 3 | `if`, loops, `break`/`continue` | FizzBuzz, prime checker |
-| Sec. 4 | Functions, `*args`, lambdas | Refactor scripts into functions |
+| Sec. | Theory (what to understand) | Practice |
+|------|----------------------------|----------|
+| Sec. 1 | Types, variables, strings, f-strings | 5 mini scripts |
+| Sec. 2 | list, dict, set, tuple, comprehensions | 5 list/dict exercises |
+| Sec. 3 | `if`, `for`, `while`, `break`/`continue` | FizzBuzz, prime checker |
+| Sec. 4 | Functions, `*args`, `**kwargs`, lambdas | Refactor scripts into functions |
 
-**Done when:** You can write small programs without syntax errors.
+**Done when:** Small programs run without syntax errors.
 
 ---
 
 ## Phase 2 — OOP & files (Weeks 3–4)
 
-| Sec. | Topics | Practice today |
-|------|--------|----------------|
-| Sec. 5 | Classes, inheritance, magic methods | `BankAccount` or `Dataset` class |
-| Sec. 8 | Files, JSON, CSV | Load a CSV with pure Python |
-| Sec. 24 | `venv`, `pip`, `requirements.txt` | Create `.venv` and install packages |
+| Sec. | Theory | Practice |
+|------|--------|----------|
+| Sec. 5 | Classes, `self`, inheritance, `__len__` / `__repr__` | `Dataset` class with `summary()` |
+| Sec. 8 | Files, JSON, CSV | Load and save JSON |
+| Sec. 24 | `venv`, `pip`, `requirements.txt` | Create `.venv`, install packages |
 
-**Done when:** One OOP mini-project + read/write JSON.
+**Done when:** One OOP project + read/write JSON.
 
 ---
 
 ## Phase 3 — Professional Python (Weeks 5–6)
 
-| Sec. | Topics | Practice today |
-|------|--------|----------------|
-| Sec. 6–7 | Decorators, generators, packages | Small utility package |
-| Sec. 22 | Exceptions, `try/except` | Add error handling to a project |
-| Sec. 13 / 19 | `unittest`, pytest | 5 unit tests |
+| Sec. | Theory | Practice |
+|------|--------|----------|
+| Sec. 6–7 | Decorators, generators, packages | Small utility module |
+| Sec. 22 | `try` / `except`, custom errors | Error handling on a project |
+| Sec. 13, 19 | `unittest`, pytest | 5 unit tests |
 | — | Challenges notebook | 10 easy problems |
 
-**Done when:** Challenges notebook (easy section) mostly complete.
+---
+
+## Phase 4 — Data science stack (Weeks 7–8)
+
+**Full theory + long examples:** Complete Guide **Sec. 11** (11.1–11.8).
+
+### Quick theory
+
+| Library | Role |
+|---------|------|
+| **NumPy** | Numeric arrays, shape, vectorized math |
+| **Pandas** | Tables (CSV), cleaning, features |
+| **Matplotlib** | Plots for EDA |
+| **scikit-learn** | Train/test split, models, metrics |
+
+### Minimal examples (run after reading Sec. 11)
+
+```python
+# NumPy — always check shape
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5])
+print(arr.shape, (arr - arr.mean()) / arr.std())
+```
+
+```python
+# Pandas — inspect first on every dataset
+import pandas as pd
+df = pd.read_csv("data.csv")  # or use a sample DataFrame
+print(df.head(), df.info(), df.isnull().sum())
+df["age"] = df["age"].fillna(df["age"].median())
+```
+
+```python
+# sklearn — first pipeline
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, f1_score
+
+X = df[["feature1", "feature2"]]
+y = df["target"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+preds = model.predict(X_test)
+print("accuracy:", accuracy_score(y_test, preds))
+print("f1:", f1_score(y_test, preds, average="weighted"))
+```
+
+### Sec. 11 mini-project (required before AI/ML Phase 3)
+
+1. CSV with ≥500 rows, ≥5 columns  
+2. Pandas: nulls, 2 new features, one `groupby`  
+3. NumPy: normalize one column  
+4. Two plots (histogram + scatter)  
+5. `RandomForestClassifier` or `LogisticRegression` + accuracy + F1  
+
+- [ ] Mini-project repo: __________  
+- [ ] Date: __________  
 
 ---
 
-## Phase 4 — Data science & AI stack (Weeks 7–8) ⭐
+## Phase 5 — Web & FastAPI (Weeks 9–10)
 
-| Sec. | Topics | Practice today |
-|------|--------|----------------|
-| Sec. 11 | NumPy, Pandas, Matplotlib, seaborn | Follow every code block in Sec. 11 |
-| Sec. 11.4–11.6 | Plots, sklearn, Jupyter | One EDA notebook |
-| Sec. 11.7 | Mini-project | CSV → clean → features → train/test split |
-
-**Done when:** Mini-project works end-to-end. Mark Phase 2 in [`PYTHON-AIML-PATH.md`](PYTHON-AIML-PATH.md).
-
----
-
-## Phase 5 — Web & FastAPI (Weeks 9–10) ⭐
-
-| Sec. | Topics | Practice today |
-|------|--------|----------------|
-| Sec. 12 | Flask basics (optional) | Simple route + template |
-| Sec. 16 | `async`/`await`, asyncio | One async script |
-| Sec. 17 | **REST APIs & FastAPI** | CRUD API with 3 endpoints |
-| Sec. 18 | SQLAlchemy, DB sessions | API + SQLite or Postgres |
-
-**Also useful:** Part 4 teaching (Hours 31–32) in sidebar — FastAPI deep dive.
-
-**Done when:** You can explain routes, Pydantic models, dependency injection, and run `uvicorn` locally.
+| Sec. | Theory | Practice |
+|------|--------|----------|
+| Sec. 12 | Flask (optional) | One route + JSON response |
+| Sec. 16 | `async` / `await`, asyncio | One async script |
+| Sec. 17 | **FastAPI**, Pydantic, routes | CRUD API, 3 endpoints |
+| Sec. 18 | SQLAlchemy, sessions | API + SQLite |
 
 ```bash
 pip install fastapi uvicorn sqlalchemy pydantic
-# Build along with Sec. 17 in the Complete Guide
+uvicorn main:app --reload
 ```
+
+**Done when:** You can explain routes, validation, and run the API locally.
 
 ---
 
 ## Phase 6 — Ship code (Weeks 11–12)
 
-| Sec. | Topics | Practice today |
-|------|--------|----------------|
-| Sec. 25 | Logging, structured logs | Add logging to your API |
-| Sec. 26 | Auth basics (JWT, hashing) | Protect one endpoint |
-| Sec. 27 | Docker, deploy | `Dockerfile` for your FastAPI app |
-| Sec. 21 / 28 | Interview patterns | 5 LeetCode-style problems in Python |
-
-**Done when:** API runs in Docker locally.
-
----
-
-## Phase 7 — AI/ML (after Sec. 11) ⭐
-
-You **keep using Python** — next step is the ML library, not a new language.
-
-| Step | Resource (sidebar) | Goal |
-|------|------------------|------|
-| 1 | **AI/ML Path (4 phases)** | Confirm order: Sec. 1–5 → Sec. 11 → ML guides |
-| 2 | **ML Learning Order** | Week-by-week ML curriculum |
-| 3 | Build ML Models / Feature Engineering / NLP / CV / MLOps | Pick track from roadmap |
-| 4 | **ML/DS Complete Roadmap** | See the full picture |
-
-**Shortest chain:**
-
-```
-This page (map)
-  → Complete Guide Sec. 1–5
-  → Complete Guide Sec. 11
-  → AI/ML Path
-  → ML Learning Order
-  → LEARNING-CHECKPOINTS
-```
-
----
-
-## All 29 sections in one book (quick map)
-
-| Sec. | Topic | Best for |
+| Sec. | Theory | Practice |
 |------|--------|----------|
-| 1–4 | Fundamentals | Everyone |
-| 5–8 | OOP, files | Everyone |
-| 9–10 | Algorithms, concurrency | Interviews / advanced |
-| **11** | **NumPy, Pandas, ML stack** | **AI/ML** |
-| 12, 16–18 | Web, async, **FastAPI**, DB | Backend jobs |
-| 13, 19 | Testing | Production teams |
-| 20–29 | Types, regex, Docker, security, patterns | Senior / full-stack |
-
-Open **Complete Guide** and use the table of contents — every Sec. has **theory then code**.
+| Sec. 25 | Logging | Add logs to your API |
+| Sec. 26 | Auth (JWT, hashing) | Protect one endpoint |
+| Sec. 27 | Docker | `Dockerfile` + run container |
+| Sec. 21, 28 | Interview patterns | 5 Python coding problems |
 
 ---
 
-## Extra practice (optional, same Python folder)
+## AI/ML 4-Phase Path {#ai-ml-4-phase-path}
 
-| Resource | Use when |
-|----------|----------|
-| Code Examples (`python-mastery-guide.py`) | Longer scripts after each Sec. |
-| Challenges notebook | Weekly drill |
-| Teaching Parts 1–4 | Classroom-style 40-hour course |
-| Live Demos (21 projects) | See full-stack patterns |
+> **Everything for Python → AI/ML is on this page.** After Sec. 11, continue here — do not rely on a separate thin “AI/ML path” file.
 
----
+| Phase | What | Read & code | Time (~2 h/day) |
+|-------|------|-------------|-----------------|
+| **A1** | Python for ML | Complete Guide **Sec. 1–5** | ~2 weeks |
+| **A2** | NumPy, Pandas, first model | **Sec. 11** + [Phase 4 mini-project](#phase-4--data-science-stack-weeks-78) | ~2 weeks |
+| **A3** | Full ML curriculum | **AI/ML & Data Science** folder (sidebar) | ~12–16 weeks |
+| **A4** | Job readiness | **Learning Checkpoints** | Ongoing |
 
-## Setup once
+### Setup (Day 0)
 
 ```bash
+python3 --version   # 3.10+
 cd tech-mastery-notebooks
-python3 -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install numpy pandas matplotlib seaborn scikit-learn jupyter pytest \
+python -m venv .venv
+source .venv/bin/activate
+pip install numpy pandas matplotlib seaborn scikit-learn jupyter ipykernel pytest \
   fastapi uvicorn sqlalchemy pydantic
 jupyter lab
 ```
 
 ---
 
-## FAQ
+### AI/ML Phase A1 — Syntax (Sec. 1–5)
 
-**Sec. vs §?**  
-Same meaning: **Section 1, Section 11**, etc. In tables we write **Sec. 1** so it always displays; in prose you may see § with proper styling.
+| Week | Sec. | You should be able to |
+|------|------|------------------------|
+| 1 | Sec. 1–2 | Variables, lists, dicts, loops, comprehensions |
+| 2 | Sec. 3–4 | Control flow, functions, lambdas |
+| 2 | Sec. 5 | OOP: `Dataset` class, `__len__`, `__repr__` |
 
-**Is FastAPI included?**  
-Yes — **Sec. 17** in the Complete Guide (+ Part 4 teaching hours 31–32).
+**Checkpoint A1**
 
-**Is AI/ML included?**  
-Yes — **Sec. 11** for Python + data stack; then **AI/ML Path** and **ML Learning Order** for the full career track.
-
-**Enough for zero to hero?**  
-Yes for **Python + APIs + data science basics**. For **ML engineer jobs**, finish Phase 7 guides and checkpoints.
+- [ ] 10 small scripts without looking up syntax  
+- [ ] 5 problems from **Challenges Notebook**  
+- [ ] One real `class` (dataset, user, or product)  
+- [ ] Date: __________  
 
 ---
 
-**Start now:** Sidebar → **Complete Guide (Theory + Code)** → **Sec. 1** → code every example for 60 minutes.
+### AI/ML Phase A2 — Data stack (Sec. 11)
+
+| Week | Focus | Practice |
+|------|-------|----------|
+| 3 | Sec. 11.2 NumPy | Shape, broadcasting, normalize a column |
+| 4 | Sec. 11.3–11.6 | Pandas EDA, plots, `train_test_split` |
+| 4 | Sec. 11.7 | [Mini-project](#sec-11-mini-project-required-before-aiml-phase-3) |
+
+**Checkpoint A2**
+
+- [ ] Explain NumPy `shape` and broadcasting in one sentence each  
+- [ ] Load CSV, fix nulls, `merge` two tables  
+- [ ] Mini-project link: __________  
+- [ ] Date: __________  
+
+---
+
+### AI/ML Phase A3 — ML guides (after Python is solid)
+
+**Do not start until A1 + A2 checkpoints pass.**
+
+Open the **🤖 AI/ML & Data Science** section on [the all-guides page](https://samba425.github.io/tech-mastery-notebooks/all). Recommended order:
+
+| Order | Sidebar guide | Outcome |
+|-------|---------------|---------|
+| 1 | **AI/ML Learning Order** | Pick path: General ML, Agents, NLP, CV, or MLOps |
+| 2 | Feature Engineering Complete Guide | Tabular pipelines |
+| 3 | Build ML Models From Scratch | Understand models beyond sklearn |
+| 4 | MLOps Production Complete Guide | Deploy one model as API |
+| 5 | One specialization: NLP, Computer Vision, or AI Agents | Depth |
+| 6 | LLM + RAG Interview Questions | Interview prep |
+
+**16-week summary (General ML path)**
+
+| Weeks | Guide | Project |
+|-------|-------|---------|
+| 1–3 | Feature Engineering | Clean 3 datasets |
+| 4–5 | Build ML Models | Classifier from scratch |
+| 6–8 | MASTER roadmap + quick ref | Mid-term review |
+| 9–12 | MLOps | Deploy model API |
+| 13–16 | Specialization + interviews | 3 portfolio projects |
+
+**Checkpoint A3**
+
+- [ ] **AI/ML Learning Order** read; path chosen  
+- [ ] Feature engineering — one end-to-end pipeline  
+- [ ] Build-models — linear + tree understood  
+- [ ] MLOps — one deployment  
+- [ ] 3 portfolio projects: __________  
+
+---
+
+### AI/ML Phase A4 — Track progress
+
+Every week (15 min):
+
+1. Open **Learning Checkpoints** in the sidebar  
+2. Update the progress log  
+3. Set two goals for next week  
+
+**Ready to apply (G4 gate)**
+
+- [ ] A1 + A2 complete  
+- [ ] A3 core guides done  
+- [ ] 3 ML projects on GitHub  
+- [ ] 20 LLM/RAG interview questions self-tested  
+- [ ] 3 system design L2 prompts (System Design Practice Track)  
+
+---
+
+## Where to click in the UI
+
+| Goal | Sidebar item |
+|------|----------------|
+| This full plan | **🐍 Python Zero to Hero** → **Start Here — Full Path** |
+| Theory + code per topic | **Complete Guide (Theory + Code)** |
+| Extra scripts | **Code Examples** |
+| Drills | **Challenges Notebook** |
+| ML after Sec. 11 | **🤖 AI/ML & Data Science** (same site, separate folder) |
+| Pass/fail tracking | **Learning Checkpoints** |
+| PDF books | **PDF Library** (bottom of sidebar on /all) |
+
+---
+
+## All 29 sections (Complete Guide map)
+
+| Sec. | Topic | Track |
+|------|--------|-------|
+| 1–4 | Fundamentals | Everyone |
+| 5–8 | OOP, files | Everyone |
+| 9–10 | Algorithms, concurrency | Advanced |
+| **11** | **NumPy, Pandas, ML stack** | **AI/ML** |
+| 12, 16–18 | Web, **FastAPI**, DB | Backend |
+| 13, 19 | Testing | Production |
+| 20–29 | Types, regex, Docker, security | Senior |
+
+---
+
+## If you get stuck
+
+| Problem | Action |
+|---------|--------|
+| Syntax errors | Sec. 1–4 again; run every example |
+| NumPy shape errors | `print(x.shape)` before every operation |
+| Pandas confusion | `head()`, `info()`, `isnull().sum()` every time |
+| Bad model accuracy | Check leakage, balance, train/test split |
+| Too much at once | Finish Phase A1–A2 only before ML guides |
+
+---
+
+## FAQ
+
+**Is AI/ML in this file?**  
+Yes — [AI/ML 4-phase path](#ai-ml-4-phase-path) + Sec. 11 in the Complete Guide. Deep ML topics are in the **AI/ML** folder (too large for one page).
+
+**Old “Python for AI/ML — 4-Phase Path” page?**  
+Merged here. Use **Start Here — Full Path** only.
+
+**JavaScript background?**  
+Skim Sec. 1–4 in a few days; focus on Sec. 5, 11, 17.
+
+---
+
+**Start now:** **Complete Guide** → **Sec. 1** → code for 60 minutes.
