@@ -1,5 +1,3 @@
-import { dsaLabsSidebar } from './dsaLabsSidebar'
-
 export interface ContentItem {
   id: string
   title: string
@@ -174,21 +172,12 @@ export function getContentStructure(): any[] {
       children: [
         {
           id: 'dsa-zero-to-hero',
-          title: 'DSA Zero to Hero (start + labs)',
+          title: 'DSA Zero to Hero (complete)',
           path: '../system-design/DATA-STRUCTURES-ZERO-TO-HERO.md',
           category: 'fundamentals',
-          badge: 'Start Here',
-          readTime: 25,
-          description: 'Phased path + 49 labs — full sidebar under System Design & DSA'
-        },
-        {
-          id: 'dsa-complete-reference-fundamentals',
-          title: 'DSA Complete Reference (theory)',
-          path: '../guides/fundamentals/data-structures-algorithms-zero-to-hero.md',
-          category: 'fundamentals',
-          badge: 'Reference',
-          readTime: 120,
-          description: 'Deep guide with diagrams and interview prep'
+          badge: 'Complete',
+          readTime: 180,
+          description: 'All DSA theory, diagrams, and Python examples in one file'
         },
         {
           id: 'git-github',
@@ -483,27 +472,12 @@ export function getContentStructure(): any[] {
       children: [
         {
           id: 'data-structures-zero-to-hero',
-          title: 'Start Here — DSA Zero to Hero',
+          title: 'DSA Zero to Hero (complete guide)',
           path: '../system-design/DATA-STRUCTURES-ZERO-TO-HERO.md',
           category: 'system-design',
-          readTime: 25,
+          readTime: 180,
           badge: 'Start Here',
-          description: 'End-to-end DSA path: phases, examples, links to 49 session labs'
-        },
-        {
-          id: 'dsa-complete-reference',
-          title: '📊 Complete DSA Reference (theory + diagrams)',
-          path: '../guides/fundamentals/data-structures-algorithms-zero-to-hero.md',
-          category: 'system-design',
-          readTime: 120,
-          badge: 'Reference',
-          description: 'Full guide with 60+ visualizations and interview prep'
-        },
-        {
-          id: 'dsa-labs',
-          title: '🧪 DSA Labs (session notebooks)',
-          description: '49 runnable notebooks from Code Files & Session Notes',
-          children: dsaLabsSidebar as ContentItem[]
+          description: 'All topics: theory, diagrams, Python examples, interviews — one file'
         },
         {
           id: 'complete-system-design',

@@ -359,7 +359,7 @@ open Docker-Zero-to-Hero.md
 **Time:** 10-14 weeks (90-120 mins/day)  
 **Difficulty:** Intermediate to Advanced
 
-**Prerequisite (DSA):** If you need data structures end-to-end, start with [`system-design/DATA-STRUCTURES-ZERO-TO-HERO.md`](system-design/DATA-STRUCTURES-ZERO-TO-HERO.md) — includes all 49 session notebooks under `system-design/dsa-labs/`.
+**Prerequisite (DSA):** One complete guide — [`system-design/DATA-STRUCTURES-ZERO-TO-HERO.md`](system-design/DATA-STRUCTURES-ZERO-TO-HERO.md) (theory, diagrams, Python examples, interviews in a single file).
 
 ### **Your Learning Journey:**
 

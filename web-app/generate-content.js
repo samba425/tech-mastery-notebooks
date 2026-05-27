@@ -125,7 +125,7 @@ function getContentStructure() {
     { id: 'redis-caching', title: '🔴 Redis & Caching Zero to Hero', path: '../guides/databases/redis-caching-zero-to-hero.md' },
     
     // Fundamentals Category
-    { id: 'dsa-zero-to-hero', title: '📊 DSA Complete Reference', path: '../guides/fundamentals/data-structures-algorithms-zero-to-hero.md' },
+    { id: 'dsa-zero-to-hero', title: 'DSA Zero to Hero (Complete)', path: '../system-design/DATA-STRUCTURES-ZERO-TO-HERO.md' },
     { id: 'git-github', title: '🌿 Git & GitHub Zero to Hero', path: '../guides/fundamentals/git-github-zero-to-hero.md' },
     { id: 'linux-cli', title: '🐧 Linux Command Line Zero to Hero', path: '../guides/fundamentals/linux-command-line-zero-to-hero.md' },
     
@@ -135,22 +135,49 @@ function getContentStructure() {
     
     // LeetCode & Coding Challenges
     { id: 'leetcode-solutions', title: '💻 LeetCode Solutions', path: '../code-examples/leetcode_solve.md' },
-    ...getDsaLabEntries(),
   ];
 }
 
-function getDsaLabEntries() {
-  const labsDir = path.join(__dirname, '..', 'system-design', 'dsa-labs');
-  if (!fs.existsSync(labsDir)) return [];
-  return fs
-    .readdirSync(labsDir)
-    .filter((f) => f.endsWith('.ipynb') || f.endsWith('.py'))
-    .sort((a, b) => a.localeCompare(b))
-    .map((fileName) => ({
-      id: 'dsa-lab-' + slugify(fileName.replace(/\.(ipynb|py)$/i, '')),
-      title: '🧪 ' + fileName.replace(/\.(ipynb|py)$/i, '').replace(/_/g, ' '),
-      path: `../system-design/dsa-labs/${fileName}`,
-    }));
+/** Every sidebar item with a path must have a JSON file — sync from contentLoader.ts */
+function extractSidebarEntriesFromContentLoader() {
+  const loaderPath = path.join(__dirname, 'lib', 'contentLoader.ts');
+  if (!fs.existsSync(loaderPath)) return [];
+
+  const lines = fs.readFileSync(loaderPath, 'utf8').split('\n');
+  const entries = [];
+  let currentId = null;
+  let currentTitle = null;
+
+  for (const line of lines) {
+    const idMatch = line.match(/^\s*id:\s*'([^']+)',/);
+    const titleMatch = line.match(/^\s*title:\s*'([^']*)',/);
+    const pathMatch = line.match(/^\s*path:\s*'([^']+)',/);
+
+    if (idMatch) {
+      currentId = idMatch[1];
+      currentTitle = null;
+    }
+    if (titleMatch) {
+      currentTitle = titleMatch[1];
+    }
+    if (pathMatch && currentId) {
+      entries.push({
+        id: currentId,
+        title: currentTitle || currentId,
+        path: pathMatch[1],
+      });
+      currentId = null;
+      currentTitle = null;
+    }
+  }
+  return entries;
+}
+
+function getAllContentItems() {
+  const map = new Map();
+  getContentStructure().forEach((item) => map.set(item.id, item));
+  extractSidebarEntriesFromContentLoader().forEach((item) => map.set(item.id, item));
+  return [...map.values()];
 }
 
 function loadContentFromFile(relativePath) {
@@ -248,7 +275,7 @@ function generateStaticContent() {
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
-  const contentItems = getContentStructure();
+  const contentItems = getAllContentItems();
   const pdfEntries = syncPdfContent(outputDir);
   let successCount = 0;
   let errorCount = 0;
