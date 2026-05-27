@@ -1,6 +1,22 @@
 const fs = require('fs');
 const path = require('path');
 
+function slugify(value) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function formatPdfTitle(fileName) {
+  const base = fileName.replace(/\.pdf$/i, '');
+  return base
+    .replace(/[-_]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
 // Import content structure directly (avoiding TS modules)
 function getContentStructure() {
   return [
@@ -155,6 +171,45 @@ function loadContentFromFile(relativePath) {
   }
 }
 
+function syncPdfContent(outputDir) {
+  const pdfSourceDir = path.join(__dirname, '..', 'filesLearn');
+  const pdfPublicDir = path.join(__dirname, 'public', 'pdfs');
+
+  if (!fs.existsSync(pdfPublicDir)) {
+    fs.mkdirSync(pdfPublicDir, { recursive: true });
+  }
+
+  if (!fs.existsSync(pdfSourceDir)) {
+    fs.writeFileSync(path.join(outputDir, 'pdf-index.json'), JSON.stringify([]));
+    console.log('ℹ No filesLearn directory found; skipped PDF sync');
+    return [];
+  }
+
+  const pdfFiles = fs
+    .readdirSync(pdfSourceDir)
+    .filter((file) => file.toLowerCase().endsWith('.pdf'))
+    .sort((a, b) => a.localeCompare(b));
+
+  const pdfEntries = pdfFiles.map((fileName) => {
+    const sourcePath = path.join(pdfSourceDir, fileName);
+    const destinationPath = path.join(pdfPublicDir, fileName);
+    fs.copyFileSync(sourcePath, destinationPath);
+
+    return {
+      id: `pdf-${slugify(fileName.replace(/\.pdf$/i, ''))}`,
+      title: formatPdfTitle(fileName),
+      fileName,
+      pdfUrl: `/pdfs/${encodeURIComponent(fileName)}`,
+      category: 'pdf-library',
+      badge: 'PDF'
+    };
+  });
+
+  fs.writeFileSync(path.join(outputDir, 'pdf-index.json'), JSON.stringify(pdfEntries));
+  console.log(`✓ Synced ${pdfEntries.length} PDF file(s) from filesLearn`);
+  return pdfEntries;
+}
+
 // Pre-generate content for all items
 function generateStaticContent() {
   const outputDir = path.join(__dirname, 'public', 'content');
@@ -165,10 +220,11 @@ function generateStaticContent() {
   }
 
   const contentItems = getContentStructure();
+  const pdfEntries = syncPdfContent(outputDir);
   let successCount = 0;
   let errorCount = 0;
   
-  console.log(`Generating content for ${contentItems.length} items...`);
+  console.log(`Generating content for ${contentItems.length + pdfEntries.length} items...`);
   
   contentItems.forEach(item => {
     try {
@@ -188,8 +244,31 @@ function generateStaticContent() {
       console.error(`✗ Failed to generate ${item.id}: ${error.message}`);
     }
   });
+
+  pdfEntries.forEach((pdfItem) => {
+    try {
+      const contentData = {
+        id: pdfItem.id,
+        title: pdfItem.title,
+        description: `Read ${pdfItem.fileName} directly in the app`,
+        category: pdfItem.category,
+        badge: pdfItem.badge,
+        fileType: 'pdf',
+        pdfUrl: pdfItem.pdfUrl,
+        content: `# ${pdfItem.title}\n\nUse the embedded viewer below, or [open/download the PDF](${pdfItem.pdfUrl}).`
+      };
+
+      const outputPath = path.join(outputDir, `${pdfItem.id}.json`);
+      fs.writeFileSync(outputPath, JSON.stringify(contentData));
+      successCount++;
+      console.log(`✓ Generated: ${pdfItem.id}`);
+    } catch (error) {
+      errorCount++;
+      console.error(`✗ Failed to generate ${pdfItem.id}: ${error.message}`);
+    }
+  });
   
-  console.log(`\n✓ Successfully generated ${successCount}/${contentItems.length} content files`);
+  console.log(`\n✓ Successfully generated ${successCount}/${contentItems.length + pdfEntries.length} content files`);
   if (errorCount > 0) {
     console.log(`✗ Failed: ${errorCount} files`);
   }

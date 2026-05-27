@@ -45,6 +45,12 @@ export default function ContentViewer({ content, loading, onNavigate, prevConten
     )
   }
 
+  const isGitHubPages = typeof window !== 'undefined' && window.location.hostname === 'samba425.github.io'
+  const basePath = isGitHubPages ? '/tech-mastery-notebooks' : ''
+  const resolvedPdfUrl = content.pdfUrl
+    ? (content.pdfUrl.startsWith('http') ? content.pdfUrl : `${basePath}${content.pdfUrl}`)
+    : null
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-8">
       {/* Content header */}
@@ -80,56 +86,85 @@ export default function ContentViewer({ content, loading, onNavigate, prevConten
       </div>
 
       {/* Markdown content */}
-      <div className="markdown-content">
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm, remarkCustomHeadingId]}
-          rehypePlugins={[rehypeSlug, rehypeHighlight]}
-          components={{
-            // Make anchor links work with smooth scrolling
-            a: ({ node, href, children, ...props }) => {
-              // If it's an internal anchor link (starts with #)
-              if (href && href.startsWith('#')) {
-                return (
-                  <a
-                    href={href}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      const id = href.replace('#', '')
-                      const element = document.getElementById(id)
-                      if (element) {
-                        // Scroll within the main content container
-                        const container = element.closest('main')
-                        if (container) {
-                          const elementTop = element.offsetTop
-                          const offset = 80 // Header offset
-                          container.scrollTo({ top: elementTop - offset, behavior: 'smooth' })
-                        } else {
-                          // Fallback to window scroll
-                          const yOffset = -80
-                          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
-                          window.scrollTo({ top: y, behavior: 'smooth' })
+      {resolvedPdfUrl ? (
+        <div className="space-y-4">
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={resolvedPdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+            >
+              Open PDF in New Tab
+            </a>
+            <a
+              href={resolvedPdfUrl}
+              download
+              className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            >
+              Download PDF
+            </a>
+          </div>
+          <div className="w-full h-[75vh] border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-slate-900">
+            <iframe
+              src={`${resolvedPdfUrl}#toolbar=1&navpanes=1&scrollbar=1`}
+              title={content.title}
+              className="w-full h-full"
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="markdown-content">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkCustomHeadingId]}
+            rehypePlugins={[rehypeSlug, rehypeHighlight]}
+            components={{
+              // Make anchor links work with smooth scrolling
+              a: ({ node, href, children, ...props }) => {
+                // If it's an internal anchor link (starts with #)
+                if (href && href.startsWith('#')) {
+                  return (
+                    <a
+                      href={href}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        const id = href.replace('#', '')
+                        const element = document.getElementById(id)
+                        if (element) {
+                          // Scroll within the main content container
+                          const container = element.closest('main')
+                          if (container) {
+                            const elementTop = element.offsetTop
+                            const offset = 80 // Header offset
+                            container.scrollTo({ top: elementTop - offset, behavior: 'smooth' })
+                          } else {
+                            // Fallback to window scroll
+                            const yOffset = -80
+                            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
+                            window.scrollTo({ top: y, behavior: 'smooth' })
+                          }
                         }
-                      }
-                    }}
-                    className="text-primary-600 dark:text-primary-400 hover:underline cursor-pointer"
-                    {...props}
-                  >
+                      }}
+                      className="text-primary-600 dark:text-primary-400 hover:underline cursor-pointer"
+                      {...props}
+                    >
+                      {children}
+                    </a>
+                  )
+                }
+                // External links
+                return (
+                  <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
                     {children}
                   </a>
                 )
-              }
-              // External links
-              return (
-                <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
-                  {children}
-                </a>
-              )
-            },
-          }}
-        >
-          {content.content || ''}
-        </ReactMarkdown>
-      </div>
+              },
+            }}
+          >
+            {content.content || ''}
+          </ReactMarkdown>
+        </div>
+      )}
 
       {/* Footer navigation */}
       <div className="mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">

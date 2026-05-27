@@ -6,6 +6,12 @@ import Header from '@/components/Header'
 import ContentViewer from '@/components/ContentViewer'
 import { getContentStructure, type ContentItem } from '@/lib/contentLoader'
 
+interface PdfIndexItem {
+  id: string
+  title: string
+  fileName: string
+}
+
 function HomeContent() {
   const [selectedContent, setSelectedContent] = useState<ContentItem | null>(null)
   const [contentStructure, setContentStructure] = useState<any[]>([])
@@ -37,24 +43,65 @@ function HomeContent() {
     'security-testing'
   ]
 
-  useEffect(() => {
-    const structure = getContentStructure()
-    
-    // Check if pathname contains '/all'
-    const showAll = typeof window !== 'undefined' && window.location.pathname.includes('/all')
-    
-    // Filter content structure based on showAll flag
-    const filteredStructure = showAll 
-      ? structure 
-      : structure.filter(item => !HIDDEN_SECTION_IDS.includes(item.id))
-    
-    setContentStructure(filteredStructure)
-    
-    // Set default content to README
-    const readme = filteredStructure.find((item: any) => item.id === 'readme')
-    if (readme) {
-      loadContent(readme)
+  const getBasePath = () => {
+    return typeof window !== 'undefined' && window.location.hostname === 'samba425.github.io'
+      ? '/tech-mastery-notebooks'
+      : ''
+  }
+
+  const appendPdfLibrary = async (structure: any[]) => {
+    try {
+      const response = await fetch(`${getBasePath()}/content/pdf-index.json`)
+      if (!response.ok) return structure
+
+      const pdfIndex: PdfIndexItem[] = await response.json()
+      if (!Array.isArray(pdfIndex) || pdfIndex.length === 0) return structure
+
+      const pdfChildren: ContentItem[] = pdfIndex.map((pdf) => ({
+        id: pdf.id,
+        title: `📄 ${pdf.title}`,
+        path: `../filesLearn/${pdf.fileName}`,
+        category: 'pdf-library',
+        badge: 'PDF',
+        description: `Read ${pdf.fileName} in the in-app PDF viewer`
+      }))
+
+      const filtered = structure.filter((item: any) => item.id !== 'pdf-library')
+      return [
+        ...filtered,
+        {
+          id: 'pdf-library',
+          title: '📚 PDF Library',
+          children: pdfChildren
+        }
+      ]
+    } catch {
+      return structure
     }
+  }
+
+  useEffect(() => {
+    const initializeContent = async () => {
+      const structure = await appendPdfLibrary(getContentStructure())
+      
+      // Check if pathname contains '/all'
+      const showAll = typeof window !== 'undefined' && window.location.pathname.includes('/all')
+      
+      // Filter content structure based on showAll flag
+      const filteredStructure = showAll 
+        ? structure 
+        : structure.filter(item => !HIDDEN_SECTION_IDS.includes(item.id))
+      
+      setContentStructure(filteredStructure)
+      
+      // Set default content to README
+      const readme = filteredStructure.find((item: any) => item.id === 'readme')
+      if (readme) {
+        loadContent(readme)
+      }
+    }
+
+    initializeContent()
   }, [])
 
   const loadContent = async (item: ContentItem) => {
@@ -67,8 +114,7 @@ function HomeContent() {
     try {
       // Load from pre-generated JSON files
       // Use window.location to detect if we're on GitHub Pages
-      const isGitHubPages = typeof window !== 'undefined' && window.location.hostname === 'samba425.github.io'
-      const basePath = isGitHubPages ? '/tech-mastery-notebooks' : ''
+      const basePath = getBasePath()
       const response = await fetch(`${basePath}/content/${item.id}.json`)
       
       console.log('Loading content:', `${basePath}/content/${item.id}.json`, 'Response:', response.status)

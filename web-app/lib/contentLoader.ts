@@ -4,6 +4,8 @@ export interface ContentItem {
   description?: string
   path?: string
   content?: string
+  pdfUrl?: string
+  fileType?: 'markdown' | 'code' | 'notebook' | 'pdf'
   category?: string
   readTime?: number
   badge?: string
