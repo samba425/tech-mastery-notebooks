@@ -36,6 +36,12 @@ function getContentStructure() {
     { id: 'terraform-complete', title: '🏗️ Terraform Complete Mastery', path: '../guides/Terraform-Complete-Mastery-Guide.md' },
     { id: 'terraform-part2', title: '🏗️ Terraform Mastery Part 2', path: '../guides/Terraform-Complete-Mastery-Guide-Part2.md' },
     { id: 'ansible-guide', title: '📦 Ansible Zero to Hero', path: '../guides/Ansible-Zero-to-Hero.md' },
+    { id: 'ai-ml-zero-to-hero', title: '🤖 AI/ML Zero to Hero — Enterprise Path', path: '../guides/ai_ml/AI-ML-ZERO-TO-HERO.md' },
+    { id: 'statistics-for-ml', title: '📐 Statistics for ML', path: '../guides/ai_ml/STATISTICS-FOR-ML.md' },
+    { id: 'pytorch-zero-to-hero', title: '🔥 PyTorch Zero to Hero', path: '../guides/ai_ml/PYTORCH-ZERO-TO-HERO.md' },
+    { id: 'generative-ai-zero-to-hero', title: '🎨 Generative AI Zero to Hero', path: '../guides/ai_ml/GENERATIVE-AI-ZERO-TO-HERO.md' },
+    { id: 'llm-apps-zero-to-hero', title: '🧠 LLM Apps — RAG, Agents, Langfuse', path: '../guides/ai_ml/LLM-APPS-ZERO-TO-HERO.md' },
+    { id: 'rag-production-guide', title: '🏭 RAG in Production', path: '../guides/ai_ml/RAG-PRODUCTION-GUIDE.md' },
     { id: 'master-roadmap', title: '🗺️ ML/DS Complete Roadmap', path: '../guides/ai_ml/MASTER-ML-DS-COMPLETE-ROADMAP.md' },
     { id: 'learning-order', title: '📚 ML Learning Order Guide', path: '../guides/ai_ml/LEARNING-ORDER-GUIDE.md' },
     { id: 'ml-quick-ref', title: '📋 ML/DS Quick Reference', path: '../guides/ai_ml/ML-DS-QUICK-REFERENCE-CHEATSHEET.md' },
@@ -50,6 +56,7 @@ function getContentStructure() {
     { id: 'ai-ml-systems', title: '🧠 AI/ML Systems', path: '../infrastructure/ai-ml-systems.ipynb' },
     { id: 'cloud-devops', title: '☁️ Cloud & DevOps', path: '../infrastructure/cloud-devops.ipynb' },
     { id: 'database-design', title: '💾 Database Design', path: '../infrastructure/database-design.ipynb' },
+    { id: 'data-structures-zero-to-hero', title: '📊 DSA Zero to Hero (Start Here)', path: '../system-design/DATA-STRUCTURES-ZERO-TO-HERO.md' },
     { id: 'complete-system-design', title: '📖 Complete System Design Guide', path: '../system-design/COMPLETE-SYSTEM-DESIGN-GUIDE.md' },
     { id: 'system-architecture', title: '🏛️ System Architecture Patterns', path: '../system-design/architecture/system-architecture-patterns.ipynb' },
     { id: 'hld-guide', title: '🎯 High-Level Design (HLD)', path: '../system-design/hld/system-design-hld.ipynb' },
@@ -90,6 +97,9 @@ function getContentStructure() {
     { id: 'performance-optimization', title: '⚡ Performance Optimization Complete Guide', path: '../guides/performance-engineering/Performance-Optimization-Complete-Guide.md' },
     
     // Cloud Platforms Category
+  { id: 'cloud-zero-to-hero', title: '☁️ Cloud Zero to Hero (Start Here)', path: '../guides/cloud-platforms/CLOUD-ZERO-TO-HERO.md' },
+  { id: 'aws-ml-genai-zero-to-hero', title: 'AWS ML & GenAI (SageMaker + Bedrock)', path: '../guides/cloud-platforms/AWS-ML-GENAI-ZERO-TO-HERO.md' },
+  { id: 'gcp-cloud-zero-to-hero', title: 'GCP Cloud Zero to Hero', path: '../guides/cloud-platforms/GCP-CLOUD-ZERO-TO-HERO.md' },
   { id: 'aws-cloud', title: '☁️ AWS Cloud Zero to Hero', path: '../guides/cloud-platforms/aws-cloud-zero-to-hero.md' },
   { id: 'aws-cert-index', title: '📚 AWS Certification Master Guide', path: '../guides/cloud-platforms/README-AWS-Certifications.md' },
   { id: 'aws-cloud-practitioner', title: '📖 AWS Cloud Practitioner (CLF-C02)', path: '../guides/cloud-platforms/AWS-Cloud-Practitioner-Complete-Guide.md' },
@@ -115,7 +125,7 @@ function getContentStructure() {
     { id: 'redis-caching', title: '🔴 Redis & Caching Zero to Hero', path: '../guides/databases/redis-caching-zero-to-hero.md' },
     
     // Fundamentals Category
-    { id: 'dsa-zero-to-hero', title: '📊 DSA Zero to Hero', path: '../guides/fundamentals/data-structures-algorithms-zero-to-hero.md' },
+    { id: 'dsa-zero-to-hero', title: '📊 DSA Complete Reference', path: '../guides/fundamentals/data-structures-algorithms-zero-to-hero.md' },
     { id: 'git-github', title: '🌿 Git & GitHub Zero to Hero', path: '../guides/fundamentals/git-github-zero-to-hero.md' },
     { id: 'linux-cli', title: '🐧 Linux Command Line Zero to Hero', path: '../guides/fundamentals/linux-command-line-zero-to-hero.md' },
     
@@ -125,7 +135,22 @@ function getContentStructure() {
     
     // LeetCode & Coding Challenges
     { id: 'leetcode-solutions', title: '💻 LeetCode Solutions', path: '../code-examples/leetcode_solve.md' },
+    ...getDsaLabEntries(),
   ];
+}
+
+function getDsaLabEntries() {
+  const labsDir = path.join(__dirname, '..', 'system-design', 'dsa-labs');
+  if (!fs.existsSync(labsDir)) return [];
+  return fs
+    .readdirSync(labsDir)
+    .filter((f) => f.endsWith('.ipynb') || f.endsWith('.py'))
+    .sort((a, b) => a.localeCompare(b))
+    .map((fileName) => ({
+      id: 'dsa-lab-' + slugify(fileName.replace(/\.(ipynb|py)$/i, '')),
+      title: '🧪 ' + fileName.replace(/\.(ipynb|py)$/i, '').replace(/_/g, ' '),
+      path: `../system-design/dsa-labs/${fileName}`,
+    }));
 }
 
 function loadContentFromFile(relativePath) {

@@ -3,137 +3,167 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
+  --foreground: 15 23 42;
+  --background: 248 250 252;
+  --article-max: 42rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 15, 23, 42;
-    --background-end-rgb: 15, 23, 42;
+    --foreground: 248 250 252;
+    --background: 2 6 23;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: rgb(var(--foreground));
+  background: rgb(var(--background));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
+/* Scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #475569;
-  border-radius: 4px;
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-thumb {
+    background: #475569;
+  }
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #94a3b8;
 }
 
-/* Markdown content styles */
+/* Article reading surface */
 .markdown-content {
-  @apply text-gray-800 dark:text-gray-200;
+  @apply text-slate-700 dark:text-slate-300;
+  font-family: var(--font-serif), Georgia, 'Times New Roman', serif;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
 }
 
 .markdown-content h1 {
-  @apply text-4xl font-bold mb-6 mt-8 text-gray-900 dark:text-white border-b-2 border-primary-500 pb-2;
+  @apply text-2xl sm:text-3xl font-bold mb-5 mt-10 text-slate-900 dark:text-white tracking-tight;
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
 .markdown-content h2 {
-  @apply text-3xl font-bold mb-4 mt-8 text-gray-900 dark:text-white;
+  @apply text-xl sm:text-2xl font-bold mb-4 mt-10 text-slate-900 dark:text-white tracking-tight pb-2 border-b border-slate-200 dark:border-slate-700;
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
 .markdown-content h3 {
-  @apply text-2xl font-semibold mb-3 mt-6 text-gray-800 dark:text-gray-100;
+  @apply text-lg font-semibold mb-3 mt-8 text-slate-800 dark:text-slate-100;
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
 .markdown-content h4 {
-  @apply text-xl font-semibold mb-2 mt-4 text-gray-800 dark:text-gray-100;
+  @apply text-base font-semibold mb-2 mt-6 text-slate-800 dark:text-slate-100;
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
 .markdown-content p {
-  @apply mb-4 leading-7;
+  @apply mb-5;
 }
 
-.markdown-content ul, .markdown-content ol {
-  @apply mb-4 ml-6;
-}
-
-.markdown-content li {
-  @apply mb-2;
+.markdown-content ul,
+.markdown-content ol {
+  @apply mb-5 pl-6 space-y-2;
 }
 
 .markdown-content ul li {
-  @apply list-disc;
+  @apply list-disc marker:text-primary-500;
 }
 
 .markdown-content ol li {
   @apply list-decimal;
 }
 
+.markdown-content li > p {
+  @apply mb-2;
+}
+
 .markdown-content a {
-  @apply text-primary-600 dark:text-primary-400 hover:underline;
+  @apply text-primary-600 dark:text-primary-400 underline decoration-primary-500/30 underline-offset-2 hover:decoration-primary-500;
 }
 
 .markdown-content code {
-  @apply bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm font-mono text-pink-600 dark:text-pink-400;
+  @apply bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-[0.9em] font-mono text-primary-800 dark:text-primary-200;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
 }
 
 .markdown-content pre {
-  @apply bg-gray-900 dark:bg-gray-950 p-4 rounded-lg overflow-x-auto mb-4 border border-gray-700;
+  @apply bg-slate-900 dark:bg-slate-950 p-4 rounded-xl overflow-x-auto mb-6 border border-slate-700/50 text-[0.875em] leading-relaxed;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
 }
 
 .markdown-content pre code {
-  @apply bg-transparent text-gray-100 p-0;
+  @apply bg-transparent text-slate-100 p-0 text-inherit;
 }
 
 .markdown-content blockquote {
-  @apply border-l-4 border-primary-500 pl-4 italic my-4 text-gray-600 dark:text-gray-400;
+  @apply border-l-4 border-primary-500/60 pl-5 my-6 text-slate-600 dark:text-slate-400 italic bg-slate-50 dark:bg-slate-800/40 py-3 pr-4 rounded-r-lg;
 }
 
 .markdown-content table {
-  @apply w-full border-collapse mb-4;
+  @apply w-full text-sm mb-6 overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700;
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-.markdown-content th, .markdown-content td {
-  @apply border border-gray-300 dark:border-gray-700 px-4 py-2;
+.markdown-content thead {
+  @apply bg-slate-100 dark:bg-slate-800;
+}
+
+.markdown-content th,
+.markdown-content td {
+  @apply border-b border-slate-200 dark:border-slate-700 px-4 py-2.5 text-left align-top;
+}
+
+.markdown-content tbody tr:nth-child(even) {
+  @apply bg-slate-50/80 dark:bg-slate-800/30;
 }
 
 .markdown-content th {
-  @apply bg-gray-100 dark:bg-gray-800 font-semibold;
+  @apply font-semibold text-slate-800 dark:text-slate-100;
 }
 
-/* Section sign (§) — use fonts that include U+00A7 (tables used to show blank cells) */
 .markdown-content .section-ref {
-  font-family: Georgia, 'Times New Roman', 'Noto Serif', 'Segoe UI Symbol', serif;
+  font-family: Georgia, 'Times New Roman', 'Noto Serif', serif;
   font-weight: 600;
   @apply text-primary-700 dark:text-primary-300;
 }
 
 .markdown-content img {
-  @apply max-w-full h-auto rounded-lg shadow-lg my-4;
+  @apply max-w-full h-auto rounded-xl my-6 ring-1 ring-slate-200 dark:ring-slate-700;
 }
 
 .markdown-content hr {
-  @apply my-8 border-gray-300 dark:border-gray-700;
+  @apply my-10 border-slate-200 dark:border-slate-700;
 }
 
-/* Syntax highlighting */
+/* GFM task lists */
+.markdown-content input[type='checkbox'] {
+  @apply mr-2 rounded border-slate-300 text-primary-600 focus:ring-primary-500;
+}
+
+.markdown-content strong {
+  @apply font-semibold text-slate-900 dark:text-white;
+}
+
 .hljs {
-  @apply bg-gray-900 dark:bg-gray-950;
+  @apply bg-transparent;
 }

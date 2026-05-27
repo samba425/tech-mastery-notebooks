@@ -40,16 +40,12 @@ This directory contains **comprehensive, production-ready guides** covering:
 
 | Guide | Topics Covered | Skill Level | Time |
 |-------|---------------|-------------|------|
-| **[AI/ML Complete Library →](ai_ml/)** | Feature Engineering, Model Building, Deep Learning | Beginner → Expert | 12 weeks |
+| **[AI-ML-ZERO-TO-HERO.md](ai_ml/AI-ML-ZERO-TO-HERO.md)** ⭐ | Enterprise path: core ML → MLOps → specialization | After Python Sec. 11 | 16 weeks |
+| **[ai_ml/ library →](ai_ml/)** | Feature Engineering, models, NLP, CV, agents, MLOps | Beginner → Expert | 12–20 weeks |
 
-**ML/DS Library Includes:**
-- 📊 Feature Engineering (3,469 lines)
-- 🤖 Build ML Models from Scratch (4,648 lines)
-- 🗺️ Master ML/DS Roadmap (1,323 lines)
-- 🚀 Quick Reference Cheat Sheet (692 lines)
-- 📖 Complete Learning Flow Guide
+**Read in order:** [ai_ml/README.md](ai_ml/README.md) — numbered list matches the web app sidebar phases.
 
-**[→ See full ML/DS library details](ai_ml/README.md)**
+**Prerequisite:** [PYTHON-ZERO-TO-HERO.md](PYTHON-ZERO-TO-HERO.md) through Sec. 11.
 
 ---
 

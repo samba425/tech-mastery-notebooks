@@ -21,7 +21,7 @@
 |-------|----------|------------------------------|
 | **1** | `Python-Complete-Guide.md` **Sec. 1–5** | [ ] 10 scripts, 5 challenge problems, 1 OOP class — date: ______ |
 | **2** | `Python-Complete-Guide.md` **Sec. 11** + mini-project | [ ] NumPy/Pandas fluent + project repo URL: ______ |
-| **3** | `guides/ai_ml/LEARNING-ORDER-GUIDE.md` | [ ] Path chosen + 3 core guides + 3 portfolio projects |
+| **3** | `guides/ai_ml/AI-ML-ZERO-TO-HERO.md` Phases 1–4 | [ ] Feature eng + build models + MLOps + 3 portfolio projects |
 | **4** | This file (ongoing) | [ ] Weekly progress log updated |
 
 **Rule:** Do not open Phase 3 until Phase 2 mini-project is finished.

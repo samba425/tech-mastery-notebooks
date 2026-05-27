@@ -216,20 +216,21 @@ jupyter lab
 
 ---
 
-### AI/ML Phase A3 — ML guides (after Python is solid)
+### AI/ML Phase A3 — ML Zero to Hero (after Python is solid)
 
 **Do not start until A1 + A2 checkpoints pass.**
 
-Open the **🤖 AI/ML & Data Science** section on [the all-guides page](https://samba425.github.io/tech-mastery-notebooks/all). Recommended order:
+Open **🤖 AI/ML Zero to Hero** on [the all-guides page](https://samba425.github.io/tech-mastery-notebooks/all):
 
-| Order | Sidebar guide | Outcome |
-|-------|---------------|---------|
-| 1 | **AI/ML Learning Order** | Pick path: General ML, Agents, NLP, CV, or MLOps |
-| 2 | Feature Engineering Complete Guide | Tabular pipelines |
-| 3 | Build ML Models From Scratch | Understand models beyond sklearn |
-| 4 | MLOps Production Complete Guide | Deploy one model as API |
-| 5 | One specialization: NLP, Computer Vision, or AI Agents | Depth |
-| 6 | LLM + RAG Interview Questions | Interview prep |
+| Step | Sidebar | Guide |
+|------|---------|-------|
+| 1 | **Start Here — Enterprise ML Path** | `AI-ML-ZERO-TO-HERO.md` (this plan) |
+| 2 | **Phase 1** → Feature Engineering | Weeks 1–3 |
+| 3 | **Phase 1** → Build ML Models | Weeks 4–8 |
+| 4 | **Phase 2** → Roadmap + MLOps | Weeks 9–14 |
+| 5 | **Phase 3** → pick ONE track | NLP, CV, or Agents |
+| 6 | **LLM Apps — RAG & Agents** | LangChain, LangGraph, Langfuse examples |
+| 7 | **Phase 4** → LLM + RAG interviews | Job prep |
 
 **16-week summary (General ML path)**
 

@@ -1,65 +1,64 @@
 'use client'
 
 import Link from 'next/link'
-import { Search, Menu } from 'lucide-react'
+import { Search, PanelLeft } from 'lucide-react'
 
 interface HeaderProps {
   onSearch: (query: string) => void
   onMenuToggle: () => void
+  sidebarOpen?: boolean
 }
 
-function getBasePath() {
-  if (typeof window === 'undefined') return ''
-  return window.location.hostname === 'samba425.github.io' ? '/tech-mastery-notebooks' : ''
-}
-
-export default function Header({ onSearch, onMenuToggle }: HeaderProps) {
-  const basePath = getBasePath()
-
+export default function Header({ onSearch, onMenuToggle, sidebarOpen = true }: HeaderProps) {
   return (
-    <header className="bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
-      <div className="flex items-center justify-between px-4 py-3">
-        <div className="flex items-center gap-3">
+    <header className="flex-shrink-0 z-50 border-b border-slate-200/90 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+      <div className="flex items-center justify-between gap-4 px-4 h-14">
+        <div className="flex items-center gap-2 min-w-0">
           <button
+            type="button"
             onClick={onMenuToggle}
-            className="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
-            aria-label="Toggle menu"
+            className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            aria-label={sidebarOpen ? 'Hide navigation panel' : 'Show navigation panel'}
+            title={sidebarOpen ? 'Hide panel' : 'Show panel'}
           >
-            <Menu className="w-5 h-5" />
+            <PanelLeft className="w-5 h-5" />
           </button>
-          
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">T</span>
+
+          <Link href="/" className="flex items-center gap-2.5 min-w-0 group">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-sm shadow-primary-500/25 flex-shrink-0">
+              <span className="text-white font-bold text-sm">T</span>
             </div>
-            <h1 className="text-xl font-bold text-gray-900 dark:text-white hidden sm:block">
-              Tech Mastery Platform
-            </h1>
-          </div>
+            <div className="hidden sm:block min-w-0">
+              <h1 className="text-sm font-semibold text-slate-900 dark:text-white truncate group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                Tech Mastery
+              </h1>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 -mt-0.5">Learning platform</p>
+            </div>
+          </Link>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Link
-            href={`${basePath}/`}
-            className="hidden md:inline text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
+            href="/"
+            className="hidden md:inline-flex text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-1 rounded-md"
           >
             Home
           </Link>
           <Link
-            href={`${basePath}/all`}
-            className="hidden sm:inline text-sm font-medium px-3 py-1.5 rounded-lg bg-primary-50 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/60"
+            href="/all"
+            className="text-xs sm:text-sm font-medium px-2.5 sm:px-3 py-1.5 rounded-lg bg-primary-50 dark:bg-primary-950/50 text-primary-700 dark:text-primary-300 border border-primary-100 dark:border-primary-900/50 hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors whitespace-nowrap"
           >
             All guides
           </Link>
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <div className="relative hidden sm:block">
+            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
             <input
-              type="text"
-              placeholder="Search guides..."
+              type="search"
+              placeholder="Search…"
               onChange={(e) => onSearch(e.target.value)}
-              className="pl-10 pr-4 py-2 w-64 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white placeholder-gray-500"
+              className="w-36 sm:w-52 lg:w-64 pl-9 pr-3 py-1.5 text-sm bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-400 text-slate-900 dark:text-white placeholder:text-slate-400"
             />
-          </div> 
+          </div>
         </div>
       </div>
     </header>

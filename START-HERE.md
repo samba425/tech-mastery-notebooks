@@ -48,7 +48,8 @@ This repository contains **$30,000+ worth of education** across:
 - **Option B: Full Stack Developer** → Go to [Full Stack Path](#-full-stack-developer-path)
 - **Option C: DevOps Engineer** → Go to [DevOps Path](#-devops-engineer-path)
 - **Option D: System Design Focus** → Go to [System Design Path](#-system-design-path)
-- **Option E: Everything** → Go to [Complete Path](#-complete-mastery-path)
+- **Option E: Cloud & Certifications** → Go to [Cloud Path](#-cloud-zero-to-hero-path)
+- **Option F: Everything** → Go to [Complete Path](#-complete-mastery-path)
 
 ### **Step 2: Set Up Environment** ⏱️ 2 minutes
 
@@ -72,7 +73,7 @@ cd [your path to tech-mastery-notebooks]
 # For AI/ML (Python first, then ML library):
 open guides/PYTHON-ZERO-TO-HERO.md
 # After Sec. 11 in Complete Guide:
-open guides/ai_ml/LEARNING-ORDER-GUIDE.md
+open guides/ai_ml/AI-ML-ZERO-TO-HERO.md
 
 # For Full Stack:
 open guides/PYTHON-ZERO-TO-HERO.md   # or JavaScript-Complete-Guide.md
@@ -146,56 +147,40 @@ tech-mastery-notebooks/
 
 ## 🤖 AI/ML Learning Path
 
-**Goal:** ML Engineer at $120K-$220K+ salary
-**Time:** 16-20 weeks (2 hours/day)
-**Difficulty:** Intermediate to Advanced
+**Goal:** ML Engineer at $120K-$220K+ salary  
+**Time:** 16 weeks (2 hours/day) — **one structured plan:** [`guides/ai_ml/AI-ML-ZERO-TO-HERO.md`](guides/ai_ml/AI-ML-ZERO-TO-HERO.md)  
+**Web app:** **🤖 AI/ML Zero to Hero** → phases 1–4 in order (not a flat list)
 
 ### **Prerequisites:**
-- ✅ Python basics + **NumPy/Pandas** (`guides/Python-Complete-Guide.md` Sec. 11 — 3–4 weeks)
+- ✅ [`PYTHON-ZERO-TO-HERO.md`](guides/PYTHON-ZERO-TO-HERO.md) through **Sec. 11** (NumPy, Pandas, sklearn mini-project)
 - ✅ Basic math (high school level OK)
-- ✅ Willingness to code daily
 
-### **Your Learning Journey:**
+### **Your Learning Journey (sidebar order):**
 
 ```
-Week 1-4: Prerequisites (If Needed)
-├── Python fundamentals
-└── NumPy, Pandas basics
+Prerequisite → Python Sec. 11 (Python Zero to Hero folder)
 
-Weeks 5-7: Feature Engineering
-├── Open: guides/ai_ml/Feature-Engineering-Complete-Guide.md
-├── Learn: Missing values, outliers, scaling, encoding
-├── Practice: Clean and prepare datasets
-└── Project: Data preprocessing pipeline
+Phase 1 — Core ML (Weeks 1–8)
+├── 1. Feature Engineering
+└── 2. Build ML Models From Scratch
 
-Weeks 8-12: ML Models from Scratch
-├── Open: guides/ai_ml/Build-ML-Models-From-Scratch-Complete-Guide.md
-├── Learn: Linear/logistic regression, neural networks, CNNs, RNNs
-├── Code: Build models from scratch with NumPy
-└── Project: Image classifier + NLP sentiment analysis
+Phase 2 — Roadmap & MLOps (Weeks 9–14)
+├── 3. ML/DS Career Roadmap + Quick Reference
+└── 5. MLOps & Production
 
-Weeks 13-14: MLOps & Production
-├── Open: guides/ai_ml/MLOps-Production-Complete-Guide.md
-├── Learn: Docker, FastAPI, model deployment
-├── Practice: Deploy models as APIs
-└── Project: Production ML API with monitoring
+Phase 3 — Pick ONE (Weeks 15–16)
+├── NLP  OR  Computer Vision  OR  AI Agents
 
-Weeks 15-18: Specialization (Choose ONE)
-├── AI Agents: guides/ai_ml/AI-Agents-Complete-Guide.md
-├── NLP: guides/ai_ml/NLP-Complete-Guide.md
-└── Computer Vision: guides/ai_ml/Computer-Vision-Complete-Guide.md
+Phase 4 — Interviews
+├── LLM + RAG interview guides
+└── Extended schedules: LEARNING-ORDER-GUIDE.md
 
-Weeks 19-20: Portfolio & Job Search
-├── Build 3-5 impressive projects
-├── Create resume (docs/resume-templates.md)
-├── Build portfolio (docs/portfolio-guide.md)
-└── Apply for jobs
+Portfolio → LEARNING-CHECKPOINTS.md (G4)
 
-Week 21+: Interviews & Offers
+Week 17+: Interviews & job search
 ├── Practice coding (programming-challenges/)
-├── Study system design (system-design/)
-├── Negotiate salary (docs/salary-negotiation.md)
-└── GET HIRED! 🎉
+├── System design (system-design/)
+└── Salary negotiation (docs/salary-negotiation.md)
 ```
 
 ### **Start Here:**
@@ -204,9 +189,8 @@ Week 21+: Interviews & Offers
 open guides/PYTHON-ZERO-TO-HERO.md
 open guides/Python-Complete-Guide.md
 
-# Step 3: After §11 mini-project is done
-cd guides/ai_ml
-open LEARNING-ORDER-GUIDE.md
+# Step 3: After Sec. 11 mini-project — ML path
+open guides/ai_ml/AI-ML-ZERO-TO-HERO.md
 ```
 
 **Expected Outcome:**
@@ -350,15 +334,41 @@ open Docker-Zero-to-Hero.md
 
 ---
 
+## ☁️ Cloud Zero to Hero Path
+
+**Goal:** Tri-cloud literacy (AWS → certs → Azure → ML on AWS → GCP) + data engineering  
+**Time:** 12 weeks (~1.5 h/day)  
+**Hub:** [`guides/cloud-platforms/CLOUD-ZERO-TO-HERO.md`](guides/cloud-platforms/CLOUD-ZERO-TO-HERO.md)
+
+| Phase | Weeks | Guide |
+|-------|-------|-------|
+| 1 AWS core | 1–3 | `aws-cloud-zero-to-hero.md` |
+| 2 AWS certs | 4–6 | CLF → SAA (+ practice Q&A) |
+| 3 Azure | 7–8 | `azure-cloud-zero-to-hero.md` |
+| 4 ML on AWS | 9–10 | `AWS-ML-GENAI-ZERO-TO-HERO.md` |
+| 5 GCP | 10–11 | `GCP-CLOUD-ZERO-TO-HERO.md` |
+| 6 Data | 11–12 | `Data-Engineering-Zero-to-Hero.md` |
+
+**AI/ML engineers:** Phase 1 → Phase 4, then return to certifications.
+
+---
+
 ## 🏗️ System Design Path
 
 **Goal:** Senior/Staff-ready system design depth for interviews and architecture work  
 **Time:** 10-14 weeks (90-120 mins/day)  
 **Difficulty:** Intermediate to Advanced
 
+**Prerequisite (DSA):** If you need data structures end-to-end, start with [`system-design/DATA-STRUCTURES-ZERO-TO-HERO.md`](system-design/DATA-STRUCTURES-ZERO-TO-HERO.md) — includes all 49 session notebooks under `system-design/dsa-labs/`.
+
 ### **Your Learning Journey:**
 
 ```
+Weeks 0-2 (optional): Data Structures Zero to Hero
+├── Open: system-design/DATA-STRUCTURES-ZERO-TO-HERO.md
+├── Run: phased labs in system-design/dsa-labs/ (sidebar: System Design & DSA)
+└── Reference: guides/fundamentals/data-structures-algorithms-zero-to-hero.md
+
 Weeks 1-2: Foundations and Trade-offs
 ├── Open: system-design/COMPLETE-SYSTEM-DESIGN-GUIDE.md
 ├── Learn: Scalability, availability, consistency, CAP, latency basics

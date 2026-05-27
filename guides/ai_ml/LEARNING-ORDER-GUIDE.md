@@ -1,12 +1,13 @@
 # 🎓 AI/ML Learning Order - Complete Guide
 
-> **⭐ YOU ARE HERE - This ONE file has EVERYTHING you need! ⭐**
+> **⭐ Main path:** [AI-ML-ZERO-TO-HERO.md](AI-ML-ZERO-TO-HERO.md) — structured phases in the sidebar.  
+> **This file** adds week-by-week detail for 5 career paths (Agents, NLP, CV, MLOps, General ML).
 
 ---
 
 ## 🚀 HOW TO USE THIS FILE
 
-**✅ This is your ONLY starting point - all other intro files have been removed for clarity**
+**✅ Start with [AI-ML-ZERO-TO-HERO.md](AI-ML-ZERO-TO-HERO.md), then use this file for extra schedule detail**
 
 **What this file contains:**
 1. 📚 List of all 9 guides

@@ -1,3 +1,5 @@
+import { dsaLabsSidebar } from './dsaLabsSidebar'
+
 export interface ContentItem {
   id: string
   title: string
@@ -172,12 +174,21 @@ export function getContentStructure(): any[] {
       children: [
         {
           id: 'dsa-zero-to-hero',
-          title: 'DSA Zero to Hero',
+          title: 'DSA Zero to Hero (start + labs)',
+          path: '../system-design/DATA-STRUCTURES-ZERO-TO-HERO.md',
+          category: 'fundamentals',
+          badge: 'Start Here',
+          readTime: 25,
+          description: 'Phased path + 49 labs — full sidebar under System Design & DSA'
+        },
+        {
+          id: 'dsa-complete-reference-fundamentals',
+          title: 'DSA Complete Reference (theory)',
           path: '../guides/fundamentals/data-structures-algorithms-zero-to-hero.md',
           category: 'fundamentals',
-          badge: 'Essential',
-          readTime: 180,
-          description: 'Complete beginner to expert DSA guide with 7000+ lines'
+          badge: 'Reference',
+          readTime: 120,
+          description: 'Deep guide with diagrams and interview prep'
         },
         {
           id: 'git-github',
@@ -199,97 +210,194 @@ export function getContentStructure(): any[] {
     },
     {
       id: 'ai-ml',
-      title: '🤖 AI/ML & Data Science',
+      title: '🤖 AI/ML Zero to Hero',
       children: [
         {
-          id: 'master-roadmap',
-          title: 'ML/DS Complete Roadmap',
-          path: '../guides/ai_ml/MASTER-ML-DS-COMPLETE-ROADMAP.md',
+          id: 'ai-ml-zero-to-hero',
+          title: 'Start Here — Enterprise ML Path',
+          path: '../guides/ai_ml/AI-ML-ZERO-TO-HERO.md',
           category: 'ai-ml',
-          badge: 'Essential',
-          readTime: 60,
-          description: 'Your complete path from beginner to expert'
+          badge: 'Start',
+          readTime: 35,
+          description: 'Ordered phases: core ML → MLOps → specialization → interviews'
         },
         {
-          id: 'learning-order',
-          title: 'AI/ML Learning Order',
-          path: '../guides/ai_ml/LEARNING-ORDER-GUIDE.md',
+          id: 'llm-apps-zero-to-hero',
+          title: 'LLM Apps — RAG & Agents (Examples)',
+          path: '../guides/ai_ml/LLM-APPS-ZERO-TO-HERO.md',
           category: 'ai-ml',
-          badge: 'Phase 3',
-          readTime: 30,
-          description: 'Step-by-step ML curriculum after Python Sec. 11'
+          badge: 'RAG+Agents',
+          readTime: 40,
+          description:
+            'End-to-end: RAG, LangChain, LangGraph, agents, Langfuse — simple runnable code'
         },
         {
-          id: 'ml-quick-ref',
-          title: 'ML/DS Quick Reference',
-          path: '../guides/ai_ml/ML-DS-QUICK-REFERENCE-CHEATSHEET.md',
+          id: 'rag-production-guide',
+          title: 'RAG in Production (chunking, RAGAS, vector DBs)',
+          path: '../guides/ai_ml/RAG-PRODUCTION-GUIDE.md',
           category: 'ai-ml',
+          badge: 'Production',
           readTime: 45,
-          description: 'Essential concepts cheatsheet'
+          description: 'After LLM Apps: eval, Haystack/LlamaIndex, deployment checklist'
         },
         {
-          id: 'build-models',
-          title: 'Build ML Models From Scratch',
-          path: '../guides/ai_ml/Build-ML-Models-From-Scratch-Complete-Guide.md',
-          category: 'ai-ml',
-          readTime: 150,
-          description: 'Implement algorithms from first principles'
+          id: 'ai-ml-phase-0-prereq',
+          title: 'Prerequisite: Python Sec. 11',
+          children: [
+            {
+              id: 'ai-ml-prereq-python',
+              title: '↪ Python Zero to Hero (Sec. 11)',
+              path: '../guides/PYTHON-ZERO-TO-HERO.md',
+              category: 'ai-ml',
+              badge: 'Required',
+              readTime: 45,
+              description: 'Finish NumPy/Pandas mini-project before ML Phase 1'
+            }
+          ]
         },
         {
-          id: 'feature-engineering',
-          title: 'Feature Engineering Complete Guide',
-          path: '../guides/ai_ml/Feature-Engineering-Complete-Guide.md',
-          category: 'ai-ml',
-          readTime: 90,
-          description: 'Master data preparation and feature creation'
+          id: 'ai-ml-phase-1-core',
+          title: 'Phase 1 — Core ML (Weeks 1–8)',
+          children: [
+            {
+              id: 'statistics-for-ml',
+              title: '0. Statistics for ML (read first)',
+              path: '../guides/ai_ml/STATISTICS-FOR-ML.md',
+              category: 'ai-ml',
+              badge: 'Prerequisite',
+              readTime: 35,
+              description: 'Distributions, hypothesis tests, bias/variance'
+            },
+            {
+              id: 'feature-engineering',
+              title: '1. Feature Engineering',
+              path: '../guides/ai_ml/Feature-Engineering-Complete-Guide.md',
+              category: 'ai-ml',
+              badge: 'Weeks 1–3',
+              readTime: 90,
+              description: 'Data cleaning, encoding, scaling, pipelines'
+            },
+            {
+              id: 'build-models',
+              title: '2. Build ML Models From Scratch',
+              path: '../guides/ai_ml/Build-ML-Models-From-Scratch-Complete-Guide.md',
+              category: 'ai-ml',
+              badge: 'Weeks 4–8',
+              readTime: 150,
+              description: 'Algorithms, neural nets, training discipline'
+            },
+            {
+              id: 'pytorch-zero-to-hero',
+              title: '3. PyTorch Zero to Hero',
+              path: '../guides/ai_ml/PYTORCH-ZERO-TO-HERO.md',
+              category: 'ai-ml',
+              badge: 'Weeks 7–8',
+              readTime: 50,
+              description: 'NumPy → tensors, training loops, CNNs, transfer learning'
+            }
+          ]
         },
         {
-          id: 'nlp-guide',
-          title: 'NLP Complete Guide',
-          path: '../guides/ai_ml/NLP-Complete-Guide.md',
-          category: 'ai-ml',
-          readTime: 120,
-          description: 'Natural Language Processing mastery'
+          id: 'ai-ml-phase-2-career',
+          title: 'Phase 2 — Roadmap & MLOps (Weeks 9–14)',
+          children: [
+            {
+              id: 'master-roadmap',
+              title: '3. ML/DS Career Roadmap',
+              path: '../guides/ai_ml/MASTER-ML-DS-COMPLETE-ROADMAP.md',
+              category: 'ai-ml',
+              badge: 'Weeks 9–10',
+              readTime: 60,
+              description: 'Portfolio, specialization choice, career planning'
+            },
+            {
+              id: 'ml-quick-ref',
+              title: '4. Quick Reference (keep open)',
+              path: '../guides/ai_ml/ML-DS-QUICK-REFERENCE-CHEATSHEET.md',
+              category: 'ai-ml',
+              badge: 'Reference',
+              readTime: 45,
+              description: 'Formulas and patterns while you code'
+            },
+            {
+              id: 'mlops-guide',
+              title: '5. MLOps & Production',
+              path: '../guides/ai_ml/MLOps-Production-Complete-Guide.md',
+              category: 'ai-ml',
+              badge: 'Weeks 11–14',
+              readTime: 100,
+              description: 'Docker, serving, MLflow, monitoring'
+            }
+          ]
         },
         {
-          id: 'computer-vision',
-          title: 'Computer Vision Complete Guide',
-          path: '../guides/ai_ml/Computer-Vision-Complete-Guide.md',
-          category: 'ai-ml',
-          readTime: 120,
-          description: 'Image processing and deep learning'
+          id: 'ai-ml-phase-3-specialize',
+          title: 'Phase 3 — Pick ONE Track (Weeks 15–16)',
+          children: [
+            {
+              id: 'nlp-guide',
+              title: 'NLP & LLMs',
+              path: '../guides/ai_ml/NLP-Complete-Guide.md',
+              category: 'ai-ml',
+              readTime: 120,
+              description: 'Text, transformers, production NLP'
+            },
+            {
+              id: 'computer-vision',
+              title: 'Computer Vision',
+              path: '../guides/ai_ml/Computer-Vision-Complete-Guide.md',
+              category: 'ai-ml',
+              readTime: 120,
+              description: 'CNNs, detection, vision pipelines'
+            },
+            {
+              id: 'ai-agents',
+              title: 'AI Agents (full guide)',
+              path: '../guides/ai_ml/AI-Agents-Complete-Guide.md',
+              category: 'ai-ml',
+              readTime: 80,
+              description: 'After LLM Apps examples: LangChain, CrewAI, LangGraph depth'
+            },
+            {
+              id: 'generative-ai-zero-to-hero',
+              title: 'Generative AI (GANs, diffusion, LoRA)',
+              path: '../guides/ai_ml/GENERATIVE-AI-ZERO-TO-HERO.md',
+              category: 'ai-ml',
+              badge: 'Images',
+              readTime: 45,
+              description: 'Beyond text LLMs: image generation and fine-tuning'
+            }
+          ]
         },
         {
-          id: 'mlops-guide',
-          title: 'MLOps Production Complete Guide',
-          path: '../guides/ai_ml/MLOps-Production-Complete-Guide.md',
-          category: 'ai-ml',
-          readTime: 100,
-          description: 'Deploy and maintain ML systems'
-        },
-        {
-          id: 'ai-agents',
-          title: 'AI Agents Complete Guide',
-          path: '../guides/ai_ml/AI-Agents-Complete-Guide.md',
-          category: 'ai-ml',
-          readTime: 80,
-          description: 'Build intelligent autonomous agents'
-        },
-        {
-          id: 'llm-interview',
-          title: 'LLM Interview Questions',
-          path: '../guides/ai_ml/LLM-Interview-Questions-Complete.md',
-          category: 'ai-ml',
-          readTime: 60,
-          description: 'Complete LLM interview preparation'
-        },
-        {
-          id: 'rag-interview',
-          title: 'RAG Interview Questions',
-          path: '../guides/ai_ml/RAG-Interview-Questions-Complete.md',
-          category: 'ai-ml',
-          readTime: 45,
-          description: 'RAG systems interview prep'
+          id: 'ai-ml-phase-4-interviews',
+          title: 'Phase 4 — Interviews & Deep Schedules',
+          children: [
+            {
+              id: 'llm-interview',
+              title: 'LLM Interview Questions',
+              path: '../guides/ai_ml/LLM-Interview-Questions-Complete.md',
+              category: 'ai-ml',
+              readTime: 60,
+              description: 'LLM concepts and interview drills'
+            },
+            {
+              id: 'rag-interview',
+              title: 'RAG Interview Questions',
+              path: '../guides/ai_ml/RAG-Interview-Questions-Complete.md',
+              category: 'ai-ml',
+              readTime: 45,
+              description: 'Retrieval, chunking, evaluation'
+            },
+            {
+              id: 'learning-order',
+              title: 'Extended Learning Order (5 paths)',
+              path: '../guides/ai_ml/LEARNING-ORDER-GUIDE.md',
+              category: 'ai-ml',
+              readTime: 30,
+              description: 'Optional week-by-week detail for each career path'
+            }
+          ]
         }
       ]
     },
@@ -371,8 +479,32 @@ export function getContentStructure(): any[] {
     },
     {
       id: 'system-design',
-      title: '🎯 System Design',
+      title: '🎯 System Design & DSA',
       children: [
+        {
+          id: 'data-structures-zero-to-hero',
+          title: 'Start Here — DSA Zero to Hero',
+          path: '../system-design/DATA-STRUCTURES-ZERO-TO-HERO.md',
+          category: 'system-design',
+          readTime: 25,
+          badge: 'Start Here',
+          description: 'End-to-end DSA path: phases, examples, links to 49 session labs'
+        },
+        {
+          id: 'dsa-complete-reference',
+          title: '📊 Complete DSA Reference (theory + diagrams)',
+          path: '../guides/fundamentals/data-structures-algorithms-zero-to-hero.md',
+          category: 'system-design',
+          readTime: 120,
+          badge: 'Reference',
+          description: 'Full guide with 60+ visualizations and interview prep'
+        },
+        {
+          id: 'dsa-labs',
+          title: '🧪 DSA Labs (session notebooks)',
+          description: '49 runnable notebooks from Code Files & Session Notes',
+          children: dsaLabsSidebar as ContentItem[]
+        },
         {
           id: 'complete-system-design',
           title: '📖 Complete System Design Guide',
@@ -526,78 +658,146 @@ export function getContentStructure(): any[] {
     },
     {
       id: 'cloud-platforms',
-      title: '☁️ Cloud Platforms',
+      title: '☁️ Cloud Zero to Hero',
       children: [
         {
-          id: 'aws-cloud',
-          title: 'AWS Cloud Zero to Hero',
-          path: '../guides/cloud-platforms/aws-cloud-zero-to-hero.md',
+          id: 'cloud-zero-to-hero',
+          title: 'Start Here — Cloud Path (tri-cloud)',
+          path: '../guides/cloud-platforms/CLOUD-ZERO-TO-HERO.md',
           category: 'cloud',
-          readTime: 90,
-          description: 'Complete AWS cloud services guide'
-        },
-        {
-          id: 'aws-cert-index',
-          title: 'AWS Certification Master Guide',
-          path: '../guides/cloud-platforms/README-AWS-Certifications.md',
-          category: 'cloud',
-          badge: 'New',
-          readTime: 15,
-          description: 'Complete AWS certification roadmap and study plan'
-        },
-        {
-          id: 'aws-cloud-practitioner',
-          title: 'AWS Cloud Practitioner (CLF-C02)',
-          path: '../guides/cloud-platforms/AWS-Cloud-Practitioner-Complete-Guide.md',
-          category: 'cloud',
-          badge: 'New',
-          readTime: 180,
-          description: '1500+ lines complete exam preparation with 40+ practice questions'
-        },
-        {
-          id: 'aws-solutions-architect',
-          title: 'AWS Solutions Architect (SAA-C03)',
-          path: '../guides/cloud-platforms/AWS-Solutions-Architect-Associate-Guide.md',
-          category: 'cloud',
-          badge: 'New',
-          readTime: 240,
-          description: '3800+ lines advanced guide with architecture patterns and 40+ questions'
-        },
-        {
-          id: 'aws-saa-c03-solutions',
-          title: 'AWS SAA-C03 Solutions Guide',
-          path: '../guides/cloud-platforms/AWS_SAA-C03_Solutions.md',
-          category: 'cloud',
-          badge: 'New',
-          readTime: 300,
-          description: '634 Q&A with explanations for AWS Solutions Architect Associate exam'
-        },
-        {
-          id: 'aws-quick-reference',
-          title: 'AWS Exam Quick Reference',
-          path: '../guides/cloud-platforms/AWS-Exam-Quick-Reference-Cheatsheet.md',
-          category: 'cloud',
-          badge: 'New',
+          badge: 'Start Here',
           readTime: 30,
-          description: 'Last 24-hour exam review cheatsheet - print friendly'
+          description: 'AWS → certs → Azure → ML on AWS → GCP → data engineering'
         },
         {
-          id: 'aws-roadmap',
-          title: 'AWS Certification Roadmap',
-          path: '../docs/aws-certification-roadmap.md',
-          category: 'cloud',
-          badge: 'New',
-          readTime: 20,
-          description: '12-week progressive study plan for both certifications'
+          id: 'cloud-phase-1-aws',
+          title: 'Phase 1 — AWS Fundamentals (Weeks 1–3)',
+          children: [
+            {
+              id: 'aws-cloud',
+              title: 'AWS Cloud Zero to Hero',
+              path: '../guides/cloud-platforms/aws-cloud-zero-to-hero.md',
+              category: 'cloud',
+              readTime: 90,
+              description: 'IAM, EC2, S3, VPC, Lambda, RDS — complete service guide'
+            }
+          ]
         },
         {
-          id: 'azure-cloud',
-          title: 'Azure Cloud Zero to Hero',
-          path: '../guides/cloud-platforms/azure-cloud-zero-to-hero.md',
-          category: 'cloud',
-          readTime: 95,
-          badge: 'New',
-          description: 'Microsoft Azure cloud platform - enterprise alternative to AWS'
+          id: 'cloud-phase-2-certs',
+          title: 'Phase 2 — AWS Certifications (Weeks 4–6)',
+          children: [
+            {
+              id: 'aws-cert-index',
+              title: 'AWS Certification Master Guide',
+              path: '../guides/cloud-platforms/README-AWS-Certifications.md',
+              category: 'cloud',
+              badge: 'Roadmap',
+              readTime: 15,
+              description: 'Which cert, study order, resources'
+            },
+            {
+              id: 'aws-roadmap',
+              title: '12-Week Certification Roadmap',
+              path: '../docs/aws-certification-roadmap.md',
+              category: 'cloud',
+              readTime: 20,
+              description: 'Progressive CLF → SAA study plan'
+            },
+            {
+              id: 'aws-cloud-practitioner',
+              title: 'Cloud Practitioner (CLF-C02)',
+              path: '../guides/cloud-platforms/AWS-Cloud-Practitioner-Complete-Guide.md',
+              category: 'cloud',
+              badge: 'CLF',
+              readTime: 180,
+              description: 'Foundational exam prep with practice questions'
+            },
+            {
+              id: 'aws-solutions-architect',
+              title: 'Solutions Architect (SAA-C03)',
+              path: '../guides/cloud-platforms/AWS-Solutions-Architect-Associate-Guide.md',
+              category: 'cloud',
+              badge: 'SAA',
+              readTime: 240,
+              description: 'Architecture patterns and exam prep'
+            },
+            {
+              id: 'aws-saa-c03-solutions',
+              title: 'SAA-C03 Solutions Q&A',
+              path: '../guides/cloud-platforms/AWS_SAA-C03_Solutions.md',
+              category: 'cloud',
+              readTime: 300,
+              description: '634 Q&A for practice exams'
+            },
+            {
+              id: 'aws-quick-reference',
+              title: 'Exam Quick Reference (24h review)',
+              path: '../guides/cloud-platforms/AWS-Exam-Quick-Reference-Cheatsheet.md',
+              category: 'cloud',
+              badge: 'Cheat',
+              readTime: 30,
+              description: 'Print-friendly last-day review'
+            }
+          ]
+        },
+        {
+          id: 'cloud-phase-3-azure',
+          title: 'Phase 3 — Azure (Weeks 7–8)',
+          children: [
+            {
+              id: 'azure-cloud',
+              title: 'Azure Cloud Zero to Hero',
+              path: '../guides/cloud-platforms/azure-cloud-zero-to-hero.md',
+              category: 'cloud',
+              readTime: 95,
+              description: 'VMs, Blob, Entra ID, Functions — AWS mapping included'
+            }
+          ]
+        },
+        {
+          id: 'cloud-phase-4-ml-genai',
+          title: 'Phase 4 — ML & GenAI on AWS (Weeks 9–10)',
+          children: [
+            {
+              id: 'aws-ml-genai-zero-to-hero',
+              title: 'AWS ML & GenAI (SageMaker + Bedrock)',
+              path: '../guides/cloud-platforms/AWS-ML-GENAI-ZERO-TO-HERO.md',
+              category: 'cloud',
+              badge: 'ML',
+              readTime: 40,
+              description: 'S3, IAM, SageMaker train/deploy, Bedrock — for ML engineers'
+            }
+          ]
+        },
+        {
+          id: 'cloud-phase-5-gcp',
+          title: 'Phase 5 — GCP (Weeks 10–11)',
+          children: [
+            {
+              id: 'gcp-cloud-zero-to-hero',
+              title: 'GCP Cloud Zero to Hero',
+              path: '../guides/cloud-platforms/GCP-CLOUD-ZERO-TO-HERO.md',
+              category: 'cloud',
+              badge: 'GCP',
+              readTime: 35,
+              description: 'GCE, GCS, BigQuery, Vertex AI intro'
+            }
+          ]
+        },
+        {
+          id: 'cloud-phase-6-data',
+          title: 'Phase 6 — Data Engineering (Weeks 11–12)',
+          children: [
+            {
+              id: 'data-engineering-cloud',
+              title: 'Data Engineering Zero to Hero',
+              path: '../guides/big-data-analytics/Data-Engineering-Zero-to-Hero.md',
+              category: 'cloud',
+              readTime: 90,
+              description: 'Pipelines, lakes, Spark — after cloud foundations'
+            }
+          ]
         }
       ]
     },

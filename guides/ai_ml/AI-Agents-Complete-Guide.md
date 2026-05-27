@@ -2,6 +2,8 @@
 
 > **From Simple Chatbots to Advanced Agentic AI Systems**
 
+**Read first:** [LLM-APPS-ZERO-TO-HERO.md](LLM-APPS-ZERO-TO-HERO.md) — end-to-end simple examples (RAG, LangChain, LangGraph, Langfuse).
+
 ---
 
 ## 🎯 What You'll Learn
