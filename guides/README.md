@@ -39,7 +39,7 @@ This directory contains **comprehensive, production-ready guides** covering:
 
 | Guide | Topics Covered | Skill Level | Time |
 |-------|---------------|-------------|------|
-| **[AI/ML Complete Library →](ai/ml/)** | Feature Engineering, Model Building, Deep Learning | Beginner → Expert | 12 weeks |
+| **[AI/ML Complete Library →](ai_ml/)** | Feature Engineering, Model Building, Deep Learning | Beginner → Expert | 12 weeks |
 
 **ML/DS Library Includes:**
 - 📊 Feature Engineering (3,469 lines)
@@ -48,7 +48,7 @@ This directory contains **comprehensive, production-ready guides** covering:
 - 🚀 Quick Reference Cheat Sheet (692 lines)
 - 📖 Complete Learning Flow Guide
 
-**[→ See full ML/DS library details](ai/ml/README.md)**
+**[→ See full ML/DS library details](ai_ml/README.md)**
 
 ---
 
@@ -108,7 +108,7 @@ Week 17-20: Advanced Projects & Job Search
 - Data Scientist ($75K-$95K)
 - AI Engineer ($85K-$110K)
 
-**[→ See detailed ML/DS learning flow](ai/ml/LEARNING-FLOW-START-HERE.md)**
+**[→ See detailed ML/DS learning flow](ai_ml/LEARNING-ORDER-GUIDE.md)**
 
 ---
 
@@ -127,6 +127,25 @@ Week 19-20: Portfolio & Certifications
 - Solutions Architect ($110K-$140K)
 - Cloud Architect ($120K-$160K)
 - Principal Engineer ($150K-$200K+)
+
+---
+
+### **Path 5: System Design Engineer** (10-14 weeks)
+
+```
+Week 1-2:   System Design Fundamentals (scalability, consistency, CAP)
+Week 3-4:   High-Level Design (APIs, components, data flow)
+Week 5-6:   Low-Level Design (OOP, patterns, extensibility)
+Week 7-8:   Architecture Patterns (microservices, event-driven, CQRS)
+Week 9-10:  End-to-end case studies (URL shortener, feed, chat, payments)
+Week 11-12: Interview drills and mock design rounds
+Week 13-14: Portfolio write-ups and architecture reviews
+```
+
+**Career Outcomes:**
+- Senior Software Engineer ($120K-$180K)
+- Staff/Principal candidate track
+- Technical Architect roles ($150K-$220K+)
 
 ---
 
@@ -243,14 +262,12 @@ guides/
 │   └── TypeScript-Complete-Guide.md
 │
 └── 🤖 AI & Machine Learning
-    └── ai/
-        └── ml/
-            ├── README.md
-            ├── LEARNING-FLOW-START-HERE.md ⭐
-            ├── Feature-Engineering-Complete-Guide.md
-            ├── Build-ML-Models-From-Scratch-Complete-Guide.md
-            ├── MASTER-ML-DS-COMPLETE-ROADMAP.md
-            └── ML-DS-QUICK-REFERENCE-CHEATSHEET.md
+    └── ai_ml/
+        ├── LEARNING-ORDER-GUIDE.md ⭐
+        ├── Feature-Engineering-Complete-Guide.md
+        ├── Build-ML-Models-From-Scratch-Complete-Guide.md
+        ├── MASTER-ML-DS-COMPLETE-ROADMAP.md
+        └── ML-DS-QUICK-REFERENCE-CHEATSHEET.md
 ```
 
 ---
@@ -351,7 +368,7 @@ guides/
 5. Build full-stack projects
 
 ### **For ML/AI Path:**
-1. **START HERE:** [ai/ml/LEARNING-FLOW-START-HERE.md](ai/ml/LEARNING-FLOW-START-HERE.md)
+1. **START HERE:** [ai_ml/LEARNING-ORDER-GUIDE.md](ai_ml/LEARNING-ORDER-GUIDE.md)
 2. Follow the 12-week structured plan
 3. Feature Engineering → ML Models → Career Planning
 4. Build portfolio projects
@@ -430,7 +447,7 @@ You now have access to:
 ✅ **13+ Complete Guides** (25,000+ lines)
 ✅ **200+ Code Examples** (ready to run)
 ✅ **100+ Project Ideas** (build your portfolio)
-✅ **4 Career Paths** (clear direction)
+✅ **5 Career Paths** (clear direction)
 ✅ **Everything FREE** (no paywalls)
 
 **The only thing missing?**
@@ -445,7 +462,8 @@ You now have access to:
 **Start Learning:**
 - [DevOps Path: Start with Docker →](Docker-Zero-to-Hero.md)
 - [Programming Path: Start with Python →](Python-Complete-Guide.md)
-- [ML/AI Path: Start Here →](ai/ml/LEARNING-FLOW-START-HERE.md)
+- [ML/AI Path: Start Here →](ai_ml/LEARNING-ORDER-GUIDE.md)
+- [System Design Path: Start Here →](../system-design/COMPLETE-SYSTEM-DESIGN-GUIDE.md)
 
 **Portfolio Building:**
 - [Python Teaching Projects →](../pythonclass/demo-projects/)
@@ -453,7 +471,8 @@ You now have access to:
 - [Infrastructure Notebooks →](../infrastructure/)
 
 **Career Resources:**
-- [ML/DS Career Roadmap →](ai/ml/MASTER-ML-DS-COMPLETE-ROADMAP.md)
+- [ML/DS Career Roadmap →](ai_ml/MASTER-ML-DS-COMPLETE-ROADMAP.md)
+- [System Design Complete Guide →](../system-design/COMPLETE-SYSTEM-DESIGN-GUIDE.md)
 - [Interview Guides →](../docs/)
 
 ---

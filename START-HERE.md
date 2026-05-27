@@ -21,6 +21,9 @@ This repository contains **$30,000+ worth of education** across:
 
 ## ⚡ QUICK START (5 Minutes)
 
+**AI/ML Python path (4 steps):** [`guides/PYTHON-AIML-PATH.md`](guides/PYTHON-AIML-PATH.md)  
+**Track progress:** [`LEARNING-CHECKPOINTS.md`](LEARNING-CHECKPOINTS.md) · **System design drills:** [`system-design/SYSTEM-DESIGN-PRACTICE-TRACK.md`](system-design/SYSTEM-DESIGN-PRACTICE-TRACK.md)
+
 ### **Step 1: Choose Your Path** ⏱️ 1 minute
 
 **What do you want to learn?**
@@ -28,7 +31,8 @@ This repository contains **$30,000+ worth of education** across:
 - **Option A: AI/ML Engineer** → Go to [AI/ML Path](#-aiml-learning-path)
 - **Option B: Full Stack Developer** → Go to [Full Stack Path](#-full-stack-developer-path)
 - **Option C: DevOps Engineer** → Go to [DevOps Path](#-devops-engineer-path)
-- **Option D: Everything** → Go to [Complete Path](#-complete-mastery-path)
+- **Option D: System Design Focus** → Go to [System Design Path](#-system-design-path)
+- **Option E: Everything** → Go to [Complete Path](#-complete-mastery-path)
 
 ### **Step 2: Set Up Environment** ⏱️ 2 minutes
 
@@ -132,7 +136,7 @@ tech-mastery-notebooks/
 **Difficulty:** Intermediate to Advanced
 
 ### **Prerequisites:**
-- ✅ Python basics (if not, start with `guides/Python-Complete-Guide.md` - 4 weeks)
+- ✅ Python basics + **NumPy/Pandas** (`guides/Python-Complete-Guide.md` §11 — 3–4 weeks)
 - ✅ Basic math (high school level OK)
 - ✅ Willingness to code daily
 
@@ -181,9 +185,13 @@ Week 21+: Interviews & Offers
 
 ### **Start Here:**
 ```bash
+# Step 1–2: Python syntax + NumPy/Pandas
+open guides/PYTHON-AIML-PATH.md
+open guides/Python-Complete-Guide.md
+
+# Step 3: After §11 mini-project is done
 cd guides/ai_ml
 open LEARNING-ORDER-GUIDE.md
-# Follow the detailed 20-week plan!
 ```
 
 **Expected Outcome:**
@@ -204,10 +212,10 @@ open LEARNING-ORDER-GUIDE.md
 ### **Your Learning Journey:**
 
 ```
-Weeks 1-4: Python Fundamentals
-├── Open: guides/Python-Complete-Guide.md
-├── Learn: Syntax, OOP, data structures
-├── Practice: code-examples/python-mastery-guide.py
+Weeks 1-4: Python Fundamentals (AI/ML focus)
+├── Open: guides/Python-Complete-Guide.md — start with "Python for AI/ML — Fast Track"
+├── Learn: §1–§5, then §11 NumPy + Pandas (required before ai_ml guides)
+├── Practice: Section 11 mini-project (CSV → clean → sklearn model)
 └── Challenges: programming-challenges/python.challenges.ipynb
 
 Weeks 5-8: Backend Development
@@ -324,6 +332,66 @@ open Docker-Zero-to-Hero.md
 - ✅ Manage cloud infrastructure
 - ✅ 3-5 DevOps projects
 - ✅ $120K-$220K salary potential
+
+---
+
+## 🏗️ System Design Path
+
+**Goal:** Senior/Staff-ready system design depth for interviews and architecture work  
+**Time:** 10-14 weeks (90-120 mins/day)  
+**Difficulty:** Intermediate to Advanced
+
+### **Your Learning Journey:**
+
+```
+Weeks 1-2: Foundations and Trade-offs
+├── Open: system-design/COMPLETE-SYSTEM-DESIGN-GUIDE.md
+├── Learn: Scalability, availability, consistency, CAP, latency basics
+└── Practice: Daily back-of-the-envelope estimations
+
+Weeks 3-4: High-Level Design (HLD)
+├── Open: system-design/hld/system-design-hld.ipynb
+├── Learn: API boundaries, storage choices, component diagrams
+└── Practice: Design 3 systems in 45-minute rounds
+
+Weeks 5-6: Low-Level Design (LLD)
+├── Open: system-design/lld/system-design-lld.ipynb
+├── Learn: SOLID, patterns, object modeling, class interactions
+└── Practice: Implement 2 designs in code (parking lot/chat/cart)
+
+Weeks 7-8: Architecture Patterns
+├── Open: system-design/architecture/system-architecture-patterns.ipynb
+├── Learn: microservices, event-driven, CQRS, saga, resilience
+└── Practice: One migration design (monolith → services)
+
+Weeks 9-10: End-to-End Case Studies
+├── Design: URL shortener, social feed, chat, payments
+├── Include: requirements, estimation, HLD, bottlenecks, trade-offs
+└── Write: architecture docs in portfolio-ready format
+
+Weeks 11-12: Interview Simulation
+├── 2-3 mock interviews per week
+├── Use SYSTEM-DESIGN-PRACTICE-TRACK.md (graded prompts L1–L4)
+├── Time-boxed communication drills
+└── Improve weak areas from feedback
+
+Weeks 13-14: Portfolio + Career Packaging
+├── Publish 3 polished system design write-ups
+├── Link projects to resume
+└── Prepare leadership-level design discussions
+```
+
+### **Start Here:**
+```bash
+cd system-design
+open COMPLETE-SYSTEM-DESIGN-GUIDE.md
+```
+
+**Expected Outcome:**
+- ✅ Consistent system design interview structure
+- ✅ Strong HLD + LLD communication
+- ✅ Architecture trade-off confidence
+- ✅ Reusable portfolio-grade design docs
 
 ---
 
@@ -667,6 +735,12 @@ open Python-Complete-Guide.md
 ```bash
 cd guides
 open Docker-Zero-to-Hero.md
+```
+
+**System Design Path:**
+```bash
+cd system-design
+open COMPLETE-SYSTEM-DESIGN-GUIDE.md
 ```
 
 ### **Your First Hour:**

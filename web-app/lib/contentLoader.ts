@@ -33,6 +33,30 @@ export function getContentStructure(): any[] {
       description: 'Your complete learning journey starts here'
     },
     {
+      id: 'learning-checkpoints',
+      title: '✅ Learning Checkpoints (All Folders)',
+      path: '../LEARNING-CHECKPOINTS.md',
+      category: 'overview',
+      badge: 'Track Progress',
+      description: 'Pass criteria for every major folder and career path'
+    },
+    {
+      id: 'python-zero-to-hero',
+      title: '🐍 Python Zero to Hero (All-in-One)',
+      path: '../guides/PYTHON-ZERO-TO-HERO.md',
+      category: 'overview',
+      badge: 'Start Here',
+      description: 'Theory + examples + practice map in one place'
+    },
+    {
+      id: 'python-aiml-path',
+      title: '🤖 Python for AI/ML — 4-Phase Path',
+      path: '../guides/PYTHON-AIML-PATH.md',
+      category: 'overview',
+      badge: 'AI/ML Start',
+      description: '§1–5 → §11 → LEARNING-ORDER → CHECKPOINTS'
+    },
+    {
       id: 'programming',
       title: '💻 Programming Languages',
       children: [
@@ -42,7 +66,8 @@ export function getContentStructure(): any[] {
           path: '../guides/Python-Complete-Guide.md',
           category: 'programming',
           readTime: 120,
-          description: '2000+ lines of Python mastery'
+          badge: 'Phase 1–2',
+          description: 'Syntax (§1–5) + NumPy/Pandas (§11) for AI/ML'
         },
         {
           id: 'javascript-guide',
@@ -135,9 +160,9 @@ export function getContentStructure(): any[] {
           title: 'AI/ML Learning Order',
           path: '../guides/ai_ml/LEARNING-ORDER-GUIDE.md',
           category: 'ai-ml',
-          badge: 'Start Here',
+          badge: 'Phase 3',
           readTime: 30,
-          description: 'Step-by-step learning sequence'
+          description: 'Step-by-step ML curriculum after Python §11'
         },
         {
           id: 'ml-quick-ref',
@@ -328,6 +353,15 @@ export function getContentStructure(): any[] {
           readTime: 70,
           badge: 'Essential',
           description: 'Low-level design and implementation details'
+        },
+        {
+          id: 'system-design-practice-track',
+          title: 'System Design Practice Track',
+          path: '../system-design/SYSTEM-DESIGN-PRACTICE-TRACK.md',
+          category: 'system-design',
+          readTime: 45,
+          badge: 'Practice',
+          description: 'Graded prompts L1–L4 with rubrics and 10-week plan'
         }
       ]
     },

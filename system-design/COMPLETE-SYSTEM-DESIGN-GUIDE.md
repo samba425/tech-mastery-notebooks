@@ -2,6 +2,13 @@
 
 > **Master system design interviews and build scalable systems like FAANG engineers**
 
+## How to Use This Guide
+
+- Read one section at a time and summarize key trade-offs in your own words.
+- For each case study, follow this order: requirements -> estimation -> HLD -> deep dive -> bottlenecks.
+- Time-box interview practice to 45 minutes and keep 5 minutes for wrap-up trade-offs.
+- Maintain a design journal with one architecture diagram per day.
+
 ## 📚 Table of Contents
 
 1. [System Design Fundamentals](#1-system-design-fundamentals)
@@ -15,10 +22,12 @@
 
 ## 1. System Design Fundamentals
 
+**Section goal:** Build a strong foundation in reliability, scale, consistency, and data flow trade-offs.
+
 ### 1.1 Key Concepts
 
 #### Scalability
-**Definition:** System's ability to handle growth in users, data, or transactions.
+**Definition:** A system's ability to handle growth in users, data, and traffic without service degradation.
 
 ```
 Vertical Scaling (Scale Up):          Horizontal Scaling (Scale Out):
@@ -36,8 +45,8 @@ Vertical Scaling (Scale Up):          Horizontal Scaling (Scale Out):
 ```
 
 **Trade-offs:**
-- **Vertical:** Faster, simpler, but limited and expensive
-- **Horizontal:** Unlimited growth, fault-tolerant, but complex
+- **Vertical scaling:** Simpler to start, but limited by machine size and single-node risk.
+- **Horizontal scaling:** Better long-term elasticity and resilience, but adds distributed-system complexity.
 
 #### Availability
 **Definition:** Percentage of time system is operational.
@@ -55,7 +64,7 @@ Formula: Availability = Uptime / (Uptime + Downtime) × 100%
 ```
 
 #### CAP Theorem
-**Definition:** You can only guarantee 2 out of 3:
+**Definition:** In the presence of network partitions, a distributed system can prioritize either strong consistency or high availability.
 
 ```
          Consistency (C)
@@ -67,9 +76,9 @@ Formula: Availability = Uptime / (Uptime + Downtime) × 100%
 Tolerance (P) │       (A)
 
 Pick 2:
-├─ CA: Traditional RDBMS (PostgreSQL, MySQL) - No partition tolerance
-├─ CP: MongoDB, Redis, HBase - Sacrifice availability for consistency
-└─ AP: Cassandra, DynamoDB, Couchbase - Eventual consistency
+├─ CA: Single-node or tightly-coupled systems (not partition tolerant at distributed scale)
+├─ CP: Prioritize correctness (e.g., critical state systems)
+└─ AP: Prioritize uptime and graceful degradation (eventual consistency)
 
 In distributed systems, P is required → Choose between C and A
 ```
@@ -235,6 +244,8 @@ Benefits:
 
 ## 2. Core Components
 
+**Section goal:** Understand the responsibilities and failure modes of each building block.
+
 ### 2.1 API Gateway
 
 ```
@@ -317,6 +328,8 @@ With CDN: 10-50ms (90% improvement)
 ---
 
 ## 3. Design Patterns & Architectures
+
+**Section goal:** Learn when to choose each architecture pattern and what trade-offs it introduces.
 
 ### 3.1 Microservices Architecture
 
@@ -410,6 +423,8 @@ Use Cases:
 
 ## 4. Real-World System Designs
 
+**Section goal:** Practice complete interview-style designs using realistic constraints.
+
 ### 4.1 Design URL Shortener (like bit.ly)
 
 **Requirements:**
@@ -417,6 +432,11 @@ Use Cases:
 - 10:1 read:write ratio
 - URLs expire after 5 years
 - Custom aliases supported
+
+**Clarifying questions to ask in interviews:**
+- Is custom alias uniqueness global or per user?
+- Do we need analytics (click geography, referrer, device)?
+- Do we support preview/safety checks for malicious URLs?
 
 **Capacity Estimation:**
 ```
@@ -463,6 +483,11 @@ Database Schema:
 - Read-heavy (100:1)
 - Low latency
 
+**Interview focus points:**
+- Feed fan-out strategy choice (write, read, or hybrid) and why.
+- Media storage + CDN invalidation approach.
+- Ranking pipeline boundaries (online vs offline features).
+
 **Architecture:**
 ```
              ┌────────────┐
@@ -506,6 +531,11 @@ News Feed Generation:
 - 4K streaming
 - Global availability
 
+**Interview focus points:**
+- Encoding pipeline throughput and storage lifecycle policy.
+- Adaptive bitrate fallback behavior in poor networks.
+- Regional failover and content licensing constraints.
+
 **Architecture:**
 ```
                       ┌─────────────┐
@@ -544,6 +574,11 @@ Network Speed → Video Quality
 - 15M daily rides
 - Location tracking
 - Payment processing
+
+**Interview focus points:**
+- Geo-indexing strategy and update frequency.
+- Dispatch fairness vs ETA optimization trade-off.
+- Idempotency and exactly-once behavior for ride/payment events.
 
 **Architecture:**
 ```
@@ -588,6 +623,8 @@ Matching Algorithm:
 ---
 
 ## 5. Advanced Topics
+
+**Section goal:** Strengthen distributed systems depth for senior-level interviews.
 
 ### 5.1 Consistent Hashing
 
@@ -678,6 +715,8 @@ Use Cases:
 
 ## 6. Interview Preparation
 
+**Section goal:** Build a repeatable communication framework for 45-60 minute interviews.
+
 ### 6.1 Interview Framework
 
 ```
@@ -750,6 +789,7 @@ Use Cases:
 - Ignore scale/numbers
 - Forget about failures
 - Overcomplicate initially
+- Skip trade-off discussion
 
 ✅ **Do:**
 - Clarify requirements
@@ -757,6 +797,7 @@ Use Cases:
 - Consider trade-offs
 - Think about edge cases
 - Communicate clearly
+- Call out assumptions explicitly
 
 ### 6.3 Estimation Cheat Sheet
 

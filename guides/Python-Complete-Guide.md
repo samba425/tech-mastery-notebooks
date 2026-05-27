@@ -5,6 +5,50 @@
 
 ---
 
+## 📍 One place for theory + examples (start here)
+
+**This file is your main Python book.** Each section includes:
+
+- **Theory** — what the concept means and when to use it  
+- **Examples** — runnable code blocks directly below the explanation  
+- **Patterns** — common interview and production usage  
+
+**Navigation hub (week plan + practice links):** [`PYTHON-ZERO-TO-HERO.md`](PYTHON-ZERO-TO-HERO.md)  
+**AI/ML path after basics:** [`PYTHON-AIML-PATH.md`](PYTHON-AIML-PATH.md)  
+**Track progress:** [`../LEARNING-CHECKPOINTS.md`](../LEARNING-CHECKPOINTS.md)
+
+You do not need separate theory notes and example files for core learning — they are already combined here in §1–§29.
+
+---
+
+## 🤖 Python for AI/ML — Fast Track (Read This First)
+
+If your goal is **AI/ML**, follow **[PYTHON-AIML-PATH.md](PYTHON-AIML-PATH.md)** (4 phases with checkpoints). You do not need every web/DevOps section on day one. Use this order:
+
+| Week | Focus | Sections in this guide |
+|------|--------|-------------------------|
+| 1 | Syntax, data structures, functions | §1–§4 |
+| 2 | OOP + files + venv | §5, §8, §24 |
+| 3 | **NumPy + Pandas** (critical) | §11 (full section) |
+| 4 | Plotting + sklearn intro + Jupyter | §11.4–§11.6 |
+| 5+ | Deep ML content | `guides/ai_ml/LEARNING-ORDER-GUIDE.md` |
+
+**Yes — NumPy and Pandas are in this guide** (Section 11, expanded below). For production ML, MLOps, and LLMs, continue with the `guides/ai_ml/` library after Section 11.
+
+**One-command environment setup:**
+
+```bash
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install numpy pandas matplotlib seaborn scikit-learn jupyter ipykernel
+python -m ipykernel install --user --name=ml-env
+jupyter lab
+```
+
+**Checkpoint before leaving Python basics:** Complete the Section 11 mini-project (CSV → clean → features → train/test split). Mark it in `LEARNING-CHECKPOINTS.md`.
+
+---
+
 ## 📚 Table of Contents
 
 1. [Python Fundamentals](#1-python-fundamentals)
@@ -17,7 +61,7 @@
 8. [File Operations](#8-file-operations)
 9. [Algorithm Implementations](#9-algorithm-implementations)
 10. [Concurrency & Parallelism](#10-concurrency--parallelism)
-11. [Data Science Fundamentals](#11-data-science-fundamentals)
+11. [Data Science & AI/ML Stack](#11-data-science--aiml-stack) ⭐ **NumPy, Pandas, Matplotlib, scikit-learn**
 12. [Web Development Basics](#12-web-development-basics)
 13. [Testing & Code Quality](#13-testing--code-quality)
 14. [Advanced Python Features](#14-advanced-python-features)
@@ -1897,69 +1941,232 @@ class HybridProcessor:
 
 ---
 
-## 11. Data Science Fundamentals
+## 11. Data Science & AI/ML Stack
 
-### NumPy Basics
+This section is the **bridge from Python syntax to machine learning**. NumPy and Pandas are the two libraries you will use every day in AI/ML work.
+
+### 11.1 Why NumPy and Pandas for ML?
+
+| Library | Role in ML |
+|---------|------------|
+| **NumPy** | Fast numeric arrays, linear algebra, vectorized math (features as tensors) |
+| **Pandas** | Tabular data: load CSVs, clean, join, aggregate, export features |
+| **Matplotlib** | Exploratory plots (distributions, correlations) |
+| **scikit-learn** | Baseline models, metrics, train/test splits, pipelines |
+
+---
+
+### 11.2 NumPy — Arrays, Shapes, and Vectorization
 
 ```python
 import numpy as np
 
-# Array creation
+# Creation
 arr = np.array([1, 2, 3, 4, 5])
-matrix = np.array([[1, 2], [3, 4], [5, 6]])
+matrix = np.array([[1, 2, 3], [4, 5, 6]])   # shape (2, 3)
+zeros = np.zeros((3, 4))
+rng = np.random.default_rng(42)
+samples = rng.normal(0, 1, size=(1000,))    # for synthetic data
 
-# Array operations
+# Shape and dtype (critical for ML)
+print(arr.shape, arr.dtype)
+col = arr.reshape(-1, 1)                  # (5, 1) column for sklearn
+
+# Vectorization — avoid Python loops on large data
 squared = arr ** 2
-normalized = (arr - arr.mean()) / arr.std()
+mask = arr > 2
+filtered = arr[mask]
 
-# Mathematical functions
-print(f"Sum: {np.sum(arr)}")
-print(f"Mean: {np.mean(arr)}")
-print(f"Standard deviation: {np.std(arr)}")
+# Stats used in feature scaling
+mean, std = arr.mean(), arr.std()
+normalized = (arr - mean) / std
 
-# Array manipulation
-reshaped = arr.reshape(-1, 1)  # Column vector
-concatenated = np.concatenate([arr, arr])
+# Broadcasting: (n, 1) + (1, m) → (n, m)
+a = np.arange(3).reshape(3, 1)
+b = np.arange(4).reshape(1, 4)
+grid = a + b
 
-# Linear algebra
-dot_product = np.dot(arr, arr)
-matrix_det = np.linalg.det(matrix[:2, :])  # 2x2 matrix determinant
+# Linear algebra (weights, embeddings, PCA later)
+A = np.array([[1.0, 2.0], [3.0, 4.0]])
+b_vec = np.array([1.0, 2.0])
+x = np.linalg.solve(A, b_vec)
+dot = A @ b_vec                              # matrix-vector product
 ```
 
-### Pandas Basics
+**Interview / practice tips**
+
+- Prefer NumPy operations over `for` loops on arrays (10–100× faster).  
+- Always check `.shape` before feeding data to a model.  
+- Use `np.nan` and `np.isnan()` when handling missing numeric values before sklearn.
+
+---
+
+### 11.3 Pandas — DataFrames for Real Datasets
 
 ```python
 import pandas as pd
+import numpy as np
 
-# DataFrame creation
+# From dict or CSV (typical ML workflow)
 data = {
-    'name': ['Alice', 'Bob', 'Charlie', 'Diana'],
-    'age': [25, 30, 35, 28],
+    'user_id': [1, 2, 3, 4],
+    'age': [25, 30, np.nan, 28],
     'salary': [50000, 60000, 70000, 55000],
-    'department': ['Engineering', 'Marketing', 'Engineering', 'Sales']
+    'department': ['Eng', 'Mkt', 'Eng', 'Sales'],
+    'churn': [0, 1, 0, 1],
 }
 df = pd.DataFrame(data)
+# df = pd.read_csv('customers.csv')
 
-# Data selection
-print(df['name'])  # Single column
-print(df[['name', 'age']])  # Multiple columns
-print(df[df['age'] > 28])  # Filtering
+# Inspect (first step on every dataset)
+print(df.head())
+print(df.info())
+print(df.describe())
+print(df.isnull().sum())
 
-# Data manipulation
-df['age_group'] = df['age'].apply(lambda x: 'Young' if x < 30 else 'Adult')
-sorted_df = df.sort_values('salary', ascending=False)
+# Selection
+ages = df['age']
+subset = df[df['age'] > 28][['user_id', 'salary', 'churn']]
 
-# Grouping and aggregation
-dept_stats = df.groupby('department').agg({
-    'salary': ['mean', 'max'],
-    'age': 'mean'
-})
+# Missing values — choose strategy by business meaning
+df['age'] = df['age'].fillna(df['age'].median())
+# Or: df.dropna(subset=['age'])
 
-# Data cleaning
-df_with_nulls = df.copy()
-df_with_nulls.loc[0, 'salary'] = np.nan
-cleaned_df = df_with_nulls.fillna(df_with_nulls.mean())
+# New features (feature engineering preview)
+df['salary_k'] = df['salary'] / 1000
+df['high_earner'] = (df['salary'] > 60000).astype(int)
+
+# Groupby — aggregation for EDA and features
+dept_stats = df.groupby('department').agg(
+    salary_mean=('salary', 'mean'),
+    churn_rate=('churn', 'mean'),
+    count=('user_id', 'count'),
+)
+
+# Merge (join tables — common in production data)
+users = pd.DataFrame({'user_id': [1, 2], 'country': ['US', 'UK']})
+df = df.merge(users, on='user_id', how='left')
+
+# Sort, dedupe, export
+df = df.sort_values('salary', ascending=False)
+df = df.drop_duplicates(subset=['user_id'])
+df.to_csv('features_ready.csv', index=False)
 ```
+
+**Pandas patterns you will use in `Feature-Engineering-Complete-Guide.md`**
+
+- `astype`, `pd.get_dummies` (one-hot encoding)  
+- `pd.cut` / `pd.qcut` (binning)  
+- `groupby().transform()` (per-group normalization)  
+- `merge`, `concat` (multi-table features)  
+
+---
+
+### 11.4 Matplotlib & Seaborn (Exploratory Analysis)
+
+```python
+import matplotlib.pyplot as plt
+
+# Histogram — check distribution before scaling
+df['salary'].hist(bins=20)
+plt.title('Salary distribution')
+plt.xlabel('salary')
+plt.ylabel('count')
+plt.tight_layout()
+plt.savefig('salary_hist.png')
+plt.close()
+
+# Scatter — two numeric features vs target
+plt.scatter(df['age'], df['salary'], c=df['churn'], alpha=0.6)
+plt.xlabel('age')
+plt.ylabel('salary')
+plt.colorbar(label='churn')
+plt.show()
+```
+
+Use plots to decide: log transform? remove outliers? class imbalance?
+
+---
+
+### 11.5 scikit-learn — First ML Pipeline
+
+```python
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, roc_auc_score
+
+# Load and prepare (after Pandas cleaning)
+df = pd.read_csv('features_ready.csv')
+feature_cols = ['age', 'salary_k', 'high_earner']
+X = df[feature_cols].fillna(0)
+y = df['churn']
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+scaler = StandardScaler()
+X_train_s = scaler.fit_transform(X_train)
+X_test_s = scaler.transform(X_test)   # never fit on test!
+
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train_s, y_train)
+pred = model.predict(X_test_s)
+proba = model.predict_proba(X_test_s)[:, 1]
+
+print(classification_report(y_test, pred))
+print('ROC-AUC:', roc_auc_score(y_test, proba))
+```
+
+This is the **minimum viable ML loop**: split → scale → fit → evaluate. Advanced topics live in `guides/ai_ml/`.
+
+---
+
+### 11.6 Jupyter Notebooks
+
+```bash
+jupyter lab
+```
+
+In a notebook cell:
+
+```python
+%matplotlib inline
+import pandas as pd
+df = pd.read_csv('data.csv')
+df.head()
+```
+
+Notebooks are standard for EDA and model experiments. Production code often moves to `.py` modules + MLOps (see `MLOps-Production-Complete-Guide.md`).
+
+---
+
+### 11.7 Section 11 Mini-Project (Checkpoint)
+
+**Goal:** Prove you can go from raw data to a evaluated model.
+
+1. Download or create a CSV with ≥500 rows and ≥5 columns (e.g. Titanic, Iris, or Kaggle tabular dataset).  
+2. Use Pandas: handle missing values, create 2 new features, one `groupby` summary.  
+3. Use NumPy: normalize one numeric column with `(x - mean) / std`.  
+4. Plot one histogram and one scatter.  
+5. Train a `RandomForestClassifier` or `LogisticRegression` with train/test split and report accuracy + one other metric.  
+
+Mark complete in `LEARNING-CHECKPOINTS.md` → Python guide.
+
+---
+
+### 11.8 What to Study Next (AI/ML Path)
+
+| After Section 11 | Open |
+|------------------|------|
+| Feature engineering depth | `guides/ai_ml/Feature-Engineering-Complete-Guide.md` |
+| Models from scratch | `guides/ai_ml/Build-ML-Models-From-Scratch-Complete-Guide.md` |
+| Full roadmap | `guides/ai_ml/LEARNING-ORDER-GUIDE.md` |
+| LLM / RAG interviews | `guides/ai_ml/LLM-Interview-Questions-Complete.md` |
+| Deploy models | `guides/ai_ml/MLOps-Production-Complete-Guide.md` |
 
 ---
 
@@ -4694,13 +4901,22 @@ def get_user_cached(user_id):
 
 ## 🚀 Next Steps for Mastery
 
+### If you are learning for AI/ML
+
+1. Finish **Section 11 mini-project** and `LEARNING-CHECKPOINTS.md` Python items  
+2. Follow **`guides/ai_ml/LEARNING-ORDER-GUIDE.md`** week by week  
+3. Build 3 projects: tabular ML, one NLP or CV mini-project, one deployed API  
+4. Practice **system design** for ML systems (`system-design/SYSTEM-DESIGN-PRACTICE-TRACK.md` prompt 4.5–4.6)  
+
+### General mastery
+
 1. **Practice Coding Challenges**
    - LeetCode, HackerRank, CodeSignal
    - Focus on algorithms and data structures
 
 2. **Build Real Projects**
    - Web applications with Django/Flask
-   - Data analysis projects with pandas
+   - Data analysis and ML pipelines with pandas + sklearn
    - Automation scripts
 
 3. **Advanced Topics**
@@ -4733,6 +4949,7 @@ def get_user_cached(user_id):
 | **Web Development** | FastAPI, REST APIs, authentication, JWT |
 | **Database** | SQLAlchemy ORM, async database operations |
 | **Testing** | Pytest, unit testing, integration testing, mocking |
+| **AI/ML Stack** | NumPy, Pandas, Matplotlib, scikit-learn, Jupyter |
 | **Concurrency** | Threading, asyncio, multiprocessing |
 | **DevOps** | Docker, virtual environments, deployment |
 | **Security** | Password hashing, JWT, API security, authentication |

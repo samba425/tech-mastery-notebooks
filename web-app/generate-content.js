@@ -22,6 +22,9 @@ function getContentStructure() {
   return [
     { id: 'readme', title: '🏠 Welcome & Getting Started', path: '../README.md' },
     { id: 'start-here', title: '🚀 Quick Start Guide', path: '../START-HERE.md' },
+    { id: 'learning-checkpoints', title: '✅ Learning Checkpoints (All Folders)', path: '../LEARNING-CHECKPOINTS.md' },
+    { id: 'python-zero-to-hero', title: '🐍 Python Zero to Hero (All-in-One)', path: '../guides/PYTHON-ZERO-TO-HERO.md' },
+    { id: 'python-aiml-path', title: '🤖 Python for AI/ML — 4-Phase Path', path: '../guides/PYTHON-AIML-PATH.md' },
     { id: 'python-guide', title: '🐍 Python Complete Guide', path: '../guides/Python-Complete-Guide.md' },
     { id: 'javascript-guide', title: '⚡ JavaScript Complete Guide', path: '../guides/JavaScript-Complete-Guide.md' },
     { id: 'typescript-guide', title: '📘 TypeScript Complete Guide', path: '../guides/TypeScript-Complete-Guide.md' },
@@ -51,6 +54,7 @@ function getContentStructure() {
     { id: 'system-architecture', title: '🏛️ System Architecture Patterns', path: '../system-design/architecture/system-architecture-patterns.ipynb' },
     { id: 'hld-guide', title: '🎯 High-Level Design (HLD)', path: '../system-design/hld/system-design-hld.ipynb' },
     { id: 'lld-guide', title: '🔧 Low-Level Design (LLD)', path: '../system-design/lld/system-design-lld.ipynb' },
+    { id: 'system-design-practice-track', title: '🎯 System Design Practice Track', path: '../system-design/SYSTEM-DESIGN-PRACTICE-TRACK.md' },
     { id: 'python-challenges', title: '🎯 Python Challenges', path: '../programming-challenges/python.challenges.ipynb' },
     { id: 'javascript-challenges', title: '🎯 JavaScript Challenges', path: '../programming-challenges/javascript.challenges.ipynb' },
     { id: 'career-roadmap', title: '🎯 Career Roadmap', path: '../docs/career-roadmap.md' },
