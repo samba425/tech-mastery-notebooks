@@ -31,7 +31,8 @@ This directory contains **comprehensive, production-ready guides** covering:
 
 | Guide | Topics Covered | Skill Level | Time |
 |-------|---------------|-------------|------|
-| **[Python-Complete-Guide.md](Python-Complete-Guide.md)** | Syntax, OOP, Data Structures, Web Development | Beginner → Advanced | 4-6 weeks |
+| **[PYTHON-ZERO-TO-HERO.md](PYTHON-ZERO-TO-HERO.md)** ⭐ | **One roadmap:** Python + FastAPI + AI/ML phases, checkpoints | Beginner → Job-ready | 12–20 weeks |
+| **[Python-Complete-Guide.md](Python-Complete-Guide.md)** | Theory + code: Sec. 1–29 (use with Zero to Hero) | Beginner → Advanced | 4-6 weeks |
 | **[JavaScript-Complete-Guide.md](JavaScript-Complete-Guide.md)** | ES6+, Async, DOM, Frameworks, Node.js | Beginner → Advanced | 4-6 weeks |
 | **[TypeScript-Complete-Guide.md](TypeScript-Complete-Guide.md)** | Types, Interfaces, Generics, Advanced Patterns | Intermediate → Advanced | 2-3 weeks |
 

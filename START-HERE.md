@@ -2,7 +2,23 @@
 
 > **⭐ THIS IS YOUR STARTING POINT - Everything You Need to Begin!**
 
-**Last Updated:** December 31, 2025
+**Last Updated:** May 2026
+
+---
+
+## 🌐 Using the web app (recommended)
+
+**Live site:** [Tech Mastery — All guides](https://samba425.github.io/tech-mastery-notebooks/all)
+
+| If you want… | Open in the sidebar |
+|--------------|---------------------|
+| Pick a career path | **Start Here — Pick Your Path** (this guide) |
+| Python + AI/ML in one plan | **Python Zero to Hero** → **Start Here (Python + AI/ML)** |
+| Theory + code for each Python topic | **Complete Guide (Theory + Code)** |
+| Track what you finished | **Learning Checkpoints** |
+| Every topic (hidden on home) | Header → **All guides** |
+
+**How to study:** Read the plan → open the linked guide → run every code example → check off checkpoints.
 
 ---
 
@@ -53,17 +69,16 @@ cd [your path to tech-mastery-notebooks]
 ### **Step 3: Open First Guide** ⏱️ 2 minutes
 
 ```bash
-# For AI/ML:
-cd guides/ai_ml
-open LEARNING-ORDER-GUIDE.md
+# For AI/ML (Python first, then ML library):
+open guides/PYTHON-ZERO-TO-HERO.md
+# After Sec. 11 in Complete Guide:
+open guides/ai_ml/LEARNING-ORDER-GUIDE.md
 
 # For Full Stack:
-cd guides
-open Python-Complete-Guide.md
+open guides/PYTHON-ZERO-TO-HERO.md   # or JavaScript-Complete-Guide.md
 
 # For DevOps:
-cd guides
-open Docker-Zero-to-Hero.md
+open guides/Docker-Zero-to-Hero.md
 ```
 
 **🎉 You're ready to start learning!**
@@ -136,7 +151,7 @@ tech-mastery-notebooks/
 **Difficulty:** Intermediate to Advanced
 
 ### **Prerequisites:**
-- ✅ Python basics + **NumPy/Pandas** (`guides/Python-Complete-Guide.md` §11 — 3–4 weeks)
+- ✅ Python basics + **NumPy/Pandas** (`guides/Python-Complete-Guide.md` Sec. 11 — 3–4 weeks)
 - ✅ Basic math (high school level OK)
 - ✅ Willingness to code daily
 

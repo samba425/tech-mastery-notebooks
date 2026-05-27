@@ -93,10 +93,12 @@ function HomeContent() {
       
       setContentStructure(filteredStructure)
       
-      // Set default content to README
-      const readme = filteredStructure.find((item: any) => item.id === 'readme')
-      if (readme) {
-        loadContent(readme)
+      // Default: Quick Start (not raw README)
+      const defaultItem =
+        filteredStructure.find((item: any) => item.id === 'start-here') ||
+        filteredStructure.find((item: any) => item.id === 'readme')
+      if (defaultItem) {
+        loadContent(defaultItem)
       }
     }
 

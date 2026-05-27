@@ -17,20 +17,19 @@ export interface ContentItem {
 export function getContentStructure(): any[] {
   return [
     {
-      id: 'readme',
-      title: '🏠 Welcome & Getting Started',
-      path: '../README.md',
-      category: 'overview',
-      badge: 'Start Here',
-      description: 'Your complete guide to the Tech Mastery Platform'
-    },
-    {
       id: 'start-here',
-      title: '🚀 Quick Start Guide',
+      title: '🚀 Start Here — Pick Your Path',
       path: '../START-HERE.md',
       category: 'overview',
-      badge: 'Essential',
-      description: 'Your complete learning journey starts here'
+      badge: 'Start Here',
+      description: 'Choose AI/ML, full-stack, DevOps, or system design — then follow the plan'
+    },
+    {
+      id: 'readme',
+      title: '🏠 Repository Overview',
+      path: '../README.md',
+      category: 'overview',
+      description: 'What is in this repo (guides, notebooks, career docs)'
     },
     {
       id: 'learning-checkpoints',

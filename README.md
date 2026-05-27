@@ -7,6 +7,17 @@
 
 ---
 
+## 🌐 Learn in the browser (best experience)
+
+**[Open Tech Mastery Platform →](https://samba425.github.io/tech-mastery-notebooks/all)**
+
+1. **Start Here — Pick Your Path** — choose AI/ML, full-stack, DevOps, or system design  
+2. **Python Zero to Hero** — single plan for Python, FastAPI, and AI/ML ([guide](guides/PYTHON-ZERO-TO-HERO.md))  
+3. **All guides** (header) — full library: cloud, databases, security, 50+ topics  
+4. **Learning Checkpoints** — mark progress so you do not skip steps  
+
+---
+
 ## 📚 What's Inside
 
 This repository contains **comprehensive mastery guides** for modern programming languages and technologies. Each guide is designed for:

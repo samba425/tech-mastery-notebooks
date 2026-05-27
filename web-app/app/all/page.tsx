@@ -61,10 +61,11 @@ export default function AllPage() {
       const structure = await appendPdfLibrary(getContentStructure())
       setContentStructure(structure)
       
-      // Set default content to README
-      const readme = structure.find((item: any) => item.id === 'readme')
-      if (readme) {
-        loadContent(readme)
+      const defaultItem =
+        structure.find((item: any) => item.id === 'start-here') ||
+        structure.find((item: any) => item.id === 'readme')
+      if (defaultItem) {
+        loadContent(defaultItem)
       }
     }
 

@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Search, Menu } from 'lucide-react'
 
 interface HeaderProps {
@@ -7,7 +8,14 @@ interface HeaderProps {
   onMenuToggle: () => void
 }
 
+function getBasePath() {
+  if (typeof window === 'undefined') return ''
+  return window.location.hostname === 'samba425.github.io' ? '/tech-mastery-notebooks' : ''
+}
+
 export default function Header({ onSearch, onMenuToggle }: HeaderProps) {
+  const basePath = getBasePath()
+
   return (
     <header className="bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
       <div className="flex items-center justify-between px-4 py-3">
@@ -30,7 +38,19 @@ export default function Header({ onSearch, onMenuToggle }: HeaderProps) {
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <Link
+            href={`${basePath}/`}
+            className="hidden md:inline text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
+          >
+            Home
+          </Link>
+          <Link
+            href={`${basePath}/all`}
+            className="hidden sm:inline text-sm font-medium px-3 py-1.5 rounded-lg bg-primary-50 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/60"
+          >
+            All guides
+          </Link>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input

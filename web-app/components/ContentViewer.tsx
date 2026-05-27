@@ -38,8 +38,12 @@ export default function ContentViewer({ content, loading, onNavigate, prevConten
           <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-300 mb-2">
             Welcome to Tech Mastery Platform
           </h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            Select a guide from the sidebar to start learning
+          <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto mb-6">
+            Open <strong>Start Here — Pick Your Path</strong> in the sidebar, or{' '}
+            <strong>Python Zero to Hero</strong> if you are learning Python / AI/ML.
+          </p>
+          <p className="text-sm text-gray-500 dark:text-gray-500">
+            Use <strong>All guides</strong> in the header to show every topic (DevOps, cloud, databases, and more).
           </p>
         </div>
       </div>
