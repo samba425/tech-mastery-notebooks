@@ -1,7 +1,7 @@
 'use client'
 
 import { ChevronRight, ChevronDown, X, Lightbulb } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { ContentItem } from '@/lib/contentLoader'
 import { stripEmojis, NavIconBox } from '@/lib/navIcons'
 
@@ -16,16 +16,32 @@ interface SidebarProps {
 }
 
 const badgeStyles: Record<string, string> = {
-  'Start Here': 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800',
-  Start: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800',
-  Reference: 'bg-slate-50 text-slate-600 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700',
-  New: 'bg-sky-50 text-sky-700 dark:bg-sky-950/50 dark:text-sky-300 border border-sky-200/60 dark:border-sky-800',
-  default: 'bg-slate-50 text-slate-600 dark:bg-slate-800/80 dark:text-slate-400 border border-slate-200/60 dark:border-slate-700',
+  'Start Here':
+    'bg-emerald-100/80 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-400 border border-emerald-200/80 dark:border-emerald-800/80',
+  Start:
+    'bg-emerald-100/80 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-400 border border-emerald-200/80 dark:border-emerald-800/80',
+  Reference:
+    'bg-slate-200/60 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-300/50 dark:border-slate-600',
+  New:
+    'bg-sky-100/80 text-sky-800 dark:bg-sky-950 dark:text-sky-400 border border-sky-200/80 dark:border-sky-800/80',
+  default:
+    'bg-slate-200/60 text-slate-600 dark:bg-slate-800 dark:text-slate-400 border border-slate-300/50 dark:border-slate-600',
 }
 
 function badgeClass(badge?: string) {
   if (!badge) return badgeStyles.default
   return badgeStyles[badge] ?? badgeStyles.default
+}
+
+function findAncestorIds(items: ContentItem[], targetId: string, trail: string[] = []): string[] | null {
+  for (const item of items) {
+    if (item.id === targetId) return trail
+    if (item.children?.length) {
+      const found = findAncestorIds(item.children, targetId, [...trail, item.id])
+      if (found) return found
+    }
+  }
+  return null
 }
 
 export default function Sidebar({
@@ -37,21 +53,19 @@ export default function Sidebar({
   isCollapsed = false,
   onClose,
 }: SidebarProps) {
-  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(
-    new Set([
-      'python',
-      'ai-ml',
-      'ai-ml-phase-1-core',
-      'ai-ml-phase-2-career',
-      'devops',
-      'infrastructure-notebooks',
-      'system-design',
-      'cloud-platforms',
-      'cloud-phase-1-aws',
-      'programming-challenges',
-      'career',
-    ])
-  )
+  /** All sections collapsed by default — user expands what they need */
+  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(() => new Set())
+
+  useEffect(() => {
+    if (!selectedContent?.id) return
+    const ancestors = findAncestorIds(contentStructure, selectedContent.id)
+    if (!ancestors?.length) return
+    setExpandedFolders((prev) => {
+      const next = new Set(prev)
+      ancestors.forEach((id) => next.add(id))
+      return next
+    })
+  }, [selectedContent?.id, contentStructure])
 
   const toggleFolder = (folderId: string) => {
     const next = new Set(expandedFolders)
@@ -92,8 +106,8 @@ export default function Sidebar({
             }}
             className={`group w-full flex items-center gap-2.5 py-2 pr-2 text-left rounded-lg transition-all duration-150 ${
               isSelected && isLeaf
-                ? 'bg-primary-50 dark:bg-primary-950/40 text-primary-900 dark:text-primary-100 ring-1 ring-primary-500/25'
-                : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60'
+                ? 'bg-slate-200/70 text-slate-900 ring-1 ring-primary-500/35 dark:bg-slate-800 dark:text-slate-100 dark:ring-primary-400/40'
+                : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80'
             }`}
             style={{ paddingLeft: `${level * 12 + 8}px` }}
           >
@@ -185,7 +199,7 @@ export default function Sidebar({
         </nav>
 
         <div className="flex-shrink-0 p-3 border-t border-slate-100 dark:border-slate-800">
-          <div className="rounded-lg border border-slate-200/80 dark:border-slate-700/80 bg-slate-50/80 dark:bg-slate-800/40 p-3">
+          <div className="rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/60 p-3">
             <p className="text-xs font-semibold text-slate-700 dark:text-slate-200 mb-1 flex items-center gap-1.5">
               <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
               Focus mode

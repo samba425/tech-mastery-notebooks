@@ -45,7 +45,7 @@ interface AppShellProps {
   showAllSections?: boolean
 }
 
-export default function AppShell({ showAllSections = false }: AppShellProps) {
+export default function AppShell({ showAllSections = true }: AppShellProps) {
   const [selectedContent, setSelectedContent] = useState<ContentItem | null>(null)
   const [contentStructure, setContentStructure] = useState<ContentItem[]>([])
   const [searchQuery, setSearchQuery] = useState('')

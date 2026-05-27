@@ -41,35 +41,23 @@ export default function Header({ onSearch, onMenuToggle, sidebarOpen = true }: H
           </Link>
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Link
-            href="/"
-            className="hidden md:inline-flex text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 px-2 py-1 rounded-md"
-          >
-            Home
-          </Link>
+        <div className="flex items-center gap-2 sm:gap-3 flex-1 justify-end max-w-xl">
           <button
             type="button"
             onClick={cycleTheme}
-            className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex-shrink-0"
             title="Toggle theme (light / dark / system)"
             aria-label="Toggle theme"
           >
             <ThemeIcon className="w-5 h-5" />
           </button>
-          <Link
-            href="/all"
-            className="text-xs sm:text-sm font-medium px-2.5 sm:px-3 py-1.5 rounded-lg bg-primary-50 dark:bg-primary-950/50 text-primary-700 dark:text-primary-300 border border-primary-100 dark:border-primary-900/50 hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors whitespace-nowrap"
-          >
-            All guides
-          </Link>
-          <div className="relative hidden sm:block">
+          <div className="relative flex-1 min-w-0 sm:max-w-md">
             <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
             <input
               type="search"
               placeholder="Search…"
               onChange={(e) => onSearch(e.target.value)}
-              className="w-36 sm:w-52 lg:w-64 pl-9 pr-3 py-1.5 text-sm bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-400 text-slate-900 dark:text-white placeholder:text-slate-400"
+              className="w-full pl-9 pr-3 py-1.5 text-sm bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500/50 text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-500"
             />
           </div>
         </div>

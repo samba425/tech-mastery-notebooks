@@ -263,7 +263,7 @@ export function NavIconBox({
     <span
       className={`flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-md ${
         selected
-          ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/60 dark:text-primary-300'
+          ? 'bg-slate-300/50 text-slate-800 dark:bg-slate-700 dark:text-primary-300'
           : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 group-hover:bg-slate-200/80 dark:group-hover:bg-slate-700'
       }`}
     >

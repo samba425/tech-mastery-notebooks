@@ -12,7 +12,7 @@ export default function Home() {
         </div>
       }
     >
-      <AppShell showAllSections={false} />
+      <AppShell />
     </Suspense>
   )
 }

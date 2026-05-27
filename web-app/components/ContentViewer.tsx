@@ -104,8 +104,8 @@ export default function ContentViewer({
         />
       )}
 
-      <article className="article-card rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm shadow-slate-200/50 dark:shadow-none overflow-hidden">
-        <header className="px-6 sm:px-8 pt-8 pb-6 border-b border-slate-100 dark:border-slate-800 bg-gradient-to-b from-slate-50/80 to-transparent dark:from-slate-800/30">
+      <article className="article-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm shadow-slate-200/40 dark:shadow-none overflow-hidden">
+        <header className="px-6 sm:px-8 pt-8 pb-6 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80">
           <div className="flex items-start gap-4">
             <NavIconBox
               id={content.id}
@@ -124,19 +124,19 @@ export default function ContentViewer({
           )}
           <div className="flex flex-wrap gap-3 mt-4 text-xs text-slate-500 dark:text-slate-400">
             {content.category && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 capitalize">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-200/70 dark:bg-slate-800 capitalize">
                 <Tag className="w-3.5 h-3.5" />
                 {content.category}
               </span>
             )}
             {content.readTime && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-200/70 dark:bg-slate-800">
                 <Clock className="w-3.5 h-3.5" />
                 {content.readTime} min read
               </span>
             )}
             {content.badge && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-primary-50 dark:bg-primary-950/50 text-primary-700 dark:text-primary-300 font-medium">
+              <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-primary-300 font-medium">
                 {content.badge}
               </span>
             )}
@@ -232,13 +232,13 @@ export default function ContentViewer({
         </div>
 
         {(prevContent || nextContent) && (
-          <footer className="px-6 sm:px-8 py-6 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
+          <footer className="px-6 sm:px-8 py-6 border-t border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/50">
             <div className="grid sm:grid-cols-2 gap-3">
               {prevContent ? (
                 <button
                   type="button"
                   onClick={() => onNavigate?.(prevContent)}
-                  className="group flex items-center gap-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-sm text-left transition-all"
+                  className="group flex items-center gap-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 hover:border-primary-400 dark:hover:border-primary-600 hover:shadow-sm text-left transition-all"
                 >
                   <ChevronLeft className="w-5 h-5 text-slate-400 group-hover:text-primary-500 flex-shrink-0" />
                   <div className="min-w-0">

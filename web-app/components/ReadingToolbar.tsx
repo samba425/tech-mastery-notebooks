@@ -49,7 +49,7 @@ export default function ReadingToolbar({
 
   return (
     <div className="sticky top-0 z-20 mb-4">
-      <div className="flex flex-wrap items-center gap-2 py-2.5 px-3 rounded-xl border border-slate-200/80 dark:border-slate-700/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm">
+      <div className="flex flex-wrap items-center gap-2 py-2.5 px-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm dark:shadow-none">
         <button
           type="button"
           onClick={onToggleSidebar}
