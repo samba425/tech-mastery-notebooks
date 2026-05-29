@@ -498,13 +498,23 @@ export function getContentStructure(): any[] {
           description: 'Common architecture patterns and best practices'
         },
         {
+          id: 'real-world-50',
+          title: '50 Real-World Examples (HLD + LLD)',
+          path: '../system-design/REAL-WORLD-SYSTEM-DESIGN-50.md',
+          category: 'system-design',
+          readTime: 120,
+          badge: 'Start Here',
+          description:
+            '32 HLD + 20 LLD deep dives: Twitter, WhatsApp, TikTok, Stripe, Zoom, URL shortener, LLM API, and more'
+        },
+        {
           id: 'hld-guide',
           title: 'High-Level Design (HLD)',
           path: '../system-design/hld/system-design-hld.ipynb',
           category: 'system-design',
           readTime: 75,
           badge: 'Essential',
-          description: 'High-level system design concepts'
+          description: 'HLD theory + deep dives — pair with 50 Real-World Examples'
         },
         {
           id: 'lld-guide',
@@ -513,7 +523,7 @@ export function getContentStructure(): any[] {
           category: 'system-design',
           readTime: 70,
           badge: 'Essential',
-          description: 'Low-level design and implementation details'
+          description: 'LLD patterns + OOP — pair with 50 Real-World Examples'
         },
         {
           id: 'system-design-practice-track',
