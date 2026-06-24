@@ -41,6 +41,7 @@ function getContentStructure() {
     { id: 'pytorch-zero-to-hero', title: '🔥 PyTorch Zero to Hero', path: '../guides/ai_ml/PYTORCH-ZERO-TO-HERO.md' },
     { id: 'generative-ai-zero-to-hero', title: '🎨 Generative AI Zero to Hero', path: '../guides/ai_ml/GENERATIVE-AI-ZERO-TO-HERO.md' },
     { id: 'llm-apps-zero-to-hero', title: '🧠 LLM Apps — RAG, Agents, Langfuse', path: '../guides/ai_ml/LLM-APPS-ZERO-TO-HERO.md' },
+    { id: 'prompt-engineering-zero-to-hero', title: '✍️ Prompt Engineering Zero to Hero (2026)', path: '../guides/ai_ml/prompt-engineering-zero-to-hero.md' },
     { id: 'rag-production-guide', title: '🏭 RAG in Production', path: '../guides/ai_ml/RAG-PRODUCTION-GUIDE.md' },
     { id: 'master-roadmap', title: '🗺️ ML/DS Complete Roadmap', path: '../guides/ai_ml/MASTER-ML-DS-COMPLETE-ROADMAP.md' },
     { id: 'learning-order', title: '📚 ML Learning Order Guide', path: '../guides/ai_ml/LEARNING-ORDER-GUIDE.md' },

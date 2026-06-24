@@ -87,6 +87,7 @@ const ID_ICON: Record<string, LucideIcon> = {
   'ai-ml': Brain,
   'ai-ml-zero-to-hero': Brain,
   'llm-apps-zero-to-hero': MessageSquare,
+  'prompt-engineering-zero-to-hero': ScrollText,
   'rag-production-guide': Workflow,
   'ai-ml-phase-0-prereq': BookOpen,
   'ai-ml-prereq-python': FileCode,

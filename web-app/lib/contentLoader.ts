@@ -221,6 +221,16 @@ export function getContentStructure(): any[] {
             'End-to-end: RAG, LangChain, LangGraph, agents, Langfuse — simple runnable code'
         },
         {
+          id: 'prompt-engineering-zero-to-hero',
+          title: 'Prompt Engineering Zero to Hero (2026)',
+          path: '../guides/ai_ml/prompt-engineering-zero-to-hero.md',
+          category: 'ai-ml',
+          badge: 'Context Eng',
+          readTime: 55,
+          description:
+            'Prompts → context engineering → structured outputs, agents, MCP, and production eval'
+        },
+        {
           id: 'rag-production-guide',
           title: 'RAG in Production (chunking, RAGAS, vector DBs)',
           path: '../guides/ai_ml/RAG-PRODUCTION-GUIDE.md',
