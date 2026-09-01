@@ -61,34 +61,7 @@ Every contribution, big or small, makes a huge difference. Thank you for your su
 ---
 >
 
-<div align="center">
-  <h1> 30 Days Of JavaScript: Introduction</h1>
-  <a class="header-badge" target="_blank" href="https://www.linkedin.com/in/Samba/">
-  <img src="https://img.shields.io/badge/style--5eba00.svg?label=LinkedIn&logo=linkedin&style=social">
-  </a>
-  <a class="header-badge" target="_blank" href="https://twitter.com/Samba">
-  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Samba?style=social">
-  </a>
 
-<sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
-<small> January, 2020</small>
-</sub>
-
-<div>
-
-🇬🇧 [English](./readMe.md)
-🇪🇸 [Spanish](./Spanish/readme.md)
-🇮🇹 [Italian](./Italian/readMe.md)
-🇷🇺 [Russian](./RU/README.md)
-🇹🇷 [Turkish](./Turkish/readMe.md)
-🇦🇿 [Azerbaijan](./Azerbaijani/readMe.md)
-🇰🇷 [Korean](./Korea/README.md)
-🇻🇳 [Vietnamese](./Vietnamese/README.md)
-🇵🇱 [Polish](./Polish/readMe.md)
-🇧🇷 [Portuguese](./Portuguese/readMe.md)
-
-</div>
 
 </div>
 </div>

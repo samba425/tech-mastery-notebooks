@@ -1,18 +1,4 @@
-<div align="center">
-  <h1> 30 Days Of React: Getting Started React</h1>
-  <a class="header-badge" target="_blank" href="https://www.linkedin.com/in/Samba/">
-  <img src="https://img.shields.io/badge/style--5eba00.svg?label=LinkedIn&logo=linkedin&style=social">
-  </a>
-  <a class="header-badge" target="_blank" href="https://twitter.com/Samba">
-  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Samba?style=social">
-  </a>
 
-<sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
-<small> October, 2020</small>
-</sub>
-
-</div>
 
 [<< Day 1](../01_Day_JavaScript_Refresher/01_javascript_refresher.md) | [Day 3 >>](../03_Day_Setting_Up/03_setting_up.md)
 

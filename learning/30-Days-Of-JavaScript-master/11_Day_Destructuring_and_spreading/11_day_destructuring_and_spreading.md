@@ -1,17 +1,4 @@
-<div align="center">
-  <h1> 30 Days Of JavaScript: Destructuring and Spreading</h1>
-  <a class="header-badge" target="_blank" href="https://www.linkedin.com/in/Samba/">
-  <img src="https://img.shields.io/badge/style--5eba00.svg?label=LinkedIn&logo=linkedin&style=social">
-  </a>
-  <a class="header-badge" target="_blank" href="https://twitter.com/Samba">
-  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Samba?style=social">
-  </a>
 
-  <sub>Author:
-  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
-  <small> January, 2020</small>
-  </sub>
-</div>
 
 [<< Day 10](../10_Day_Sets_and_Maps/10_day_Sets_and_Maps.md) | [Day 12>>](../12_Day_Regular_expressions/12_day_regular_expressions.md)
 

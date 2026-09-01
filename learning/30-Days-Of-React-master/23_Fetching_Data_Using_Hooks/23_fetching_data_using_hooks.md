@@ -1,18 +1,4 @@
-<div align="center">
-  <h1> 30 Days Of React: Fetching Data Using Hooks</h1>
-  <a class="header-badge" target="_blank" href="https://www.linkedin.com/in/Samba/">
-  <img src="https://img.shields.io/badge/style--5eba00.svg?label=LinkedIn&logo=linkedin&style=social">
-  </a>
-  <a class="header-badge" target="_blank" href="https://twitter.com/Samba">
-  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Samba?style=social">
-  </a>
 
-<sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
-<small> October, 2020</small>
-</sub>
-
-</div>
 
 [<< Day 22](../22_Form_Using_Hooks/22_form_using_hooks.md) | [Day 24>>](../24_projects/24_projects.md)
 

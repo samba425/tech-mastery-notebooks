@@ -1,18 +1,4 @@
-<div align="center">
-  <h1> 30 Days Of JavaScript: Promises</h1>
-  <a class="header-badge" target="_blank" href="https://www.linkedin.com/in/Samba/">
-  <img src="https://img.shields.io/badge/style--5eba00.svg?label=LinkedIn&logo=linkedin&style=social">
-  </a>
-  <a class="header-badge" target="_blank" href="https://twitter.com/Samba">
-  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Samba?style=social">
-  </a>
 
-<sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
-<small> January, 2020</small>
-</sub>
-
-</div>
 
 [<< Day 17](../17_Day_Web_storages/17_day_web_storages.md) | [Day 19>>](../19_Day_Closures/19_day_closures.md)
 

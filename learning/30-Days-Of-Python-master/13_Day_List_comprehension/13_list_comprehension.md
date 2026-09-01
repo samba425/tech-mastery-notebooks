@@ -1,19 +1,4 @@
-<div align="center">
-  <h1> 30 Days Of Python: Day 13 - List Comprehension</h1>
-  <a class="header-badge" target="_blank" href="https://www.linkedin.com/in/Samba/">
-  <img src="https://img.shields.io/badge/style--5eba00.svg?label=LinkedIn&logo=linkedin&style=social">
-  </a>
-  <a class="header-badge" target="_blank" href="https://twitter.com/Samba">
-  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Samba?style=social">
-  </a>
 
-<sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
-<small> Second Edition: July, 2021</small>
-</sub>
-
-
-</div>
 
 [<< Day 12](../12_Day_Modules/12_modules.md) | [Day 14>>](../14_Day_Higher_order_functions/14_higher_order_functions.md)
 
