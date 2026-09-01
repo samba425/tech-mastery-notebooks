@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> October, 2020</small>
 </sub>
 
@@ -66,7 +66,7 @@ const getUserInfo = (firstName, lastName, country, title, skills) => {
 // When we call this function we need parameters
 const skills = ['HTML', 'CSS', 'JS', 'React']
 console.log(
-  getUserInfo('Samba', 'Yetayeh', 'India', 'FullStack Developer', skills)
+  getUserInfo('Samba', 'Siva', 'India', 'FullStack Developer', skills)
 )
 ```
 
@@ -91,7 +91,7 @@ class Parent {
   }
 }
 
-const p1 = new Parent('Samba', 'Yetayeh', 'India', 'FullStack Developer')
+const p1 = new Parent('Samba', 'Siva', 'India', 'FullStack Developer')
 
 class Child extends Parent {
   constructor(firstName, lastName, country, title, skills) {
@@ -112,7 +112,7 @@ const skills = ['HTML', 'CSS', 'JS', 'React']
 
 const child = new Child(
   'Samba',
-  'Yetayeh',
+  'Siva',
   'India',
   'FullStack Developer',
   skills
@@ -146,7 +146,7 @@ const header = (
       <h1>Welcome to 30 Days Of React</h1>
       <h2>Getting Started React</h2>
       <h3>JavaScript Library</h3>
-      <p>Samba Yetayeh</p>
+      <p>Samba Siva</p>
       <small>Oct 3, 2020</small>
     </div>
   </header>
@@ -166,7 +166,7 @@ const Header = () => {
         <h1>Welcome to 30 Days Of React</h1>
         <h2>Getting Started React</h2>
         <h3>JavaScript Library</h3>
-        <p>Samba Yetayeh</p>
+        <p>Samba Siva</p>
         <small>Oct 3, 2020</small>
       </div>
     </header>
@@ -181,7 +181,7 @@ const Header = () => (
       <h1>Welcome to 30 Days Of React</h1>
       <h2>Getting Started React</h2>
       <h3>JavaScript Library</h3>
-      <p>Samba Yetayeh</p>
+      <p>Samba Siva</p>
       <small>Oct 3, 2020</small>
     </div>
   </header>
@@ -206,7 +206,7 @@ const Header = () => (
       <h1>Welcome to 30 Days Of React</h1>
       <h2>Getting Started React</h2>
       <h3>JavaScript Library</h3>
-      <p>Samba Yetayeh</p>
+      <p>Samba Siva</p>
       <small>Oct 3, 2020</small>
     </div>
   </header>
@@ -232,7 +232,7 @@ const Header = () => (
       <h1>Welcome to 30 Days Of React</h1>
       <h2>Getting Started React</h2>
       <h3>JavaScript Library</h3>
-      <p>Samba Yetayeh</p>
+      <p>Samba Siva</p>
       <small>Oct 3, 2020</small>
     </div>
   </header>
@@ -242,7 +242,7 @@ const Header = () => (
 const UserCard = () => (
   <div className='user-card'>
     <img src={SambaImage} alt='Samba image' />
-    <h2>Samba Yetayeh</h2>
+    <h2>Samba Siva</h2>
   </div>
 )
 
@@ -305,7 +305,7 @@ const welcome = 'Welcome to 30 Days Of React'
 const title = 'Getting Started React'
 const subtitle = 'JavaScript Library'
 const firstName = 'Samba'
-const lastName = 'Yetayeh'
+const lastName = 'Siva'
 const date = 'Oct 3, 2020'
 
 // JSX element, header
@@ -340,7 +340,7 @@ const title = 'Getting Started React'
 const subtitle = 'JavaScript Library'
 const author = {
   firstName: 'Samba',
-  lastName: 'Yetayeh',
+  lastName: 'Siva',
 }
 const date = 'Oct 2, 2020'
 

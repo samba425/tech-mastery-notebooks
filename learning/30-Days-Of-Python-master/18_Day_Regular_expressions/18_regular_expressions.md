@@ -8,7 +8,7 @@
   </a>
 
   <sub>Author:
-  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
   <small> First Edition: Nov 22 - Dec 22, 2019</small>
   </sub>
 </div>

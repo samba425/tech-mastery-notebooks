@@ -7,7 +7,7 @@
   <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Samba?style=social">
   </a>
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small>Second Edition: July, 2021</small>
 </sub>
 </div>

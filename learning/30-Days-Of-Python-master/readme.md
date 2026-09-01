@@ -64,7 +64,7 @@ Every contribution, big or small, makes a huge difference. Thank you for your su
   </a>
 
   <sub>Author:
-  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
   <small> Second Edition: July, 2021</small>
   </sub>
 </div>
@@ -353,7 +353,7 @@ A Python dictionary object is an unordered collection of data in a key value pai
 ```py
 {
 'first_name':'Samba',
-'last_name':'Yetayeh',
+'last_name':'Siva',
 'country':'India',
 'age':250,
 'is_married':True,

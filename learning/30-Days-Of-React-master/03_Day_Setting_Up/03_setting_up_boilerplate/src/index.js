@@ -24,7 +24,7 @@ const title = 'Getting Started React'
 const subtitle = 'JavaScript Library'
 const author = {
   firstName: 'Samba',
-  lastName: 'Yetayeh',
+  lastName: 'Siva',
 }
 const date = 'Oct 2, 2020'
 

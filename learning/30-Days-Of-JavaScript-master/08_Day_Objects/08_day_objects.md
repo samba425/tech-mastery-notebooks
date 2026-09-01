@@ -8,7 +8,7 @@
   </a>
 
   <sub>Author:
-  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
   <small> January, 2020</small>
   </sub>
 </div>
@@ -203,7 +203,7 @@ console.log(rectangle) // {length: 20, width: 20}
 
 const person = {
   firstName: 'Samba',
-  lastName: 'Yetayeh',
+  lastName: 'Siva',
   age: 250,
   country: 'India',
   city: 'Helsinki',
@@ -232,7 +232,7 @@ We can access values of object using two methods:
 ```js
 const person = {
   firstName: 'Samba',
-  lastName: 'Yetayeh',
+  lastName: 'Siva',
   age: 250,
   country: 'India',
   city: 'Helsinki',
@@ -276,7 +276,7 @@ Now, the person object has getFullName properties. The getFullName is function i
 ```js
 const person = {
   firstName: 'Samba',
-  lastName: 'Yetayeh',
+  lastName: 'Siva',
   age: 250,
   country: 'India',
   city: 'Helsinki',
@@ -296,7 +296,7 @@ const person = {
 }
 
 console.log(person.getFullName())
-// Samba Yetayeh
+// Samba Siva
 ```
 
 ### Setting new key for an object
@@ -308,7 +308,7 @@ Setting a new keys in an object
 ```js
 const person = {
   firstName: 'Samba',
-  lastName: 'Yetayeh',
+  lastName: 'Siva',
   age: 250,
   country: 'India',
   city: 'Helsinki',
@@ -349,7 +349,7 @@ console.log(person.getPersonInfo())
 ```
 
 ```sh
-Samba Yetayeh is a teacher.
+Samba Siva is a teacher.
 He lives in India.
 He teaches HTML, CSS, JavaScript, React, Node, MongoDB, Python, D3.js, Meteor, and SasS.
 ```

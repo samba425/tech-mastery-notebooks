@@ -164,7 +164,7 @@ class App extends React.Component {
       subtitle: 'JavaScript Library',
       author: {
         firstName: 'Samba',
-        lastName: 'Yetayeh',
+        lastName: 'Siva',
       },
       date: 'Oct 7, 2020',
     }

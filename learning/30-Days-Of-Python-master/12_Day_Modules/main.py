@@ -1,6 +1,6 @@
 
 from mymodule import generate_full_name as fullname, sum_two_nums as total, person as p, gravity as g
-print(fullname('Asabneh','Yetayeh'))
+print(fullname('Asabneh','Siva'))
 print(total(1, 9))
 mass = 100
 print(mass)

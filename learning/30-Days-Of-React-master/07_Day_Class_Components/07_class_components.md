@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> October, 2020</small>
 </sub>
 
@@ -62,7 +62,7 @@ const Header = () => (
       <h1>Welcome to 30 Days Of React</h1>
       <h2>Getting Started React</h2>
       <h3>JavaScript Library</h3>
-      <p>Samba Yetayeh</p>
+      <p>Samba Siva</p>
       <small>Oct 6, 2020</small>
     </div>
   </header>
@@ -88,7 +88,7 @@ class Header extends React.Component {
           <h1>Welcome to 30 Days Of React</h1>
           <h2>Getting Started React</h2>
           <h3>JavaScript Library</h3>
-          <p>Samba Yetayeh</p>
+          <p>Samba Siva</p>
           <small>Oct 7, 2020</small>
         </div>
       </header>
@@ -121,7 +121,7 @@ class Header extends React.Component {
           <h1>Welcome to 30 Days Of React</h1>
           <h2>Getting Started React</h2>
           <h3>JavaScript Library</h3>
-          <p>Samba Yetayeh</p>
+          <p>Samba Siva</p>
           <small>Oct 7, 2020</small>
         </div>
       </header>
@@ -265,7 +265,7 @@ class Header extends React.Component {
           <h1>Welcome to 30 Days Of React</h1>
           <h2>Getting Started React</h2>
           <h3>JavaScript Library</h3>
-          <p>Samba Yetayeh</p>
+          <p>Samba Siva</p>
           <small>Oct 7, 2020</small>
         </div>
       </header>
@@ -382,7 +382,7 @@ const App = () => {
     subtitle: 'JavaScript Library',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
     date: 'Oct 7, 2020',
   }
@@ -444,7 +444,7 @@ const App = () => {
     subtitle: 'JavaScript Library',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
     date: 'Oct 6, 2020',
   }
@@ -558,7 +558,7 @@ class App extends React.Component {
       subtitle: 'JavaScript Library',
       author: {
         firstName: 'Samba',
-        lastName: 'Yetayeh',
+        lastName: 'Siva',
       },
       date: 'Oct 7, 2020',
     }
@@ -602,7 +602,7 @@ class Header extends React.Component {
           <h1>Welcome to 30 Days Of React</h1>
           <h2>Getting Started React</h2>
           <h3>JavaScript Library</h3>
-          <p>Samba Yetayeh</p>
+          <p>Samba Siva</p>
           <small>Oct 7, 2020</small>
           <button onClick={this.greetPeople}> Greet </button>
         </div>
@@ -786,7 +786,7 @@ class App extends React.Component {
       subtitle: 'JavaScript Library',
       author: {
         firstName: 'Samba',
-        lastName: 'Yetayeh',
+        lastName: 'Siva',
       },
       date: 'Oct 7, 2020',
     }

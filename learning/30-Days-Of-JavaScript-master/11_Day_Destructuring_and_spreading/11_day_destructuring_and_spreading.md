@@ -8,7 +8,7 @@
   </a>
 
   <sub>Author:
-  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
   <small> January, 2020</small>
   </sub>
 </div>
@@ -265,7 +265,7 @@ console.log(calculatePerimeter(rect)) // 60
 //Another Example
 const person = {
   firstName: 'Samba',
-  lastName: 'Yetayeh',
+  lastName: 'Siva',
   age: 250,
   country: 'India',
   job: 'Instructor and Developer',
@@ -335,7 +335,7 @@ const getPersonInfo = ({
 }
 console.log(getPersonInfo(person))
 /*
-Samba Yetayeh lives in India. He is  250 years old. He is an Instructor and Developer. He teaches HTML, CSS, JavaScript, React, Redux, Node, MongoDB, Python and D3.js. He speaks Amharic, English and a little bit of Suomi(Finnish)
+Samba Siva lives in India. He is  250 years old. He is an Instructor and Developer. He teaches HTML, CSS, JavaScript, React, Redux, Node, MongoDB, Python and D3.js. He speaks Amharic, English and a little bit of Suomi(Finnish)
 */
 ```
 

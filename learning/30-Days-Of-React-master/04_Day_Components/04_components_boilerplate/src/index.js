@@ -40,7 +40,7 @@ const Header = () => (
       <h1>Welcome to 30 Days Of React</h1>
       <h2>Getting Started React</h2>
       <h3>JavaScript Library</h3>
-      <p>Samba Yetayeh</p>
+      <p>Samba Siva</p>
       <small>Oct 3, 2020</small>
     </div>
   </header>
@@ -50,7 +50,7 @@ const Header = () => (
 const UserCard = () => (
   <div className='user-card'>
     <img src={SambaImage} alt='Samba image' />
-    <h2>Samba Yetayeh</h2>
+    <h2>Samba Siva</h2>
   </div>
 )
 

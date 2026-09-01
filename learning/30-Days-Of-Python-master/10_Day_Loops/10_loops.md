@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> Second Edition: July, 2021</small>
 </sub>
 
@@ -205,7 +205,7 @@ for iterator in dct:
 ```py
 person = {
     'first_name':'Samba',
-    'last_name':'Yetayeh',
+    'last_name':'Siva',
     'age':250,
     'country':'India',
     'is_marred':True,
@@ -336,7 +336,7 @@ for x in y:
 ```py
 person = {
     'first_name': 'Samba',
-    'last_name': 'Yetayeh',
+    'last_name': 'Siva',
     'age': 250,
     'country': 'India',
     'is_marred': True,

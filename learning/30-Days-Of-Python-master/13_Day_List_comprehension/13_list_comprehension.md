@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> Second Edition: July, 2021</small>
 </sub>
 
@@ -198,7 +198,7 @@ print(two_power_of_five)  # 32
    ```
 6. Change the following list of lists to a list of concatenated strings:
    ```py
-   names = [[('Samba', 'Yetayeh')], [('David', 'Smith')], [('Donald', 'Trump')], [('Bill', 'Gates')]]
+   names = [[('Samba', 'Siva')], [('David', 'Smith')], [('Donald', 'Trump')], [('Bill', 'Gates')]]
    output
    ['Samba Yetaeyeh', 'David Smith', 'Donald Trump', 'Bill Gates']
    ```

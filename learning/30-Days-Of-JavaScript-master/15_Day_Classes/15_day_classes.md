@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> January, 2020</small>
 </sub>
 
@@ -124,13 +124,13 @@ class Person {
   }
 }
 
-const person1 = new Person('Samba', 'Yetayeh')
+const person1 = new Person('Samba', 'Siva')
 
 console.log(person1)
 ```
 
 ```sh
-Person {firstName: "Samba", lastName: "Yetayeh"}
+Person {firstName: "Samba", lastName: "Siva"}
 ```
 
 As we have stated at the very beginning that once we create a class we can create many object using the class. Now, let us create many person objects using the Person class.
@@ -144,9 +144,9 @@ class Person {
   }
 }
 
-const person1 = new Person('Samba', 'Yetayeh')
+const person1 = new Person('Samba', 'Siva')
 const person2 = new Person('Lidiya', 'Tekle')
-const person3 = new Person('Abraham', 'Yetayeh')
+const person3 = new Person('Abraham', 'Siva')
 
 console.log(person1)
 console.log(person2)
@@ -154,9 +154,9 @@ console.log(person3)
 ```
 
 ```sh
-Person {firstName: "Samba", lastName: "Yetayeh"}
+Person {firstName: "Samba", lastName: "Siva"}
 Person {firstName: "Lidiya", lastName: "Tekle"}
-Person {firstName: "Abraham", lastName: "Yetayeh"}
+Person {firstName: "Abraham", lastName: "Siva"}
 ```
 
 Using the class Person we created three persons object. As you can see our class did not many properties let us add more properties to the class.
@@ -173,13 +173,13 @@ class Person {
   }
 }
 
-const person1 = new Person('Samba', 'Yetayeh', 250, 'India', 'Helsinki')
+const person1 = new Person('Samba', 'Siva', 250, 'India', 'Helsinki')
 
 console.log(person1)
 ```
 
 ```sh
-Person {firstName: "Samba", lastName: "Yetayeh", age: 250, country: "India", city: "Helsinki"}
+Person {firstName: "Samba", lastName: "Siva", age: 250, country: "India", city: "Helsinki"}
 ```
 
 ### Default values with constructor
@@ -190,7 +190,7 @@ The constructor function properties may have a default value like other regular 
 class Person {
   constructor(
     firstName = 'Samba',
-    lastName = 'Yetayeh',
+    lastName = 'Siva',
     age = 250,
     country = 'India',
     city = 'Helsinki'
@@ -211,7 +211,7 @@ console.log(person2)
 ```
 
 ```sh
-Person {firstName: "Samba", lastName: "Yetayeh", age: 250, country: "India", city: "Helsinki"}
+Person {firstName: "Samba", lastName: "Siva", age: 250, country: "India", city: "Helsinki"}
 Person {firstName: "Lidiya", lastName: "Tekle", age: 28, country: "India", city: "Espoo"}
 ```
 
@@ -234,7 +234,7 @@ class Person {
   }
 }
 
-const person1 = new Person('Samba', 'Yetayeh', 250, 'India', 'Helsinki')
+const person1 = new Person('Samba', 'Siva', 250, 'India', 'Helsinki')
 const person2 = new Person('Lidiya', 'Tekle', 28, 'India', 'Espoo')
 
 console.log(person1.getFullName())
@@ -242,7 +242,7 @@ console.log(person2.getFullName())
 ```
 
 ```sh
-Samba Yetayeh
+Samba Siva
 test.js:19 Lidiya Tekle
 ```
 
@@ -267,7 +267,7 @@ class Person {
   }
 }
 
-const person1 = new Person('Samba', 'Yetayeh', 250, 'India', 'Helsinki')
+const person1 = new Person('Samba', 'Siva', 250, 'India', 'Helsinki')
 const person2 = new Person('Lidiya', 'Tekle', 28, 'India', 'Espoo')
 
 console.log(person1.score)
@@ -313,7 +313,7 @@ class Person {
   }
 }
 
-const person1 = new Person('Samba', 'Yetayeh', 250, 'India', 'Helsinki')
+const person1 = new Person('Samba', 'Siva', 250, 'India', 'Helsinki')
 const person2 = new Person('Lidiya', 'Tekle', 28, 'India', 'Espoo')
 
 console.log(person1.getScore) // We do not need parenthesis to call a getter method
@@ -363,7 +363,7 @@ class Person {
   }
 }
 
-const person1 = new Person('Samba', 'Yetayeh', 250, 'India', 'Helsinki')
+const person1 = new Person('Samba', 'Siva', 250, 'India', 'Helsinki')
 const person2 = new Person('Lidiya', 'Tekle', 28, 'India', 'Espoo')
 
 person1.setScore = 1
@@ -432,7 +432,7 @@ class Person {
   }
 }
 
-const person1 = new Person('Samba', 'Yetayeh', 250, 'India', 'Helsinki')
+const person1 = new Person('Samba', 'Siva', 250, 'India', 'Helsinki')
 const person2 = new Person('Lidiya', 'Tekle', 28, 'India', 'Espoo')
 const person3 = new Person('John', 'Doe', 50, 'Mars', 'Mars city')
 
@@ -464,7 +464,7 @@ console.log(person3.getPersonInfo())
 ["HTML", "CSS", "JavaScript"]
 ["Planning", "Managing", "Organizing"]
 []
-Samba Yetayeh is 250. He lives Helsinki, India. He knows HTML, CSS and JavaScript
+Samba Siva is 250. He lives Helsinki, India. He knows HTML, CSS and JavaScript
 Lidiya Tekle is 28. He lives Espoo, India. He knows Planning, Managing and Organizing
 John Doe is 50. He lives Mars city, Mars.
 ```
@@ -569,7 +569,7 @@ class Student extends Person {
   }
 }
 
-const s1 = new Student('Samba', 'Yetayeh', 'India', 250, 'Helsinki')
+const s1 = new Student('Samba', 'Siva', 'India', 250, 'Helsinki')
 console.log(s1)
 console.log(s1.saySomething())
 console.log(s1.getFullName())
@@ -577,11 +577,11 @@ console.log(s1.getPersonInfo())
 ```
 
 ```sh
-Student {firstName: "Samba", lastName: "Yetayeh", age: "India", country: 250, city: "Helsinki", …}
+Student {firstName: "Samba", lastName: "Siva", age: "India", country: 250, city: "Helsinki", …}
 I am a child of the person class
-Samba Yetayeh
-Student {firstName: "Samba", lastName: "Yetayeh", age: "India", country: 250, city: "Helsinki", …}
-Samba Yetayeh is India. He lives Helsinki, 250.
+Samba Siva
+Student {firstName: "Samba", lastName: "Siva", age: "India", country: 250, city: "Helsinki", …}
+Samba Siva is India. He lives Helsinki, 250.
 ```
 
 ### Overriding methods
@@ -615,7 +615,7 @@ class Student extends Person {
 
 const s1 = new Student(
   'Samba',
-  'Yetayeh',
+  'Siva',
   250,
   'India',
   'Helsinki',
@@ -644,12 +644,12 @@ console.log(s2.getPersonInfo())
 ```
 
 ```sh
-Student {firstName: "Samba", lastName: "Yetayeh", age: 250, country: "India", city: "Helsinki", …}
+Student {firstName: "Samba", lastName: "Siva", age: 250, country: "India", city: "Helsinki", …}
 Student {firstName: "Lidiya", lastName: "Tekle", age: 28, country: "India", city: "Helsinki", …}
 I am a child of the person class
-Samba Yetayeh
-Student {firstName: "Samba", lastName: "Yetayeh", age: 250, country: "India", city: "Helsinki", …}
-Samba Yetayeh is 250. He lives in Helsinki, India. He knows HTML, CSS and JavaScript
+Samba Siva
+Student {firstName: "Samba", lastName: "Siva", age: 250, country: "India", city: "Helsinki", …}
+Samba Siva is 250. He lives in Helsinki, India. He knows HTML, CSS and JavaScript
 I am a child of the person class
 Lidiya Tekle
 Student {firstName: "Lidiya", lastName: "Tekle", age: 28, country: "India", city: "Helsinki", …}

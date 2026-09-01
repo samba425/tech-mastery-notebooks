@@ -193,7 +193,7 @@ const App = (props) => {
     subtitle: 'JavaScript Library',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
     date: 'Oct 7, 2020',
   }

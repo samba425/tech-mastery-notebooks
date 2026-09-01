@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> October, 2020</small>
 </sub>
 
@@ -299,7 +299,7 @@ const header = (
     <h1>Welcome to 30 Days Of React</h1>
     <h2>Getting Started React</h2>
     <h3>JavaScript Library</h3>
-    <p>Samba Yetayeh</p>
+    <p>Samba Siva</p>
     <small>Oct 2, 2020</small>
   </header>
 )
@@ -324,7 +324,7 @@ const header = (
     <h1>Welcome to 30 Days Of React</h1>
     <h2>Getting Started React</h2>
     <h3>JavaScript Library</h3>
-    <p>Samba Yetayeh</p>
+    <p>Samba Siva</p>
     <small>Oct 2, 2020</small>
   </header>
 )
@@ -390,7 +390,7 @@ const header = (
       <h1>Welcome to 30 Days Of React</h1>
       <h2>Getting Started React</h2>
       <h3>JavaScript Library</h3>
-      <p>Samba Yetayeh</p>
+      <p>Samba Siva</p>
       <small>Oct 2, 2020</small>
     </div>
   </header>
@@ -450,7 +450,7 @@ const header = (
       <h1>Welcome to 30 Days Of React</h1>
       <h2>Getting Started React</h2>
       <h3>JavaScript Library</h3>
-      <p>Instructor: Samba Yetayeh</p>
+      <p>Instructor: Samba Siva</p>
       <small>Date: Oct 1, 2020</small>
     </div>
   </header>
@@ -515,7 +515,7 @@ const title = 'Getting Started React'
 const subtitle = 'JavaScript Library'
 const author = {
   firstName: 'Samba',
-  lastName: 'Yetayeh',
+  lastName: 'Siva',
 }
 const date = 'Oct 2, 2020'
 
@@ -640,7 +640,7 @@ const title = 'Getting Started React'
 const subtitle = 'JavaScript Library'
 const author = {
   firstName: 'Samba',
-  lastName: 'Yetayeh',
+  lastName: 'Siva',
 }
 const date = 'Oct 2, 2020'
 

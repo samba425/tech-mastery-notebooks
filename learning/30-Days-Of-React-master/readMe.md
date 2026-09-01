@@ -14,7 +14,7 @@
   <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Samba?style=social">
   </a>
 
-<sub>Author: <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<sub>Author: <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> October, 2020</small></sub>
 
 </div>

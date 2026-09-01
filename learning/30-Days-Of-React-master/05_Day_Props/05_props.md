@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> October, 2020</small>
 </sub>
 
@@ -75,7 +75,7 @@ const User = (props) => {
   )
 }
 // calling or instantiating a component, this component has three properties and we call them props:firstName, lastName, country
-<User firstName = 'Samba', lastName='Yetayeh' country = 'India' />
+<User firstName = 'Samba', lastName='Siva' country = 'India' />
 ```
 
 In the previous section, we injected data as follows and today we will change these data to props.
@@ -86,7 +86,7 @@ const title = 'Getting Started React'
 const subtitle = 'JavaScript Library'
 const author = {
   firstName: 'Samba',
-  lastName: 'Yetayeh',
+  lastName: 'Siva',
 }
 const date = 'Oct 4, 2020'
 
@@ -231,7 +231,7 @@ const App = () => (
       title='Getting Started React'
       subtitle='JavaScript Library'
       firstName='Samba'
-      lastName='Yetayeh'
+      lastName='Siva'
       date='Oct 4, 2020'
     />
   </div>
@@ -246,7 +246,7 @@ If you check on the browser console, you will get the following object.
 ```js
 {
 firstName: "Samba",
-lastName: "Yetayeh",
+lastName: "Siva",
 date: "Oct 4, 2020"
 subtitle: "JavaScript Library"
 title: "Getting Started React"
@@ -284,7 +284,7 @@ const App = () => {
   const title = 'Getting Started React'
   const subtitle = 'JavaScript Library'
   const firstName = 'Samba'
-  const lastName = 'Yetayeh'
+  const lastName = 'Siva'
   const date = 'Oct 4, 2020'
 
   return (
@@ -510,7 +510,7 @@ const App = () => {
     subtitle: 'JavaScript Library',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
     date: new Date(), // date needs to be formatted to a human readable format
   }
@@ -726,7 +726,7 @@ const App = () => {
     subtitle: 'JavaScript Library',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
     date: new Date(),
   }
@@ -804,7 +804,7 @@ const App = () => {
     subtitle: 'JavaScript Library',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
     date: new Date(),
   }
@@ -880,7 +880,7 @@ const App = () => {
     subtitle: 'JavaScript Library',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
     date: new Date(),
   }
@@ -1022,7 +1022,7 @@ const App = () => {
     subtitle: 'JavaScript Library',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
     date: new Date(), // date needs to be formatted to a human readable format
   }

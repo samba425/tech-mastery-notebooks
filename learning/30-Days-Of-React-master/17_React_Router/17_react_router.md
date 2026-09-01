@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> October, 2020</small>
 </sub>
 
@@ -607,7 +607,7 @@ const challenges = [
       'https://github.com/https://https://github.com/Samba/30-Days-Of-Python.com/Samba/30-Days-Of-JavaScript/30-Days-Of-React',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -622,7 +622,7 @@ const challenges = [
     url: 'https://github.com/Samba/30-Days-Of-JavaScript',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -637,7 +637,7 @@ const challenges = [
     url: 'https://github.com/Samba/30-Days-Of-React',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -653,7 +653,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -668,7 +668,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -683,7 +683,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -698,7 +698,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
 ]
@@ -841,7 +841,7 @@ const challenges = [
       'https://github.com/https://https://github.com/Samba/30-Days-Of-Python.com/Samba/30-Days-Of-JavaScript/30-Days-Of-React',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -856,7 +856,7 @@ const challenges = [
     url: 'https://github.com/Samba/30-Days-Of-JavaScript',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -871,7 +871,7 @@ const challenges = [
     url: 'https://github.com/Samba/30-Days-Of-React',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -887,7 +887,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -902,7 +902,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -917,7 +917,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -932,7 +932,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
 ]
@@ -1143,7 +1143,7 @@ const challenges = [
       'https://github.com/https://https://github.com/Samba/30-Days-Of-Python.com/Samba/30-Days-Of-JavaScript/30-Days-Of-React',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -1158,7 +1158,7 @@ const challenges = [
     url: 'https://github.com/Samba/30-Days-Of-JavaScript',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -1173,7 +1173,7 @@ const challenges = [
     url: 'https://github.com/Samba/30-Days-Of-React',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -1189,7 +1189,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -1204,7 +1204,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -1219,7 +1219,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -1234,7 +1234,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
 ]
@@ -1443,7 +1443,7 @@ const challenges = [
       'https://github.com/https://https://github.com/Samba/30-Days-Of-Python.com/Samba/30-Days-Of-JavaScript/30-Days-Of-React',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -1458,7 +1458,7 @@ const challenges = [
     url: 'https://github.com/Samba/30-Days-Of-JavaScript',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -1473,7 +1473,7 @@ const challenges = [
     url: 'https://github.com/Samba/30-Days-Of-React',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -1489,7 +1489,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -1504,7 +1504,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -1519,7 +1519,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -1534,7 +1534,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
 ]

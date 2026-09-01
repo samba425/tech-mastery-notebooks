@@ -8,7 +8,7 @@
   </a>
 
   <sub>Author:
-  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
   <small> January, 2020</small>
   </sub>
 </div>

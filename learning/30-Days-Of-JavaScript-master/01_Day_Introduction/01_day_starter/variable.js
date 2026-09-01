@@ -1,7 +1,7 @@
 // Declaring different variables of different data types
 
 let firstName = 'Samba'    // first name of a person
-let lastName = 'Yetayeh'      // last name of a person
+let lastName = 'Siva'      // last name of a person
 let country = 'India'       // country
 let city = 'Helsinki'         // capital city
 let age = 100                 // age in years

@@ -34,7 +34,7 @@ class App extends React.Component {
       subtitle: 'JavaScript Library',
       author: {
         firstName: 'Samba',
-        lastName: 'Yetayeh',
+        lastName: 'Siva',
       },
       date: new Date(),
     }

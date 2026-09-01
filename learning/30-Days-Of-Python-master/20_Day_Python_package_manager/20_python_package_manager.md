@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small>Second Edition: July, 2021</small>
 </sub>
 </div>
@@ -400,8 +400,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> arithmetics.power(5, 3)
 125
 >>> from mypackage import greet
->>> greet.greet_person('Samba', 'Yetayeh')
-'Samba Yetayeh, welcome to 30DaysOfPython Challenge!'
+>>> greet.greet_person('Samba', 'Siva')
+'Samba Siva, welcome to 30DaysOfPython Challenge!'
 >>>
 ```
 

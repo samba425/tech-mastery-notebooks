@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> Second Edition: July, 2021</small>
 </sub>
 
@@ -70,7 +70,7 @@ Function can be declared without parameters.
 ```py
 def generate_full_name ():
     first_name = 'Samba'
-    last_name = 'Yetayeh'
+    last_name = 'Siva'
     space = ' '
     full_name = first_name + space + last_name
     print(full_name)
@@ -91,7 +91,7 @@ Functions return values using the _return_ statement. If a function has no retur
 ```py
 def generate_full_name ():
     first_name = 'Samba'
-    last_name = 'Yetayeh'
+    last_name = 'Siva'
     space = ' '
     full_name = first_name + space + last_name
     return full_name
@@ -173,7 +173,7 @@ def generate_full_name (first_name, last_name):
     space = ' '
       full_name = first_name + space + last_name
       return full_name
-print('Full Name: ', generate_full_name('Samba','Yetayeh'))
+print('Full Name: ', generate_full_name('Samba','Siva'))
 
 def sum_two_numbers (num_one, num_two):
     sum = num_one + num_two
@@ -213,7 +213,7 @@ def print_fullname(firstname, lastname):
     space = ' '
     full_name = firstname  + space + lastname
     print(full_name)
-print_fullname(firstname = 'Samba', lastname = 'Yetayeh')
+print_fullname(firstname = 'Samba', lastname = 'Siva')
 
 def add_two_numbers (num1, num2):
     total = num1 + num2
@@ -237,7 +237,7 @@ def print_full_name(firstname, lastname):
     space = ' '
     full_name = firstname  + space + lastname
     return full_name
-print_full_name(firstname='Samba', lastname='Yetayeh')
+print_full_name(firstname='Samba', lastname='Siva')
 ```
 
 - Returning a number:
@@ -305,7 +305,7 @@ def greetings (name = 'Peter'):
 print(greetings())
 print(greetings('Samba'))
 
-def generate_full_name (first_name = 'Samba', last_name = 'Yetayeh'):
+def generate_full_name (first_name = 'Samba', last_name = 'Siva'):
     space = ' '
     full_name = first_name + space + last_name
     return full_name

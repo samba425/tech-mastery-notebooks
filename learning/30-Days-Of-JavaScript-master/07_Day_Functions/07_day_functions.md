@@ -8,7 +8,7 @@
   </a>
 
   <sub>Author:
-  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
   <small> January, 2020</small>
   </sub>
 </div>
@@ -103,7 +103,7 @@ addTwoNumbers() // a function has to be called by its name to be executed
 ```js
   function printFullName (){
       let firstName = 'Samba'
-      let lastName = 'Yetayeh'
+      let lastName = 'Siva'
       let space = ' '
       let fullName = firstName + space + lastName
       console.log(fullName)
@@ -119,7 +119,7 @@ Function can also return values, if a function does not return values the value 
 ```js
 function printFullName (){
       let firstName = 'Samba'
-      let lastName = 'Yetayeh'
+      let lastName = 'Siva'
       let space = ' '
       let fullName = firstName + space + lastName
       return fullName
@@ -190,7 +190,7 @@ console.log(sumTwoNumbers(10, 20))
 function printFullName(firstName, lastName) {
   return `${firstName} ${lastName}`
 }
-console.log(printFullName('Samba', 'Yetayeh'))
+console.log(printFullName('Samba', 'Siva'))
 ```
 
 ### Function with many parameters
@@ -381,7 +381,7 @@ const printFullName = (firstName, lastName) => {
   return `${firstName} ${lastName}`
 }
 
-console.log(printFullName('Samba', 'Yetayeh'))
+console.log(printFullName('Samba', 'Siva'))
 ```
 
 The above function has only the return statement, therefore, we can explicitly return it as follows.
@@ -389,7 +389,7 @@ The above function has only the return statement, therefore, we can explicitly r
 ```js
 const printFullName = (firstName, lastName) => `${firstName} ${lastName}`
 
-console.log(printFullName('Samba', 'Yetayeh'))
+console.log(printFullName('Samba', 'Siva'))
 ```
 
 ### Function with default parameters
@@ -421,7 +421,7 @@ console.log(greetings('Samba'))
 ```
 
 ```js
-function generateFullName(firstName = 'Samba', lastName = 'Yetayeh') {
+function generateFullName(firstName = 'Samba', lastName = 'Siva') {
   let space = ' '
   let fullName = firstName + space + lastName
   return fullName
@@ -477,7 +477,7 @@ console.log(greetings('Samba'))
 ```
 
 ```js
-const generateFullName = (firstName = 'Samba', lastName = 'Yetayeh') => {
+const generateFullName = (firstName = 'Samba', lastName = 'Siva') => {
   let space = ' '
   let fullName = firstName + space + lastName
   return fullName

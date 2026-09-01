@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> January, 2020</small>
 </sub>
 
@@ -240,7 +240,7 @@ It value we assign is going to be a string of HTML elements.
   </head>
   <body>
     <div class="wrapper">
-        <h1>Samba Yetayeh challenges in 2020</h1>
+        <h1>Samba Siva challenges in 2020</h1>
         <h2>30DaysOfJavaScript Challenge</h2>
         <ul></ul>
     </div>
@@ -270,7 +270,7 @@ The innerHTML property can allow us also to remove all the children of a parent 
   </head>
   <body>
     <div class="wrapper">
-        <h1>Samba Yetayeh challenges in 2020</h1>
+        <h1>Samba Siva challenges in 2020</h1>
         <h2>30DaysOfJavaScript Challenge</h2>
         <ul>
             <li>30DaysOfPython Challenge Done</li>
@@ -384,7 +384,7 @@ As you have notice, the properties of css when we use it in JavaScript is going 
   </head>
   <body>
     <div class="wrapper">
-        <h1>Samba Yetayeh challenges in 2020</h1>
+        <h1>Samba Siva challenges in 2020</h1>
         <h2>30DaysOfJavaScript Challenge</h2>
         <ul>
             <li>30DaysOfPython Challenge Done</li>

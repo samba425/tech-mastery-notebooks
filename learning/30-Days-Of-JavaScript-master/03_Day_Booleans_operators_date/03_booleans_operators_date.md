@@ -8,7 +8,7 @@
   </a>
 
   <sub>Author:
-  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
   <small> January, 2020</small>
   </sub>
 </div>
@@ -584,11 +584,11 @@ console.log(`${date}/${month}/${year} ${hours}:${minutes}`) // 4/1/2020 0:56
 
     ```js
     let firstName = 'Samba'
-    let lastName = 'Yetayeh'
+    let lastName = 'Siva'
     ```
 
     ```sh
-    Your first name, Samba is longer than your family name, Yetayeh
+    Your first name, Samba is longer than your family name, Siva
     ```
 
 1. Declare two variables _myAge_ and _yourAge_ and assign them initial values and myAge and yourAge.

@@ -8,7 +8,7 @@
   </a>
 
   <sub>Author:
-  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
   <small>Second Edition: July, 2021</small>
   </sub>
 
@@ -203,7 +203,7 @@ def print_full_name(first_name, last_name, country):
     print("I am {} {}. I love to teach.".format(
         first_name, last_name))
 
-print_full_name("Samba", "Yetayeh",'India')
+print_full_name("Samba", "Siva",'India')
 ```
 
 ## Built-in Higher Order Functions

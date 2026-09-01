@@ -1,6 +1,6 @@
 const SambaChallenges2020 = {
-  description: 'Samba Yetayeh challenges',
-  challengeTitle: 'Samba Yetayeh challenges',
+  description: 'Samba Siva challenges',
+  challengeTitle: 'Samba Siva challenges',
   challengeSubtitle: '30DaysOfJavaScript Challenge',
   challengeYear: 2020,
   keywords: [
@@ -42,7 +42,7 @@ const SambaChallenges2020 = {
   ],
   author: {
     firstName: 'Samba',
-    lastName: 'Yetayeh',
+    lastName: 'Siva',
     titles: [
       ['🌱', 'Educator'],
       ['💻', 'Programmer'],

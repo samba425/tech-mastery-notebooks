@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> October, 2020</small>
 </sub>
 
@@ -101,7 +101,7 @@ const Header = () = (
             <h1>30 Days Of React</h1>
             <h2>Getting Started React</h2>
             <h3>JavaScript Library</h3>
-            <p>Instructor: Samba Yetayeh</p>
+            <p>Instructor: Samba Siva</p>
             <small>Oct 15, 2020</small>
           </div>
         </header>
@@ -169,7 +169,7 @@ const Header = () = (
             <h1>30 Days Of React</h1>
             <h2>Getting Started React</h2>
             <h3>JavaScript Library</h3>
-            <p>Instructor: Samba Yetayeh</p>
+            <p>Instructor: Samba Siva</p>
             <small>Oct 15, 2020</small>
           </div>
         </header>
@@ -398,7 +398,7 @@ class App extends Component {
             <Title>30 Days Of React</Title>
             <h2>Getting Started React</h2>
             <h3>JavaScript Library</h3>
-            <p>Instructor: Samba Yetayeh</p>
+            <p>Instructor: Samba Siva</p>
             <small>Oct 15, 2020</small>
           </div>
         </Header>

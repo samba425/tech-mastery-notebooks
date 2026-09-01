@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> January, 2020</small>
 </sub>
 
@@ -104,7 +104,7 @@ In this challenge we follow the regular JavaScript convention but I added also m
 ```js
 
 let firstName = 'Samba'
-let lastName = 'Yetayeh'
+let lastName = 'Siva'
 let country = 'India'
 let city = 'Helsinki'
 
@@ -213,7 +213,7 @@ names.forEach((name) => name.toUpperCase())
 
 const person = {
   firstName: 'Samba',
-  lastName: 'Yetayeh',
+  lastName: 'Siva',
   age: 250,
   country: 'India',
   city: 'Helsinki',
@@ -234,7 +234,7 @@ We declare object literal with *const*.
 // declaring object literal
 const person = {
   firstName: 'Samba',
-  lastName: 'Yetayeh',
+  lastName: 'Siva',
   age: 250,
   country: 'India',
   city: 'Helsinki',

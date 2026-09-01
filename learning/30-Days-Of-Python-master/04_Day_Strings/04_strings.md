@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> Second Edition: July, 2021</small>
 </sub>
 
@@ -76,10 +76,10 @@ We can connect strings together. Merging or connecting strings is called concate
 
 ```py
 first_name = 'Samba'
-last_name = 'Yetayeh'
+last_name = 'Siva'
 space = ' '
 full_name = first_name  +  space + last_name
-print(full_name) # Samba Yetayeh
+print(full_name) # Samba Siva
 # Checking the length of a string using len() built-in function
 print(len(first_name))  # 8
 print(len(last_name))   # 7
@@ -136,7 +136,7 @@ The "%" operator is used to format a set of variables enclosed in a "tuple" (a f
 ```py
 # Strings only
 first_name = 'Samba'
-last_name = 'Yetayeh'
+last_name = 'Siva'
 language = 'Python'
 formated_string = 'I am %s %s. I teach %s' %(first_name, last_name, language)
 print(formated_string)
@@ -159,7 +159,7 @@ This format was introduced in Python version 3.
 ```py
 
 first_name = 'Samba'
-last_name = 'Yetayeh'
+last_name = 'Siva'
 language = 'Python'
 formated_string = 'I am {} {}. I teach {}'.format(first_name, last_name, language)
 print(formated_string)
@@ -345,12 +345,12 @@ print(challenge.rfind('th')) # 17
 
 ```py
 first_name = 'Samba'
-last_name = 'Yetayeh'
+last_name = 'Siva'
 age = 250
 job = 'teacher'
 country = 'India'
 sentence = 'I am {} {}. I am a {}. I am {} years old. I live in {}.'.format(first_name, last_name, job, age, country)
-print(sentence) # I am Samba Yetayeh. I am 250 years old. I am a teacher. I live in India.
+print(sentence) # I am Samba Siva. I am 250 years old. I am a teacher. I live in India.
 
 radius = 10
 pi = 3.14

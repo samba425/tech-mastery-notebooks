@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> Second Edition: July, 2021</small>
 </sub>
 
@@ -261,7 +261,7 @@ Enter number two: 3
 ```py
         person={
     'first_name': 'Samba',
-    'last_name': 'Yetayeh',
+    'last_name': 'Siva',
     'age': 250,
     'country': 'India',
     'is_married': True,
@@ -279,7 +279,7 @@ Enter number two: 3
      * If the person is married and if he lives in India, print the information in the following format:
 
 ```py
-    Samba Yetayeh lives in India. He is married.
+    Samba Siva lives in India. He is married.
 ```
 
 🎉 CONGRATULATIONS ! 🎉

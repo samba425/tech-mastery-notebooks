@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> October, 2020</small>
 </sub>
 
@@ -449,7 +449,7 @@ class App extends React.Component {
       subtitle: 'JavaScript Library',
       author: {
         firstName: 'Samba',
-        lastName: 'Yetayeh',
+        lastName: 'Siva',
       },
       date: 'Oct 7, 2020',
     }

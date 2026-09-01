@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> January, 2020</small>
 </sub>
 
@@ -54,7 +54,7 @@ try {
 
 ```js
 try {
-  let lastName = 'Yetayeh'
+  let lastName = 'Siva'
   let fullName = fistName + ' ' + lastName
 } catch (err) {
   console.log(err)
@@ -68,7 +68,7 @@ ReferenceError: fistName is not defined
 
 ```js
 try {
-  let lastName = 'Yetayeh'
+  let lastName = 'Siva'
   let fullName = fistName + ' ' + lastName
 } catch (err) {
   console.error(err) // we can use console.log() or console.error()
@@ -85,7 +85,7 @@ In any case it  will be executed
 The catch block take a parameter. It is common to pass e, err or error as a parameter to the catch block. This parameter is an object and it has name and message keys. Lets use the name and message.
 ```js
 try {
-  let lastName = 'Yetayeh'
+  let lastName = 'Siva'
   let fullName = fistName + ' ' + lastName
 } catch (err) {
   console.log('Name of the error', err.name)

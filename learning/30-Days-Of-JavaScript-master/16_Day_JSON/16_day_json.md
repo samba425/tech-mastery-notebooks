@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> January, 2020</small>
 </sub>
 
@@ -43,7 +43,7 @@ JSON stands for JavaScript Object Notation. The JSON syntax is derived from Java
 "users":[
   {
     "firstName":"Samba",
-    "lastName":"Yetayeh",
+    "lastName":"Siva",
     "age":250,
     "email":"asab@asb.com"
   },
@@ -188,7 +188,7 @@ const usersText = `{
 "users":[
   {
     "firstName":"Samba",
-    "lastName":"Yetayeh",
+    "lastName":"Siva",
     "age":250,
     "email":"asab@asb.com"
   },
@@ -220,7 +220,7 @@ const usersText = `{
 "users":[
   {
     "firstName":"Samba",
-    "lastName":"Yetayeh",
+    "lastName":"Siva",
     "age":250,
     "email":"asab@asb.com"
   },
@@ -440,7 +440,7 @@ Now, lets use the replacer as a filter. The user object has long list of keys bu
 ```js
 const user = {
   firstName: 'Samba',
-  lastName: 'Yetayeh',
+  lastName: 'Siva',
   country: 'India',
   city: 'Helsinki',
   email: 'alex@alex.com',
@@ -457,7 +457,7 @@ console.log(txt)
 ```sh
 {
     "firstName": "Samba",
-    "lastName": "Yetayeh",
+    "lastName": "Siva",
     "country": "India",
     "city": "Helsinki",
     "age": 250
@@ -474,7 +474,7 @@ let age = 250;
 let isMarried = true
 const student = {
   firstName:'Samba',
-  lastName:'Yetayehe',
+  lastName:'Sivae',
   age:250,
   isMarried:true,
   skills:['HTML', 'CSS', 'JS', 'React','Node', 'Python', ]

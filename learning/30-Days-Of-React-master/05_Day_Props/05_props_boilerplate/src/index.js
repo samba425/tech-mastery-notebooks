@@ -120,7 +120,7 @@ const App = () => {
     subtitle: 'JavaScript Library',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
     date: new Date(), // date needs to be formatted to a human readable format
   }

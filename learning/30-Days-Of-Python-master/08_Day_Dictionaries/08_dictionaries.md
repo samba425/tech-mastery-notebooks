@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> Second Edition: July, 2021</small>
 </sub>
 
@@ -57,7 +57,7 @@ dct = {'key1':'value1', 'key2':'value2', 'key3':'value3', 'key4':'value4'}
 ```py
 person = {
     'first_name':'Samba',
-    'last_name':'Yetayeh',
+    'last_name':'Siva',
     'age':250,
     'country':'India',
     'is_marred':True,
@@ -86,7 +86,7 @@ print(len(dct)) # 4
 ```py
 person = {
     'first_name':'Samba',
-    'last_name':'Yetayeh',
+    'last_name':'Siva',
     'age':250,
     'country':'India',
     'is_married':True,
@@ -116,7 +116,7 @@ print(dct['key4']) # value4
 ```py
 person = {
     'first_name':'Samba',
-    'last_name':'Yetayeh',
+    'last_name':'Siva',
     'age':250,
     'country':'India',
     'is_marred':True,
@@ -138,7 +138,7 @@ Accessing an item by key name raises an error if the key does not exist. To avoi
 ```py
 person = {
     'first_name':'Samba',
-    'last_name':'Yetayeh',
+    'last_name':'Siva',
     'age':250,
     'country':'India',
     'is_marred':True,
@@ -169,7 +169,7 @@ dct['key5'] = 'value5'
 ```py
 person = {
     'first_name':'Samba',
-    'last_name':'Yetayeh',
+    'last_name':'Siva',
     'age':250,
     'country':'India',
     'is_marred':True,
@@ -199,7 +199,7 @@ dct['key1'] = 'value-one'
 ```py
 person = {
     'first_name':'Samba',
-    'last_name':'Yetayeh',
+    'last_name':'Siva',
     'age':250,
     'country':'India',
     'is_marred':True,
@@ -244,7 +244,7 @@ del dct['key2'] # removes key2 item
 ```py
 person = {
     'first_name':'Samba',
-    'last_name':'Yetayeh',
+    'last_name':'Siva',
     'age':250,
     'country':'India',
     'is_marred':True,

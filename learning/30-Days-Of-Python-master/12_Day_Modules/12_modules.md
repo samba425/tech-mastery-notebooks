@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> Second Edition: July, 2021</small>
 </sub>
 
@@ -65,7 +65,7 @@ To import the file we use the _import_ keyword and the name of the file only.
 ```py
 # main.py file
 import mymodule
-print(mymodule.generate_full_name('Samba', 'Yetayeh')) # Samba Yetayeh
+print(mymodule.generate_full_name('Samba', 'Siva')) # Samba Siva
 ```
 
 ### Import Functions from a Module
@@ -75,7 +75,7 @@ We can have many functions in a file and we can import all the functions differe
 ```py
 # main.py file
 from mymodule import generate_full_name, sum_two_nums, person, gravity
-print(generate_full_name('Asabneh','Yetayeh'))
+print(generate_full_name('Asabneh','Siva'))
 print(sum_two_nums(1,9))
 mass = 100
 weight = mass * gravity
@@ -90,7 +90,7 @@ During importing we can rename the name of the module.
 ```py
 # main.py file
 from mymodule import generate_full_name as fullname, sum_two_nums as total, person as p, gravity as g
-print(fullname('Asabneh','Yetayeh'))
+print(fullname('Asabneh','Siva'))
 print(total(1, 9))
 mass = 100 
 weight = mass * g

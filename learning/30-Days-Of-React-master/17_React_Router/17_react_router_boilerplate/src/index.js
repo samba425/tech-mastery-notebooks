@@ -31,7 +31,7 @@ const challenges = [
       'https://github.com/https://https://github.com/Samba/30-Days-Of-Python.com/Samba/30-Days-Of-JavaScript/30-Days-Of-React',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -46,7 +46,7 @@ const challenges = [
     url: 'https://github.com/Samba/30-Days-Of-JavaScript',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -61,7 +61,7 @@ const challenges = [
     url: 'https://github.com/Samba/30-Days-Of-React',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -77,7 +77,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -92,7 +92,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -107,7 +107,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
   {
@@ -122,7 +122,7 @@ const challenges = [
     url: '',
     author: {
       firstName: 'Samba',
-      lastName: 'Yetayeh',
+      lastName: 'Siva',
     },
   },
 ]

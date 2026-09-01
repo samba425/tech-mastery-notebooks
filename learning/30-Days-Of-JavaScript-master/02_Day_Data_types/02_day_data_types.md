@@ -8,7 +8,7 @@
   </a>
 
   <sub>Author:
-  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+  <a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
   <small> January, 2020</small>
   </sub>
 </div>
@@ -271,7 +271,7 @@ Let's see some examples of strings:
 ```js
 let space = ' '           // an empty space string
 let firstName = 'Samba'
-let lastName = 'Yetayeh'
+let lastName = 'Siva'
 let country = 'India'
 let city = 'Helsinki'
 let language = 'JavaScript'
@@ -291,7 +291,7 @@ console.log(fullName);
 ```
 
 ```sh
-Samba Yetayeh
+Samba Siva
 ```
 
 We can concatenate strings in different ways.
@@ -304,7 +304,7 @@ Concatenating using the addition operator is an old way. This way of concatenati
 // Declaring different variables of different data types
 let space = ' '
 let firstName = 'Samba'
-let lastName = 'Yetayeh'
+let lastName = 'Siva'
 let country = 'India'
 let city = 'Helsinki'
 let language = 'JavaScript'
@@ -319,7 +319,7 @@ console.log(personInfoOne)
 ```
 
 ```sh
-Samba Yetayeh. I am 250. I live in India
+Samba Siva. I am 250. I live in India
 ```
 
 #### Long Literal Strings
@@ -328,7 +328,7 @@ A string could be a single character or paragraph or a page. If the string lengt
 **Example:**
 
 ```js
-const paragraph = "My name is Samba Yetayeh. I live in India, Helsinki.\
+const paragraph = "My name is Samba Siva. I live in India, Helsinki.\
 I am a teacher and I love teaching. I teach HTML, CSS, JavaScript, React, Redux, \
 Node.js, Python, Data Analysis and D3.js for anyone who is interested to learn. \
 In the end of 2019, I was thinking to expand my teaching and to reach \
@@ -402,7 +402,7 @@ console.log(`The sum of ${a} and ${b} is ${a + b}`) // injecting the data dynami
 
 ```js
 let firstName = 'Samba'
-let lastName = 'Yetayeh'
+let lastName = 'Siva'
 let country = 'India'
 let city = 'Helsinki'
 let language = 'JavaScript'
@@ -417,8 +417,8 @@ console.log(personInfoThree)
 ```
 
 ```sh
-I am Samba Yetayeh. I am 250. I live in India.
-I am Samba Yetayeh. I live in Helsinki, India. I am a teacher. I teach JavaScript.
+I am Samba Siva. I am 250. I live in India.
+I am Samba Siva. I live in Helsinki, India. I am a teacher. I teach JavaScript.
 ```
 
 Using a string template or string interpolation method, we can add expressions, which could be a value, or some operations (comparison, arithmetic operations, ternary operation).
@@ -801,7 +801,7 @@ To check the data type of a certain variable we use the _typeof_ method.
 // Let's declare different data types
 
 let firstName = 'Samba'      // string
-let lastName = 'Yetayeh'        // string
+let lastName = 'Siva'        // string
 let country = 'India'         // string
 let city = 'Helsinki'           // string
 let age = 250                   // number, it is not my real age, do not worry about it

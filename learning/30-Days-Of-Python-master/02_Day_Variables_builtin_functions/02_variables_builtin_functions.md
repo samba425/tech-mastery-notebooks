@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> Second Edition: July, 2021</small>
 </sub>
 
@@ -102,7 +102,7 @@ _Example:_
 ```py
 # Variables in Python
 first_name = 'Samba'
-last_name = 'Yetayeh'
+last_name = 'Siva'
 country = 'India'
 city = 'Helsinki'
 age = 250
@@ -110,7 +110,7 @@ is_married = True
 skills = ['HTML', 'CSS', 'JS', 'React', 'Python']
 person_info = {
    'firstname':'Samba',
-   'lastname':'Yetayeh',
+   'lastname':'Siva',
    'country':'India',
    'city':'Helsinki'
    }
@@ -152,7 +152,7 @@ Multiple variables can also be declared in one line:
 **Example:**
 
 ```py
-first_name, last_name, country, age, is_married = 'Samba', 'Yetayeh', 'Helsink', 250, True
+first_name, last_name, country, age, is_married = 'Samba', 'Siva', 'Helsink', 250, True
 
 print(first_name, last_name, country, age, is_married)
 print('First name:', first_name)
@@ -187,7 +187,7 @@ There are several data types in Python. To identify the data type we use the _ty
 # Let's declare variables with various data types
 
 first_name = 'Samba'     # str
-last_name = 'Yetayeh'       # str
+last_name = 'Siva'       # str
 country = 'India'         # str
 city= 'Helsinki'            # str
 age = 250                   # int, it is not my real age, don't worry about it

@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> January, 2020</small>
 </sub>
 
@@ -139,7 +139,7 @@ After creating an HTML, we may want to remove element or elements and we can use
 
 <body>
     <h1>Removing child Node</h1>
-    <h2>Samba Yetayeh challenges in 2020</h1>
+    <h2>Samba Siva challenges in 2020</h1>
     <ul>
         <li>30DaysOfPython Challenge Done</li>
         <li>30DaysOfJavaScript Challenge Done</li>
@@ -175,7 +175,7 @@ As we have see in the previous section there is a better way to eliminate all th
 
 <body>
     <h1>Removing child Node</h1>
-    <h2>Samba Yetayeh challenges in 2020</h1>
+    <h2>Samba Siva challenges in 2020</h1>
     <ul>
         <li>30DaysOfPython Challenge Done</li>
         <li>30DaysOfJavaScript Challenge Done</li>

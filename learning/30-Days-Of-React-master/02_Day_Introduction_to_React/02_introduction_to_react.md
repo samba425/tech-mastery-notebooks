@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> October, 2020</small>
 </sub>
 
@@ -154,7 +154,7 @@ const header = (
     <h1>Welcome to 30 Days Of React</h1>
     <h2>Getting Started React</h2>
     <h3>JavaScript Library</h3>
-    <p>Samba Yetayeh</p>
+    <p>Samba Siva</p>
     <small>Oct 2, 2020</small>
   </header>
 )
@@ -173,7 +173,7 @@ We comment codes for different reasons and it is also good to know how to commen
     <h1>Welcome to 30 Days Of React</h1>
     <h2>Getting Started React</h2>
     <h3>JavaScript Library</h3>
-    <p>Samba Yetayeh</p>
+    <p>Samba Siva</p>
     <small>Oct 2, 2020</small>
   </header>
 
@@ -329,7 +329,7 @@ Let us render more content. To render more content, the JSX element should have 
           <h1>Welcome to 30 Days Of React</h1>
           <h2>Getting Started React</h2>
           <h3>JavaScript Library</h3>
-          <p>Samba Yetayeh</p>
+          <p>Samba Siva</p>
           <small>Oct 2, 2020</small>
         </header>
       )
@@ -382,7 +382,7 @@ const header = (
     <h1>Welcome to 30 Days Of React</h1>
     <h2>Getting Started React</h2>
     <h3>JavaScript Library</h3>
-    <p>Samba Yetayeh</p>
+    <p>Samba Siva</p>
     <small>Oct 2, 2020</small>
   </header>
 )
@@ -449,7 +449,7 @@ Now, let us put everything together and render it to the browser. [Live on code 
           <h1>Welcome to 30 Days Of React</h1>
           <h2>Getting Started React</h2>
           <h3>JavaScript Library</h3>
-          <p>Samba Yetayeh</p>
+          <p>Samba Siva</p>
           <small>Oct 2, 2020</small>
         </header>
       )
@@ -514,7 +514,7 @@ const header = (
     <h1>Welcome to 30 Days Of React</h1>
     <h2>Getting Started React</h2>
     <h3>JavaScript Library</h3>
-    <p>Samba Yetayeh</p>
+    <p>Samba Siva</p>
     <small>Oct 2, 2020</small>
   </header>
 )
@@ -528,7 +528,7 @@ const header = (
     <h1>Welcome to 30 Days Of React</h1>
     <h2>Getting Started React</h2>
     <h3>JavaScript Library</h3>
-    <p>Samba Yetayeh</p>
+    <p>Samba Siva</p>
     <small>Oct 2, 2020</small>
   </header>
 )
@@ -598,7 +598,7 @@ Now, you know how to use the inline style and how to use className. Let us style
             <h1>Welcome to 30 Days Of React</h1>
             <h2>Getting Started React</h2>
             <h3>JavaScript Library</h3>
-            <p>Samba Yetayeh</p>
+            <p>Samba Siva</p>
             <small>Oct 2, 2020</small>
           </div>
         </header>
@@ -765,7 +765,7 @@ Instead of style object using regular styling method is more easy than the one a
             <h1>Welcome to 30 Days Of React</h1>
             <h2>Getting Started React</h2>
             <h3>JavaScript Library</h3>
-            <p>Instructor: Samba Yetayeh</p>
+            <p>Instructor: Samba Siva</p>
             <small>Date: Oct 1, 2020</small>
           </div>
         </header>
@@ -827,7 +827,7 @@ const welcome = 'Welcome to 30 Days Of React'
 const title = 'Getting Started React'
 const subtitle = 'JavaScript Library'
 const authorFirstName = 'Samba'
-const authorLastName = 'Yetayeh'
+const authorLastName = 'Siva'
 const date = 'Oct 1, 2020'
 
 // JSX element, header
@@ -857,7 +857,7 @@ const welcome = 'Welcome to 30 Days Of React'
 const title = 'Getting Started React'
 const subtitle = 'JavaScript Library'
 const firstName = 'Samba'
-const lastName = 'Yetayeh'
+const lastName = 'Siva'
 const date = 'Oct 2, 2020'
 
 // JSX element, header
@@ -1041,7 +1041,7 @@ Now, let us put everything together. Here, in the example below, the data is inj
       const subtitle = 'JavaScript Library'
       const author = {
         firstName: 'Samba',
-        lastName: 'Yetayeh',
+        lastName: 'Siva',
       }
       const date = 'Oct 2, 2020'
 
@@ -1251,7 +1251,7 @@ In the following code example, the list is now containing list elements and it i
       const subtitle = 'JavaScript Library'
       const author = {
         firstName: 'Samba',
-        lastName: 'Yetayeh',
+        lastName: 'Siva',
       }
       const date = 'Oct 2, 2020'
 
@@ -1457,7 +1457,7 @@ As you can see above, now the lists are formatted properly, but there is a warni
       const subtitle = 'JavaScript Library'
       const author = {
         firstName: 'Samba',
-        lastName: 'Yetayeh',
+        lastName: 'Siva',
       }
       const date = 'Oct 2, 2020'
 

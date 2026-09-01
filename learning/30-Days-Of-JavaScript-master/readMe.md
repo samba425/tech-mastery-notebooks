@@ -71,7 +71,7 @@ Every contribution, big or small, makes a huge difference. Thank you for your su
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Yetayeh</a><br>
+<a href="https://www.linkedin.com/in/Samba/" target="_blank">Samba Siva</a><br>
 <small> January, 2020</small>
 </sub>
 
@@ -565,7 +565,7 @@ There are two ways of commenting:
 ```js
 // commenting the code itself with a single comment
 // let firstName = 'Samba'; single line comment
-// let lastName = 'Yetayeh'; single line comment
+// let lastName = 'Siva'; single line comment
 ```
 
 Multiline commenting:
@@ -640,7 +640,7 @@ The nameOfVriable is the name that stores different data of value. See below for
 ```js
 // Declaring different variables of different data types
 let firstName = 'Samba' // first name of a person
-let lastName = 'Yetayeh' // last name of a person
+let lastName = 'Siva' // last name of a person
 let country = 'India' // country
 let city = 'Helsinki' // capital city
 let age = 100 // age in years
@@ -650,7 +650,7 @@ console.log(firstName, lastName, country, city, age, isMarried)
 ```
 
 ```sh
-Samba Yetayeh India Helsinki 100 true
+Samba Siva India Helsinki 100 true
 ```
 
 ```js

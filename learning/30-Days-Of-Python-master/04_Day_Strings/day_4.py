@@ -22,10 +22,10 @@ print(multiline_string)
 
 # String Concatenation
 first_name = 'Samba'
-last_name = 'Yetayeh'
+last_name = 'Siva'
 space = ' '
 full_name = first_name + space + last_name
-print(full_name)  # Samba Yetayeh
+print(full_name)  # Samba Siva
 # Checking length of a string using len() builtin function
 print(len(first_name))  # 8
 print(len(last_name))   # 7
@@ -120,12 +120,12 @@ print(challenge.find('th'))  # 0
 
 # format()	formats string into nicer output
 first_name = 'Samba'
-last_name = 'Yetayeh'
+last_name = 'Siva'
 job = 'teacher'
 country = 'India'
 sentence = 'I am {} {}. I am a {}. I live in {}.'.format(
     first_name, last_name, job, country)
-print(sentence)  # I am Samba Yetayeh. I am a teacher. I live in India.
+print(sentence)  # I am Samba Siva. I am a teacher. I live in India.
 
 radius = 10
 pi = 3.14
