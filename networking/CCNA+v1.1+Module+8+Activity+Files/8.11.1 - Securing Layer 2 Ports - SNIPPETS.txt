@@ -1,0 +1,61 @@
+! Layer 2 Port Security
+!
+!
+! From the PC, verify that you can open a browser to the server's website
+! Close the browser
+!
+!
+!
+enable
+configure terminal
+interface fa0/1
+switchport mode access
+switchport port-security
+switchport port-security maximum 1
+switchport port-security mac-address sticky
+switchport port-security violation shutdown
+end
+write memory
+!
+!
+! 
+! From the PC, verify that you can still open a browser to the server's website
+!
+!
+show port-security
+show port-security address
+!
+!
+!
+! Disconnect the PC from the switch, and connect it to the hub
+! Connect the hub to switchport fa0/1
+! From the PC, connect to the server
+! From the laptop, attempt to connect to the server
+! Examine the link lights (link status) on switchport fa0/1
+! 
+!
+!
+show port-security
+show port-security address
+show interface fa0/1 status
+show port-security interface fa0/1
+!
+!
+! Disconnect the hub from switchport fa0/1
+! 
+!
+configure terminal
+interface fa0/1
+shutdown
+no shutdown
+end
+show interface fa0/1 status
+show port-security interface fa0/1
+!
+!
+! Reconnect the PC to switchport fa0/1
+! From the PC attempt to ping the server
+! From the PC attempt to open a browser to the server's website
+!
+
+

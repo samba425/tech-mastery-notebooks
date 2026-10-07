@@ -1,0 +1,13 @@
+interface FastEthernet0/1
+ description to IP Phone0
+ switchport mode access
+ switchport access vlan 20
+ switchport voice vlan 10
+ mls qos trust cos
+!
+interface FastEthernet0/2
+ description to IP Phone1
+ switchport mode access
+ switchport access vlan 20
+ switchport voice vlan 10
+ mls qos trust cos

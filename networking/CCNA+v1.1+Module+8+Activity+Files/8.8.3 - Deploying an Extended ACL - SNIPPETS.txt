@@ -1,0 +1,22 @@
+! Extended ACL 100
+! Allow PC0 to go to the HTTP server using TCP ports 80 and 443
+! Allow PC0 to go to the EMAIL server using TCP ports 25 and 110
+! Prohibit PC0 from going to the 192.168.2.0 subnet
+! Prohibit PC0 from pinging any server
+! Allow PC1 to go to any server using any protocol
+! Prohibit any other traffic
+
+enable
+configure terminal
+access-list 100 permit tcp host 192.168.1.100 host 192.168.3.10 eq 80
+access-list 100 permit tcp host 192.168.1.100 host 192.168.3.10 eq 443
+access-list 100 permit tcp host 192.168.1.100 host 192.168.3.20 eq 25
+access-list 100 permit tcp host 192.168.1.100 host 192.168.3.20 eq 110
+access-list 100 deny ip host 192.168.1.100 192.168.2.0 0.0.0.255
+access-list 100 deny icmp host 192.168.1.100 any
+access-list 100 permit ip host 192.168.1.101 any
+!
+interface g0/0
+ip access-group 100 in
+end
+copy running-config startup-config

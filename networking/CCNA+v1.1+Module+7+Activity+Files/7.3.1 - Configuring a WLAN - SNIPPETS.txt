@@ -1,0 +1,91 @@
+7.3.1 ACT - Configuring a WLAN
+***********************************************
+
+Open Configuring a WLAN-START.pkt
+
+
+
+Prepare the WLC:
+
+1. Open WLC1
+2. Under Config --> Management verify that the IP address is 192.168.200.200/24, and the default gateway is 192.168.200.1
+3. On the Admin PC open a browser to https://192.168.200.200
+4. At the WLC login page, log in as admin / Cisco123
+5. Open the WLANs tab, and verify that there are no WLANs
+
+Add a Lightweight Access Point:
+
+6. Switch to the Packet Tracer palette
+7. Under Network Devices --> Wireless Devices drag a 3702i access point to the palette
+8. Open the 3702i --> Physical, connect a power adapter to the WAP
+9. On the Config tab, set the following:
+	GLOBAL Settings Display Name = LAP1 
+	Default Gateway = DHCP
+	GLOBAL WLC Primary Controller = 192.168.200.200
+	INTERFACE GigabitEthernet0 IP Configuration = DHCP
+10. Connect the 3702i to DSW1 g1/0/22
+
+Create a WLAN:
+
+11. In the WLC manager (Admin PC browser) set the following:
+	WLANs --> Advanced --> AP Groups--> default-group --> APs --> Verify that you see your WAP
+	WLANs --> WLANS --> WLANs --> Create New --> Go
+12. Create a WLAN with the following settings:
+	Type = WLAN
+	Profile Name = Staff-wireless
+	SSID = Staff
+	ID = 5
+13. Click Apply, click OK
+14. On the WLANs > Edit 'Staff-wireless' page, set the following:
+	Status = Enabled
+	Interface/Interface Group(G) = WLAN-5
+15. Click Apply, click OK
+16. On WLANs > Edit 'Staff-wireless'Security tab, set the following:
+	Layer 2 Security = WPA+WPA2
+	WAP2 Policy = enabled
+	WPA2 Encryption = AES 
+	Authentication Key Management = PSK
+	PSK password = Cisco123
+17. Click Apply, click OK
+18. On WLANs > Edit 'Staff-wireless' --> Advanced, under FlexConnect, set:
+	FlexConnect Local Switching = enable
+	FlexConnect Local Auth = enable
+19. Click Apply, click OK
+20. Click Save Configuration, click OK.
+21. In WLANs, verify that you see the WLAN you just created.
+
+Test the WLAN:
+
+In Packet Tracer, under End Devices, click and drag a laptop and a SmartPhone up to the palette.
+22. Open the laptop
+23. On the laptop Physical tab perform the following:
+	Turn off the laptop
+	Remove the RJ-45 Ethernet card
+	Replace it with a WPC300N Wi-Fi module
+	Turn on the laptop
+24. On the laptop Config tab --> GLOBAL Settings, set the following:
+	Default Gateway = DHCP
+	INTERFACE Wireless0 interface = On
+	SSID = Staff
+	Authentication = WPA2-PSK
+	PSK Pass Phrase = Cisco123,
+	IP Configuration = DHCP
+25. After a moment, verify that the laptop has receive a DHCP lease from 192.168.5.0 scope, and that it has a wireless connection to the LAP
+26. On the laptop, open a browser to the web server, and verify that you see the Cisco Packet Tracer home page.
+
+----------------------------------------------------------------------------
+OPTIONAL:
+
+Add another WLAN for Students:
+
+Repeat Steps 11 - 21 with these differences:
+
+12. Create a WLAN with the following settings:
+	Type = WLAN
+	Profile Name = Student-wireless
+	SSID = Students
+	ID = 7
+
+14. Interface/Interface Group(G) = WLAN-7
+
+Test with the SmartPhone
